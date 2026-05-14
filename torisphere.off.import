@@ -1,0 +1,15 @@
+[remap]
+
+importer="godot_4d.off_geometry_format.array_wire_mesh_4d"
+type="ArrayWireMesh4D"
+uid="uid://ctmc1ioi3bfcx"
+path="res://.godot/imported/torisphere.off-57f3fad299e35d1b6a08afdfa8268a85.res"
+
+[deps]
+
+source_file="res://torisphere.off"
+dest_files=["res://.godot/imported/torisphere.off-57f3fad299e35d1b6a08afdfa8268a85.res"]
+
+[params]
+
+deduplicate_edges=true

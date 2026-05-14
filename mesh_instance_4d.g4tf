@@ -1,0 +1,47 @@
+{
+	"accessors": [
+		{
+			"bufferView": 0,
+			"primitiveType": "float8",
+			"vectorSize": 4
+		},
+		{
+			"bufferView": 1,
+			"primitiveType": "uint8",
+			"vectorSize": 2
+		}
+	],
+	"asset": {
+		"dimension": 4,
+		"generator": "Godot Engine 4.5.2 with Godot 4D module"
+	},
+	"bufferViews": [
+		{
+			"buffer": 0,
+			"byteLength": 64
+		},
+		{
+			"buffer": 0,
+			"byteLength": 64,
+			"byteOffset": 64
+		}
+	],
+	"buffers": [
+		{
+			"byteLength": 128,
+			"uri": "data:application/octet-stream;base64,sLCwsDCwsLCwMLCwMDCwsLCwMLAwsDCwsDAwsDAwMLCwsLAwMLCwMLAwsDAwMLAwsLAwMDCwMDCwMDAwMDAwMAABAgMEBQYHCAkKCwwNDg8AAgEDBAYFBwgKCQsMDg0PAAQBBQIGAwcIDAkNCg4LDwAIAQkCCgMLBAwFDQYOBw8="
+		}
+	],
+	"meshes": [
+		{
+			"surfaces": [{ "edges": 1 }],
+			"vertices": 0
+		}
+	],
+	"nodes": [
+		{
+			"mesh": 0,
+			"name": "MeshInstance4D"
+		}
+	]
+}

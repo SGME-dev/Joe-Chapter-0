@@ -1,0 +1,263 @@
+[gd_scene load_steps=11 format=3 uid="uid://1mlpnhpmmom8"]
+
+[ext_resource type="Script" uid="uid://cbnjaiopequuq" path="res://school_1.gd" id="1_mnsvo"]
+[ext_resource type="PackedScene" uid="uid://bi2ot0trdsght" path="res://platform3.tscn" id="1_q7r7a"]
+[ext_resource type="PackedScene" uid="uid://c0s58r1qa7jvh" path="res://player.tscn" id="2_4xitv"]
+[ext_resource type="PackedScene" uid="uid://bb2t23ptf4uu2" path="res://chair.g4tf" id="3_d1qsf"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://bkgg4baxxckw0" path="res://hypersphere.off" id="4_cglct"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://ci167w5mij76p" path="res://tesseract.off" id="5_mnsvo"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://b2fiu3tg36k8n" path="res://duocylinder (1).off" id="6_cglct"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://ctmc1ioi3bfcx" path="res://torisphere.off" id="7_qm0um"]
+[ext_resource type="Script" uid="uid://dbsuuvvaet6w0" path="res://text_1.gd" id="9_hslpx"]
+[ext_resource type="PackedScene" uid="uid://bmvrivbnad8vh" path="res://platform4.tscn" id="10_qm0um"]
+
+[node name="School1" type="Node4D"]
+script = ExtResource("1_mnsvo")
+
+[node name="StaticBody4D" parent="." instance=ExtResource("1_q7r7a")]
+position = Vector4(-6.9, 0, -6.9, 0)
+basis = Projection(13.651999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 13, 0, 0, 0, 0, 13.356998)
+
+[node name="StaticBody4D2" parent="." instance=ExtResource("1_q7r7a")]
+position = Vector4(6.9, 0, -6.9, 0)
+basis = Projection(13.651999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 13, 0, 0, 0, 0, 13.356998)
+
+[node name="StaticBody4D3" parent="." instance=ExtResource("1_q7r7a")]
+position = Vector4(6.9, 0, 6.2958326, 0)
+basis = Projection(13.651999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 12.999999, 0, 0, 0, 0, 13.356998)
+
+[node name="StaticBody4D4" parent="." instance=ExtResource("1_q7r7a")]
+position = Vector4(-6.9, 0, 6.2958326, 0)
+basis = Projection(13.6519985, 0, 0, 0, 0, 1, 0, 0, 0, 0, 12.999998, 0, 0, 0, 0, 13.356998)
+
+[node name="StaticBody4D13" parent="." instance=ExtResource("1_q7r7a")]
+position = Vector4(-6.9, 12.117063, -6.899999, 0)
+basis = Projection(13.651999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 12.999998, 0, 0, 0, 0, 13.356998)
+
+[node name="StaticBody4D14" parent="." instance=ExtResource("1_q7r7a")]
+position = Vector4(6.9, 12.117063, -6.899999, 0)
+basis = Projection(13.651999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 12.999998, 0, 0, 0, 0, 13.356998)
+
+[node name="StaticBody4D15" parent="." instance=ExtResource("1_q7r7a")]
+position = Vector4(6.9, 12.117063, 6.2958317, 0)
+basis = Projection(13.651999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 12.999997, 0, 0, 0, 0, 13.356998)
+
+[node name="StaticBody4D16" parent="." instance=ExtResource("1_q7r7a")]
+position = Vector4(-6.9, 12.117063, 6.2958317, 0)
+basis = Projection(13.6519985, 0, 0, 0, 0, 1, 0, 0, 0, 0, 12.999996, 0, 0, 0, 0, 13.356998)
+
+[node name="StaticBody4D5" parent="." instance=ExtResource("1_q7r7a")]
+position = Vector4(6.9, 6.6481833, 12.310224, 0)
+basis = Projection(13.651999, 0, 0, 0, 0, -4.3711378e-08, 1, 0, 0, -12.999993, -5.68248e-07, 0, 0, 0, 0, 13.356996)
+
+[node name="StaticBody4D6" parent="." instance=ExtResource("1_q7r7a")]
+position = Vector4(-6.9, 6.6481833, 12.310224, 0)
+basis = Projection(13.6519985, 0, 0, 0, 0, -4.3711378e-08, 1, 0, 0, -12.999992, -5.6824797e-07, 0, 0, 0, 0, 13.356996)
+
+[node name="StaticBody4D7" parent="." instance=ExtResource("1_q7r7a")]
+position = Vector4(6.9, 6.6481833, -13.601134, 0)
+basis = Projection(13.651999, 0, 0, 0, 0, -4.3711378e-08, 1, 0, 0, -12.999993, -5.68248e-07, 0, 0, 0, 0, 13.356996)
+
+[node name="StaticBody4D8" parent="." instance=ExtResource("1_q7r7a")]
+position = Vector4(-6.9, 6.6481833, -13.601134, 0)
+basis = Projection(13.6519985, 0, 0, 0, 0, -4.3711378e-08, 1, 0, 0, -12.999992, -5.6824797e-07, 0, 0, 0, 0, 13.356996)
+
+[node name="StaticBody4D9" parent="." instance=ExtResource("1_q7r7a")]
+position = Vector4(-13.299613, 6.6481833, 5.3422546, 0)
+basis = Projection(-5.9674784e-07, 0, -13.651998, 0, 1, -4.371139e-08, -4.371138e-08, 0, -5.6824774e-07, -12.999993, 2.4838896e-14, 0, 0, 0, 0, 13.356996)
+
+[node name="StaticBody4D10" parent="." instance=ExtResource("1_q7r7a")]
+position = Vector4(-13.317934, 6.6481833, -8.3082695, 0)
+basis = Projection(-5.967478e-07, 0, -13.6519985, 0, 1, -4.371139e-08, -4.371139e-08, 0, -5.6824774e-07, -12.999992, 2.4838897e-14, 0, 0, 0, 0, 13.356996)
+
+[node name="StaticBody4D11" parent="." instance=ExtResource("1_q7r7a")]
+position = Vector4(13.086474, 6.6481833, 5.3422546, 0)
+basis = Projection(-5.9674784e-07, 0, -13.651998, 0, 1, -4.371139e-08, -4.371138e-08, 0, -5.6824774e-07, -12.999993, 2.4838896e-14, 0, 0, 0, 0, 13.356996)
+
+[node name="StaticBody4D12" parent="." instance=ExtResource("1_q7r7a")]
+position = Vector4(13.068153, 6.6481833, -8.3082695, 0)
+basis = Projection(-5.967478e-07, 0, -13.6519985, 0, 1, -4.371139e-08, -4.371139e-08, 0, -5.6824774e-07, -12.999992, 2.4838897e-14, 0, 0, 0, 0, 13.356996)
+
+[node name="CharacterBody4D" parent="." instance=ExtResource("2_4xitv")]
+position = Vector4(0, 3.7194085, 0, 0)
+
+[node name="chair" parent="." instance=ExtResource("3_d1qsf")]
+position = Vector4(-3.5762787e-07, 1.7756573, 8.08171, 0)
+
+[node name="chair2" parent="." instance=ExtResource("3_d1qsf")]
+position = Vector4(-4.7683716e-07, 1.7756573, -8.292104, 0)
+
+[node name="chair3" parent="." instance=ExtResource("3_d1qsf")]
+position = Vector4(-5.9604645e-07, 1.7756573, -3.550582, 0)
+
+[node name="chair4" parent="." instance=ExtResource("3_d1qsf")]
+position = Vector4(-7.1525574e-07, 1.7756573, 3.0806308, 0)
+
+[node name="chair5" parent="." instance=ExtResource("3_d1qsf")]
+position = Vector4(-3.5762787e-07, 1.7756573, 8.08171, 0)
+
+[node name="chair6" parent="." instance=ExtResource("3_d1qsf")]
+position = Vector4(-4.7683716e-07, 1.7756573, -8.292104, 0)
+
+[node name="chair7" parent="." instance=ExtResource("3_d1qsf")]
+position = Vector4(-5.9604645e-07, 1.7756573, -3.550582, 0)
+
+[node name="chair9" parent="." instance=ExtResource("3_d1qsf")]
+position = Vector4(-7.4160466, 1.7756573, 0.06089592, 0)
+basis = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 4.645597, 0, 0, 0, 0, 1)
+
+[node name="chair8" parent="." instance=ExtResource("3_d1qsf")]
+position = Vector4(-7.1525574e-07, 1.7756573, 3.0806308, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="."]
+position = Vector4(-3.5762787e-07, 2.762444, 2.8704507, 0)
+mesh = ExtResource("4_cglct")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="."]
+position = Vector4(-5.9604645e-07, 2.762444, 8.06862, 0)
+mesh = ExtResource("5_mnsvo")
+
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="."]
+position = Vector4(-7.1525574e-07, 2.762444, -3.6053896, 0)
+mesh = ExtResource("6_cglct")
+
+[node name="MeshInstance4D4" type="MeshInstance4D" parent="."]
+position = Vector4(-8.34465e-07, 2.762444, -8.202578, 0)
+mesh = ExtResource("7_qm0um")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1.0
+offset_top = -5.0
+offset_right = 228.0
+offset_bottom = 163.0
+
+[node name="HSlider" type="HSlider" parent="Control"]
+z_index = 1
+layout_mode = 0
+offset_left = 30.0
+offset_top = 14.0
+offset_right = 206.0
+offset_bottom = 30.0
+max_value = 360.0
+
+[node name="HSlider2" type="HSlider" parent="Control"]
+z_index = 1
+layout_mode = 0
+offset_left = 30.0
+offset_top = 37.0
+offset_right = 206.0
+offset_bottom = 53.0
+max_value = 360.0
+
+[node name="HSlider3" type="HSlider" parent="Control"]
+z_index = 1
+layout_mode = 0
+offset_left = 30.0
+offset_top = 62.0
+offset_right = 206.0
+offset_bottom = 78.0
+max_value = 360.0
+
+[node name="HSlider4" type="HSlider" parent="Control"]
+z_index = 1
+layout_mode = 0
+offset_left = 30.0
+offset_top = 90.0
+offset_right = 206.0
+offset_bottom = 106.0
+max_value = 360.0
+
+[node name="HSlider5" type="HSlider" parent="Control"]
+z_index = 1
+layout_mode = 0
+offset_left = 30.0
+offset_top = 119.0
+offset_right = 206.0
+offset_bottom = 135.0
+max_value = 360.0
+
+[node name="HSlider6" type="HSlider" parent="Control"]
+z_index = 1
+layout_mode = 0
+offset_left = 30.0
+offset_top = 141.0
+offset_right = 206.0
+offset_bottom = 157.0
+max_value = 360.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 10.0
+offset_right = 48.0
+offset_bottom = 33.0
+text = "x"
+
+[node name="Label2" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 35.0
+offset_right = 48.0
+offset_bottom = 58.0
+text = "y"
+
+[node name="Label3" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 59.0
+offset_right = 48.0
+offset_bottom = 82.0
+text = "z"
+
+[node name="Label4" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 87.0
+offset_right = 48.0
+offset_bottom = 110.0
+text = "w"
+
+[node name="Label5" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 116.0
+offset_right = 48.0
+offset_bottom = 139.0
+text = "h"
+
+[node name="Label6" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 137.0
+offset_right = 48.0
+offset_bottom = 160.0
+text = "d"
+
+[node name="Text 1" type="Node4D" parent="."]
+position = Vector4(0, 6.5790257, 12.872795, 0)
+basis = Projection(0.05, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 0.5)
+script = ExtResource("9_hslpx")
+
+[node name="Text 2" type="Node4D" parent="."]
+position = Vector4(0, 8.463295, 5.065402, 0)
+basis = Projection(0.05, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 0.4, 0, 0, 0, 0, 0.5)
+script = ExtResource("9_hslpx")
+text_to_display = "A HYPERSPHERE IS THE SET OF ALL POINTS:AT A FIXED DISTANCE FROM A CENTRAL POINT:IN FOUR DIMENSIONAL SPACE:ITS SURFACE IS ACTUALLY A THREE:DIMENSIONAL MANIFOLD MEANING ITS SKIN:HAS VOLUME JUST LIKE OUR ENTIRE UNIVERSE:IF YOU TRAVELED IN A STRAIGHT LINE ON A:HYPERSPHERES SURFACE YOU WOULD EVENTUALLY:RETURN TO YOUR STARTING POINT:WHEN INTERSECTING OUR 3D SPACE IT APPEARS:AS A SPHERE THAT STARTS AS A POINT GROWS:TO FULL SIZE AND SHRINKS BACK DOWN:IT IS PERFECTLY SYMMETRICAL REPRESENTING:THE MOST EFFICIENT WAY TO ENCLOSE 4D:VOLUME WITH THE LEAST SURFACE AREA:IT IS THE HIGHER DIMENSIONAL EQUIVALENT:OF THE SPHERE WE KNOW IN OUR DAILY LIVES:A GEOMETRIC MARVEL OF RADIALLY UNIFORM:POINTS ACROSS ALL FOUR AXES OF MOTION:DEFINING THE BOUNDARY OF A 4D BALL"
+
+[node name="Text 3" type="Node4D" parent="."]
+position = Vector4(0, 8.463295, -1.4829704, 0)
+basis = Projection(0.05, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 0.4, 0, 0, 0, 0, 0.5)
+script = ExtResource("9_hslpx")
+text_to_display = "A DUOCYLINDER IS A 4D OBJECT FORMED BY:THE CARTESIAN PRODUCT OF TWO SEPARATE:2D DISKS:UNLIKE A 3D CYLINDER WHICH HAS ONE:CURVED SIDE AND TWO FLAT ENDS THIS SHAPE:HAS TWO DISTINCT CURVED SURFACES:THESE TWO RIMS ARE ACTUALLY SOLID:CYLINDERS THAT MEET ALONG A SHARED 2D:SURFACE KNOWN AS A CLIFFORD TORUS:IT IS UNIQUE BECAUSE IT CAN ROLL IN TWO:COMPLETELY DIFFERENT PERPENDICULAR:DIRECTIONS AT THE SAME TIME:BECAUSE IT LACKS FLAT ENDS IN THE 4D:SENSE IT CAN ESSENTIALLY STAY BALANCED:ON EITHER OF ITS CURVED FACES:IT REPRESENTS A FASCINATING TWIST ON:ROTATIONAL SYMMETRY WITHIN THE TOPOLOGY:OF FOUR DIMENSIONAL GEOMETRIC STRUCTURES:WHERE TWO INDEPENDENT AXES OF ROTATION:COEXIST WITHIN A SINGLE SOLID BODY"
+
+[node name="Text 4" type="Node4D" parent="."]
+position = Vector4(0, 8.463295, -7.359729, 0)
+basis = Projection(0.049999993, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 0.39999995, 0, 0, 0, 0, 0.5)
+script = ExtResource("9_hslpx")
+text_to_display = "A SPHERITORUS IS CREATED BY SWEEPING:A 3D SPHERE IN A CIRCULAR PATH THROUGH:THE FOURTH DIMENSION:THINK OF IT AS A 4D DOUGHNUT BUT INSTEAD:OF A CIRCULAR CROSS SECTION THE RING IS:MADE OF ENTIRE SPHERES:ITS TOPOLOGY IS THE PRODUCT OF A 2 SPHERE:AND A CIRCLE CREATING A SURFACE THAT:FEELS BOTH ROUND AND HOLLOWED OUT:IF YOU SLICED IT THROUGH OUR 3D WORLD:YOU MIGHT SEE TWO SEPARATE SPHERES OR:ONE LARGE BLOATED BUBBLE SPHERE:IT IS ONE OF SEVERAL WAYS TO GENERALIZE:A TORUS BLENDING SPHERICAL SYMMETRY:WITH THE HOLE IN THE MIDDLE LOGIC:OF A DOUGHNUT IN FOUR DIMENSIONAL SPACE:THIS COMPLEX SHAPE REVEALS THE RICHNESS:OF CURVED MANIFOLDS BEYOND OUR SENSES:OFFERING A GLIMPSE INTO HIGHER ORDER:TOPOLOGICAL TRANSFORMATIONS AND FORMS"
+
+[node name="StaticBody4D17" parent="." instance=ExtResource("10_qm0um")]
+position = Vector4(4.0687103, 1.090203, -0.9857705, 0)
+basis = Projection(2.4820688, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 26.693075, 0, 0, 0, 0, 13.356995)

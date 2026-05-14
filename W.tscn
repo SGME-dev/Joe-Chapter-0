@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://cq4ubom5jc027"]
+
+[sub_resource type="BoxWireMesh4D" id="BoxWireMesh4D_js40r"]
+
+[node name="A" type="Node4D"]
+basis = Projection(0.1, 0, 0, 0, 0, 0.1, 0, 0, 0, 0, 0.1, 0, 0, 0, 0, 0.1)
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="."]
+position = Vector4(0, -0.13469094, 0.6799556, 0)
+basis = Projection(1, 0, 0, 0, 0, 3.2335193, 0.8664189, 0, 0, -0.258819, 0.9659257, 0, 0, 0, 0, 1)
+mesh = SubResource("BoxWireMesh4D_js40r")
+
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="."]
+position = Vector4(0, -1.0378392, -0.15819715, 0)
+basis = Projection(1, 0, 0, 0, 0, 1.0606601, -1.0606601, 0, 0, 0.7071068, 0.7071068, 0, 0, 0, 0, 1)
+mesh = SubResource("BoxWireMesh4D_js40r")
+
+[node name="MeshInstance4D4" type="MeshInstance4D" parent="."]
+position = Vector4(0, -1.1673707, -0.7501768, 0)
+basis = Projection(0.99999976, 0, 0, 0, 0, 1.0606602, 1.06066, 0, 0, -0.7071069, 0.7071067, 0, 0, 0, 0, 0.99999976)
+mesh = SubResource("BoxWireMesh4D_js40r")
+
+[node name="MeshInstance4D5" type="MeshInstance4D" parent="."]
+position = Vector4(0, -0.13469099, -1.5762343, 0)
+basis = Projection(0.9999999, 0, 0, 0, 0, 3.2335196, -0.86641896, 0, 0, 0.258819, 0.9659257, 0, 0, 0, 0, 0.9999999)
+mesh = SubResource("BoxWireMesh4D_js40r")

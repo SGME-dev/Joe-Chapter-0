@@ -1,0 +1,15 @@
+[remap]
+
+importer="godot_4d.off_geometry_format.array_wire_mesh_4d"
+type="ArrayWireMesh4D"
+uid="uid://dsbjhifl3e3yk"
+path="res://.godot/imported/sphereinder.off-99593659c5fc70261df75de69ca12cc4.res"
+
+[deps]
+
+source_file="res://sphereinder.off"
+dest_files=["res://.godot/imported/sphereinder.off-99593659c5fc70261df75de69ca12cc4.res"]
+
+[params]
+
+deduplicate_edges=true

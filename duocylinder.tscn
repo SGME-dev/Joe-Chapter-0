@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bb6hbtb6dlidk"]
+
+[ext_resource type="ArrayWireMesh4D" uid="uid://natdo8i342ty" path="res://new_array_wire_mesh_4d.tres" id="1_5j546"]
+
+[sub_resource type="DuocylinderShape4D" id="DuocylinderShape4D_5j546"]
+radius_xy = 1.0
+radius_zw = 1.0
+
+[node name="StaticBody4D" type="StaticBody4D"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="."]
+mesh = ExtResource("1_5j546")
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="."]
+shape = SubResource("DuocylinderShape4D_5j546")
+
+[node name="Marker4D" type="MeshInstance4D" parent="."]
+position = Vector4(-1.0221761, 0, 0, 0)
+
+[node name="Marker4D2" type="MeshInstance4D" parent="."]
+position = Vector4(0.97865987, 0, 0, 0)

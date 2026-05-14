@@ -1,0 +1,286 @@
+[gd_scene load_steps=11 format=3 uid="uid://ct278airkigxp"]
+
+[ext_resource type="Script" uid="uid://dp7n2s1xk1c2p" path="res://node_4d.gd" id="1_f4q7b"]
+[ext_resource type="PackedScene" uid="uid://c0s58r1qa7jvh" path="res://player.tscn" id="1_jtvq5"]
+[ext_resource type="PackedScene" uid="uid://cytl1r1yjrird" path="res://platform.tscn" id="2_7nsku"]
+[ext_resource type="PackedScene" uid="uid://bfoh242i1sq1x" path="res://platform2.tscn" id="3_2mril"]
+[ext_resource type="PackedScene" uid="uid://bfsv8l3iprvmx" path="res://sphereinder.tscn" id="5_x5a5f"]
+[ext_resource type="PackedScene" uid="uid://dk38q8yta7jfk" path="res://cubinder_moving.tscn" id="6_x5fef"]
+
+[sub_resource type="BoxShape4D" id="BoxShape4D_x5fef"]
+
+[sub_resource type="BoxShape4D" id="BoxShape4D_ngegj"]
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_6gk2r"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxWireMesh4D" id="BoxWireMesh4D_ctvjw"]
+material = SubResource("WireMaterial4D_6gk2r")
+
+[node name="Node4D" type="Node4D"]
+script = ExtResource("1_f4q7b")
+
+[node name="CharacterBody4D" parent="." instance=ExtResource("1_jtvq5")]
+position = Vector4(0, 3.717421, 0, 0)
+
+[node name="StaticBody4D" parent="." instance=ExtResource("2_7nsku")]
+
+[node name="StaticBody4D10" parent="." instance=ExtResource("2_7nsku")]
+position = Vector4(0, 0, -59.653263, 0)
+basis = Projection(4.9999995, 0, 0, 0, 0, -2.1855692e-07, 4.9999995, 0, 0, -4.9999995, -2.1855692e-07, 0, 0, 0, 0, 19.999998)
+
+[node name="StaticBody4D11" parent="." instance=ExtResource("2_7nsku")]
+position = Vector4(0, 2.9668927, -139.76857, 0)
+basis = Projection(4.9999995, 0, 0, 0, 0, -2.1855692e-07, 4.9999995, 0, 0, -4.9999995, -2.1855692e-07, 0, 0, 0, 0, 19.999998)
+
+[node name="StaticBody4D2" parent="." instance=ExtResource("2_7nsku")]
+position = Vector4(-0.05201626, 0, -14.814577, 0)
+
+[node name="StaticBody4D3" parent="." instance=ExtResource("2_7nsku")]
+position = Vector4(-0.05201626, 0, -30.763855, 0)
+
+[node name="StaticBody4D5" parent="." instance=ExtResource("2_7nsku")]
+position = Vector4(-0.05201626, 0, -43.736725, 0)
+basis = Projection(13.651999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 13, 0, 0, 0, 0, 13.356998)
+
+[node name="StaticBody4D9" parent="." instance=ExtResource("2_7nsku")]
+position = Vector4(-0.052016255, 0.45053196, -104.765656, 1.1920929e-07)
+basis = Projection(13.651996, 0, 0, 0, 0, -4.3711378e-08, 1.0000008, 0, 0, -12.999999, -5.682484e-07, 0, 0, 0, 0, 13.356996)
+
+[node name="StaticBody4D12" parent="." instance=ExtResource("2_7nsku")]
+position = Vector4(-0.052016255, 8.679064, -157.21637, 1.1920929e-07)
+basis = Projection(13.651996, 0, 0, 0, 0, -4.3711378e-08, 1.0000008, 0, 0, -12.999999, -5.682484e-07, 0, 0, 0, 0, 5)
+
+[node name="StaticBody4D13" parent="." instance=ExtResource("2_7nsku")]
+position = Vector4(0, 2.9668922, -170.47597, 0)
+basis = Projection(5, 0, 0, 0, 0, -2.1855689e-07, 4.9999995, 0, 0, -4.9999986, -2.1855692e-07, 0, 0, 0, 0, 19.999998)
+
+[node name="StaticBody4D14" parent="." instance=ExtResource("2_7nsku")]
+position = Vector4(-0.052016262, 8.679062, -187.92377, 1.1920929e-07)
+basis = Projection(13.651998, 0, 0, 0, 0, -4.371137e-08, 1.0000008, 0, 0, -12.999997, -5.682484e-07, 0, 0, 0, 0, 5)
+
+[node name="StaticBody4D15" parent="." instance=ExtResource("2_7nsku")]
+position = Vector4(-1.1175871e-08, 2.9668925, -204.3587, 2.1316279e-14)
+basis = Projection(4.9999986, 0, 0, 0, 0, -2.1855685e-07, 4.999998, 0, 0, -4.999997, -2.1855688e-07, 0, 0, 0, 0, 19.999992)
+
+[node name="StaticBody4D17" parent="." instance=ExtResource("2_7nsku")]
+position = Vector4(-32.710148, 2.9668925, -253.27261, 2.1316279e-14)
+basis = Projection(4.9999986, 0, 0, 0, 0, -2.18557e-07, 5.0000014, 0, 0, -4.999997, -2.1855682e-07, 0, 0, 0, 0, 20.000006)
+
+[node name="StaticBody4D16" parent="." instance=ExtResource("2_7nsku")]
+position = Vector4(-0.052016255, 8.679062, -222.72067, 1.1920927e-07)
+basis = Projection(13.651989, 0, 0, 0, 0, -4.3711353e-08, 1.0000004, 0, 0, -12.999992, -5.682482e-07, 0, 0, 0, 0, 5)
+
+[node name="StaticBody4D4" parent="." instance=ExtResource("3_2mril")]
+position = Vector4(0, 4.227818, -39.39955, -0.50626516)
+basis = Projection(2.483891e-14, 13, 5.68248e-07, -4.967782e-14, -4.371139e-08, 4.371139e-08, -1, 1.7484555e-07, 13, 0, -5.68248e-07, 0, -7.642742e-14, 3.821371e-14, -1.7484556e-06, -10)
+
+[node name="StaticBody4D6" parent="." instance=ExtResource("3_2mril")]
+position = Vector4(3.7252894e-09, 1.8218641, -87.707405, -0.5062648)
+basis = Projection(12.999998, 0, 0, 0, 0, 1.0000002, 0, 0, 0, 0, 13.000013, 0, 0, 0, 0, 9.999996)
+
+[node name="StaticBody4D7" parent="." instance=ExtResource("3_2mril")]
+position = Vector4(3.7252894e-09, 4.450572, -104.83967, -0.5062648)
+basis = Projection(12.999998, 0, 0, 0, 0, 1.0000002, 0, 0, 0, 0, 13.000013, 0, 0, 0, 0, 9.999996)
+
+[node name="StaticBody4D8" parent="." instance=ExtResource("3_2mril")]
+position = Vector4(3.7252894e-09, 6.8383007, -119.982635, -0.5062648)
+basis = Projection(12.999998, 0, 0, 0, 0, 1.0000002, 0, 0, 0, 0, 13.000013, 0, 0, 0, 0, 9.999996)
+
+[node name="StaticBody4D34" parent="." instance=ExtResource("3_2mril")]
+position = Vector4(3.7252894e-09, 0.6463132, -232.47533, -0.5062648)
+basis = Projection(13.000004, 0, 0, 0, 0, 1.0000002, 0, 0, 0, 0, 13.000019, 0, 0, 0, 0, 9.999996)
+
+[node name="StaticBody4D35" parent="." instance=ExtResource("3_2mril")]
+position = Vector4(-55.03976, 0.646313, -259.23087, -0.5062648)
+basis = Projection(13.000004, 0, 0, 0, 0, 1.0000002, 0, 0, 0, 0, 13.000019, 0, 0, 0, 0, 9.999996)
+
+[node name="StaticBody4D36" parent="." instance=ExtResource("3_2mril")]
+position = Vector4(-97.14996, 0.64631295, -259.23087, -0.5062648)
+basis = Projection(13, 0, 0, 0, 0, 1, 0, 0, 0, 0, 13.000001, 0, 0, 0, 0, 10)
+
+[node name="StaticBody4D48" parent="." instance=ExtResource("3_2mril")]
+position = Vector4(-118.64041, 0.64631295, -259.23087, -0.5062648)
+basis = Projection(13, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 13.000001, 0, 0, 0, 0, 10)
+
+[node name="StaticBody4D49" parent="." instance=ExtResource("3_2mril")]
+position = Vector4(-131.60155, 0.64631295, -259.23087, -0.5062648)
+basis = Projection(13, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 13, 0, 0, 0, 0, 10)
+
+[node name="StaticBody4D47" parent="." instance=ExtResource("3_2mril")]
+position = Vector4(-112.86104, 5.492404, -259.23087, -0.5062648)
+basis = Projection(-5.6824786e-07, 13, 0, 0, -0.9999998, -4.371139e-08, 0, 0, 0, 0, 13.000001, 0, 0, 0, 0, 10)
+
+[node name="StaticBody4D45" parent="." instance=ExtResource("3_2mril")]
+position = Vector4(-90.997955, 0.64631295, -259.23087, -0.5062648)
+basis = Projection(13, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 13.000001, 0, 0, 0, 0, 10)
+
+[node name="StaticBody4D46" parent="." instance=ExtResource("3_2mril")]
+position = Vector4(-108.033195, 0.64631295, -259.23087, -0.5062648)
+basis = Projection(13, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 13, 0, 0, 0, 0, 10)
+
+[node name="StaticBody4D37" parent="." instance=ExtResource("3_2mril")]
+position = Vector4(-97.14996, 0.64631295, -259.23087, -0.5062648)
+basis = Projection(2.4944608, 0, 0, 0, 0, 0.4226182, 0.90630776, 0, 0, -11.782002, 5.4940376, 0, 0, 0, 0, 10)
+
+[node name="StaticBody4D41" parent="." instance=ExtResource("3_2mril")]
+position = Vector4(-97.14996, 4.589882, -261.1705, -0.5062648)
+basis = Projection(2.4944608, 0, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, 0, -13.000001, -5.682481e-07, 0, 0, 0, 0, 10)
+
+[node name="StaticBody4D42" parent="." instance=ExtResource("3_2mril")]
+position = Vector4(-97.14996, 4.589882, -256.29935, -0.5062648)
+basis = Projection(2.4944608, 0, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, 0, -13.000001, -5.682481e-07, 0, 0, 0, 0, 10)
+
+[node name="StaticBody4D43" parent="." instance=ExtResource("3_2mril")]
+position = Vector4(-93.83815, 4.589882, -259.6197, -0.5062648)
+basis = Projection(-1.0903634e-07, 0, -2.4944608, 0, 0.99999994, -4.3711385e-08, -4.3711385e-08, 0, -5.682481e-07, -13.000001, 2.4838913e-14, 0, 0, 0, 0, 10)
+
+[node name="StaticBody4D44" parent="." instance=ExtResource("3_2mril")]
+position = Vector4(-101.47325, 4.589882, -259.6197, -0.5062648)
+basis = Projection(-1.0903634e-07, 0, -2.4944608, 0, 0.99999994, -4.3711385e-08, -4.3711385e-08, 0, -5.682481e-07, -13.000001, 2.4838913e-14, 0, 0, 0, 0, 10)
+
+[node name="StaticBody4D38" parent="." instance=ExtResource("3_2mril")]
+position = Vector4(-97.14996, 0.64631295, -259.23087, -0.5062648)
+basis = Projection(2.4944608, 0, 0, 0, 0, 0.42261818, -0.9063077, 0, 0, 11.782002, 5.4940376, 0, 0, 0, 0, 10)
+
+[node name="StaticBody4D39" parent="." instance=ExtResource("3_2mril")]
+position = Vector4(-97.14996, 0.64631295, -259.23087, -0.5062648)
+basis = Projection(-1.0903634e-07, 0, -2.4944608, 0, -0.7071067, 0.7071067, 3.0908616e-08, 0, 9.192389, 9.192389, -4.018121e-07, 0, 0, 0, 0, 10)
+
+[node name="StaticBody4D40" parent="." instance=ExtResource("3_2mril")]
+position = Vector4(-97.14996, 0.64631295, -259.23087, -0.5062648)
+basis = Projection(-1.0903634e-07, 0, 2.4944608, 0, 0.7071067, 0.7071067, 3.0908616e-08, 0, -9.192389, 9.192389, -4.018121e-07, 0, 0, 0, 0, 10)
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "rotation: "
+
+[node name="Sphereinder" type="Node4D" parent="."]
+visible = false
+
+[node name="StaticBody4D17" parent="Sphereinder" instance=ExtResource("5_x5a5f")]
+position = Vector4(0, 0.9311933, -244.61728, 0)
+
+[node name="StaticBody4D18" parent="Sphereinder" instance=ExtResource("5_x5a5f")]
+position = Vector4(0, 0.93584555, -255.91188, 0)
+
+[node name="StaticBody4D19" parent="Sphereinder" instance=ExtResource("5_x5a5f")]
+position = Vector4(0, 0.9404978, -269.4401, 0)
+
+[node name="StaticBody4D20" parent="Sphereinder" instance=ExtResource("5_x5a5f")]
+position = Vector4(0, 0.94980234, -262.51627, 12.155452)
+
+[node name="StaticBody4D21" parent="Sphereinder" instance=ExtResource("5_x5a5f")]
+position = Vector4(0, 0.9544546, -250.30664, 12.155452)
+
+[node name="StaticBody4D22" parent="Sphereinder" instance=ExtResource("5_x5a5f")]
+position = Vector4(0, 0.95910686, -250.30664, -11.380229)
+
+[node name="StaticBody4D23" parent="Sphereinder" instance=ExtResource("5_x5a5f")]
+position = Vector4(0, 0.9637591, -262.37936, -11.380229)
+
+[node name="StaticBody4D24" parent="Sphereinder" instance=ExtResource("5_x5a5f")]
+position = Vector4(0, 5.3398337, -244.23259, -11.380229)
+basis = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 10)
+
+[node name="StaticBody4D25" parent="Sphereinder" instance=ExtResource("5_x5a5f")]
+position = Vector4(0, 5.3444858, -250.4066, -11.380229)
+basis = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 10)
+
+[node name="StaticBody4D26" parent="Sphereinder" instance=ExtResource("5_x5a5f")]
+position = Vector4(0, 5.349138, -255.1096, -11.380229)
+basis = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 10)
+
+[node name="StaticBody4D27" parent="Sphereinder" instance=ExtResource("5_x5a5f")]
+position = Vector4(0, 5.35379, -261.68112, -11.380229)
+basis = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 10)
+
+[node name="StaticBody4D28" parent="Sphereinder" instance=ExtResource("5_x5a5f")]
+position = Vector4(0, 5.358442, -269.50778, -11.380229)
+basis = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 10)
+
+[node name="StaticBody4D29" parent="Sphereinder" instance=ExtResource("5_x5a5f")]
+position = Vector4(0, 8.801212, -244.23259, -11.380229)
+basis = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 10)
+
+[node name="StaticBody4D30" parent="Sphereinder" instance=ExtResource("5_x5a5f")]
+position = Vector4(0, 8.805864, -250.4066, -11.380229)
+basis = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 10)
+
+[node name="StaticBody4D31" parent="Sphereinder" instance=ExtResource("5_x5a5f")]
+position = Vector4(0, 8.810516, -255.1096, -11.380229)
+basis = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 10)
+
+[node name="StaticBody4D32" parent="Sphereinder" instance=ExtResource("5_x5a5f")]
+position = Vector4(0, 8.815168, -261.68112, -11.380229)
+basis = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 10)
+
+[node name="StaticBody4D33" parent="Sphereinder" instance=ExtResource("5_x5a5f")]
+position = Vector4(0, 8.81982, -269.50778, -11.380229)
+basis = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 10)
+
+[node name="Sphereinder2" type="Node4D" parent="."]
+position = Vector4(-65.670975, 0, -257.464, 0)
+
+[node name="StaticBody4D" parent="Sphereinder2" instance=ExtResource("5_x5a5f")]
+
+[node name="StaticBody4D2" parent="Sphereinder2" instance=ExtResource("5_x5a5f")]
+position = Vector4(0, 0, 0, 6.9247108)
+
+[node name="StaticBody4D5" parent="Sphereinder2" instance=ExtResource("5_x5a5f")]
+position = Vector4(-1.4951638e-07, 0, 0, 13.799095)
+
+[node name="StaticBody4D6" parent="Sphereinder2" instance=ExtResource("5_x5a5f")]
+position = Vector4(-4.994845e-07, 0, 0, 21.440117)
+
+[node name="StaticBody4D3" parent="Sphereinder2" instance=ExtResource("5_x5a5f")]
+
+[node name="StaticBody4D4" parent="Sphereinder2" instance=ExtResource("5_x5a5f")]
+
+[node name="CubinderMoving" parent="." instance=ExtResource("6_x5fef")]
+position = Vector4(-97.47888, 7.6187205, -259.0958, 0)
+basis = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 5)
+mass = 10.0
+gravity_scale = 5.0
+
+[node name="Area4D" type="Area4D" parent="."]
+position = Vector4(-0.5398073, 0.8014843, -231.88272, 0)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D"]
+position = Vector4(0, 0.7414337, 0, 0)
+basis = Projection(13, 0, 0, 0, 0, 1, 0, 0, 0, 0, 13, 0, 0, 0, 0, 10)
+shape = SubResource("BoxShape4D_x5fef")
+
+[node name="Area4D2" type="Area4D" parent="."]
+position = Vector4(-55.36187, 0.8014843, -258.57513, 0)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D2"]
+position = Vector4(0, 0.7414337, 0, 0)
+basis = Projection(13, 0, 0, 0, 0, 1, 0, 0, 0, 0, 13, 0, 0, 0, 0, 10)
+shape = SubResource("BoxShape4D_x5fef")
+
+[node name="Area4D3" type="Area4D" parent="."]
+position = Vector4(-86.811195, 1.0031486, -256.26282, 0)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D3"]
+shape = SubResource("BoxShape4D_ngegj")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="Area4D3"]
+mesh = SubResource("BoxWireMesh4D_ctvjw")
+
+[node name="Area4D4" type="Area4D" parent="."]
+position = Vector4(-86.811195, 1.0031486, -262.4288, 0)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D4"]
+shape = SubResource("BoxShape4D_ngegj")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="Area4D4"]
+mesh = SubResource("BoxWireMesh4D_ctvjw")
+
+[connection signal="body_entered_area" from="Area4D" to="." method="_on_area_4d_body_entered_area"]
+[connection signal="body_entered_area" from="Area4D2" to="." method="_on_area_4d_2_body_entered_area"]
+[connection signal="body_entered_area" from="Area4D3" to="." method="_on_area_4d_3_body_entered_area"]
+[connection signal="body_exited_area" from="Area4D3" to="." method="_on_area_4d_3_body_exited_area"]
+[connection signal="body_entered_area" from="Area4D4" to="." method="_on_area_4d_4_body_entered_area"]
+[connection signal="body_exited_area" from="Area4D4" to="." method="_on_area_4d_4_body_exited_area"]

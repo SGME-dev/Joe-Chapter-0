@@ -1,0 +1,15 @@
+[remap]
+
+importer="godot_4d.off_geometry_format.array_wire_mesh_4d"
+type="ArrayWireMesh4D"
+uid="uid://lp537opuk2wy"
+path="res://.godot/imported/cubinder.off-350527e7207a7a72d7cbf8a8fffee381.res"
+
+[deps]
+
+source_file="res://cubinder.off"
+dest_files=["res://.godot/imported/cubinder.off-350527e7207a7a72d7cbf8a8fffee381.res"]
+
+[params]
+
+deduplicate_edges=true

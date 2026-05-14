@@ -1,0 +1,15 @@
+[remap]
+
+importer="godot_4d.off_geometry_format.array_wire_mesh_4d"
+type="ArrayWireMesh4D"
+uid="uid://ci167w5mij76p"
+path="res://.godot/imported/tesseract.off-5726b7a166d18796a0c341188ca17490.res"
+
+[deps]
+
+source_file="res://tesseract.off"
+dest_files=["res://.godot/imported/tesseract.off-5726b7a166d18796a0c341188ca17490.res"]
+
+[params]
+
+deduplicate_edges=true

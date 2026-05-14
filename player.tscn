@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://c0s58r1qa7jvh"]
+
+[ext_resource type="Script" uid="uid://djcsxdvtej5io" path="res://4d_player.gd" id="1_4flbx"]
+
+[sub_resource type="BoxShape4D" id="BoxShape4D_rlu7a"]
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_7nsku"]
+line_thickness = 5.0
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="BoxWireMesh4D" id="BoxWireMesh4D_jtvq5"]
+material = SubResource("WireMaterial4D_7nsku")
+
+[sub_resource type="SphereShape4D" id="SphereShape4D_4flbx"]
+radius = 10.0
+
+[node name="CharacterBody4D" type="CharacterBody4D"]
+position = Vector4(0, 0.7468506, 0, 0)
+basis = Projection(1, 0, 0, 0, 0, 2.494, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+script = ExtResource("1_4flbx")
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="."]
+shape = SubResource("BoxShape4D_rlu7a")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="."]
+mesh = SubResource("BoxWireMesh4D_jtvq5")
+
+[node name="Camera_Controller" type="Node4D" parent="."]
+
+[node name="Camera_Target" type="Node4D" parent="Camera_Controller"]
+
+[node name="Camera4D" type="Camera4D" parent="Camera_Controller/Camera_Target"]
+position = Vector4(0, 0.1713739, 0, 0)
+basis = Projection(2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1)
+rendering_engine = "Wireframe Canvas"
+clip_far = 50.0
+w_fade_mode = 3
+w_fade_color_negative = Color(1, 0, 0, 1)
+w_fade_color_positive = Color(0, 1, 0, 1)
+w_fade_distance = 8.0
+depth_fade_mode = 1
+
+[node name="Camera4D2" type="Camera4D" parent="Camera_Controller/Camera_Target"]
+position = Vector4(0, 0.13192916, 2.861131, 0)
+basis = Projection(2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1)
+rendering_engine = "Wireframe Canvas"
+clip_far = 50.0
+w_fade_mode = 3
+w_fade_color_negative = Color(1, 0, 0, 1)
+w_fade_color_positive = Color(0, 1, 0, 1)
+w_fade_distance = 8.0
+depth_fade_mode = 1
+
+[node name="Area4D" type="Area4D" parent="."]
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D"]
+basis = Projection(1, 0, 0, 0, 0, 0.401, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shape = SubResource("SphereShape4D_4flbx")
+
+[connection signal="body_entered_area" from="Area4D" to="." method="_on_area_4d_body_entered_area"]
+[connection signal="body_exited_area" from="Area4D" to="." method="_on_area_4d_body_exited_area"]

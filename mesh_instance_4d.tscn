@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5p8x22tx2swp"]
+
+[sub_resource type="BoxWireMesh4D" id="BoxWireMesh4D_akm01"]
+
+[node name="MeshInstance4D" type="MeshInstance4D"]
+mesh = SubResource("BoxWireMesh4D_akm01")

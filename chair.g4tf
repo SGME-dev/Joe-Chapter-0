@@ -1,0 +1,110 @@
+{
+	"accessors": [
+		{
+			"bufferView": 0,
+			"primitiveType": "float8",
+			"vectorSize": 4
+		},
+		{
+			"bufferView": 1,
+			"primitiveType": "uint8",
+			"vectorSize": 2
+		},
+		{
+			"bufferView": 2,
+			"primitiveType": "float32",
+			"vectorSize": 4
+		},
+		{
+			"bufferView": 3,
+			"primitiveType": "uint16",
+			"vectorSize": 2
+		}
+	],
+	"asset": {
+		"dimension": 4,
+		"generator": "Godot Engine 4.5.2 with Godot 4D module"
+	},
+	"bufferViews": [
+		{
+			"buffer": 0,
+			"byteLength": 64
+		},
+		{
+			"buffer": 0,
+			"byteLength": 64,
+			"byteOffset": 64
+		},
+		{
+			"buffer": 0,
+			"byteLength": 16384,
+			"byteOffset": 128
+		},
+		{
+			"buffer": 0,
+			"byteLength": 12288,
+			"byteOffset": 16512
+		}
+	],
+	"buffers": [
+		{
+			"byteLength": 28800,
+			"uri": "chair_buffer0.bin"
+		}
+	],
+	"materials": [
+		{
+			"baseColor": { "factor": [0.772549033164978, 0.43529412150383, 0.337254911661148] }
+		}
+	],
+	"meshes": [
+		{
+			"surfaces": [{ "edges": 1, "material": 0 }],
+			"vertices": 0
+		},
+		{
+			"name": "duocylinder (1).off",
+			"surfaces": [{ "edges": 3 }],
+			"vertices": 2
+		}
+	],
+	"nodes": [
+		{
+			"children": [1, 2, 3, 4, 5],
+			"name": "chair"
+		},
+		{
+			"mesh": 0,
+			"name": "MeshInstance4D",
+			"scale": [3.394569, 0.317529678344727, 3.510652, 1.0]
+		},
+		{
+			"mesh": 1,
+			"name": "MeshInstance4D2",
+			"position": [0.968288838863373, -1.00784254074097, -1.245325922966, 0.0],
+			"rotor": [0.70710676908493, 0.0, 0.0, 0.70710676908493, 0.0, 0.0, 0.0, 0.0],
+			"scale": [0.601027309894562, 0.565274715423584, 1.0, 1.0]
+		},
+		{
+			"mesh": 1,
+			"name": "MeshInstance4D3",
+			"position": [1.05987322330475, -1.00784254074097, 1.161429, 0.0],
+			"rotor": [0.70710676908493, 0.0, 0.0, 0.70710676908493, 0.0, 0.0, 0.0, 0.0],
+			"scale": [0.601027309894562, 0.565274596214294, 1.0, 1.0]
+		},
+		{
+			"mesh": 1,
+			"name": "MeshInstance4D4",
+			"position": [-1.06558465957642, -1.00784254074097, 1.22165656089783, 0.0],
+			"rotor": [0.70710676908493, 0.0, 0.0, 0.70710676908493, 0.0, 0.0, 0.0, 0.0],
+			"scale": [0.601027309894562, 0.565274596214294, 1.0, 1.0]
+		},
+		{
+			"mesh": 1,
+			"name": "MeshInstance4D5",
+			"position": [-1.1633368730545, -1.00784254074097, -1.21717429161072, 0.0],
+			"rotor": [0.70710676908493, 0.0, 0.0, 0.70710676908493, 0.0, 0.0, 0.0, 0.0],
+			"scale": [0.601027309894562, 0.565274596214294, 1.0, 1.0]
+		}
+	]
+}

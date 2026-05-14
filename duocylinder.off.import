@@ -1,0 +1,15 @@
+[remap]
+
+importer="godot_4d.off_geometry_format.array_wire_mesh_4d"
+type="ArrayWireMesh4D"
+uid="uid://qe4orbk6nnub"
+path="res://.godot/imported/duocylinder.off-079b0db69871cbb65931c726d298052c.res"
+
+[deps]
+
+source_file="res://duocylinder.off"
+dest_files=["res://.godot/imported/duocylinder.off-079b0db69871cbb65931c726d298052c.res"]
+
+[params]
+
+deduplicate_edges=true

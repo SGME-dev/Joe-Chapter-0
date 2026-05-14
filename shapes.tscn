@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://cek8qlk3mdm8p"]
+
+[ext_resource type="ArrayWireMesh4D" uid="uid://ci167w5mij76p" path="res://tesseract.off" id="1_kpp7l"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://bkgg4baxxckw0" path="res://hypersphere.off" id="2_12ag0"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://lp537opuk2wy" path="res://cubinder.off" id="3_0q0gk"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://bnoi7jyk2o3h6" path="res://hypertorus.off" id="4_cu2rh"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://b2fiu3tg36k8n" path="res://duocylinder (1).off" id="5_12ag0"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://dsbjhifl3e3yk" path="res://sphereinder.off" id="6_bxvlv"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://ctmc1ioi3bfcx" path="res://torisphere.off" id="7_rms33"]
+
+[node name="Node4D" type="Node4D"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="."]
+mesh = ExtResource("1_kpp7l")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="."]
+position = Vector4(-3.723663, 0, 0, 0)
+mesh = ExtResource("2_12ag0")
+
+[node name="MeshInstance4D4" type="MeshInstance4D" parent="."]
+position = Vector4(8.726272, 0, 0, 0)
+mesh = ExtResource("4_cu2rh")
+
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="."]
+position = Vector4(3.9963844, 0, 0, 0)
+mesh = ExtResource("3_0q0gk")
+
+[node name="MeshInstance4D5" type="MeshInstance4D" parent="."]
+position = Vector4(-7.2010274, 0, 0, 0)
+mesh = ExtResource("5_12ag0")
+
+[node name="MeshInstance4D6" type="MeshInstance4D" parent="."]
+position = Vector4(13.311319, 0, 0, 0)
+mesh = ExtResource("6_bxvlv")
+
+[node name="MeshInstance4D7" type="MeshInstance4D" parent="."]
+position = Vector4(-11.090717, 0, 0, 0)
+mesh = ExtResource("7_rms33")

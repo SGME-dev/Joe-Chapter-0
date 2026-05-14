@@ -1,0 +1,15 @@
+[remap]
+
+importer="godot_4d.g4mf.scene_4d"
+type="PackedScene"
+uid="uid://bb2t23ptf4uu2"
+path="res://.godot/imported/chair.g4tf-e14456d1df398461735c0960df6cb27c.scn"
+
+[deps]
+
+source_file="res://chair.g4tf"
+dest_files=["res://.godot/imported/chair.g4tf-e14456d1df398461735c0960df6cb27c.scn"]
+
+[params]
+
+force_wireframe=false

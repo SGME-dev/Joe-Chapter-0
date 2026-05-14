@@ -1,0 +1,15 @@
+[remap]
+
+importer="godot_4d.g4mf.scene_4d"
+type="PackedScene"
+uid="uid://ceprjy2asdu02"
+path="res://.godot/imported/mesh_instance_4d.g4tf-ef3fb7b9187e6e268df6670379ec2878.scn"
+
+[deps]
+
+source_file="res://mesh_instance_4d.g4tf"
+dest_files=["res://.godot/imported/mesh_instance_4d.g4tf-ef3fb7b9187e6e268df6670379ec2878.scn"]
+
+[params]
+
+force_wireframe=false

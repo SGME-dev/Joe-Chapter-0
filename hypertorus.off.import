@@ -1,0 +1,15 @@
+[remap]
+
+importer="godot_4d.off_geometry_format.array_wire_mesh_4d"
+type="ArrayWireMesh4D"
+uid="uid://bnoi7jyk2o3h6"
+path="res://.godot/imported/hypertorus.off-17e2bc0d0f4e12d301bc144dae613cc9.res"
+
+[deps]
+
+source_file="res://hypertorus.off"
+dest_files=["res://.godot/imported/hypertorus.off-17e2bc0d0f4e12d301bc144dae613cc9.res"]
+
+[params]
+
+deduplicate_edges=true
