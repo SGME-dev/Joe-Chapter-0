@@ -1,0 +1,15 @@
+[remap]
+
+importer="godot_4d.off_geometry_format.array_wire_mesh_4d"
+type="ArrayWireMesh4D"
+uid="uid://c5fllv5upcqyf"
+path="res://.godot/imported/120-cell_fixed.off-77a21046840b2f43cb548fc0105efec3.res"
+
+[deps]
+
+source_file="res://120-cell_fixed.off"
+dest_files=["res://.godot/imported/120-cell_fixed.off-77a21046840b2f43cb548fc0105efec3.res"]
+
+[params]
+
+deduplicate_edges=true

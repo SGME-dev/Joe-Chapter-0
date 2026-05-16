@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cek8qlk3mdm8p"]
+[gd_scene load_steps=13 format=3 uid="uid://cek8qlk3mdm8p"]
 
 [ext_resource type="ArrayWireMesh4D" uid="uid://ci167w5mij76p" path="res://tesseract.off" id="1_kpp7l"]
 [ext_resource type="ArrayWireMesh4D" uid="uid://bkgg4baxxckw0" path="res://hypersphere.off" id="2_12ag0"]
@@ -7,6 +7,11 @@
 [ext_resource type="ArrayWireMesh4D" uid="uid://b2fiu3tg36k8n" path="res://duocylinder (1).off" id="5_12ag0"]
 [ext_resource type="ArrayWireMesh4D" uid="uid://dsbjhifl3e3yk" path="res://sphereinder.off" id="6_bxvlv"]
 [ext_resource type="ArrayWireMesh4D" uid="uid://ctmc1ioi3bfcx" path="res://torisphere.off" id="7_rms33"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://kf1hjdorthhl" path="res://16-cell.off" id="8_i0a4w"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://2ueyjyiord4m" path="res://24-cell.off" id="9_g1he6"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://c5fllv5upcqyf" path="res://120-cell_fixed.off" id="10_dj5ww"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://bvkgouucw85b1" path="res://600-cell_fixed.off" id="11_2bfyj"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://gyghwgkx8hgv" path="res://tetrahedra.off" id="12_57bn2"]
 
 [node name="Node4D" type="Node4D"]
 
@@ -36,3 +41,23 @@ mesh = ExtResource("6_bxvlv")
 [node name="MeshInstance4D7" type="MeshInstance4D" parent="."]
 position = Vector4(-11.090717, 0, 0, 0)
 mesh = ExtResource("7_rms33")
+
+[node name="MeshInstance4D8" type="MeshInstance4D" parent="."]
+position = Vector4(14.0712185, 0, -2.9596403, 0)
+mesh = ExtResource("8_i0a4w")
+
+[node name="MeshInstance4D9" type="MeshInstance4D" parent="."]
+position = Vector4(8.330338, 0, -2.9596403, 0)
+mesh = ExtResource("9_g1he6")
+
+[node name="MeshInstance4D10" type="MeshInstance4D" parent="."]
+position = Vector4(4.054471, 0, -2.9596403, 0)
+mesh = ExtResource("10_dj5ww")
+
+[node name="MeshInstance4D11" type="MeshInstance4D" parent="."]
+position = Vector4(-0.012167931, 0, -2.9596403, 0)
+mesh = ExtResource("11_2bfyj")
+
+[node name="MeshInstance4D12" type="MeshInstance4D" parent="."]
+position = Vector4(-3.2257195, 0, -2.9596403, 0)
+mesh = ExtResource("12_57bn2")
