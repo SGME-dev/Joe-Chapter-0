@@ -1,0 +1,269 @@
+[gd_scene load_steps=18 format=3 uid="uid://bxopl223vf8d0"]
+
+[ext_resource type="Script" uid="uid://vusjijkuf0wf" path="res://park.gd" id="1_481k0"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://ctmc1ioi3bfcx" path="res://torisphere.off" id="1_pccfp"]
+[ext_resource type="Script" uid="uid://dbsuuvvaet6w0" path="res://text_1.gd" id="2_20hy8"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://bnoi7jyk2o3h6" path="res://hypertorus.off" id="3_baggn"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://b2fiu3tg36k8n" path="res://duocylinder (1).off" id="3_ew778"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://bkgg4baxxckw0" path="res://hypersphere.off" id="3_lcr5t"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://dsbjhifl3e3yk" path="res://sphereinder.off" id="4_kmuhq"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://ci167w5mij76p" path="res://tesseract.off" id="4_uktj1"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://lp537opuk2wy" path="res://cubinder.off" id="5_di8ox"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://kf1hjdorthhl" path="res://16-cell.off" id="5_ikdr5"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://2ueyjyiord4m" path="res://24-cell.off" id="6_5m3x2"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://c5fllv5upcqyf" path="res://120-cell_fixed.off" id="7_h145v"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://bvkgouucw85b1" path="res://600-cell_fixed.off" id="8_uask1"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://gyghwgkx8hgv" path="res://tetrahedra.off" id="9_itmm1"]
+[ext_resource type="PackedScene" uid="uid://be8e16bt3p7s7" path="res://platform5.tscn" id="14_a3s3q"]
+[ext_resource type="PackedScene" uid="uid://c0s58r1qa7jvh" path="res://player.tscn" id="15_481k0"]
+
+[sub_resource type="BoxShape4D" id="BoxShape4D_a3s3q"]
+
+[node name="Park" type="Node4D"]
+script = ExtResource("1_481k0")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="."]
+mesh = ExtResource("1_pccfp")
+
+[node name="Text 4" type="Node4D" parent="."]
+position = Vector4(-2.6778016, 5.819534, 0, 0)
+basis = Projection(-2.185569e-09, 0, 0.049999993, 0, 0, 0.5, 0, 0, -0.39999995, 0, -1.7484552e-08, 0, 0, 0, 0, 0.5)
+script = ExtResource("2_20hy8")
+text_to_display = "THE SPHERETORUS IS THE CARTESIAN PRODUCT OF A CIRCLE AND A 2 SPHERE:IT IS FORMED BY ROTATING A SPHERE AROUND A CIRCLE IN FOUR DIMENSIONAL SPACE:MATHEMATICALLY IT IS DEFINED AS THE SET OF ALL POINTS IN R4 COORDINATES:ITS SURFACE AREA FORMULA DEPENDS ON TWO RADIUS PARAMETERS R AND R:IMAGINE A 3D BALL SWEPT ALONG A ONE DIMENSIONAL CIRCULAR PATH:THE RESULTING MANIFOLD HAS A TOPOLOGY OF S1 TIMES S2:IT DIFFERS FROM A TORUS WHICH USES TWO ONE DIMENSIONAL CIRCLES:THE PROJECTION INTO 3D SPACE LOOKS LIKE A SELF INTERSECTING BULB:ALL CROSS SECTIONS ARE EITHER SPHERES OR DISCONNECTED PAIRS OF SPHERES:IT REPRESENTS A HIGHER ORDER SYMMETRY BEYOND STANDARD ROTATIONAL SOLIDS"
+
+[node name="MeshInstance4D6" type="MeshInstance4D" parent="."]
+position = Vector4(21.540398, 0, 0.4008255, 0)
+mesh = ExtResource("3_baggn")
+
+[node name="Text 9" type="Node4D" parent="."]
+position = Vector4(18.862598, 5.819534, 0.4008255, 0)
+basis = Projection(-2.185569e-09, 0, 0.049999993, 0, 0, 0.5, 0, 0, -0.39999995, 0, -1.7484552e-08, 0, 0, 0, 0, 0.5)
+script = ExtResource("2_20hy8")
+text_to_display = "THE HYPERTORUS IS THE PRODUCT OF THREE SEPARATE ONE DIMENSIONAL CIRCLES:IT IS A THREE MANIFOLD EMBEDDED WITHIN FOUR DIMENSIONAL EUCLIDEAN SPACE:TOPOLOGICALLY IT IS REPRESENTED BY THE NOTATION S1 TIMES S1 TIMES S1:IT HAS THREE INDEPENDENT RADII CONTROLLING THE HOLES AND WIDTHS:THE SHAPE LACKS ANY FLAT FACES OR SHARP GEOMETRIC VERTICES:PROJECTIONS INTO 3D CREATE COMPLEX INTERLOCKING RINGS THAT SHIFT:MOVING THROUGH THE HYPERTORUS CAUSES THE TRAVELER TO LOOP REPEATEDLY:THE COORDINATES ARE MAPPED USING THREE ANGLES AND RADIAL DISTANCES:IT IS THE FOUR DIMENSIONAL GENERALIZATION OF THE STANDARD DOUGHNUT:MATHEMATICIANS USE IT TO STUDY MULTIPLY CONNECTED TOPOLOGICAL SPACES"
+
+[node name="MeshInstance4D7" type="MeshInstance4D" parent="."]
+position = Vector4(31.84669, 0, 0.4008255, 0)
+mesh = ExtResource("4_kmuhq")
+
+[node name="Text 10" type="Node4D" parent="."]
+position = Vector4(29.168898, 5.819534, 0.4008255, 0)
+basis = Projection(-2.185569e-09, 0, 0.049999993, 0, 0, 0.5, 0, 0, -0.39999995, 0, -1.7484552e-08, 0, 0, 0, 0, 0.5)
+script = ExtResource("2_20hy8")
+text_to_display = "THE SPHEREINDER IS THE CARTESIAN PRODUCT OF A BALL AND A SEGMENT:IT IS BOUNDED BY TWO SPHERICAL ENDS AND ONE CYLINDRICAL SURFACE:IN FOUR DIMENSIONS IT IS A HYBRID OF A SPHERE AND CYLINDER:THE SURFACE AREA IS TWO TIMES PI TIMES RADIUS SQUARED PLUS HEIGHT:IT IS THE HIGHER ANALOGUE OF A STRETCHED THREE DIMENSIONAL BALL:TOPOLOGICALLY IT IS EQUIVALENT TO A THREE DISK TIMES A SEGMENT:CROSS SECTIONS PARALLEL TO THE BASE ARE ALWAYS PERFECT SPHERES:CROSS SECTIONS ALONG THE AXIS APPEAR AS THREE DIMENSIONAL CYLINDERS:IT HAS A UNIFORM THICKNESS ACROSS THE FOURTH DIMENSIONAL COORDINATE:THIS SHAPE IS FUNDAMENTAL FOR UNDERSTANDING FOUR DIMENSIONAL RIGID BODIES"
+
+[node name="MeshInstance4D8" type="MeshInstance4D" parent="."]
+position = Vector4(42.744526, 0, 0.4008255, 0)
+mesh = ExtResource("5_ikdr5")
+
+[node name="Text 11" type="Node4D" parent="."]
+position = Vector4(40.06673, 5.819534, 0.4008255, 0)
+basis = Projection(-2.185569e-09, 0, 0.049999993, 0, 0, 0.5, 0, 0, -0.39999995, 0, -1.7484552e-08, 0, 0, 0, 0, 0.5)
+script = ExtResource("2_20hy8")
+text_to_display = "THE SIXTEEN CELL IS THE REGULAR CONVEX 4 POLYTOPE WITH SIXTEEN CELLS:EACH CELL IS A REGULAR TETRAHEDRON SHARING FACES WITH OTHERS:IT HAS EIGHT VERTICES TWENTY FOUR EDGES AND THIRTY TWO FACES:THE SIXTEEN CELL IS THE FOUR DIMENSIONAL VERSION OF AN OCTAHEDRON:ALL VERTEX COORDINATES ARE PERMUTATIONS OF PLUS OR MINUS ONE:IT IS THE CROSS POLYTOPE IN THE FOUR DIMENSIONAL FAMILY:THE SCHLAFLI SYMBOL IS GIVEN BY THE NOTATION THREE THREE FOUR:IT IS THE DUAL POLYTOPE OF THE EIGHT CELL OR TESSERACT:ITS PROJECTION LOOKS LIKE TWO PYRAMIDS JOINED BY THEIR BASES:MATHEMATICIANS VALUED IT FOR ITS HIGH SYMMETRY AND SIMPLE STRUCTURE"
+
+[node name="MeshInstance4D9" type="MeshInstance4D" parent="."]
+position = Vector4(-41.23658, 0, 0.4008255, 0)
+mesh = ExtResource("6_5m3x2")
+
+[node name="Text 12" type="Node4D" parent="."]
+position = Vector4(-43.914375, 5.819534, 0.4008255, 0)
+basis = Projection(-2.185569e-09, 0, 0.049999993, 0, 0, 0.5, 0, 0, -0.39999995, 0, -1.7484552e-08, 0, 0, 0, 0, 0.5)
+script = ExtResource("2_20hy8")
+text_to_display = "THE TWENTY FOUR CELL IS A UNIQUE REGULAR 4 POLYTOPE IN 4D:IT HAS NO DIRECT ANALOGUE IN THREE DIMENSIONS UNLIKE THE OTHERS:IT CONSISTS OF TWENTY FOUR OCTAHEDRAL CELLS JOINED AT THE FACES:THERE ARE TWENTY FOUR VERTICES NINETY SIX EDGES AND NINETY SIX FACES:IT IS SELF DUAL MEANING THE DUAL IS ALSO A TWENTY FOUR CELL:THE SCHLAFLI SYMBOL FOR THIS COMPLEX SHAPE IS THREE FOUR THREE:IT IS HIGHLY SYMMETRIC AND RELATED TO THE D4 LATTICE:PROJECTIONS INTO 3D APPEAR AS COMPLEX MULTI FACETED DIAMOND STRUCTURES:ALL VERTICES LIE ON THE SURFACE OF A RADIUS ONE HYPERSPHERE:IT REPRESENTS THE MIDDLE GROUND BETWEEN SIMPLICITY AND TOTAL COMPLEXITY"
+
+[node name="MeshInstance4D10" type="MeshInstance4D" parent="."]
+position = Vector4(-51.692772, 0, 0.4008255, 0)
+mesh = ExtResource("7_h145v")
+
+[node name="Text 13" type="Node4D" parent="."]
+position = Vector4(-54.370567, 5.819534, 0.4008255, 0)
+basis = Projection(-2.185569e-09, 0, 0.049999993, 0, 0, 0.5, 0, 0, -0.39999995, 0, -1.7484552e-08, 0, 0, 0, 0, 0.5)
+script = ExtResource("2_20hy8")
+text_to_display = "THE ONE HUNDRED TWENTY CELL IS THE DODECAHEDRAL REGULAR 4 POLYTOPE:IT IS COMPOSED OF ONE HUNDRED TWENTY REGULAR DODECAHEDRAL CELLS:IT HAS SIX HUNDRED VERTICES TWELVE HUNDRED EDGES AND SEVEN HUNDRED FACES:THE SCHLAFLI SYMBOL FOR THIS MASSIVE OBJECT IS FIVE THREE THREE:IT IS THE FOUR DIMENSIONAL ANALOGUE OF THE REGULAR DODECAHEDRON:UNFOLDING IT RESULTS IN A NET OF PENTAGONAL PRISM BASED CELLS:ITS SYMMETRY GROUP IS THE COXETER GROUP H4 WITH ORDER 14400:THE PROJECTION IS A SPHERICAL WEB OF PENTAGONS THAT SHIFT:IT IS DUAL TO THE SIX HUNDRED CELL DESCRIBED IN MATHEMATICS:THIS POLYTOPE IS CONSIDERED ONE OF THE MOST BEAUTIFUL 4D SHAPES"
+
+[node name="MeshInstance4D11" type="MeshInstance4D" parent="."]
+position = Vector4(53.144413, 0, 0.4008255, 0)
+mesh = ExtResource("8_uask1")
+
+[node name="Text 14" type="Node4D" parent="."]
+position = Vector4(50.466618, 5.819534, 0.4008255, 0)
+basis = Projection(-2.185569e-09, 0, 0.049999993, 0, 0, 0.5, 0, 0, -0.39999995, 0, -1.7484552e-08, 0, 0, 0, 0, 0.5)
+script = ExtResource("2_20hy8")
+text_to_display = "THE SIX HUNDRED CELL IS THE HYPERICOSAHEDRON REGULAR 4 POLYTOPE:IT CONSISTS OF SIX HUNDRED TETRAHEDRAL CELLS TIGHTLY PACKED TOGETHER:IT HAS ONE HUNDRED TWENTY VERTICES SEVEN HUNDRED TWENTY EDGES:AND TWELVE HUNDRED TRIANGULAR FACES ACROSS ITS ENTIRE VOLUME:THE SCHLAFLI SYMBOL IS THREE THREE FIVE IN FOUR DIMENSIONS:IT IS THE DUAL OF THE ONE HUNDRED TWENTY CELL SHAPE:THE VERTICES CAN BE REPRESENTED BY QUATERNIONS OF THE ICOSAHEDRAL GROUP:PROJECTIONS APPEAR AS A DENSE CLOUD OF OVERLAPPING TRIANGULAR CELLS:IT HAS THE LARGEST NUMBER OF CELLS OF ANY REGULAR CONVEX POLYTOPE:IT EXHIBITS EXTRAORDINARY MATHEMATICAL COMPLEXITY AND HIGH GEOMETRIC SYMMETRY"
+
+[node name="MeshInstance4D12" type="MeshInstance4D" parent="."]
+position = Vector4(64.09387, 0, 0.4008255, 0)
+mesh = ExtResource("9_itmm1")
+
+[node name="Text 15" type="Node4D" parent="."]
+position = Vector4(61.41608, 5.819534, 0.4008255, 0)
+basis = Projection(-2.185569e-09, 0, 0.049999993, 0, 0, 0.5, 0, 0, -0.39999995, 0, -1.7484552e-08, 0, 0, 0, 0, 0.5)
+script = ExtResource("2_20hy8")
+text_to_display = "THE FIVE CELL OR PENTACHORON IS THE FOUR DIMENSIONAL SIMPLEX:IT IS COMPOSED OF FIVE TETRAHEDRAL CELLS JOINED AT THE FACES:IT HAS FIVE VERTICES TEN EDGES AND TEN TRIANGULAR FACES:IT IS THE FOUR DIMENSIONAL ANALOGUE OF A THREE DIMENSIONAL TETRAHEDRON:THE SCHLAFLI SYMBOL IS THREE THREE THREE DENOTING ITS SIMPLICITY:IT IS SELF DUAL MEANING THE DUAL IS ALSO A FIVE CELL:AS A SIMPLEX IT HAS THE MINIMUM NUMBER OF VERTICES POSSIBLE:PROJECTIONS INTO 3D APPEAR AS A TETRAHEDRON WITH A CENTRAL POINT:IT IS THE FUNDAMENTAL UNIT FOR TRIANGULATING FOUR DIMENSIONAL SPACES:ALL VERTICES ARE EQUIDISTANT FROM EACH OTHER IN FOUR SPATIAL DIRECTIONS"
+
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="."]
+position = Vector4(9.919869, 0, 0, 0)
+mesh = ExtResource("3_lcr5t")
+
+[node name="Text 6" type="Node4D" parent="."]
+position = Vector4(7.971022, 5.819534, 0, 0)
+basis = Projection(-2.185569e-09, 0, 0.049999993, 0, 0, 0.5, 0, 0, -0.39999995, 0, -1.7484552e-08, 0, 0, 0, 0, 0.5)
+script = ExtResource("2_20hy8")
+text_to_display = "THE HYPERSPHERE IS THE ANALOGUE OF A SPHERE IN FOUR DIMENSIONS:IT CONSISTS OF ALL POINTS EQUIDISTANT FROM A SINGLE CENTER POINT:MATHEMATICALLY IT FOLLOWS THE EQUATION X SQUARED PLUS Y SQUARED PLUS Z SQUARED:PLUS W SQUARED EQUALS THE RADIUS OF THE HYPERSPHERE SQUARED:ITS THREE DIMENSIONAL BOUNDARY SURFACE IS CALLED A THREE SPHERE:THE VOLUME OF THE INTERIOR IS GIVEN BY ONE HALF PI SQUARED:TIMES THE RADIUS RAISED TO THE POWER OF FOUR TOTAL:IT HAS NO EDGES OR VERTICES MAKING IT PERFECTLY ISOTROPIC:PROJECTIONS INTO OUR SPACE APPEAR AS SOLID SPHERES THAT EXPAND:THE CURVATURE IS POSITIVE AND CONSTANT ACROSS THE ENTIRE HYPERVOLUME"
+
+[node name="MeshInstance4D4" type="MeshInstance4D" parent="."]
+position = Vector4(-16.848942, 0, 0, 0)
+mesh = ExtResource("4_uktj1")
+
+[node name="Text 7" type="Node4D" parent="."]
+position = Vector4(-22.930038, 5.819534, 0, 0)
+basis = Projection(-2.185569e-09, 0, 0.049999993, 0, 0, 0.5, 0, 0, -0.39999995, 0, -1.7484552e-08, 0, 0, 0, 0, 0.5)
+script = ExtResource("2_20hy8")
+text_to_display = "THE TESSERACT IS THE CONVEX REGULAR POLYTOPE WITH EIGHT CUBIC CELLS:IT IS THE FOUR DIMENSIONAL EXTENSION OF THE UNIT CUBE CONCEPT:EACH VERTEX IS SHARED BY FOUR EDGES AND FOUR CUBIC FACES:IT CONTAINS SIXTEEN VERTICES THIRTY TWO EDGES AND TWENTY FOUR SQUARES:THE TOTAL MEASURE OF ITS HYPERVOLUME IS THE LENGTH RAISED TO FOUR:ALL INTERIOR ANGLES ARE EXACTLY NINETY DEGREES IN ALL FOUR DIRECTIONS:UNFOLDING IT REVEALS EIGHT CUBES ARRANGED IN A THREE DIMENSIONAL CROSS:IT IS THE DUAL POLYTOPE TO THE SIXTEEN CELL SHAPE DESCRIBED LATER:MATHEMATICAL PROJECTIONS SHOW A SMALL CUBE INSIDE A LARGER CUBE:IT REPRESENTS THE SIMPLEST EXTENSION OF EUCLIDEAN GEOMETRY INTO 4D"
+
+[node name="MeshInstance4D5" type="MeshInstance4D" parent="."]
+position = Vector4(-27.468002, 0, 0, 0)
+mesh = ExtResource("5_di8ox")
+
+[node name="Text 8" type="Node4D" parent="."]
+position = Vector4(-33.5491, 5.819534, 0, 0)
+basis = Projection(-2.185569e-09, 0, 0.049999993, 0, 0, 0.5, 0, 0, -0.39999995, 0, -1.7484552e-08, 0, 0, 0, 0, 0.5)
+script = ExtResource("2_20hy8")
+text_to_display = "THE CUBINDER IS CREATED BY THE CARTESIAN PRODUCT OF A CYLINDER:AND A LINE SEGMENT REPRESENTING THE FOURTH DIRECTIONAL EXTENSION:IT IS BOUNDED BY TWO FLAT CUBES AND ONE CURVED SURFACE:THE GEOMETRY COMBINES THE FLATNESS OF CUBES WITH CYLINDRICAL CURVATURE:TOPOLOGICALLY IT IS A THREE DIMENSIONAL DISK TIMES A LINE SEGMENT:IT HAS A RIGID SYMMETRY ALONG THE W AXIS UNLIKE THE DUOCYLINDER:CROSS SECTIONS REVEAL CYLINDERS OR RECTANGULAR PRISMS DEPENDING ON ROTATION:IT IS USED TO ILLUSTRATE EXTRUSION MECHANICS IN FOUR DIMENSIONAL MANIFOLDS:THE VOLUME IS THE PRODUCT OF THE BASE CYLINDER AREA AND LENGTH:IT REMAINS A HYBRID OBJECT THAT LACKS PURELY RADIAL SYMMETRY"
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="."]
+position = Vector4(-7.3178706, 0, 0, 0)
+mesh = ExtResource("3_ew778")
+
+[node name="Text 5" type="Node4D" parent="."]
+position = Vector4(-12.996486, 5.819534, 0, 0)
+basis = Projection(-2.185569e-09, 0, 0.049999993, 0, 0, 0.5, 0, 0, -0.39999995, 0, -1.7484552e-08, 0, 0, 0, 0, 0.5)
+script = ExtResource("2_20hy8")
+text_to_display = "A DUOCYLINDER IS THE CARTESIAN PRODUCT OF TWO FLAT TWO DIMENSIONAL DISKS:IT IS BOUNDED BY TWO SEPARATE CURVED SURFACES OF DIFFERENT RADII:THE BOUNDARY IS THE UNION OF TWO SOLID TORI JOINED TOGETHER:THE FIRST RADIUS DEFINES THE FIRST DISK AND THE SECOND THE OTHER:UNLIKE A 3D CYLINDER BOTH SIDES ARE CONTINUOUSLY CURVED AND CLOSED:THE MANIFOLD HAS THE TOPOLOGICAL STRUCTURE OF D2 TIMES D2:ITS SURFACE AREA IS CALCULATED AS THE SUM OF TWO SOLID TORI:IT HAS NO ANALOGUE IN LOWER DIMENSIONS DUE TO DUAL ROTATIONS:CROSS SECTIONS VARY BASED ON THE ANGLE OF THE CUTTING HYPERPLANE:IT OCCUPIES A FINITE VOLUME DEFINED BY PI SQUARED TIMES RADII SQUARED"
+
+[node name="StaticBody4D" parent="." instance=ExtResource("14_a3s3q")]
+position = Vector4(4.46323, -1.4971942, 75.185295, 0)
+basis = Projection(138.93736, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 163.37056, 0, 0, 0, 0, 13.3569975)
+
+[node name="CharacterBody4D" parent="." instance=ExtResource("15_481k0")]
+position = Vector4(0, 12.129751, 36.371235, 0)
+
+[node name="Area4D" type="Area4D" parent="."]
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D"]
+position = Vector4(0.1649878, 0.39071828, 2.2655194, 0)
+basis = Projection(6.0149856, 0, 0, 0, 0, 1, 0, 0, 0, 0, 5.5310388, 0, 0, 0, 0, 1)
+shape = SubResource("BoxShape4D_a3s3q")
+
+[node name="Area4D2" type="Area4D" parent="."]
+position = Vector4(10.078073, 0, 0, 0)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D2"]
+position = Vector4(0.1649878, 0.39071828, 2.2655194, 0)
+basis = Projection(6.0149856, 0, 0, 0, 0, 1, 0, 0, 0, 0, 5.5310388, 0, 0, 0, 0, 1)
+shape = SubResource("BoxShape4D_a3s3q")
+
+[node name="Area4D3" type="Area4D" parent="."]
+position = Vector4(22.04566, 0, 0, 0)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D3"]
+position = Vector4(0.1649878, 0.39071828, 2.2655194, 0)
+basis = Projection(6.0149856, 0, 0, 0, 0, 1, 0, 0, 0, 0, 5.5310388, 0, 0, 0, 0, 1)
+shape = SubResource("BoxShape4D_a3s3q")
+
+[node name="Area4D4" type="Area4D" parent="."]
+position = Vector4(31.849308, 0, 0, 0)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D4"]
+position = Vector4(0.1649878, 0.39071828, 2.2655194, 0)
+basis = Projection(6.0149856, 0, 0, 0, 0, 1, 0, 0, 0, 0, 5.5310388, 0, 0, 0, 0, 1)
+shape = SubResource("BoxShape4D_a3s3q")
+
+[node name="Area4D5" type="Area4D" parent="."]
+position = Vector4(43.25538, 0, 0, 0)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D5"]
+position = Vector4(0.1649878, 0.39071828, 2.2655194, 0)
+basis = Projection(6.0149856, 0, 0, 0, 0, 1, 0, 0, 0, 0, 5.5310388, 0, 0, 0, 0, 1)
+shape = SubResource("BoxShape4D_a3s3q")
+
+[node name="Area4D6" type="Area4D" parent="."]
+position = Vector4(53.16816, 0, 0, 0)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D6"]
+position = Vector4(0.1649878, 0.39071828, 2.2655194, 0)
+basis = Projection(6.0149856, 0, 0, 0, 0, 1, 0, 0, 0, 0, 5.5310388, 0, 0, 0, 0, 1)
+shape = SubResource("BoxShape4D_a3s3q")
+
+[node name="Area4D7" type="Area4D" parent="."]
+position = Vector4(64.92731, 0, 0, 0)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D7"]
+position = Vector4(0.1649878, 0.39071828, 2.2655194, 0)
+basis = Projection(6.0149856, 0, 0, 0, 0, 1, 0, 0, 0, 0, 5.5310388, 0, 0, 0, 0, 1)
+shape = SubResource("BoxShape4D_a3s3q")
+
+[node name="Area4D8" type="Area4D" parent="."]
+position = Vector4(-7.0833435, 0, 0, 0)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D8"]
+position = Vector4(0.1649878, 0.39071828, 2.2655194, 0)
+basis = Projection(6.0149856, 0, 0, 0, 0, 1, 0, 0, 0, 0, 5.5310388, 0, 0, 0, 0, 1)
+shape = SubResource("BoxShape4D_a3s3q")
+
+[node name="Area4D9" type="Area4D" parent="."]
+position = Vector4(-17.370937, 0, 0, 0)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D9"]
+position = Vector4(0.1649878, 0.39071828, 2.2655194, 0)
+basis = Projection(6.0149856, 0, 0, 0, 0, 1, 0, 0, 0, 0, 5.5310388, 0, 0, 0, 0, 1)
+shape = SubResource("BoxShape4D_a3s3q")
+
+[node name="Area4D10" type="Area4D" parent="."]
+position = Vector4(-27.673004, 0, 0, 0)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D10"]
+position = Vector4(0.1649878, 0.39071828, 2.2655194, 0)
+basis = Projection(6.0149856, 0, 0, 0, 0, 1, 0, 0, 0, 0, 5.5310388, 0, 0, 0, 0, 1)
+shape = SubResource("BoxShape4D_a3s3q")
+
+[node name="Area4D11" type="Area4D" parent="."]
+position = Vector4(-41.382477, 0, 0, 0)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D11"]
+position = Vector4(0.1649878, 0.39071828, 2.2655194, 0)
+basis = Projection(6.0149856, 0, 0, 0, 0, 1, 0, 0, 0, 0, 5.5310388, 0, 0, 0, 0, 1)
+shape = SubResource("BoxShape4D_a3s3q")
+
+[node name="Area4D12" type="Area4D" parent="."]
+position = Vector4(-51.20453, 0, 0, 0)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D12"]
+position = Vector4(0.1649878, 0.39071828, 2.2655194, 0)
+basis = Projection(6.0149856, 0, 0, 0, 0, 1, 0, 0, 0, 0, 5.5310388, 0, 0, 0, 0, 1)
+shape = SubResource("BoxShape4D_a3s3q")
+
+[connection signal="body_entered_area" from="Area4D" to="." method="_on_area_4d_body_entered_area"]
+[connection signal="body_exited_area" from="Area4D" to="." method="_on_area_4d_body_exited_area"]
+[connection signal="body_entered_area" from="Area4D2" to="." method="_on_area_4d_2_body_entered_area"]
+[connection signal="body_exited_area" from="Area4D2" to="." method="_on_area_4d_2_body_exited_area"]
+[connection signal="body_entered_area" from="Area4D3" to="." method="_on_area_4d_3_body_entered_area"]
+[connection signal="body_exited_area" from="Area4D3" to="." method="_on_area_4d_3_body_exited_area"]
+[connection signal="body_entered_area" from="Area4D4" to="." method="_on_area_4d_4_body_entered_area"]
+[connection signal="body_exited_area" from="Area4D4" to="." method="_on_area_4d_4_body_exited_area"]
+[connection signal="body_entered_area" from="Area4D5" to="." method="_on_area_4d_5_body_entered_area"]
+[connection signal="body_exited_area" from="Area4D5" to="." method="_on_area_4d_5_body_exited_area"]
+[connection signal="body_entered_area" from="Area4D6" to="." method="_on_area_4d_6_body_entered_area"]
+[connection signal="body_exited_area" from="Area4D6" to="." method="_on_area_4d_6_body_exited_area"]
+[connection signal="body_entered_area" from="Area4D7" to="." method="_on_area_4d_7_body_entered_area"]
+[connection signal="body_exited_area" from="Area4D7" to="." method="_on_area_4d_7_body_exited_area"]
+[connection signal="body_entered_area" from="Area4D8" to="." method="_on_area_4d_8_body_entered_area"]
+[connection signal="body_exited_area" from="Area4D8" to="." method="_on_area_4d_8_body_exited_area"]
+[connection signal="body_entered_area" from="Area4D9" to="." method="_on_area_4d_9_body_entered_area"]
+[connection signal="body_exited_area" from="Area4D9" to="." method="_on_area_4d_9_body_exited_area"]
+[connection signal="body_entered_area" from="Area4D10" to="." method="_on_area_4d_10_body_entered_area"]
+[connection signal="body_exited_area" from="Area4D10" to="." method="_on_area_4d_10_body_exited_area"]
+[connection signal="body_entered_area" from="Area4D11" to="." method="_on_area_4d_11_body_entered_area"]
+[connection signal="body_exited_area" from="Area4D11" to="." method="_on_area_4d_11_body_exited_area"]
+[connection signal="body_entered_area" from="Area4D12" to="." method="_on_area_4d_12_body_entered_area"]
+[connection signal="body_exited_area" from="Area4D12" to="." method="_on_area_4d_12_body_exited_area"]

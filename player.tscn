@@ -41,7 +41,7 @@ w_fade_distance = 8.0
 depth_fade_mode = 1
 
 [node name="Camera4D2" type="Camera4D" parent="Camera_Controller/Camera_Target"]
-position = Vector4(0, 0.13192916, 2.861131, 0)
+position = Vector4(0, 0.132, 2.861, 0)
 basis = Projection(2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1)
 rendering_engine = "Wireframe Canvas"
 clip_far = 50.0

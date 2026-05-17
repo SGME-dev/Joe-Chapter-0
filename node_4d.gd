@@ -12,8 +12,8 @@ var hide = []
 func _ready() -> void:
 	# This list includes your original nodes + the new ones from 17 to 33
 	bodies = [
-		$StaticBody4D10, $StaticBody4D11, $StaticBody4D13, $StaticBody4D15,
-		$Sphereinder, $StaticBody4D17, $Sphereinder2, $CubinderMoving, $StaticBody4D41, $StaticBody4D42, $StaticBody4D43, $StaticBody4D44
+		$StaticBody4D18, $StaticBody4D19, $StaticBody4D20, $StaticBody4D21, $StaticBody4D22,
+		$Sphereinder, $Sphereinder2, $CubinderMoving, $StaticBody4D41, $StaticBody4D42, $StaticBody4D43, $StaticBody4D44
 	]
 	
 

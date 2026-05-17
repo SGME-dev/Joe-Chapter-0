@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ct278airkigxp"]
+[gd_scene load_steps=12 format=3 uid="uid://ct278airkigxp"]
 
 [ext_resource type="Script" uid="uid://dp7n2s1xk1c2p" path="res://node_4d.gd" id="1_f4q7b"]
 [ext_resource type="PackedScene" uid="uid://c0s58r1qa7jvh" path="res://player.tscn" id="1_jtvq5"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bfoh242i1sq1x" path="res://platform2.tscn" id="3_2mril"]
 [ext_resource type="PackedScene" uid="uid://bfsv8l3iprvmx" path="res://sphereinder.tscn" id="5_x5a5f"]
 [ext_resource type="PackedScene" uid="uid://dk38q8yta7jfk" path="res://cubinder_moving.tscn" id="6_x5fef"]
+[ext_resource type="PackedScene" uid="uid://66cxvjpl5cj5" path="res://asteroid.tscn" id="7_ngegj"]
 
 [sub_resource type="BoxShape4D" id="BoxShape4D_x5fef"]
 
@@ -21,17 +22,9 @@ material = SubResource("WireMaterial4D_6gk2r")
 script = ExtResource("1_f4q7b")
 
 [node name="CharacterBody4D" parent="." instance=ExtResource("1_jtvq5")]
-position = Vector4(0, 3.717421, 0, 0)
+position = Vector4(0, 4.668685, 0, 0)
 
 [node name="StaticBody4D" parent="." instance=ExtResource("2_7nsku")]
-
-[node name="StaticBody4D10" parent="." instance=ExtResource("2_7nsku")]
-position = Vector4(0, 0, -59.653263, 0)
-basis = Projection(4.9999995, 0, 0, 0, 0, -2.1855692e-07, 4.9999995, 0, 0, -4.9999995, -2.1855692e-07, 0, 0, 0, 0, 19.999998)
-
-[node name="StaticBody4D11" parent="." instance=ExtResource("2_7nsku")]
-position = Vector4(0, 2.9668927, -139.76857, 0)
-basis = Projection(4.9999995, 0, 0, 0, 0, -2.1855692e-07, 4.9999995, 0, 0, -4.9999995, -2.1855692e-07, 0, 0, 0, 0, 19.999998)
 
 [node name="StaticBody4D2" parent="." instance=ExtResource("2_7nsku")]
 position = Vector4(-0.05201626, 0, -14.814577, 0)
@@ -51,21 +44,9 @@ basis = Projection(13.651996, 0, 0, 0, 0, -4.3711378e-08, 1.0000008, 0, 0, -12.9
 position = Vector4(-0.052016255, 8.679064, -157.21637, 1.1920929e-07)
 basis = Projection(13.651996, 0, 0, 0, 0, -4.3711378e-08, 1.0000008, 0, 0, -12.999999, -5.682484e-07, 0, 0, 0, 0, 5)
 
-[node name="StaticBody4D13" parent="." instance=ExtResource("2_7nsku")]
-position = Vector4(0, 2.9668922, -170.47597, 0)
-basis = Projection(5, 0, 0, 0, 0, -2.1855689e-07, 4.9999995, 0, 0, -4.9999986, -2.1855692e-07, 0, 0, 0, 0, 19.999998)
-
 [node name="StaticBody4D14" parent="." instance=ExtResource("2_7nsku")]
 position = Vector4(-0.052016262, 8.679062, -187.92377, 1.1920929e-07)
 basis = Projection(13.651998, 0, 0, 0, 0, -4.371137e-08, 1.0000008, 0, 0, -12.999997, -5.682484e-07, 0, 0, 0, 0, 5)
-
-[node name="StaticBody4D15" parent="." instance=ExtResource("2_7nsku")]
-position = Vector4(-1.1175871e-08, 2.9668925, -204.3587, 2.1316279e-14)
-basis = Projection(4.9999986, 0, 0, 0, 0, -2.1855685e-07, 4.999998, 0, 0, -4.999997, -2.1855688e-07, 0, 0, 0, 0, 19.999992)
-
-[node name="StaticBody4D17" parent="." instance=ExtResource("2_7nsku")]
-position = Vector4(-32.710148, 2.9668925, -253.27261, 2.1316279e-14)
-basis = Projection(4.9999986, 0, 0, 0, 0, -2.18557e-07, 5.0000014, 0, 0, -4.999997, -2.1855682e-07, 0, 0, 0, 0, 20.000006)
 
 [node name="StaticBody4D16" parent="." instance=ExtResource("2_7nsku")]
 position = Vector4(-0.052016255, 8.679062, -222.72067, 1.1920927e-07)
@@ -277,6 +258,26 @@ shape = SubResource("BoxShape4D_ngegj")
 
 [node name="MeshInstance4D" type="MeshInstance4D" parent="Area4D4"]
 mesh = SubResource("BoxWireMesh4D_ctvjw")
+
+[node name="StaticBody4D18" parent="." instance=ExtResource("7_ngegj")]
+position = Vector4(0, 0, -59.539063, 0)
+basis = Projection(4.9999995, 0, 0, 0, 0, 4.9999995, 0, 0, 0, 0, 4.9999995, 0, 0, 0, 0, 19.999998)
+
+[node name="StaticBody4D19" parent="." instance=ExtResource("7_ngegj")]
+position = Vector4(0, 2.457711, -139.95897, 0)
+basis = Projection(4.9999995, 0, 0, 0, 0, 4.9999995, 0, 0, 0, 0, 4.9999995, 0, 0, 0, 0, 19.999998)
+
+[node name="StaticBody4D20" parent="." instance=ExtResource("7_ngegj")]
+position = Vector4(0, 2.457711, -171.07048, 0)
+basis = Projection(4.9999995, 0, 0, 0, 0, 4.9999995, 0, 0, 0, 0, 4.9999995, 0, 0, 0, 0, 19.999998)
+
+[node name="StaticBody4D21" parent="." instance=ExtResource("7_ngegj")]
+position = Vector4(0, 2.457711, -204.59114, 0)
+basis = Projection(4.9999995, 0, 0, 0, 0, 4.9999995, 0, 0, 0, 0, 4.9999995, 0, 0, 0, 0, 19.999998)
+
+[node name="StaticBody4D22" parent="." instance=ExtResource("7_ngegj")]
+position = Vector4(-32.6804, 2.457711, -252.78415, 0)
+basis = Projection(4.9999995, 0, 0, 0, 0, 4.9999995, 0, 0, 0, 0, 4.9999995, 0, 0, 0, 0, 19.999998)
 
 [connection signal="body_entered_area" from="Area4D" to="." method="_on_area_4d_body_entered_area"]
 [connection signal="body_entered_area" from="Area4D2" to="." method="_on_area_4d_2_body_entered_area"]

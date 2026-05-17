@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cytl1r1yjrird"]
+[gd_scene load_steps=4 format=3 uid="uid://be8e16bt3p7s7"]
 
 [sub_resource type="BoxShape4D" id="BoxShape4D_jtvq5"]
 
 [sub_resource type="WireMaterial4D" id="WireMaterial4D_5ajho"]
 line_thickness = 5.0
-albedo_color = Color(0.6156863, 0.6156863, 0.6156863, 1)
+albedo_color = Color(0, 0.7438655, 0.21588597, 1)
 
 [sub_resource type="BoxWireMesh4D" id="BoxWireMesh4D_mi635"]
 material = SubResource("WireMaterial4D_5ajho")
