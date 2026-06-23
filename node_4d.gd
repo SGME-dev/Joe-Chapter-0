@@ -10,6 +10,7 @@ var bodies = []
 var hide = []
 
 func _ready() -> void:
+	$CharacterBody4D.RUN = false
 	# This list includes your original nodes + the new ones from 17 to 33
 	bodies = [
 		$StaticBody4D18, $StaticBody4D19, $StaticBody4D20, $StaticBody4D21, $StaticBody4D22,
@@ -24,7 +25,7 @@ func _process(delta: float) -> void:
 			return
 		else:
 			final_wall.queue_free()
-	var rotate := 0.1
+	var rotate := 0.01
 	
 	var is_rotating = false
 	# Check if any 4D rotation keys are held down
@@ -43,24 +44,25 @@ func _process(delta: float) -> void:
 		$Label.text = str(bodies[0].rotation_degrees)
 	
 	# Rotation Logic using .rotate_euler()
-	if Input.is_action_just_pressed("wx"):
+	if Input.is_action_pressed("wx"):
 		apply_4d_rotation(AABB(Vector3(0, 0, 0), Vector3(rotate, 0, 0)))
 		
-	if Input.is_action_just_pressed("wy"):
+	if Input.is_action_pressed("wy"):
 		apply_4d_rotation(AABB(Vector3(0, 0, 0), Vector3(0, rotate, 0)))
 		
-	if Input.is_action_just_pressed("wz"):
+	if Input.is_action_pressed("wz"):
 		apply_4d_rotation(AABB(Vector3(0, 0, 0), Vector3(0, 0, rotate)))
 		
-	if Input.is_action_just_pressed("yz"):
+	if Input.is_action_pressed("yz"):
 		apply_4d_rotation(AABB(Vector3(rotate, 0, 0), Vector3(0, 0, 0)))
 		
-	if Input.is_action_just_pressed("xz"):
+	if Input.is_action_pressed("xz"):
 		apply_4d_rotation(AABB(Vector3(0, rotate, 0), Vector3(0, 0, 0)))
 		
-	if Input.is_action_just_pressed("xy"):
+	if Input.is_action_pressed("xy"):
 		apply_4d_rotation(AABB(Vector3(0, 0, rotate), Vector3(0, 0, 0)))
-		
+	if Input.is_action_just_pressed("RUN"):
+		pass
 	
 	# Your reset key
 	if Input.is_action_just_pressed("x-z"):

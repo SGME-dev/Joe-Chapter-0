@@ -2,8 +2,13 @@ extends CharacterBody4D
 
 class_name player
 
-const SPEED = 7.25
-const JUMP_VELOCITY = 10
+@onready var camera: Camera4D = $Camera_Controller/Camera_Target/Camera4D
+@onready var camera_2: Camera4D = $Camera_Controller/Camera_Target/Camera4D2
+var camera_pitch: float = 0.0
+@export var use_ground_view: = false
+var RUN := true
+var SPEED = 7.25
+var JUMP_VELOCITY = 10
 @export var vision_distance: float = 20.0
 @export var max_health: int = 100
 var health: int = 100
@@ -31,6 +36,7 @@ func _physics_process(delta: float) -> void:
 	if not tar:
 		return
 	
+	$Label.text = str("FPS: " + str(Engine.get_frames_per_second()))
 	
 	
 	# 1. Manual Ground Check (More reliable for 4D)
@@ -43,6 +49,9 @@ func _physics_process(delta: float) -> void:
 			velocity.y = -0.1 
 	else:
 		velocity.y -= gravity * delta
+	if Input.is_action_just_pressed("ground_view"):
+		use_ground_view = not use_ground_view
+		_set_camera_basis_from_angle()
 	
 	# 2. Jump Input
 	if Input.is_action_just_pressed("ui_accept"):
@@ -52,6 +61,15 @@ func _physics_process(delta: float) -> void:
 			
 			position.y += 0.05 
 			
+	if RUN == true:
+		if Input.is_action_just_pressed("RUN"):
+				if is_multiplayer_authority():
+					if SPEED == 7.25:
+						SPEED = 14.5
+						return
+					if SPEED == 14.5:
+						SPEED = 7.25
+						return
 	
 	#3. Camera Switching
 	if Input.is_action_just_pressed("First_Person"):
@@ -111,7 +129,6 @@ func _input(event: InputEvent) -> void:
 	
 	
 	
-	
 	if event.is_action_pressed("show_mouse"):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -159,6 +176,14 @@ func _update_camera_basis() -> void:
 	
 	
 	mesh.basis = pivot.basis
+
+func _set_camera_basis_from_angle() -> void :
+	if use_ground_view:
+		$Camera_Controller/Camera_Target/Camera4D.rotation = AABB(Vector3.ZERO, Vector3(0, PI * -0.5, 0))
+		$Camera_Controller/Camera_Target/Camera4D2.rotation = AABB(Vector3.ZERO, Vector3(0, PI * -0.5, 0))
+	else:
+		$Camera_Controller/Camera_Target/Camera4D.rotation = AABB(Vector3.ZERO, Vector3.ZERO)
+		$Camera_Controller/Camera_Target/Camera4D2.rotation = AABB(Vector3.ZERO, Vector3.ZERO)
 
 
 func _on_area_4d_body_exited_area(body: PhysicsBody4D) -> void:

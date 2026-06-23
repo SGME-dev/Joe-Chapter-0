@@ -42,15 +42,15 @@ basis = Projection(13.651996, 0, 0, 0, 0, -4.3711378e-08, 1.0000008, 0, 0, -12.9
 
 [node name="StaticBody4D12" parent="." instance=ExtResource("2_7nsku")]
 position = Vector4(-0.052016255, 8.679064, -157.21637, 1.1920929e-07)
-basis = Projection(13.651996, 0, 0, 0, 0, -4.3711378e-08, 1.0000008, 0, 0, -12.999999, -5.682484e-07, 0, 0, 0, 0, 5)
+basis = Projection(13.651996, 0, 0, 0, 0, -4.3711378e-08, 1.0000008, 0, 0, -12.999999, -5.682484e-07, 0, 0, 0, 0, 2.5)
 
 [node name="StaticBody4D14" parent="." instance=ExtResource("2_7nsku")]
 position = Vector4(-0.052016262, 8.679062, -187.92377, 1.1920929e-07)
-basis = Projection(13.651998, 0, 0, 0, 0, -4.371137e-08, 1.0000008, 0, 0, -12.999997, -5.682484e-07, 0, 0, 0, 0, 5)
+basis = Projection(13.651998, 0, 0, 0, 0, -4.371137e-08, 1.0000008, 0, 0, -12.999997, -5.682484e-07, 0, 0, 0, 0, 2.5)
 
 [node name="StaticBody4D16" parent="." instance=ExtResource("2_7nsku")]
 position = Vector4(-0.052016255, 8.679062, -222.72067, 1.1920927e-07)
-basis = Projection(13.651989, 0, 0, 0, 0, -4.3711353e-08, 1.0000004, 0, 0, -12.999992, -5.682482e-07, 0, 0, 0, 0, 5)
+basis = Projection(13.651989, 0, 0, 0, 0, -4.3711353e-08, 1.0000004, 0, 0, -12.999992, -5.682482e-07, 0, 0, 0, 0, 2.5)
 
 [node name="StaticBody4D4" parent="." instance=ExtResource("3_2mril")]
 position = Vector4(0, 4.227818, -39.39955, -0.50626516)
@@ -272,7 +272,7 @@ position = Vector4(0, 2.457711, -171.07048, 0)
 basis = Projection(4.9999995, 0, 0, 0, 0, 4.9999995, 0, 0, 0, 0, 4.9999995, 0, 0, 0, 0, 19.999998)
 
 [node name="StaticBody4D21" parent="." instance=ExtResource("7_ngegj")]
-position = Vector4(0, 2.457711, -204.59114, 0)
+position = Vector4(0, 2.457711, -202.35449, 0)
 basis = Projection(4.9999995, 0, 0, 0, 0, 4.9999995, 0, 0, 0, 0, 4.9999995, 0, 0, 0, 0, 19.999998)
 
 [node name="StaticBody4D22" parent="." instance=ExtResource("7_ngegj")]

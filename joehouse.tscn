@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://bg8bs7gw8mk1k"]
+
+[ext_resource type="Script" uid="uid://dqchq18npwe88" path="res://joehouse.gd" id="1_e3vol"]
+[ext_resource type="PackedScene" uid="uid://b1ikmd6mmomw" path="res://house.tscn" id="1_ng0oa"]
+[ext_resource type="PackedScene" uid="uid://bxopl223vf8d0" path="res://park.tscn" id="2_e3vol"]
+[ext_resource type="PackedScene" uid="uid://c0s58r1qa7jvh" path="res://player.tscn" id="4_lbvct"]
+
+[sub_resource type="BoxShape4D" id="BoxShape4D_ng0oa"]
+
+[node name="joehouse" type="Node4D"]
+script = ExtResource("1_e3vol")
+
+[node name="house" parent="." instance=ExtResource("1_ng0oa")]
+
+[node name="Park" parent="." instance=ExtResource("2_e3vol")]
+position = Vector4(0, 0, 114.08943, 0)
+basis = Projection(-1, 0, 8.742278e-08, 0, 0, 1, 0, 0, -8.742278e-08, 0, -1, 0, 0, 0, 0, 1)
+
+[node name="Path" parent="Park" index="40"]
+visible = false
+
+[node name="Area4D" type="Area4D" parent="."]
+position = Vector4(0, 0, 77.87834, 0)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D"]
+position = Vector4(-4.4497437, 17.489582, 10.93502, -3.339249)
+basis = Projection(147.83684, 0, 0, 0, 0, 35.97916, 0, 0, 0, 0, 71.35903, 0, 0, 0, 0, 6.678498)
+shape = SubResource("BoxShape4D_ng0oa")
+
+[node name="CharacterBody4D" parent="." instance=ExtResource("4_lbvct")]
+position = Vector4(0, 7.781952, 0, 0)
+
+[connection signal="body_entered_area" from="Area4D" to="." method="_on_area_4d_body_entered_area"]
+[connection signal="body_exited_area" from="Area4D" to="." method="_on_area_4d_body_exited_area"]
+
+[editable path="Park"]
+[editable path="Park/CubinderMoving"]
+[editable path="Park/CubinderMoving2"]

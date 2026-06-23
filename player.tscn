@@ -57,5 +57,11 @@ depth_fade_mode = 1
 basis = Projection(1, 0, 0, 0, 0, 0.401, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 shape = SubResource("SphereShape4D_4flbx")
 
+[node name="Label" type="Label" parent="."]
+offset_left = 1035.0
+offset_right = 1075.0
+offset_bottom = 23.0
+text = "FPS: "
+
 [connection signal="body_entered_area" from="Area4D" to="." method="_on_area_4d_body_entered_area"]
 [connection signal="body_exited_area" from="Area4D" to="." method="_on_area_4d_body_exited_area"]
