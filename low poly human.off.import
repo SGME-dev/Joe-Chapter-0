@@ -1,0 +1,14 @@
+[remap]
+
+importer="godot_4d.off_geometry_format.array_wire_mesh_4d"
+type="ArrayWireMesh4D"
+uid="uid://dtjj33r8x7w8s"
+path="res://.godot/imported/low poly human.off-25e604744d7381b384b7342940002f47.res"
+
+[deps]
+
+source_file="res://low poly human.off"
+dest_files=["res://.godot/imported/low poly human.off-25e604744d7381b384b7342940002f47.res"]
+
+[params]
+

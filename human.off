@@ -1,0 +1,75 @@
+4OFF
+# Vertices | Faces | Edges | Cells
+16 28 0 14
+
+# --- 1. VERTEX DATA (X, Y, Z, W) ---
+# [Head Block]
+-0.2  1.2  0.2  0.0     # 0: Head Front-Left-Top
+ 0.2  1.2  0.2  0.0     # 1: Head Front-Right-Top
+ 0.2  1.2 -0.2  0.0     # 2: Head Back-Right-Top
+-0.2  1.2 -0.2  0.0     # 3: Head Back-Left-Top
+-0.1  0.8  0.1  0.0     # 4: Neck Base Front
+-0.1  0.8 -0.1  0.0     # 5: Neck Base Back
+
+# [Torso Core]
+-0.4  0.7  0.2  0.0     # 6: Left Shoulder Front
+ 0.4  0.7  0.2  0.0     # 7: Right Shoulder Front
+ 0.4  0.7 -0.2  0.0     # 8: Right Shoulder Back
+-0.4  0.7 -0.2  0.0     # 9: Left Shoulder Back
+-0.3 -0.2  0.2  0.0     # 10: Left Hip
+ 0.3 -0.2  0.2  0.0     # 11: Right Hip
+
+# [Limbs heavily skewed into 4D space (W Axis)]
+-0.6  0.2  0.2  0.5     # 12: Left Hand (Extended deep into +W)
+ 0.6  0.2  0.2 -0.5     # 13: Right Hand (Extended deep into -W)
+-0.3 -0.9  0.2  0.3     # 14: Left Foot (Stepped into +W)
+ 0.3 -0.9  0.2 -0.3     # 15: Right Foot (Stepped into -W)
+
+# --- 2. TRIANGULATED FACE DATA ---
+# (Every line strictly formatted to 3 vertices for Godot compatibility)
+3   0 1 4
+3   1 2 4
+3   2 3 4
+3   3 0 4
+3   0 1 5
+3   1 2 5
+3   2 3 5
+3   3 0 5
+3   6 7 10
+3   7 11 10
+3   7 8 11
+3   8 9 11
+3   6 9 10
+3   9 11 10
+3   6 7 12
+3   6 10 12
+3   7 10 12
+3   7 8 13
+3   7 11 13
+3   8 11 13
+3   10 11 14
+3   10 6 14
+3   11 6 14
+3   11 10 15
+3   11 7 15
+3   10 7 15
+3   0 2 3
+3   0 1 2
+
+# --- 3. TETRAHEDRAL CELL DATA ---
+# format: [4 faces making up a single 4D tetra cell]
+# This defines the physical 4D volumes that Godot-4D's physics and camera slice engine need
+4   0 1 2 26
+4   2 3 4 26
+4   4 5 6 27
+4   6 7 0 27
+4   8 9 12 13
+4   10 11 12 13
+4   14 15 16 8
+4   17 18 19 10
+4   20 21 22 11
+4   23 24 25 9
+4   8 10 14 20
+4   9 11 17 23
+4   12 13 16 21
+4   12 13 19 24

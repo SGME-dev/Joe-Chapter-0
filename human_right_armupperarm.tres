@@ -1,0 +1,10 @@
+[gd_resource type="ArrayWireMesh4D" load_steps=2 format=4 uid="uid://cd88gkhhdo0vv"]
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_urjbd"]
+albedo_color = Color(1, 0.5441822, 0.36763588, 1)
+
+[resource]
+resource_name = "low poly human.off"
+material = SubResource("WireMaterial4D_urjbd")
+edge_indices = PackedInt32Array(0, 1, 2, 3, 1, 2, 2, 4, 1, 4)
+vertices = PackedVector4Array(-20.516438, 8.814228, 135.10638, 0, -27.11813, 3.0237157, 129.54828, 0, -28.829311, -2.0274165, 117.63267, 0, -22.935017, 0.30736905, 116.073555, 0, -31.662846, 1.6418189, 114.006615, 0)

@@ -1,0 +1,15 @@
+[remap]
+
+importer="godot_4d.g4mf.scene_4d"
+type="PackedScene"
+uid="uid://dkpjx7i62fhau"
+path="res://.godot/imported/human.g4tf-a04da69a619fe07b0024313826a47398.scn"
+
+[deps]
+
+source_file="res://human.g4tf"
+dest_files=["res://.godot/imported/human.g4tf-a04da69a619fe07b0024313826a47398.scn"]
+
+[params]
+
+force_wireframe=false

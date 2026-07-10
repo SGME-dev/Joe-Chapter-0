@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=3 uid="uid://yf7wgvmvedob"]
+
+[ext_resource type="Script" uid="uid://b80121nyw7uge" path="res://edithumanz.gd" id="1_03irn"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://0s1ryn0bro3l" path="res://human_left_leg.tres" id="1_184so"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://3vivwuxcx3vw" path="res://human.tres" id="3_058l2"]
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_slexr"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="BoxWireMesh4D" id="BoxWireMesh4D_184so"]
+material = SubResource("WireMaterial4D_slexr")
+
+[node name="Node4D" type="Node4D"]
+script = ExtResource("1_03irn")
+mesh_to_split = ExtResource("1_184so")
+run_split = true
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="."]
+mesh = ExtResource("3_058l2")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="."]
+position = Vector4(13.917851, 0, 35.081657, 0)
+basis = Projection(28.835707, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 71.163315, 0, 0, 0, 0, 0.9999999)
+mesh = SubResource("BoxWireMesh4D_184so")
+
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="."]
+position = Vector4(-14.907003, 0, 35.081642, 0)
+basis = Projection(28.835707, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 71.163284, 0, 0, 0, 0, 0.9999999)
+mesh = SubResource("BoxWireMesh4D_184so")
+
+[node name="MeshInstance4D4" type="MeshInstance4D" parent="."]
+position = Vector4(9.450682, 0, 114.49659, 0)
+basis = Projection(19.898003, 0, 0, 0, 0, 0.99999976, 0, 0, 0, 0, 87.752075, 0, 0, 0, 0, 0.99999976)
+mesh = SubResource("BoxWireMesh4D_184so")
+
+[node name="MeshInstance4D5" type="MeshInstance4D" parent="."]
+position = Vector4(-10.439834, 0, 114.49656, 0)
+basis = Projection(19.898003, 0, 0, 0, 0, 0.99999976, 0, 0, 0, 0, 87.75204, 0, 0, 0, 0, 0.99999976)
+mesh = SubResource("BoxWireMesh4D_184so")
+
+[node name="MeshInstance4D8" type="MeshInstance4D" parent="."]
+position = Vector4(-30.331, 0, 114.497, 0)
+basis = Projection(19.898003, 0, 0, 0, 0, 0.99999976, 0, 0, 0, 0, 87.752, 0, 0, 0, 0, 0.99999976)
+mesh = SubResource("BoxWireMesh4D_184so")
+
+[node name="MeshInstance4D9" type="MeshInstance4D" parent="."]
+position = Vector4(29.340048, 0, 114.497086, 0)
+basis = Projection(19.898006, 0, 0, 0, 0, 0.99999976, 0, 0, 0, 0, 87.752, 0, 0, 0, 0, 0.99999976)
+mesh = SubResource("BoxWireMesh4D_184so")
+
+[node name="MeshInstance4D6" type="MeshInstance4D" parent="."]
+position = Vector4(5.6363983, 0, 170.6347, 0)
+basis = Projection(12.266562, 0, 0, 0, 0, 0.99999976, 0, 0, 0, 0, 24.538374, 0, 0, 0, 0, 0.99999976)
+mesh = SubResource("BoxWireMesh4D_184so")
+
+[node name="MeshInstance4D7" type="MeshInstance4D" parent="."]
+position = Vector4(-6.6255484, 0, 170.63469, 0)
+basis = Projection(12.266562, 0, 0, 0, 0, 0.99999976, 0, 0, 0, 0, 24.538363, 0, 0, 0, 0, 0.99999976)
+mesh = SubResource("BoxWireMesh4D_184so")
+
+[node name="Marker4D" type="Marker4D" parent="."]
+
+[node name="Marker4D2" type="Marker4D" parent="."]
+
+[node name="Marker4D4" type="Marker4D" parent="."]
+
+[node name="Marker4D5" type="Marker4D" parent="."]
+
+[node name="Marker4D6" type="Marker4D" parent="."]
+
+[node name="Marker4D7" type="Marker4D" parent="."]
+
+[node name="Marker4D8" type="Marker4D" parent="."]
+
+[node name="Marker4D9" type="Marker4D" parent="."]
+
+[node name="Marker4D10" type="Marker4D" parent="."]
+
+[node name="Marker4D3" type="Marker4D" parent="."]

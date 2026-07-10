@@ -1,0 +1,15 @@
+[remap]
+
+importer="godot_4d.off_geometry_format.array_wire_mesh_4d"
+type="ArrayWireMesh4D"
+uid="uid://cs7m3l6u0wu8n"
+path="res://.godot/imported/human.off-ec46efc759f83167fc322c33e3479b73.res"
+
+[deps]
+
+source_file="res://human.off"
+dest_files=["res://.godot/imported/human.off-ec46efc759f83167fc322c33e3479b73.res"]
+
+[params]
+
+deduplicate_edges=true

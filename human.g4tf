@@ -1,0 +1,73 @@
+{
+	"accessors": [
+		{
+			"bufferView": 0,
+			"primitiveType": "float32",
+			"vectorSize": 4
+		},
+		{
+			"bufferView": 1,
+			"primitiveType": "float32",
+			"vectorSize": 3
+		},
+		{
+			"bufferView": 2,
+			"primitiveType": "uint16",
+			"vectorSize": 2
+		}
+	],
+	"asset": {
+		"dimension": 4,
+		"generator": "Godot Engine 4.5.2 with Godot 4D module"
+	},
+	"bufferViews": [
+		{
+			"buffer": 0,
+			"byteLength": 2608
+		},
+		{
+			"buffer": 0,
+			"byteLength": 5796,
+			"byteOffset": 2608
+		},
+		{
+			"buffer": 0,
+			"byteLength": 1932,
+			"byteOffset": 8404
+		}
+	],
+	"buffers": [
+		{
+			"byteLength": 10336,
+			"uri": "human_buffer0.bin"
+		}
+	],
+	"materials": [
+		{
+			"baseColor": { "perEdge": 1 }
+		}
+	],
+	"meshes": [
+		{
+			"name": "low poly human.off",
+			"surfaces": [{ "edges": 2, "material": 0 }],
+			"vertices": 0
+		}
+	],
+	"nodes": [
+		{
+			"children": [1, 2],
+			"name": "Node4D"
+		},
+		{
+			"basis": [-0.25, 0.0, -0.000000021855694143369, 0.0, 0.000000021855694143369, 0.0000000109278470716845, -0.25, 0.000000021855694143369, -0.000000000000000955342732582353, 0.25, 0.0000000109278470716845, 0.0, 0.00000000000000382137093032941, 0.00000000000000191068546516471, -0.0000000437113882867379, -0.5],
+			"mesh": 0,
+			"name": "MeshInstance4D"
+		},
+		{
+			"basis": [-0.0000000109278470716845, 0.0, 0.0, 0.25, 0.0, -0.0000000109278470716845, -0.25, 0.0, 0.0, 0.25, -0.0000000109278470716845, 0.0, -0.5, 0.0, 0.0, -0.000000021855694143369],
+			"mesh": 0,
+			"name": "MeshInstance4D2"
+		}
+	]
+}

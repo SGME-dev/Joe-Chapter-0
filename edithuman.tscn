@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvokar2jxroo6"]
+
+[ext_resource type="Script" uid="uid://cm00kib1ys8w" path="res://human.gd" id="1_slexr"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://0s1ryn0bro3l" path="res://human_left_leg.tres" id="3_8j76q"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://b1dgvcpcdv2se" path="res://human_right_leg.tres" id="4_mkexj"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://djxv8hkdl66i" path="res://human_left_arm.tres" id="5_lhu00"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://btltqrvdk5vtx" path="res://human_right_arm.tres" id="6_lj8py"]
+
+[node name="Node4D" type="Node4D"]
+script = ExtResource("1_slexr")
+mesh_to_split = ExtResource("3_8j76q")
+output_prefix = "human_left_leg_"
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="."]
+mesh = ExtResource("3_8j76q")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="."]
+mesh = ExtResource("4_mkexj")
+
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="."]
+mesh = ExtResource("5_lhu00")
+
+[node name="MeshInstance4D4" type="MeshInstance4D" parent="."]
+mesh = ExtResource("6_lj8py")
+
+[node name="Marker4D" type="Marker4D" parent="."]
+
+[node name="Marker4D4" type="Marker4D" parent="."]
+
+[node name="Marker4D2" type="Marker4D" parent="."]
+
+[node name="Marker4D11" type="Marker4D" parent="."]
+
+[node name="Marker4D3" type="Marker4D" parent="."]
+
+[node name="Marker4D12" type="Marker4D" parent="."]
+
+[node name="Marker4D5" type="Marker4D" parent="."]
+
+[node name="Marker4D6" type="Marker4D" parent="."]
+
+[node name="Marker4D9" type="Marker4D" parent="."]
+
+[node name="Marker4D7" type="Marker4D" parent="."]
+
+[node name="Marker4D10" type="Marker4D" parent="."]
+
+[node name="Marker4D8" type="Marker4D" parent="."]

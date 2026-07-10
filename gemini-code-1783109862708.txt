@@ -1,0 +1,83 @@
+@tool
+extends Node
+
+@export var mesh_to_split: ArrayWireMesh4D # Drag your grey or brown .tres file here
+@export var output_prefix: String = "grey_" # "grey_" or "brown_"
+@export var run_split: bool = false:
+	set(value):
+		if value:
+			split_by_x_and_z()
+			run_split = false
+
+func split_by_x_and_z():
+	if not mesh_to_split:
+		print("Please assign a 4D Wire Mesh resource!")
+		return
+		
+	var old_verts = mesh_to_split.vertices
+	var old_edges = mesh_to_split.edge_indices
+	
+	# X-bounds handle Front/Back depth. Z-bounds handle height segments.
+	var groups = {
+		"Front_Feet":   {"x": [0.0, 40.0],    "z": [0.0, 15.0]},
+		"Back_Feet":    {"x": [-40.0, 0.0],   "z": [0.0, 15.0]},
+		
+		"Front_Legs":   {"x": [0.0, 40.0],    "z": [15.0, 85.0]},
+		"Back_Legs":    {"x": [-40.0, 0.0],   "z": [15.0, 85.0]},
+		
+		"Front_Torso":  {"x": [0.0, 40.0],    "z": [85.0, 145.0]},
+		"Back_Torso":   {"x": [-40.0, 0.0],   "z": [85.0, 145.0]},
+		
+		"Front_Arms":   {"x": [0.0, 40.0],    "z": [110.0, 155.0]},
+		"Back_Arms":    {"x": [-40.0, 0.0],   "z": [110.0, 155.0]},
+		
+		"Front_Head":   {"x": [0.0, 40.0],    "z": [145.0, 181.0]},
+		"Back_Head":    {"x": [-40.0, 0.0],   "z": [145.0, 181.0]}
+	}
+	
+	for part_name in groups.keys():
+		var bounds = groups[part_name]
+		var x_min = bounds["x"][0]
+		var x_max = bounds["x"][1]
+		var z_min = bounds["z"][0]
+		var z_max = bounds["z"][1]
+		
+		var part_verts = PackedVector4Array()
+		var part_map = {}
+		
+		# 1. Filter vertices that fall into both X and Z ranges
+		for i in range(old_verts.size()):
+			var v = old_verts[i]
+			
+			# Check X-bounds
+			if v.x < x_min or v.x > x_max:
+				continue
+				
+			# Check Z-bounds
+			if v.z < z_min or v.z > z_max:
+				continue
+			
+			part_map[i] = part_verts.size()
+			part_verts.append(v)
+			
+		# 2. Rebuild edges where both points fall into this quad-column
+		var part_edges = PackedInt32Array()
+		for i in range(0, old_edges.size(), 2):
+			var a = old_edges[i]
+			var b = old_edges[i+1]
+			
+			if part_map.has(a) and part_map.has(b):
+				part_edges.append(part_map[a])
+				part_edges.append(part_map[b])
+				
+		# 3. Save the dual-axis isolated resource piece
+		if part_verts.size() > 0 and part_edges.size() > 0:
+			var new_mesh = mesh_to_split.duplicate()
+			new_mesh.vertices = part_verts
+			new_mesh.edge_indices = part_edges
+			
+			var save_path = "res://" + output_prefix + part_name.to_lower() + ".tres"
+			ResourceSaver.save(new_mesh, save_path)
+			print("Saved: ", save_path)
+		else:
+			print("Skipped empty group: ", part_name)

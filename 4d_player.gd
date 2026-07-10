@@ -24,7 +24,8 @@ var tar: bool = true
 @onready var pivot: Node4D = $Camera_Controller
 # Ensure this matches your scene tree exactly
 @onready var cam: Node4D = $Camera_Controller/Camera_Target
-@onready var mesh: MeshInstance4D = $MeshInstance4D 
+@onready var mesh: Node4D = $human
+
 var direction: Vector4
 
 static var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity") as float
@@ -36,22 +37,45 @@ func _physics_process(delta: float) -> void:
 	if not tar:
 		return
 	
+	var is_actually_on_floor = is_on_floor()
+	var horizontal_speed: float = Vector3(velocity.x, velocity.z, velocity.w).length()
+	
+	
+	
+	
+	
+	
+	
 	$Label.text = str("FPS: " + str(Engine.get_frames_per_second()))
 	
 	
 	# 1. Manual Ground Check (More reliable for 4D)
 	
-	var is_actually_on_floor = is_on_floor()
+	
 	
 	
 	if is_actually_on_floor:
 		if velocity.y < 0:
-			velocity.y = -0.1 
+			velocity.y = -0.1
+			$human/body1/AnimationPlayer.stop()
+			$human/body2/AnimationPlayer.stop()
 	else:
 		velocity.y -= gravity * delta
+		
 	if Input.is_action_just_pressed("ground_view"):
 		use_ground_view = not use_ground_view
 		_set_camera_basis_from_angle()
+	
+	if horizontal_speed >= 7.24 and horizontal_speed <= 11:
+		
+		$human/body1/AnimationPlayer.play("walk")
+		$human/body2/AnimationPlayer.play("walk")
+	elif horizontal_speed >= 12:
+		$human/body1/AnimationPlayer.play("run")
+		$human/body2/AnimationPlayer.play("run")
+	if horizontal_speed == 0:
+		$human/body1/AnimationPlayer.play("idle")
+		$human/body2/AnimationPlayer.play("idle")
 	
 	# 2. Jump Input
 	if Input.is_action_just_pressed("ui_accept"):
@@ -61,6 +85,7 @@ func _physics_process(delta: float) -> void:
 			
 			position.y += 0.05 
 			
+
 	if RUN == true:
 		if Input.is_action_just_pressed("RUN"):
 				if is_multiplayer_authority():
@@ -89,15 +114,28 @@ func _physics_process(delta: float) -> void:
 	var move_vec = Vector3(input_dir.x, 0, input_dir.y).rotated(Vector3.UP, -cam_yaw)
 	direction = Vector4(move_vec.x, 0.0, move_vec.z, input_w)
 	
+	if input_dir != Vector2(0,0):
+			mesh.rotation_degrees.position.y = pivot.rotation_degrees.position.y + 90 -rad_to_deg(input_dir.angle())
+	
 	if direction.length() > 0.001:
 		direction = direction.normalized()
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 		velocity.w = direction.w * SPEED
+		if is_actually_on_floor:
+			if RUN == false:
+				$human/body1/AnimationPlayer.play("walk")
+				$human/body2/AnimationPlayer.play("walk")
+			else:
+				$human/body1/AnimationPlayer.play("run")
+				$human/body2/AnimationPlayer.play("run")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED * delta * 10)
 		velocity.z = move_toward(velocity.z, 0, SPEED * delta * 10)
 		velocity.w = move_toward(velocity.w, 0, SPEED * delta * 10)
+		if is_actually_on_floor:
+			$human/body1/AnimationPlayer.play("idle")
+			$human/body2/AnimationPlayer.play("idle")
 	
 	# 5. EXECUTE MOVEMENT
 	var motion = velocity * delta
@@ -175,15 +213,27 @@ func _update_camera_basis() -> void:
 	pivot.basis.z = Vector4(-sy, 0, cy, 0)
 	
 	
-	mesh.basis = pivot.basis
+	
+	
+	
+	
+	
 
 func _set_camera_basis_from_angle() -> void :
 	if use_ground_view:
 		$Camera_Controller/Camera_Target/Camera4D.rotation = AABB(Vector3.ZERO, Vector3(0, PI * -0.5, 0))
 		$Camera_Controller/Camera_Target/Camera4D2.rotation = AABB(Vector3.ZERO, Vector3(0, PI * -0.5, 0))
+		$human/body1/body1.visible = false
+		$human/body2/body1.visible = true
+		$Camera_Controller/Camera_Target/Camera4D.scale = Vector4(1, 1, 1, 1)
+		$Camera_Controller/Camera_Target/Camera4D2.scale = Vector4(1, 1, 1, 1)
 	else:
 		$Camera_Controller/Camera_Target/Camera4D.rotation = AABB(Vector3.ZERO, Vector3.ZERO)
 		$Camera_Controller/Camera_Target/Camera4D2.rotation = AABB(Vector3.ZERO, Vector3.ZERO)
+		$human/body1/body1.visible = true
+		$human/body2/body1.visible = false
+		$Camera_Controller/Camera_Target/Camera4D.scale = Vector4(2.494, 1, 2.494, 1)
+		$Camera_Controller/Camera_Target/Camera4D2.scale = Vector4(2.494, 1, 2.494, 1)
 
 
 func _on_area_4d_body_exited_area(body: PhysicsBody4D) -> void:
