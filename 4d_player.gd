@@ -223,15 +223,15 @@ func _set_camera_basis_from_angle() -> void :
 	if use_ground_view:
 		$Camera_Controller/Camera_Target/Camera4D.rotation = AABB(Vector3.ZERO, Vector3(0, PI * -0.5, 0))
 		$Camera_Controller/Camera_Target/Camera4D2.rotation = AABB(Vector3.ZERO, Vector3(0, PI * -0.5, 0))
-		$human/body1/body1.visible = false
-		$human/body2/body1.visible = true
+		$human/body1.visible = false
+		$human/body2.visible = true
 		$Camera_Controller/Camera_Target/Camera4D.scale = Vector4(1, 1, 1, 1)
 		$Camera_Controller/Camera_Target/Camera4D2.scale = Vector4(1, 1, 1, 1)
 	else:
 		$Camera_Controller/Camera_Target/Camera4D.rotation = AABB(Vector3.ZERO, Vector3.ZERO)
 		$Camera_Controller/Camera_Target/Camera4D2.rotation = AABB(Vector3.ZERO, Vector3.ZERO)
-		$human/body1/body1.visible = true
-		$human/body2/body1.visible = false
+		$human/body1.visible = true
+		$human/body2.visible = false
 		$Camera_Controller/Camera_Target/Camera4D.scale = Vector4(2.494, 1, 2.494, 1)
 		$Camera_Controller/Camera_Target/Camera4D2.scale = Vector4(2.494, 1, 2.494, 1)
 
