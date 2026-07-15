@@ -1,6 +1,43 @@
-[gd_scene load_steps=2 format=3 uid="uid://dge28jgfyyu4o"]
+[gd_scene load_steps=8 format=3 uid="uid://dge28jgfyyu4o"]
 
 [ext_resource type="Script" uid="uid://tskv7igedikk" path="res://control.gd" id="1_0fbet"]
+[ext_resource type="Texture2D" uid="uid://bltusrymgh2ji" path="res://New Piskel.png" id="2_62e2m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtu10"]
+atlas = ExtResource("2_62e2m")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ee4bf"]
+atlas = ExtResource("2_62e2m")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbped"]
+atlas = ExtResource("2_62e2m")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fj5cn"]
+atlas = ExtResource("2_62e2m")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iy58a"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_qtu10")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_ee4bf")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_kbped")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_fj5cn")
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.0
+}]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -12,7 +49,29 @@ grow_vertical = 2
 script = ExtResource("1_0fbet")
 
 [node name="Label" type="Label" parent="."]
+z_index = 1
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 160.0
+offset_top = 509.0
+offset_right = 200.0
+offset_bottom = 532.0
 text = "hi"
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 499.0
+offset_right = 1151.0
+offset_bottom = 646.0
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 499.0
+offset_right = 140.0
+offset_bottom = 646.0
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(67, 583)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_iy58a")
