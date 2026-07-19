@@ -3,7 +3,6 @@
 [sub_resource type="BoxShape4D" id="BoxShape4D_jtvq5"]
 
 [sub_resource type="WireMaterial4D" id="WireMaterial4D_7nsku"]
-line_thickness = 5.0
 albedo_color = Color(0.4307158, 0.62050885, 0.795582, 1)
 
 [sub_resource type="BoxWireMesh4D" id="BoxWireMesh4D_2mril"]

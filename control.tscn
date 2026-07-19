@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dge28jgfyyu4o"]
 
-[ext_resource type="Script" uid="uid://tskv7igedikk" path="res://control.gd" id="1_0fbet"]
+[ext_resource type="Script" uid="uid://bfm2idnblegob" path="res://dialougue.gd" id="1_62e2m"]
 [ext_resource type="Texture2D" uid="uid://bltusrymgh2ji" path="res://New Piskel.png" id="2_62e2m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qtu10"]
@@ -46,9 +46,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_0fbet")
+script = ExtResource("1_62e2m")
 
 [node name="Label" type="Label" parent="."]
+visible = false
 z_index = 1
 layout_mode = 0
 offset_left = 160.0
@@ -58,6 +59,7 @@ offset_bottom = 532.0
 text = "hi"
 
 [node name="Panel" type="Panel" parent="."]
+visible = false
 layout_mode = 0
 offset_left = -1.0
 offset_top = 499.0
@@ -65,6 +67,7 @@ offset_right = 1151.0
 offset_bottom = 646.0
 
 [node name="Panel2" type="Panel" parent="."]
+visible = false
 layout_mode = 0
 offset_left = -1.0
 offset_top = 499.0
@@ -72,6 +75,7 @@ offset_right = 140.0
 offset_bottom = 646.0
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(67, 583)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_iy58a")

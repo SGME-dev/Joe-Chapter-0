@@ -1,0 +1,5 @@
+set {playing} = true
+joe (happy): Phew, I made it home.
+joemum (happy): Hello sweetie, I made your favorite... Chicken curry!
+joedad (angry): Now remember darling, do not forget homework this time.
+set {playing} = false

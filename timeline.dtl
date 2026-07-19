@@ -1,0 +1,4 @@
+set {playing} = true
+Hi
+This is a test
+set {playing} = false

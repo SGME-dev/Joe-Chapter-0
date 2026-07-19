@@ -10,6 +10,7 @@ var bodies = []
 var hide = []
 
 func _ready() -> void:
+	Dialogic.start("spacepath")
 	$CharacterBody4D.RUN = false
 	# This list includes your original nodes + the new ones from 17 to 33
 	bodies = [

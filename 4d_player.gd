@@ -30,10 +30,15 @@ var direction: Vector4
 
 static var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity") as float
 
-
+func _ready() -> void:
+	pass
 
 
 func _physics_process(delta: float) -> void:
+	if Dialogic.VAR.playing == true:
+		tar = false
+	else:
+		tar = true
 	if not tar:
 		return
 	
@@ -45,12 +50,10 @@ func _physics_process(delta: float) -> void:
 	
 	
 	
-	
 	$Label.text = str("FPS: " + str(Engine.get_frames_per_second()))
 	
 	
 	# 1. Manual Ground Check (More reliable for 4D)
-	
 	
 	
 	

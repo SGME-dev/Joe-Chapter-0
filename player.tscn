@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0s58r1qa7jvh"]
+[gd_scene load_steps=8 format=3 uid="uid://c0s58r1qa7jvh"]
 
 [ext_resource type="Script" uid="uid://djcsxdvtej5io" path="res://4d_player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://lijuwixhi0k5" path="res://human.tscn" id="2_onrkg"]
+[ext_resource type="PackedScene" uid="uid://dge28jgfyyu4o" path="res://control.tscn" id="3_i3pqv"]
 
 [sub_resource type="BoxShape4D" id="BoxShape4D_rlu7a"]
 
@@ -74,9 +75,13 @@ basis = Projection(0.99999994, 0, 0, 0, 0, 0.81915194, 0.57357633, 0, 0, -0.5735
 [node name="body2" parent="human" index="1"]
 visible = false
 
+[node name="Control" parent="." instance=ExtResource("3_i3pqv")]
+visible = false
+
 [connection signal="body_entered_area" from="Area4D" to="." method="_on_area_4d_body_entered_area"]
 [connection signal="body_exited_area" from="Area4D" to="." method="_on_area_4d_body_exited_area"]
 
 [editable path="human"]
 [editable path="human/body1"]
 [editable path="human/body2"]
+[editable path="Control"]

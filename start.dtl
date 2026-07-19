@@ -1,0 +1,5 @@
+set {playing} = true
+Bye! Remember to do your homework!
+Bye!
+Bye!
+set {playing} = false

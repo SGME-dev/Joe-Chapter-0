@@ -1,14 +1,15 @@
 extends Control
 
 @onready var label: Label = $Label
-var dialougue := 1
+@export var dialougue := 1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
 	if dialougue == 1:
 		label.text = str("Bye! Remember to do your homework!")
 	if dialougue == 2:
@@ -24,14 +25,14 @@ func _process(delta: float) -> void:
 	if dialougue == 6:
 		#Wiping sweat off head
 		label.text = str("Phew, I made it home.")
-	if dialougue == 6:
+	if dialougue == 7:
 		label.text = str("Hello sweetie, I made your favorite... Chicken curry!")
-	if dialougue == 6:
+	if dialougue == 8:
 		#Hugs
 		label.text = str("Now remember darling, do not forget homework this time.")
-	if dialougue == 7:
+	if dialougue == 9:
 		#If homework succeded
 		label.text = str("Well done, you really are smart! Now lets go eat dinner")
-	if dialougue == 8:
+	if dialougue == 10:
 		#If homework does not succeed
 		label.text = str("Its okay. You might have been stressed after being at school for a unusual amount of time.")

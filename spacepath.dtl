@@ -1,0 +1,4 @@
+set {playing} = true
+joe (confused): Looks like the path to home has been destroyed by asteroids... It will be tough, but I will have to get home by jumping on these platforms.
+joe (angry): I can do it.
+set {playing} = false
