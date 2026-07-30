@@ -1,7 +1,6 @@
 [gd_resource type="ArrayWireMesh4D" load_steps=2 format=4 uid="uid://cwwuyfe5gefeu"]
 
 [sub_resource type="WireMaterial4D" id="WireMaterial4D_pt5v5"]
-albedo_color = Color(1, 0.5441822, 0.36763588, 1)
 
 [resource]
 resource_name = "low poly human.off"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ct278airkigxp"]
+[gd_scene load_steps=15 format=3 uid="uid://ct278airkigxp"]
 
 [ext_resource type="Script" uid="uid://dp7n2s1xk1c2p" path="res://node_4d.gd" id="1_f4q7b"]
 [ext_resource type="PackedScene" uid="uid://c0s58r1qa7jvh" path="res://player.tscn" id="1_jtvq5"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bfsv8l3iprvmx" path="res://sphereinder.tscn" id="5_x5a5f"]
 [ext_resource type="PackedScene" uid="uid://dk38q8yta7jfk" path="res://cubinder_moving.tscn" id="6_x5fef"]
 [ext_resource type="PackedScene" uid="uid://66cxvjpl5cj5" path="res://asteroid.tscn" id="7_ngegj"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://dxwjsyhqmdvxr" path="res://star.off" id="8_6gk2r"]
 
 [sub_resource type="BoxShape4D" id="BoxShape4D_x5fef"]
 
@@ -17,6 +18,12 @@ albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="BoxWireMesh4D" id="BoxWireMesh4D_ctvjw"]
 material = SubResource("WireMaterial4D_6gk2r")
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_ctvjw"]
+line_thickness = 5.0
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="BoxShape4D" id="BoxShape4D_6gk2r"]
 
 [node name="Node4D" type="Node4D"]
 script = ExtResource("1_f4q7b")
@@ -279,9 +286,26 @@ basis = Projection(4.9999995, 0, 0, 0, 0, 4.9999995, 0, 0, 0, 0, 4.9999995, 0, 0
 position = Vector4(-32.6804, 2.457711, -252.78415, 0)
 basis = Projection(4.9999995, 0, 0, 0, 0, 4.9999995, 0, 0, 0, 0, 4.9999995, 0, 0, 0, 0, 19.999998)
 
+[node name="Area4D5" type="Area4D" parent="."]
+position = Vector4(-131.63297, 3.8237321, -260.52695, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="Area4D5"]
+material_override = SubResource("WireMaterial4D_ctvjw")
+mesh = ExtResource("8_6gk2r")
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D5"]
+shape = SubResource("BoxShape4D_6gk2r")
+
 [connection signal="body_entered_area" from="Area4D" to="." method="_on_area_4d_body_entered_area"]
 [connection signal="body_entered_area" from="Area4D2" to="." method="_on_area_4d_2_body_entered_area"]
 [connection signal="body_entered_area" from="Area4D3" to="." method="_on_area_4d_3_body_entered_area"]
 [connection signal="body_exited_area" from="Area4D3" to="." method="_on_area_4d_3_body_exited_area"]
 [connection signal="body_entered_area" from="Area4D4" to="." method="_on_area_4d_4_body_entered_area"]
 [connection signal="body_exited_area" from="Area4D4" to="." method="_on_area_4d_4_body_exited_area"]
+[connection signal="body_entered_area" from="Area4D5" to="." method="_on_area_4d_5_body_entered_area"]
+
+[editable path="CharacterBody4D"]
+[editable path="CharacterBody4D/human"]
+[editable path="CharacterBody4D/human/body1"]
+[editable path="CharacterBody4D/human/body2"]
+[editable path="CharacterBody4D/Control"]

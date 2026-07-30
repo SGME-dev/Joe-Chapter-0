@@ -1,5 +1,5 @@
 set {playing} = true
-Bye! Remember to do your homework!
-Bye!
-Bye!
-set {playing} = false
+crimsondad: Bye! Remember to do your homework!
+crimson: Bye!
+joe (happy): Bye!
+[signal arg="endstart"]

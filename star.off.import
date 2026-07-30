@@ -1,0 +1,15 @@
+[remap]
+
+importer="godot_4d.off_geometry_format.array_wire_mesh_4d"
+type="ArrayWireMesh4D"
+uid="uid://dxwjsyhqmdvxr"
+path="res://.godot/imported/star.off-1a767c255caa7ce07d34f9a6d50468f0.res"
+
+[deps]
+
+source_file="res://star.off"
+dest_files=["res://.godot/imported/star.off-1a767c255caa7ce07d34f9a6d50468f0.res"]
+
+[params]
+
+deduplicate_edges=true

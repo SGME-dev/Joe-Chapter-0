@@ -19,7 +19,7 @@ var velocity: Vector4 = Vector4.ZERO
 
 var cam_yaw: float = 0.0
 var cam_pitch: float = 0.0
-var tar: bool = true
+var movement: bool = true
 
 @onready var pivot: Node4D = $Camera_Controller
 # Ensure this matches your scene tree exactly
@@ -31,15 +31,20 @@ var direction: Vector4
 static var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity") as float
 
 func _ready() -> void:
-	pass
+	if $Camera_Controller/Camera_Target/Camera4D.current == true:
+		$human.visible = false
+		$MeshInstance4D.visible = false
+	if $Camera_Controller/Camera_Target/Camera4D2.current == true:
+		$human.visible = true
+		$MeshInstance4D.visible = true
 
 
 func _physics_process(delta: float) -> void:
 	if Dialogic.VAR.playing == true:
-		tar = false
+		movement = false
 	else:
-		tar = true
-	if not tar:
+		movement = true
+	if not movement:
 		return
 	
 	var is_actually_on_floor = is_on_floor()
@@ -104,10 +109,14 @@ func _physics_process(delta: float) -> void:
 		if $Camera_Controller/Camera_Target/Camera4D.current == true:
 			$Camera_Controller/Camera_Target/Camera4D.current = false
 			$Camera_Controller/Camera_Target/Camera4D2.current = true
+			$human.visible = true
+			$MeshInstance4D.visible = true
 			return
 		if $Camera_Controller/Camera_Target/Camera4D2.current == true:
 			$Camera_Controller/Camera_Target/Camera4D2.current = false
 			$Camera_Controller/Camera_Target/Camera4D.current = true
+			$human.visible = false
+			$MeshInstance4D.visible = false
 			return
 	
 	# 4. Movement Logic

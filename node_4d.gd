@@ -2,7 +2,7 @@ extends Node4D
 
 @onready var final_wall: StaticBody4D = $StaticBody4D47
 
-
+var playing := true
 var passf := false
 var pass2 := false
 # We store all the rotatable bodies in a single list
@@ -10,7 +10,7 @@ var bodies = []
 var hide = []
 
 func _ready() -> void:
-	Dialogic.start("spacepath")
+	
 	$CharacterBody4D.RUN = false
 	# This list includes your original nodes + the new ones from 17 to 33
 	bodies = [
@@ -20,7 +20,14 @@ func _ready() -> void:
 	
 
 
+
 func _process(delta: float) -> void:
+	if playing:
+		$CharacterBody4D/Camera_Controller/Camera_Target/Camera4D.current = true
+		$CharacterBody4D/human.visible = false
+		$CharacterBody4D/MeshInstance4D.visible = false
+		Dialogic.start("spacepath")
+		playing = false
 	if passf == true or pass2 == true:
 		if $StaticBody4D47 == null:
 			return
@@ -99,3 +106,7 @@ func _on_area_4d_4_body_entered_area(body: Physics4D) -> void:
 
 func _on_area_4d_4_body_exited_area(body: Physics4D) -> void:
 	pass2 = false
+
+
+func _on_area_4d_5_body_entered_area(body: player) -> void:
+	get_tree().change_scene_to_file("res://joehouse.tscn")

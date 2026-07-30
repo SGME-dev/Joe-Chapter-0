@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://1mlpnhpmmom8"]
+[gd_scene load_steps=49 format=3 uid="uid://1mlpnhpmmom8"]
 
 [ext_resource type="Script" uid="uid://cbnjaiopequuq" path="res://school_1.gd" id="1_mnsvo"]
 [ext_resource type="PackedScene" uid="uid://bi2ot0trdsght" path="res://platform3.tscn" id="1_q7r7a"]
@@ -10,6 +10,83 @@
 [ext_resource type="ArrayWireMesh4D" uid="uid://ctmc1ioi3bfcx" path="res://torisphere.off" id="7_qm0um"]
 [ext_resource type="Script" uid="uid://dbsuuvvaet6w0" path="res://text_1.gd" id="9_hslpx"]
 [ext_resource type="PackedScene" uid="uid://bmvrivbnad8vh" path="res://platform4.tscn" id="10_qm0um"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://cwwuyfe5gefeu" path="res://human_right_armforearm.tres" id="11_bdplm"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://cd88gkhhdo0vv" path="res://human_right_armupperarm.tres" id="12_p64rj"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://chikh33chd4t3" path="res://human_right_armhand.tres" id="13_bpq5k"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://dkhxrc5t6u1x2" path="res://human_left_armforearm.tres" id="14_yp4ua"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://d0v5nigfsw6ia" path="res://human_left_armupperarm.tres" id="15_r5ibe"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://briwxghq7d2t6" path="res://human_left_armhand.tres" id="16_yimgq"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://cflsjbllnm17" path="res://human_right_leg_shin.tres" id="17_o6720"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://bkcrmbcg7ob11" path="res://human_right_leg_thigh.tres" id="18_ec86u"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://bwbmi80qjsrw4" path="res://human_right_leg_foot.tres" id="19_ugmb4"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://cwsdnwsewskt8" path="res://human_left_leg_shin.tres" id="20_8ipbr"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://bcqgd8grg7r28" path="res://human_left_leg_thigh.tres" id="21_2dlm3"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://51rg7tdcksw5" path="res://human_left_leg_foot.tres" id="22_15ea8"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://cetdxevbj682p" path="res://human_left_head.tres" id="23_qrwe3"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://b7wk2jgidxuny" path="res://human_right_head.tres" id="24_plkib"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://ckyk3y3phviyo" path="res://human_left_torso.tres" id="25_6qtru"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://b4hx0y56k7qbf" path="res://human_right_torso.tres" id="26_cdb1u"]
+
+[sub_resource type="BoxShape4D" id="BoxShape4D_jtvq5"]
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_bdplm"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_p64rj"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_bpq5k"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_yp4ua"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_r5ibe"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_yimgq"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_o6720"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_ec86u"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_ugmb4"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_8ipbr"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_2dlm3"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_15ea8"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_qrwe3"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_plkib"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_6qtru"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_cdb1u"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxShape4D" id="BoxShape4D_bdplm"]
+
+[sub_resource type="BoxShape4D" id="BoxShape4D_p64rj"]
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_ak3cu"]
+albedo_color = Color(1, 0.40784314, 0, 1)
+
+[sub_resource type="BoxPolyMesh4D" id="BoxPolyMesh4D_y7lvg"]
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_y7lvg"]
 
 [node name="School1" type="Node4D"]
 script = ExtResource("1_mnsvo")
@@ -125,139 +202,366 @@ mesh = ExtResource("6_cglct")
 position = Vector4(-8.34465e-07, 2.762444, -8.202578, 0)
 mesh = ExtResource("7_qm0um")
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 1.0
-offset_top = -5.0
-offset_right = 228.0
-offset_bottom = 163.0
-
-[node name="HSlider" type="HSlider" parent="Control"]
-z_index = 1
-layout_mode = 0
-offset_left = 30.0
-offset_top = 14.0
-offset_right = 206.0
-offset_bottom = 30.0
-max_value = 360.0
-
-[node name="HSlider2" type="HSlider" parent="Control"]
-z_index = 1
-layout_mode = 0
-offset_left = 30.0
-offset_top = 37.0
-offset_right = 206.0
-offset_bottom = 53.0
-max_value = 360.0
-
-[node name="HSlider3" type="HSlider" parent="Control"]
-z_index = 1
-layout_mode = 0
-offset_left = 30.0
-offset_top = 62.0
-offset_right = 206.0
-offset_bottom = 78.0
-max_value = 360.0
-
-[node name="HSlider4" type="HSlider" parent="Control"]
-z_index = 1
-layout_mode = 0
-offset_left = 30.0
-offset_top = 90.0
-offset_right = 206.0
-offset_bottom = 106.0
-max_value = 360.0
-
-[node name="HSlider5" type="HSlider" parent="Control"]
-z_index = 1
-layout_mode = 0
-offset_left = 30.0
-offset_top = 119.0
-offset_right = 206.0
-offset_bottom = 135.0
-max_value = 360.0
-
-[node name="HSlider6" type="HSlider" parent="Control"]
-z_index = 1
-layout_mode = 0
-offset_left = 30.0
-offset_top = 141.0
-offset_right = 206.0
-offset_bottom = 157.0
-max_value = 360.0
-
-[node name="Label" type="Label" parent="Control"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 10.0
-offset_right = 48.0
-offset_bottom = 33.0
-text = "x"
-
-[node name="Label2" type="Label" parent="Control"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 35.0
-offset_right = 48.0
-offset_bottom = 58.0
-text = "y"
-
-[node name="Label3" type="Label" parent="Control"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 59.0
-offset_right = 48.0
-offset_bottom = 82.0
-text = "z"
-
-[node name="Label4" type="Label" parent="Control"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 87.0
-offset_right = 48.0
-offset_bottom = 110.0
-text = "w"
-
-[node name="Label5" type="Label" parent="Control"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 116.0
-offset_right = 48.0
-offset_bottom = 139.0
-text = "h"
-
-[node name="Label6" type="Label" parent="Control"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 137.0
-offset_right = 48.0
-offset_bottom = 160.0
-text = "d"
-
 [node name="Text 1" type="Node4D" parent="."]
 position = Vector4(0, 6.5790257, 12.872795, 0)
 basis = Projection(0.05, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 0.5)
+visible = false
 script = ExtResource("9_hslpx")
 
 [node name="Text 2" type="Node4D" parent="."]
 position = Vector4(0, 8.463295, 5.065402, 0)
 basis = Projection(0.05, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 0.4, 0, 0, 0, 0, 0.5)
+visible = false
 script = ExtResource("9_hslpx")
 text_to_display = "A HYPERSPHERE IS THE SET OF ALL POINTS:AT A FIXED DISTANCE FROM A CENTRAL POINT:IN FOUR DIMENSIONAL SPACE:ITS SURFACE IS ACTUALLY A THREE:DIMENSIONAL MANIFOLD MEANING ITS SKIN:HAS VOLUME JUST LIKE OUR ENTIRE UNIVERSE:IF YOU TRAVELED IN A STRAIGHT LINE ON A:HYPERSPHERES SURFACE YOU WOULD EVENTUALLY:RETURN TO YOUR STARTING POINT:WHEN INTERSECTING OUR 3D SPACE IT APPEARS:AS A SPHERE THAT STARTS AS A POINT GROWS:TO FULL SIZE AND SHRINKS BACK DOWN:IT IS PERFECTLY SYMMETRICAL REPRESENTING:THE MOST EFFICIENT WAY TO ENCLOSE 4D:VOLUME WITH THE LEAST SURFACE AREA:IT IS THE HIGHER DIMENSIONAL EQUIVALENT:OF THE SPHERE WE KNOW IN OUR DAILY LIVES:A GEOMETRIC MARVEL OF RADIALLY UNIFORM:POINTS ACROSS ALL FOUR AXES OF MOTION:DEFINING THE BOUNDARY OF A 4D BALL"
 
 [node name="Text 3" type="Node4D" parent="."]
 position = Vector4(0, 8.463295, -1.4829704, 0)
 basis = Projection(0.05, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 0.4, 0, 0, 0, 0, 0.5)
+visible = false
 script = ExtResource("9_hslpx")
 text_to_display = "A DUOCYLINDER IS A 4D OBJECT FORMED BY:THE CARTESIAN PRODUCT OF TWO SEPARATE:2D DISKS:UNLIKE A 3D CYLINDER WHICH HAS ONE:CURVED SIDE AND TWO FLAT ENDS THIS SHAPE:HAS TWO DISTINCT CURVED SURFACES:THESE TWO RIMS ARE ACTUALLY SOLID:CYLINDERS THAT MEET ALONG A SHARED 2D:SURFACE KNOWN AS A CLIFFORD TORUS:IT IS UNIQUE BECAUSE IT CAN ROLL IN TWO:COMPLETELY DIFFERENT PERPENDICULAR:DIRECTIONS AT THE SAME TIME:BECAUSE IT LACKS FLAT ENDS IN THE 4D:SENSE IT CAN ESSENTIALLY STAY BALANCED:ON EITHER OF ITS CURVED FACES:IT REPRESENTS A FASCINATING TWIST ON:ROTATIONAL SYMMETRY WITHIN THE TOPOLOGY:OF FOUR DIMENSIONAL GEOMETRIC STRUCTURES:WHERE TWO INDEPENDENT AXES OF ROTATION:COEXIST WITHIN A SINGLE SOLID BODY"
 
 [node name="Text 4" type="Node4D" parent="."]
 position = Vector4(0, 8.463295, -7.359729, 0)
 basis = Projection(0.049999993, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 0.39999995, 0, 0, 0, 0, 0.5)
+visible = false
 script = ExtResource("9_hslpx")
 text_to_display = "A SPHERITORUS IS CREATED BY SWEEPING:A 3D SPHERE IN A CIRCULAR PATH THROUGH:THE FOURTH DIMENSION:THINK OF IT AS A 4D DOUGHNUT BUT INSTEAD:OF A CIRCULAR CROSS SECTION THE RING IS:MADE OF ENTIRE SPHERES:ITS TOPOLOGY IS THE PRODUCT OF A 2 SPHERE:AND A CIRCLE CREATING A SURFACE THAT:FEELS BOTH ROUND AND HOLLOWED OUT:IF YOU SLICED IT THROUGH OUR 3D WORLD:YOU MIGHT SEE TWO SEPARATE SPHERES OR:ONE LARGE BLOATED BUBBLE SPHERE:IT IS ONE OF SEVERAL WAYS TO GENERALIZE:A TORUS BLENDING SPHERICAL SYMMETRY:WITH THE HOLE IN THE MIDDLE LOGIC:OF A DOUGHNUT IN FOUR DIMENSIONAL SPACE:THIS COMPLEX SHAPE REVEALS THE RICHNESS:OF CURVED MANIFOLDS BEYOND OUR SENSES:OFFERING A GLIMPSE INTO HIGHER ORDER:TOPOLOGICAL TRANSFORMATIONS AND FORMS"
 
 [node name="StaticBody4D17" parent="." instance=ExtResource("10_qm0um")]
 position = Vector4(4.0687103, 1.090203, -0.9857705, 0)
 basis = Projection(2.4820688, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 26.693075, 0, 0, 0, 0, 13.356995)
+
+[node name="Area4D" type="Area4D" parent="."]
+position = Vector4(4.0687103, 1.7246618, -0.98577034, 0)
+basis = Projection(2.4820688, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 26.693075, 0, 0, 0, 0, 13.356995)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D"]
+shape = SubResource("BoxShape4D_jtvq5")
+
+[node name="crimson" type="Node4D" parent="."]
+position = Vector4(2.474997, 0.32676026, -3.8297098, 2.7811695e-09)
+basis = Projection(8.742275e-10, 0, -0.02, 1.748455e-09, 0.02, -8.742275e-10, 8.742275e-10, 0, 8.7422747e-10, 0.02, 3.8213703e-17, 0, 7.642742e-17, 0, -1.7484555e-09, -0.02)
+
+[node name="right_arm" type="Node4D" parent="crimson"]
+position = Vector4(-28.056, 0, 100, 0)
+basis = Projection(0.99999994, 0, 0, 0, 0, 0.99999976, 0, 0, 0, 0, 0.99999976, 0, 0, 0, 0, 0.99999994)
+
+[node name="forearm" type="Node4D" parent="crimson/right_arm"]
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="crimson/right_arm/forearm"]
+position = Vector4(30.280691, 4.0465598e-06, -105.285194, -2.4366263e-06)
+material_override = SubResource("WireMaterial4D_bdplm")
+mesh = ExtResource("11_bdplm")
+
+[node name="upperarm" type="Node4D" parent="crimson/right_arm"]
+position = Vector4(5.1841164, -7.9186566e-07, 18.115791, -4.5320985e-07)
+
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="crimson/right_arm/upperarm"]
+position = Vector4(25.307053, 4.838267e-06, -123.39742, -2.0018167e-06)
+material_override = SubResource("WireMaterial4D_p64rj")
+mesh = ExtResource("12_p64rj")
+
+[node name="hand" type="Node4D" parent="crimson/right_arm"]
+position = Vector4(-4.212143, 8.1611756e-07, -18.670578, 3.6823735e-07)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="crimson/right_arm/hand"]
+position = Vector4(34.576504, 3.7783034e-06, -86.43751, -3.0227743e-06)
+material_override = SubResource("WireMaterial4D_bpq5k")
+mesh = ExtResource("13_bpq5k")
+
+[node name="left_arm" type="Node4D" parent="crimson"]
+position = Vector4(27.531, 0, 90, 0)
+basis = Projection(0.99999994, 0, 0, 0, 0, 0.9999998, 0, 0, 0, 0, 0.9999998, 0, 0, 0, 0, 0.99999994)
+
+[node name="forearm" type="Node4D" parent="crimson/left_arm"]
+
+[node name="MeshInstance4D5" type="MeshInstance4D" parent="crimson/left_arm/forearm"]
+position = Vector4(-30.190071, -1.1912565, -105.81263, 2.39244e-06)
+material_override = SubResource("WireMaterial4D_yp4ua")
+mesh = ExtResource("14_yp4ua")
+
+[node name="upperarm" type="Node4D" parent="crimson/left_arm"]
+position = Vector4(-4.6230545, -7.1525574e-07, 18.115791, 4.0416035e-07)
+
+[node name="MeshInstance4D6" type="MeshInstance4D" parent="crimson/left_arm/upperarm"]
+position = Vector4(-25.548687, -0.94158715, -124.497986, 1.9866773e-06)
+material_override = SubResource("WireMaterial4D_r5ibe")
+mesh = ExtResource("15_r5ibe")
+
+[node name="hand" type="Node4D" parent="crimson/left_arm"]
+position = Vector4(4.147373, -5.180399, -18.88948, -3.6257484e-07)
+
+[node name="MeshInstance4D4" type="MeshInstance4D" parent="crimson/left_arm/hand"]
+position = Vector4(-34.68069, 3.9740458, -86.42927, 2.7850242e-06)
+material_override = SubResource("WireMaterial4D_yimgq")
+mesh = ExtResource("16_yimgq")
+
+[node name="right_leg" type="Node4D" parent="crimson"]
+position = Vector4(-12.560411, 6.9257793, 33.52901, 1.098066e-06)
+
+[node name="shin" type="Node4D" parent="crimson/right_leg"]
+position = Vector4(0, 0, -12.909128, 0)
+basis = Projection(1, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 1)
+
+[node name="MeshInstance4D8" type="MeshInstance4D" parent="crimson/right_leg/shin"]
+position = Vector4(13.728415, -6.5043945, -20.865433, -1.3798393e-06)
+material_override = SubResource("WireMaterial4D_o6720")
+mesh = ExtResource("17_o6720")
+
+[node name="thigh" type="Node4D" parent="crimson/right_leg"]
+position = Vector4(0.92821693, -4.042198, 5.843815, -8.114705e-08)
+basis = Projection(1, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
+
+[node name="MeshInstance4D9" type="MeshInstance4D" parent="crimson/right_leg/thigh"]
+position = Vector4(12.888005, -2.5915985, -39.560074, -1.0348998e-06)
+material_override = SubResource("WireMaterial4D_ec86u")
+mesh = ExtResource("18_ec86u")
+
+[node name="foot" type="Node4D" parent="crimson/right_leg"]
+position = Vector4(-1.7699356, -5.180399, -31.447372, 1.5473267e-07)
+
+[node name="MeshInstance4D7" type="MeshInstance4D" parent="crimson/right_leg/foot"]
+position = Vector4(15.289268, -1.4723871, -2.2502763, -1.244825e-06)
+material_override = SubResource("WireMaterial4D_ugmb4")
+mesh = ExtResource("19_ugmb4")
+
+[node name="left_leg" type="Node4D" parent="crimson"]
+position = Vector4(14.20536, 6.9257793, 33.52901, -1.241872e-06)
+
+[node name="shin" type="Node4D" parent="crimson/left_leg"]
+position = Vector4(0, 0, -12.909128, 0)
+
+[node name="MeshInstance4D11" type="MeshInstance4D" parent="crimson/left_leg/shin"]
+position = Vector4(-14.198461, -7.3622613, -20.441332, 1.2412689e-06)
+material_override = SubResource("WireMaterial4D_8ipbr")
+mesh = ExtResource("20_8ipbr")
+
+[node name="thigh" type="Node4D" parent="crimson/left_leg"]
+position = Vector4(-0.41177464, -3.6103535, 5.843815, 3.599871e-08)
+basis = Projection(1, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
+
+[node name="MeshInstance4D12" type="MeshInstance4D" parent="crimson/left_leg/thigh"]
+position = Vector4(-13.888853, -3.588388, -39.301514, 8.328129e-09)
+material_override = SubResource("WireMaterial4D_2dlm3")
+mesh = ExtResource("21_2dlm3")
+
+[node name="foot" type="Node4D" parent="crimson/left_leg"]
+position = Vector4(2.8313427, -5.180399, -31.447372, -2.4752387e-07)
+
+[node name="MeshInstance4D10" type="MeshInstance4D" parent="crimson/left_leg/foot"]
+position = Vector4(-17.177801, -2.4183588, -1.6806496, 1.5017312e-06)
+material_override = SubResource("WireMaterial4D_15ea8")
+mesh = ExtResource("22_15ea8")
+
+[node name="head" type="Node4D" parent="crimson"]
+position = Vector4(-0.001440984, -6.308394e-06, 144.31923, 1.2597481e-10)
+basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999998, 0, 0, 0, 0, 0.9999998, 0, 0, 0, 0, 0.9999999)
+
+[node name="MeshInstance4D15" type="MeshInstance4D" parent="crimson/head"]
+position = Vector4(-0.22486784, 3.3096766, -174.31778, -2.2688134e-07)
+material_override = SubResource("WireMaterial4D_qrwe3")
+mesh = ExtResource("23_qrwe3")
+
+[node name="MeshInstance4D16" type="MeshInstance4D" parent="crimson/head"]
+position = Vector4(3.1239157, 3.3096766, -174.31778, -2.268813e-07)
+material_override = SubResource("WireMaterial4D_plkib")
+mesh = ExtResource("24_plkib")
+
+[node name="torso" type="Node4D" parent="crimson"]
+position = Vector4(-0.001440984, -6.308394e-06, 144.31923, 1.2597481e-10)
+basis = Projection(0.99999994, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.99999994)
+
+[node name="MeshInstance4D13" type="MeshInstance4D" parent="crimson/torso"]
+position = Vector4(0, 6.32935e-06, -166.40814, 0)
+material_override = SubResource("WireMaterial4D_6qtru")
+mesh = ExtResource("25_6qtru")
+
+[node name="MeshInstance4D14" type="MeshInstance4D" parent="crimson/torso"]
+position = Vector4(1.0501304, 6.32935e-06, -166.40814, 1.8623991e-14)
+material_override = SubResource("WireMaterial4D_cdb1u")
+mesh = ExtResource("26_cdb1u")
+
+[node name="crimsondad" type="Node4D" parent="."]
+position = Vector4(-10.236681, 0.32676023, -0.5778661, 2.7811695e-09)
+basis = Projection(-1.3113414e-09, 0, 0.029999996, 0, -0.029999996, 1.3113414e-09, -1.3113414e-09, 2.6226827e-09, 1.3113414e-09, 0.029999996, 5.732055e-17, 0, -2.6226827e-09, 1.146411e-16, -1.146411e-16, -0.029999996)
+
+[node name="right_arm" type="Node4D" parent="crimsondad"]
+position = Vector4(-28.056, 0, 100, 0)
+basis = Projection(0.99999994, 0, 0, 0, 0, 0.99999976, 0, 0, 0, 0, 0.99999976, 0, 0, 0, 0, 0.99999994)
+
+[node name="forearm" type="Node4D" parent="crimsondad/right_arm"]
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="crimsondad/right_arm/forearm"]
+position = Vector4(30.280691, 4.0465598e-06, -105.285194, -2.4366263e-06)
+material_override = SubResource("WireMaterial4D_bdplm")
+mesh = ExtResource("11_bdplm")
+
+[node name="upperarm" type="Node4D" parent="crimsondad/right_arm"]
+position = Vector4(5.1841164, -7.9186566e-07, 18.115791, -4.5320985e-07)
+
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="crimsondad/right_arm/upperarm"]
+position = Vector4(25.307053, 4.838267e-06, -123.39742, -2.0018167e-06)
+material_override = SubResource("WireMaterial4D_p64rj")
+mesh = ExtResource("12_p64rj")
+
+[node name="hand" type="Node4D" parent="crimsondad/right_arm"]
+position = Vector4(-4.212143, 8.1611756e-07, -18.670578, 3.6823735e-07)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="crimsondad/right_arm/hand"]
+position = Vector4(34.576504, 3.7783034e-06, -86.43751, -3.0227743e-06)
+material_override = SubResource("WireMaterial4D_bpq5k")
+mesh = ExtResource("13_bpq5k")
+
+[node name="left_arm" type="Node4D" parent="crimsondad"]
+position = Vector4(27.531, 0, 90, 0)
+basis = Projection(0.99999994, 0, 0, 0, 0, 0.9999998, 0, 0, 0, 0, 0.9999998, 0, 0, 0, 0, 0.99999994)
+
+[node name="forearm" type="Node4D" parent="crimsondad/left_arm"]
+
+[node name="MeshInstance4D5" type="MeshInstance4D" parent="crimsondad/left_arm/forearm"]
+position = Vector4(-30.190071, -1.1912565, -105.81263, 2.39244e-06)
+material_override = SubResource("WireMaterial4D_yp4ua")
+mesh = ExtResource("14_yp4ua")
+
+[node name="upperarm" type="Node4D" parent="crimsondad/left_arm"]
+position = Vector4(-4.6230545, -7.1525574e-07, 18.115791, 4.0416035e-07)
+
+[node name="MeshInstance4D6" type="MeshInstance4D" parent="crimsondad/left_arm/upperarm"]
+position = Vector4(-25.548687, -0.94158715, -124.497986, 1.9866773e-06)
+material_override = SubResource("WireMaterial4D_r5ibe")
+mesh = ExtResource("15_r5ibe")
+
+[node name="hand" type="Node4D" parent="crimsondad/left_arm"]
+position = Vector4(4.147373, -5.180399, -18.88948, -3.6257484e-07)
+
+[node name="MeshInstance4D4" type="MeshInstance4D" parent="crimsondad/left_arm/hand"]
+position = Vector4(-34.68069, 3.9740458, -86.42927, 2.7850242e-06)
+material_override = SubResource("WireMaterial4D_yimgq")
+mesh = ExtResource("16_yimgq")
+
+[node name="right_leg" type="Node4D" parent="crimsondad"]
+position = Vector4(-12.560411, 6.9257793, 33.52901, 1.098066e-06)
+
+[node name="shin" type="Node4D" parent="crimsondad/right_leg"]
+position = Vector4(0, 0, -12.909128, 0)
+basis = Projection(1, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 1)
+
+[node name="MeshInstance4D8" type="MeshInstance4D" parent="crimsondad/right_leg/shin"]
+position = Vector4(13.728415, -6.5043945, -20.865433, -1.3798393e-06)
+material_override = SubResource("WireMaterial4D_o6720")
+mesh = ExtResource("17_o6720")
+
+[node name="thigh" type="Node4D" parent="crimsondad/right_leg"]
+position = Vector4(0.92821693, -4.042198, 5.843815, -8.114705e-08)
+basis = Projection(1, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
+
+[node name="MeshInstance4D9" type="MeshInstance4D" parent="crimsondad/right_leg/thigh"]
+position = Vector4(12.888005, -2.5915985, -39.560074, -1.0348998e-06)
+material_override = SubResource("WireMaterial4D_ec86u")
+mesh = ExtResource("18_ec86u")
+
+[node name="foot" type="Node4D" parent="crimsondad/right_leg"]
+position = Vector4(-1.7699356, -5.180399, -31.447372, 1.5473267e-07)
+
+[node name="MeshInstance4D7" type="MeshInstance4D" parent="crimsondad/right_leg/foot"]
+position = Vector4(15.289268, -1.4723871, -2.2502763, -1.244825e-06)
+material_override = SubResource("WireMaterial4D_ugmb4")
+mesh = ExtResource("19_ugmb4")
+
+[node name="left_leg" type="Node4D" parent="crimsondad"]
+position = Vector4(14.20536, 6.9257793, 33.52901, -1.241872e-06)
+
+[node name="shin" type="Node4D" parent="crimsondad/left_leg"]
+position = Vector4(0, 0, -12.909128, 0)
+
+[node name="MeshInstance4D11" type="MeshInstance4D" parent="crimsondad/left_leg/shin"]
+position = Vector4(-14.198461, -7.3622613, -20.441332, 1.2412689e-06)
+material_override = SubResource("WireMaterial4D_8ipbr")
+mesh = ExtResource("20_8ipbr")
+
+[node name="thigh" type="Node4D" parent="crimsondad/left_leg"]
+position = Vector4(-0.41177464, -3.6103535, 5.843815, 3.599871e-08)
+basis = Projection(1, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
+
+[node name="MeshInstance4D12" type="MeshInstance4D" parent="crimsondad/left_leg/thigh"]
+position = Vector4(-13.888853, -3.588388, -39.301514, 8.328129e-09)
+material_override = SubResource("WireMaterial4D_2dlm3")
+mesh = ExtResource("21_2dlm3")
+
+[node name="foot" type="Node4D" parent="crimsondad/left_leg"]
+position = Vector4(2.8313427, -5.180399, -31.447372, -2.4752387e-07)
+
+[node name="MeshInstance4D10" type="MeshInstance4D" parent="crimsondad/left_leg/foot"]
+position = Vector4(-17.177801, -2.4183588, -1.6806496, 1.5017312e-06)
+material_override = SubResource("WireMaterial4D_15ea8")
+mesh = ExtResource("22_15ea8")
+
+[node name="head" type="Node4D" parent="crimsondad"]
+position = Vector4(-0.001440984, -6.308394e-06, 144.31923, 1.2597481e-10)
+basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999998, 0, 0, 0, 0, 0.9999998, 0, 0, 0, 0, 0.9999999)
+
+[node name="MeshInstance4D15" type="MeshInstance4D" parent="crimsondad/head"]
+position = Vector4(-0.22486784, 3.3096766, -174.31778, -2.2688134e-07)
+material_override = SubResource("WireMaterial4D_qrwe3")
+mesh = ExtResource("23_qrwe3")
+
+[node name="MeshInstance4D16" type="MeshInstance4D" parent="crimsondad/head"]
+position = Vector4(3.1239157, 3.3096766, -174.31778, -2.268813e-07)
+material_override = SubResource("WireMaterial4D_plkib")
+mesh = ExtResource("24_plkib")
+
+[node name="torso" type="Node4D" parent="crimsondad"]
+position = Vector4(-0.001440984, -6.308394e-06, 144.31923, 1.2597481e-10)
+basis = Projection(0.99999994, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.99999994)
+
+[node name="MeshInstance4D13" type="MeshInstance4D" parent="crimsondad/torso"]
+position = Vector4(0, 6.32935e-06, -166.40814, 0)
+material_override = SubResource("WireMaterial4D_6qtru")
+mesh = ExtResource("25_6qtru")
+
+[node name="MeshInstance4D14" type="MeshInstance4D" parent="crimsondad/torso"]
+position = Vector4(1.0501304, 6.32935e-06, -166.40814, 1.8623991e-14)
+material_override = SubResource("WireMaterial4D_cdb1u")
+mesh = ExtResource("26_cdb1u")
+
+[node name="Area4D2" type="Area4D" parent="."]
+position = Vector4(2.0410914, 0, -3.7304337, 0)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D2"]
+position = Vector4(0.45066023, 1.5935228, -0.08042097, 0)
+basis = Projection(2.1046963, 0, 0, 0, 0, 4.1870456, 0, 0, 0, 0, 2.7304137, 0, 0, 0, 0, 1)
+shape = SubResource("BoxShape4D_bdplm")
+
+[node name="Area4D3" type="Area4D" parent="."]
+position = Vector4(-10.532868, 0, 12.006624, 0)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D3"]
+position = Vector4(2.861023e-06, 0, -6.67572e-06, 0)
+basis = Projection(10, 0, 0, 0, 0, 15, 0, 0, 0, 0, 4, 0, 0, 0, 0, 1)
+shape = SubResource("BoxShape4D_p64rj")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="Area4D3"]
+position = Vector4(1.0367937, 4.9496346, 0.99574566, 0)
+basis = Projection(7.9264164, 0, 0, 0, 0, 12.746871, 0, 0, 0, 0, 2.0085125, 0, 0, 0, 0, 0.99999994)
+material_override = SubResource("WireMaterial4D_ak3cu")
+mesh = SubResource("BoxPolyMesh4D_y7lvg")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="Area4D3"]
+position = Vector4(1.0367937, 4.9496346, 0.99574566, 0)
+basis = Projection(7.9264164, 0, 0, 0, 0, 12.746871, 0, 0, 0, 0, 2.0085125, 0, 0, 0, 0, 0.99999994)
+material_override = SubResource("WireMaterial4D_ak3cu")
+mesh = SubResource("BoxPolyMesh4D_y7lvg")
+
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="Area4D3"]
+position = Vector4(3.451539, 5.2071533, 0.5662861, 0)
+basis = Projection(1.0306638, 0, 0, 0, 0, 0.8586795, 0, 0, 0, 0, 2.5334356, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_y7lvg")
+mesh = SubResource("BoxPolyMesh4D_y7lvg")
+
+[connection signal="body_entered_area" from="Area4D" to="." method="_on_area_4d_body_entered_area"]
+[connection signal="body_exited_area" from="Area4D" to="." method="_on_area_4d_body_exited_area"]
+[connection signal="body_entered_area" from="Area4D2" to="." method="_on_area_4d_2_body_entered_area"]
+[connection signal="body_exited_area" from="Area4D2" to="." method="_on_area_4d_2_body_exited_area"]
+[connection signal="body_entered_area" from="Area4D3" to="." method="_on_area_4d_3_body_entered_area"]

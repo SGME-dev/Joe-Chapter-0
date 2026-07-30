@@ -1,0 +1,4 @@
+set {playing} = true
+crimson: Hi!
+crimson: I am trying to finish anylising these 4d shapes so we can play later. Ok?
+set {playing} = false

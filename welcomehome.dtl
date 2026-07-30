@@ -1,5 +1,9 @@
 set {playing} = true
 joe (happy): Phew, I made it home.
+set {amniationhug} = true
 joemum (happy): Hello sweetie, I made your favorite... Chicken curry!
+set {amniationhug} = false
+set {animationcross} = true
 joedad (angry): Now remember darling, do not forget homework this time.
+set {animationcross} = false
 set {playing} = false

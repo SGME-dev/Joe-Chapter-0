@@ -1,11 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://bg8bs7gw8mk1k"]
+[gd_scene load_steps=9 format=3 uid="uid://bg8bs7gw8mk1k"]
 
 [ext_resource type="Script" uid="uid://dqchq18npwe88" path="res://joehouse.gd" id="1_e3vol"]
 [ext_resource type="PackedScene" uid="uid://b1ikmd6mmomw" path="res://house.tscn" id="1_ng0oa"]
 [ext_resource type="PackedScene" uid="uid://bxopl223vf8d0" path="res://park.tscn" id="2_e3vol"]
 [ext_resource type="PackedScene" uid="uid://c0s58r1qa7jvh" path="res://player.tscn" id="4_lbvct"]
+[ext_resource type="PackedScene" uid="uid://x2tm56n0bk0k" path="res://parents.tscn" id="5_5kbm0"]
 
 [sub_resource type="BoxShape4D" id="BoxShape4D_ng0oa"]
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_5kbm0"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxWireMesh4D" id="BoxWireMesh4D_bbiut"]
 
 [node name="joehouse" type="Node4D"]
 script = ExtResource("1_e3vol")
@@ -28,11 +34,116 @@ basis = Projection(147.83684, 0, 0, 0, 0, 35.97916, 0, 0, 0, 0, 71.35903, 0, 0, 
 shape = SubResource("BoxShape4D_ng0oa")
 
 [node name="CharacterBody4D" parent="." instance=ExtResource("4_lbvct")]
-position = Vector4(0, 7.781952, 0, 0)
+position = Vector4(0.2900198, 3.27387, -0.76164365, 0)
+
+[node name="body1" parent="." instance=ExtResource("5_5kbm0")]
+position = Vector4(0.4780643, 0.7263415, -1.3483421, 0)
+basis = Projection(-0.017320508, 0, -0.010000001, 0, 0.010000001, 8.7422775e-10, -0.017320508, 1.7484555e-09, -4.371139e-10, 0.02, 7.5710344e-10, 0, 8.742278e-10, 7.642742e-17, -1.5142069e-09, -0.02)
+
+[node name="eye" type="Node4D" parent="body1"]
+position = Vector4(8.304056, -4.794258, 137.96033, 1.7691582e-07)
+basis = Projection(1.7320508, 1, 0, 0, -1, 1.7320508, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="body1/eye"]
+position = Vector4(-0.7617321, 0.43980408, 0.02501297, 2.1726055e-07)
+basis = Projection(3.5648403, -2.058162, 8.022921e-08, -1.6138625e-07, 0.5000001, 0.8660251, 1.894037e-09, -1.4210855e-14, 1.6472455e-07, -9.291672e-08, 1.0500336, -8.123039e-15, -3.294491e-07, 1.9020753e-07, -8.123039e-15, 1)
+material_override = SubResource("WireMaterial4D_5kbm0")
+mesh = SubResource("BoxWireMesh4D_bbiut")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="body1/eye"]
+position = Vector4(-0.738575, 0.42656708, 0.9113083, 5.7372745e-07)
+basis = Projection(2.0935457, -1.20871, 4.5723876e-08, -8.71248e-08, 0.49999988, 0.8660245, -8.8247365e-09, -2.842171e-14, 8.892691e-08, -6.153191e-08, 0.766881, -5.3792924e-15, -1.7785385e-07, 1.0268394e-07, -5.379292e-15, 1)
+material_override = SubResource("WireMaterial4D_5kbm0")
+mesh = SubResource("BoxWireMesh4D_bbiut")
+
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="body1/eye"]
+position = Vector4(-0.6568546, 0.37939453, 1.5106812, 7.48415e-07)
+basis = Projection(0.8732282, -0.5041592, 3.812197e-09, -2.553103e-08, 0.49999982, 0.8660247, 3.6554106e-08, -1.4210855e-14, 2.6059055e-08, 2.7163853e-08, 1.9656304, 2.3747363e-15, -5.2118125e-08, 3.0090398e-08, 2.3747367e-15, 1)
+material_override = SubResource("WireMaterial4D_5kbm0")
+mesh = SubResource("BoxWireMesh4D_bbiut")
+
+[node name="MeshInstance4D4" type="MeshInstance4D" parent="body1/eye"]
+position = Vector4(-0.668272, 0.38597107, -0.9420433, 8.681959e-07)
+basis = Projection(1.7084737, -0.9863884, 3.492952e-08, -6.7688845e-08, 0.49999997, 0.86602443, -4.430177e-09, -1.4210855e-14, 6.9088884e-08, -4.5004036e-08, 0.8829696, -3.934382e-15, -1.3817777e-07, 7.9776946e-08, -3.934378e-15, 0.9999999)
+material_override = SubResource("WireMaterial4D_5kbm0")
+mesh = SubResource("BoxWireMesh4D_bbiut")
+
+[node name="eye2" type="Node4D" parent="body1"]
+position = Vector4(-2.1231022, -4.5906525, 137.96033, 1.9471418e-07)
+basis = Projection(1.7320504, 0.9999996, 1.8127751e-29, -7.1054274e-15, -0.9999996, 1.7320504, 1.4210855e-14, -1.4210855e-14, -7.1054274e-15, 2.1316282e-14, 2, 1.9481198e-21, 1.403026e-14, -5.684342e-14, 4.3231824e-22, 2)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="body1/eye2"]
+position = Vector4(-0.7617321, 0.43980408, 0.02501297, 2.1726055e-07)
+basis = Projection(3.5648403, -2.058162, 8.022921e-08, -1.6138625e-07, 0.5000001, 0.8660251, 1.894037e-09, -1.4210855e-14, 1.6472455e-07, -9.291672e-08, 1.0500336, -8.123039e-15, -3.294491e-07, 1.9020753e-07, -8.123039e-15, 1)
+material_override = SubResource("WireMaterial4D_5kbm0")
+mesh = SubResource("BoxWireMesh4D_bbiut")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="body1/eye2"]
+position = Vector4(-0.738575, 0.42656708, 0.9113083, 5.7372745e-07)
+basis = Projection(2.0935457, -1.20871, 4.5723876e-08, -8.71248e-08, 0.49999988, 0.8660245, -8.8247365e-09, -2.842171e-14, 8.892691e-08, -6.153191e-08, 0.766881, -5.3792924e-15, -1.7785385e-07, 1.0268394e-07, -5.379292e-15, 1)
+material_override = SubResource("WireMaterial4D_5kbm0")
+mesh = SubResource("BoxWireMesh4D_bbiut")
+
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="body1/eye2"]
+position = Vector4(-0.6568546, 0.37939453, 1.5106812, 7.48415e-07)
+basis = Projection(0.8732282, -0.5041592, 3.812197e-09, -2.553103e-08, 0.49999982, 0.8660247, 3.6554106e-08, -1.4210855e-14, 2.6059055e-08, 2.7163853e-08, 1.9656304, 2.3747363e-15, -5.2118125e-08, 3.0090398e-08, 2.3747367e-15, 1)
+material_override = SubResource("WireMaterial4D_5kbm0")
+mesh = SubResource("BoxWireMesh4D_bbiut")
+
+[node name="MeshInstance4D4" type="MeshInstance4D" parent="body1/eye2"]
+position = Vector4(-0.668272, 0.38597107, -0.9420433, 8.681959e-07)
+basis = Projection(1.7084737, -0.9863884, 3.492952e-08, -6.7688845e-08, 0.49999997, 0.86602443, -4.430177e-09, -1.4210855e-14, 6.9088884e-08, -4.5004036e-08, 0.8829696, -3.934382e-15, -1.3817777e-07, 7.9776946e-08, -3.934378e-15, 0.9999999)
+material_override = SubResource("WireMaterial4D_5kbm0")
+mesh = SubResource("BoxWireMesh4D_bbiut")
+
+[node name="body2" parent="." instance=ExtResource("5_5kbm0")]
+position = Vector4(-0.838262, 0.7263415, -1.0475179, 0)
+basis = Projection(0.009999999, 0, -0.017320508, 0, -0.017320508, -8.7422775e-10, -0.009999999, 0, -7.5710344e-10, 0.02, -4.3711385e-10, 0, 0, 0, 0, 0.02)
+
+[node name="eye" type="Node4D" parent="body2"]
+position = Vector4(8.304056, -4.794258, 137.96033, 1.7691582e-07)
+basis = Projection(1.7320508, 1, 0, 0, -1, 1.7320508, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="body2/eye"]
+position = Vector4(-0.7617321, 0.4398098, 0.5147705, 2.1726052e-07)
+basis = Projection(3.56484, -2.0581622, 6.375362e-08, -1.6138625e-07, 0.5000001, 0.86602515, 1.0481499e-08, -1.4210855e-14, 1.694373e-07, -8.475397e-08, 0.83440244, -8.123038e-15, -3.2944908e-07, 1.902075e-07, -6.4549213e-15, 1)
+material_override = SubResource("WireMaterial4D_5kbm0")
+mesh = SubResource("BoxWireMesh4D_bbiut")
+
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="body2/eye"]
+position = Vector4(-0.6568546, 0.37939453, 0.60053253, 7.4841506e-07)
+basis = Projection(0.8732282, -0.5041593, 7.3425372e-09, -2.553103e-08, 0.4999998, 0.86602473, 2.9926078e-08, -1.4210855e-14, -1.3724616e-08, -4.174348e-08, 3.785919, 2.3747363e-15, -5.2118125e-08, 3.00904e-08, 4.573882e-15, 1)
+material_override = SubResource("WireMaterial4D_5kbm0")
+mesh = SubResource("BoxWireMesh4D_bbiut")
+
+[node name="eye2" type="Node4D" parent="body2"]
+position = Vector4(-2.1231022, -4.5906525, 137.96033, 1.9471418e-07)
+basis = Projection(1.7320504, 0.9999996, 1.8127751e-29, -7.1054274e-15, -0.9999996, 1.7320504, 1.4210855e-14, -1.4210855e-14, -7.1054274e-15, 2.1316282e-14, 2, 1.9481198e-21, 1.403026e-14, -5.684342e-14, 4.3231824e-22, 2)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="body2/eye2"]
+position = Vector4(-0.7617321, 0.4398098, 0.5147705, 2.1726052e-07)
+basis = Projection(3.56484, -2.0581622, 6.375362e-08, -1.6138625e-07, 0.5000001, 0.86602515, 1.0481499e-08, -1.4210855e-14, 1.694373e-07, -8.475397e-08, 0.83440244, -8.123038e-15, -3.2944908e-07, 1.902075e-07, -6.4549213e-15, 1)
+material_override = SubResource("WireMaterial4D_5kbm0")
+mesh = SubResource("BoxWireMesh4D_bbiut")
+
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="body2/eye2"]
+position = Vector4(-0.6568546, 0.37939453, 0.60053253, 7.4841506e-07)
+basis = Projection(0.8732282, -0.5041593, 7.3425372e-09, -2.553103e-08, 0.4999998, 0.86602473, 2.9926078e-08, -1.4210855e-14, -1.3724616e-08, -4.174348e-08, 3.785919, 2.3747363e-15, -5.2118125e-08, 3.00904e-08, 4.573882e-15, 1)
+material_override = SubResource("WireMaterial4D_5kbm0")
+mesh = SubResource("BoxWireMesh4D_bbiut")
 
 [connection signal="body_entered_area" from="Area4D" to="." method="_on_area_4d_body_entered_area"]
 [connection signal="body_exited_area" from="Area4D" to="." method="_on_area_4d_body_exited_area"]
+[connection signal="animation_finished" from="body1/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="body2/AnimationPlayer" to="." method="_on_animation_player2_animation_finished"]
 
 [editable path="Park"]
 [editable path="Park/CubinderMoving"]
 [editable path="Park/CubinderMoving2"]
+[editable path="CharacterBody4D"]
+[editable path="CharacterBody4D/human"]
+[editable path="CharacterBody4D/human/body1"]
+[editable path="CharacterBody4D/human/body2"]
+[editable path="CharacterBody4D/Control"]
+[editable path="body1"]
+[editable path="body2"]

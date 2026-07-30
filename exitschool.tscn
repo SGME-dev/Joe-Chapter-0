@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://tkux3wmn3jcb"]
+
+[ext_resource type="Script" uid="uid://8nrjyl3j41xs" path="res://exitschool.gd" id="1_ypwcf"]
+
+[node name="Exitschool" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ypwcf")
