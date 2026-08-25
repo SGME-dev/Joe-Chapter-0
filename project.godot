@@ -27,10 +27,12 @@ directories/dch_directory={
 "joe": "res://joe.dch",
 "joedad": "res://joe/joedad.dch",
 "joemum": "res://joe/joemum.dch",
+"test": "res://test.dch",
 "unit_test_character": "res://Tests/Resources/unit_test_character.dch"
 }
 directories/dtl_directory={
 "crimson": "res://crimson.dtl",
+"joetest": "res://joetest.dtl",
 "spacepath": "res://spacepath.dtl",
 "start": "res://start.dtl",
 "timeline": "res://timeline.dtl",
@@ -43,6 +45,7 @@ layout/style_directory={
 variables={
 "amniationhug": false,
 "animationcross": false,
+"correct": 0,
 "playing": false
 }
 layout/style_list=["res://joe/dialouguebox.tres"]

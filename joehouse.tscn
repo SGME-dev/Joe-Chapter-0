@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bg8bs7gw8mk1k"]
+[gd_scene load_steps=12 format=3 uid="uid://bg8bs7gw8mk1k"]
 
 [ext_resource type="Script" uid="uid://dqchq18npwe88" path="res://joehouse.gd" id="1_e3vol"]
 [ext_resource type="PackedScene" uid="uid://b1ikmd6mmomw" path="res://house.tscn" id="1_ng0oa"]
@@ -12,6 +12,12 @@
 albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="BoxWireMesh4D" id="BoxWireMesh4D_bbiut"]
+
+[sub_resource type="TetraMaterial4D" id="TetraMaterial4D_5kbm0"]
+
+[sub_resource type="BoxPolyMesh4D" id="BoxPolyMesh4D_bbiut"]
+
+[sub_resource type="BoxShape4D" id="BoxShape4D_5kbm0"]
 
 [node name="joehouse" type="Node4D"]
 script = ExtResource("1_e3vol")
@@ -132,10 +138,38 @@ basis = Projection(0.8732282, -0.5041593, 7.3425372e-09, -2.553103e-08, 0.499999
 material_override = SubResource("WireMaterial4D_5kbm0")
 mesh = SubResource("BoxWireMesh4D_bbiut")
 
+[node name="teststart" type="Node4D" parent="."]
+position = Vector4(25.506193, 3.7571418, -5.0174375, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="teststart"]
+basis = Projection(2.0397162, 0, -0.8243536, 0, 0, 0.2, 0, 0, 0.54222035, 0, 3.0522118, 0, 0, 0, 0, 1)
+material_override = SubResource("TetraMaterial4D_5kbm0")
+mesh = SubResource("BoxPolyMesh4D_bbiut")
+
+[node name="Area4D5" type="Area4D" parent="teststart"]
+
+[node name="MeshInstance4D2" type="CollisionShape4D" parent="teststart/Area4D5"]
+position = Vector4(0.071754456, -0.20398211, -0.6701112, 0)
+basis = Projection(4.0444646, 0, -1.390243, 0, 0, 4.414332, 0, 0, 1.0751451, 0, 5.147447, 0, 0, 0, 0, 0.99999994)
+shape = SubResource("BoxShape4D_5kbm0")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 300.0
+one_shot = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = -1.0
+offset_top = 26.0
+offset_right = 342.0
+offset_bottom = 49.0
+text = "Time left until level ends: Do homework first"
+
 [connection signal="body_entered_area" from="Area4D" to="." method="_on_area_4d_body_entered_area"]
 [connection signal="body_exited_area" from="Area4D" to="." method="_on_area_4d_body_exited_area"]
 [connection signal="animation_finished" from="body1/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="body2/AnimationPlayer" to="." method="_on_animation_player2_animation_finished"]
+[connection signal="body_entered_area" from="teststart/Area4D5" to="." method="_on_area_4d_5_body_entered_area"]
+[connection signal="body_exited_area" from="teststart/Area4D5" to="." method="_on_area_4d_5_body_exited_area"]
 
 [editable path="Park"]
 [editable path="Park/CubinderMoving"]

@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 			body.set_process(false) # Freeze the projection when still
 	# Update the label using the first body in the list
 	if bodies.size() > 0:
-		$Label.text = str(bodies[0].rotation_degrees)
+		$Label.text = str("rotation:", bodies[0].rotation_degrees)
 	
 	# Rotation Logic using .rotate_euler()
 	if Input.is_action_pressed("wx"):

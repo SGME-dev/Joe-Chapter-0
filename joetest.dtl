@@ -1,0 +1,333 @@
+set {playing} = true
+test: In a 4D spatial coordinate system, how many mutually perpendicular axes meet at the origin?
+- 4 axes
+	set {correct} += 1.0
+	test: correct
+- 3 axes
+	test: wrong
+- 8 axes
+	test: wrong
+- 10 axes
+	test: wrong
+
+test: How many vertices (corner points) are present in a 4D hypercube (tesseract)?
+- 12
+	test: wrong
+- 16
+	set {correct} += 1.0
+	test: correct
+- 28
+	test: wrong
+- 4
+	test: wrong
+
+test: If you 'unfold' a 3D cube, you get a net of 2D squares. What is produced when you 'unfold' a 4D tesseract into 3D space?
+- A net of 6 squares
+	test: wrong
+- A net of 8 cubes
+	set {correct} += 1.0
+	test: correct
+- A single 3D sphere
+	test: wrong
+- A net of 16 tetrahedrons
+	test: wrong
+
+test: In 3D space, an object rotates around a line (axis). Around what geometric element does a 4D object rotate?
+- A point
+	test: wrong
+- A line
+	test: wrong
+- A plane
+	set {correct} += 1.0
+	test: correct
+- A volume
+	test: wrong
+
+test: What is the total number of 2D square faces in a single 4D tesseract?
+- 12 faces
+	test: wrong
+- 16 faces
+	test: wrong
+- 24 faces
+	set {correct} += 1.0
+	test: correct
+- 32 faces
+	test: wrong
+
+test: If a 4D hypersphere (glome) passes through our 3D space, what would a 3D observer see?
+- A static pyramid
+	test: wrong
+- A growing then shrinking sphere
+	set {correct} += 1.0
+	test: correct
+- A 2D flat line
+	test: wrong
+- An unchanging cube
+	test: wrong
+
+test: What is the name of the 4D equivalent of a tetrahedron, which is the simplest possible 4D regular polytope?
+- Tesseract
+	test: wrong
+- Pentachoron
+	set {correct} += 1.0
+	test: correct
+- Icositetrachoron
+	test: wrong
+- Hecatonicosachoron
+	test: wrong
+
+test: How many edges meet at a single vertex of a 4D tesseract?
+- 3 edges
+	test: wrong
+- 4 edges
+	set {correct} += 1.0
+	test: correct
+- 6 edges
+	test: wrong
+- 8 edges
+	test: wrong
+
+test: In higher-dimensional geometry, which terms are commonly used to describe the two directions along the 4th spatial axis?
+- Up and Down
+	test: wrong
+- Left and Right
+	test: wrong
+- Ana and Kata
+	set {correct} += 1.0
+	test: correct
+- Fore and Aft
+	test: wrong
+
+test: Which of the following describes a 'central projection' (perspective view) of a tesseract into 3D space?
+- A sphere inside a sphere
+	test: wrong
+- A cube within a cube
+	set {correct} += 1.0
+	test: correct
+- A flat cylinder
+	test: wrong
+- A circle inside a square
+	test: wrong
+
+test: If a 3D right-handed glove is moved and rotated through the 4th spatial dimension, what can it become?
+- A 4D hyper-glove
+	test: wrong
+- A left-handed glove
+	set {correct} += 1.0
+	test: correct
+- A 2D square
+	test: wrong
+- An unraveled string
+	test: wrong
+
+test: How many total edges does a 4D tesseract have?
+- 16 edges
+	test: wrong
+- 24 edges
+	test: wrong
+- 32 edges
+	set {correct} += 1.0
+	test: correct
+- 64 edges
+	test: wrong
+
+test: What happens to a 3D 'knot' in a 1D string if it is placed into 4D spatial environment?
+- It becomes permanently locked
+	test: wrong
+- It can be unknotted
+	set {correct} += 1.0
+	test: correct
+- It turns into a sphere
+	test: wrong
+- It breaks into pieces
+	test: wrong
+
+test: What is the Schläfli symbol for a tesseract, representing its regular tiling property?
+- 3,3,3
+	test: wrong
+- 4,3,3
+	set {correct} += 1.0
+	test: correct
+- 3,4,3
+	test: wrong
+- 5,3,3
+	test: wrong
+
+test: If you calculate the hyper-volume of a tesseract with a side length of s, what is the formula?
+- s^2
+	test: wrong
+- s^3
+	test: wrong
+- s^4
+	set {correct} += 1.0
+	test: correct
+- 4s
+	test: wrong
+
+test: A 3D cube has 6 square faces. How many cubic 'cells' form the boundary of a 4D tesseract?
+- 4 cells
+	test: wrong
+- 6 cells
+	test: wrong
+- 8 cells
+	set {correct} += 1.0
+	test: correct
+- 12 cells
+	test: wrong
+
+test: Which of these is a 'dual' polytope to the tesseract, formed by connecting the centers of the tesseract's cells?
+- 5-cell
+	test: wrong
+- 16-cell
+	set {correct} += 1.0
+	test: correct
+- 24-cell
+	test: wrong
+- 120-cell
+	test: wrong
+
+test: What is the Euler characteristic (V - E + F - C) for a 4D convex regular polytope?
+- 0
+	set {correct} += 1.0
+	test: correct
+- 1
+	test: wrong
+- 2
+	test: wrong
+- 4
+	test: wrong
+
+test: How many regular convex polytopes exist in 4D space?
+- 4
+	test: wrong
+- 5
+	test: wrong
+- 6
+	set {correct} += 1.0
+	test: correct
+- Infinite
+	test: wrong
+
+test: If a 3D cube is composed of 2D square boundaries, a 4D tesseract is composed of which 3D boundaries?
+- Spheres
+	test: wrong
+- Cubes
+	set {correct} += 1.0
+	test: correct
+- Pyramids
+	test: wrong
+- Tetrahedrons
+	test: wrong
+
+test: The 24-cell (icositetrachoron) is unique among regular convex polytopes because it has no 3D equivalent. How many 3D octahedral cells bound a 24-cell?
+- 12 octahedra
+	test: wrong
+- 16 octahedra
+	test: wrong
+- 24 octahedra
+	set {correct} += 1.0
+	test: correct
+- 48 octahedra
+	test: wrong
+
+test: Which regular 3D solid forms the bounding cells of the 120-cell (hecatonicosachoron)?
+- Regular tetrahedra
+	test: wrong
+- Regular octahedra
+	test: wrong
+- Regular dodecahedra
+	set {correct} += 1.0
+	test: correct
+- Regular icosahedra
+	test: wrong
+
+test: What is the dual polytope of the 120-cell?
+- The 24-cell
+	test: wrong
+- The 600-cell
+	set {correct} += 1.0
+	test: correct
+- The tesseract
+	test: wrong
+- The 16-cell
+	test: wrong
+
+test: In 4D spatial geometry, an object can undergo a 'double rotation'. What defines a double rotation?
+- Rotation around a single point twice
+	test: wrong
+- Simultaneous rotations around two mutually orthogonal planes
+	set {correct} += 1.0
+	test: correct
+- Rotation along a 3D line and a 4D point
+	test: wrong
+- A 360-degree flip in two dimensions
+	test: wrong
+
+test: A 3D cylinder is the Cartesian product of a 2D disk and a 1D line segment (D^2 x I). What 4D geometric object is formed by the Cartesian product of two 2D disks (D^2 x D^2)?
+- A spherinder
+	test: wrong
+- A duocylinder
+	set {correct} += 1.0
+	test: correct
+- A hyper-cone
+	test: wrong
+- A glome
+	test: wrong
+
+test: If a 4D tesseract is sliced corner-first along its longest diagonal by a 3D hyperplane, what shape is formed by the cross-section directly at the midpoint?
+- A regular tetrahedron
+	test: wrong
+- A regular octahedron
+	set {correct} += 1.0
+	test: correct
+- A regular cube
+	test: wrong
+- A regular dodecahedron
+	test: wrong
+
+test: What is the Euclidean distance formula between the origin (0,0,0,0) and a point (x,y,z,w) in 4D space?
+- d = x + y + z + w
+	test: wrong
+- d = sqrt(x^2 + y^2 + z^2 + w^2)
+	set {correct} += 1.0
+	test: correct
+- d = (x^2 + y^2 + z^2 + w^2)^2
+	test: wrong
+- d = sqrt(x^2 + y^2)
+	test: wrong
+
+test: What is the Schläfli symbol for the 4D regular simplex (pentachoron)?
+- 3,3,3
+	set {correct} += 1.0
+	test: correct
+- 4,3,3
+	test: wrong
+- 3,3,4
+	test: wrong
+- 3,4,3
+	test: wrong
+
+test: A Clifford torus (S^1 x S^1) embedded in 4D space is a flat torus. What is its Gaussian curvature?
+- 0
+	set {correct} += 1.0
+	test: correct
+- 1
+	test: wrong
+- -1
+	test: wrong
+- It depends on the radius
+	test: wrong
+
+test: Stereographic projection maps a 4D hypersphere (S^3) into 3D space. What do 2D spherical cross-sections on the 4D hypersphere project to in 3D space?
+- Paraboloids or hyperboloids
+	test: wrong
+- 3D spheres or flat planes
+	set {correct} += 1.0
+	test: correct
+- Solid 3D cubes
+	test: wrong
+- Toruses
+	test: wrong
+test: You got {correct} out of 30 questions correct! Good job!
+set {playing} = false
+[signal arg="delete test"]
