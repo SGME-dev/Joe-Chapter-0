@@ -1,0 +1,1465 @@
+[gd_scene load_steps=29 format=3 uid="uid://bb5n678jf514w"]
+
+[ext_resource type="ArrayWireMesh4D" uid="uid://bkgg4baxxckw0" path="res://hypersphere.off" id="1_10w01"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kcgai"]
+states/End/position = Vector2(1813, 450)
+states/Start/position = Vector2(62, 450)
+
+[sub_resource type="Animation" id="Animation_kcgai"]
+resource_name = "Gun"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gun/bullet:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector4(-0.62657106, -5.682101e-08, 0.26807335, 2.3841858e-06), Vector4(-70.87698, -5.772231e-08, 0.26807335, 2.6226044e-06)]
+}
+
+[sub_resource type="Animation" id="Animation_10w01"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gun/bullet:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector4(-0.0643903, -5.501841e-08, -5.1662863e-07, 1.9073486e-06)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("laser:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [AABB(0, 0, 0, 0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("particles/particle:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector4(2.200941, 0.34337896, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("particles/particle2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector4(0.52968603, -0.41018134, 1.730207, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("particles/particle3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector4(-2.9294856, 0.4236848, -0.6896491, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("particles/particle4:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector4(0.53871787, -0.36965832, -3.3048282, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("particles/particle5:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector4(-0.6411823, 0.2787995, 1.838508, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("particles/particle6:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector4(-0.71952814, 0.34380543, -1.8734531, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("particles/particle7:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector4(1.7461824, 0.3324496, 1.2557378, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("particles/particle8:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector4(-1.68545, -0.43010056, -1.3085426, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("particles/particle9:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector4(1.937512, -0.26033786, 0.9158503, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("particles/particle10:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector4(0, 0.697124, 0, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("nuke/pos/nuke:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector4(0, -13.303698, 0.15144597, 0)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("nuke/pos2/nuke:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector4(0, -13.303698, 0.15144597, 0)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("nuke/pos3/nuke:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector4(0, -13.303698, 0.15144597, 0)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("nuke/pos4/nuke:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector4(0, -13.303698, 0.15144597, 0)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("nuke/pos5/nuke:position")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector4(0, -13.303698, 0.15144597, 0)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("black_hole/black_hole:scale")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector4(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bhtn8"]
+resource_name = "laser"
+length = 15.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("laser:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [AABB(0, 0, 0, 0, 0, 0), AABB(0, 360, 0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n65jo"]
+resource_name = "particles"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("particles/particle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector4(0, 0, 0, 0), Vector4(2.237, 0.454, 0, 0.454)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("particles/particle2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector4(0, 0, 0, 0), Vector4(1.403, -0.303, 1.119, -0.303)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("particles/particle3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector4(0, 0, 0, 0), Vector4(0, 0.47, 1.059, 0.47)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("particles/particle4:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector4(0, 0, 0, 0), Vector4(-1.917, -0.318, 0, -0.318)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("particles/particle5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector4(0, 0, 0, 0), Vector4(-1.455, 0.334, -1.418, 0.334)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("particles/particle6:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector4(0, 0, 0, 0), Vector4(0.265, -0.639, -2.567, -0.639)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("particles/particle7:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector4(0, 0, 0, 0), Vector4(0, -0.273, 1.749, -0.273)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("particles/particle8:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector4(0, 0, 0, 0), Vector4(-0.481, 0.435, -2.37, 0.435)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("particles/particle9:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector4(0, 0, 0, 0), Vector4(0, -1.016, 0, -1.016)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("particles/particle10:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector4(0, 0, 0, 0), Vector4(0, 0.749, 0, 0.749)]
+}
+
+[sub_resource type="Animation" id="Animation_nq0y5"]
+resource_name = "nuke"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("nuke/pos/nuke:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector4(0, 3.9625041, 0.07572303, 0), Vector4(0, -13.303698, 0.15144597, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("nuke/pos2/nuke:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector4(0, 3.9625041, 0.07572303, 0), Vector4(0, -13.303698, 0.15144597, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("nuke/pos3/nuke:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector4(0, 3.9625041, 0.07572303, 0), Vector4(0, -13.303698, 0.15144597, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("nuke/pos4/nuke:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector4(0, 3.9625041, 0.07572303, 0), Vector4(0, -13.303698, 0.15144597, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("nuke/pos5/nuke:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector4(0, 3.9625041, 0.07572303, 0), Vector4(0, -13.303698, 0.15144597, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_47mo0"]
+resource_name = "black_hole"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("black_hole/black_hole:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector4(0, 0, 0, 0), Vector4(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_y2k5v"]
+resource_name = "Teleport"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n65jo"]
+_data = {
+&"Gun": SubResource("Animation_kcgai"),
+&"RESET": SubResource("Animation_10w01"),
+&"Teleport": SubResource("Animation_y2k5v"),
+&"black_hole": SubResource("Animation_47mo0"),
+&"laser": SubResource("Animation_bhtn8"),
+&"nuke": SubResource("Animation_nq0y5"),
+&"particles": SubResource("Animation_n65jo")
+}
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_kcgai"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="BoxPolyMesh4D" id="BoxPolyMesh4D_10w01"]
+
+[sub_resource type="BoxShape4D" id="BoxShape4D_bhtn8"]
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_10w01"]
+line_thickness = 2.0
+
+[sub_resource type="BoxPolyMesh4D" id="BoxPolyMesh4D_n65jo"]
+
+[sub_resource type="BoxShape4D" id="BoxShape4D_n65jo"]
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_nq0y5"]
+line_thickness = 5.0
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxWireMesh4D" id="BoxWireMesh4D_47mo0"]
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_47mo0"]
+line_thickness = 2.5
+
+[sub_resource type="BoxPolyMesh4D" id="BoxPolyMesh4D_y2k5v"]
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_bhtn8"]
+albedo_color = Color(0.6, 0, 1, 1)
+
+[sub_resource type="SphereShape4D" id="SphereShape4D_n65jo"]
+
+[sub_resource type="BoxShape4D" id="BoxShape4D_47mo0"]
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_y2k5v"]
+line_thickness = 2.5
+
+[sub_resource type="BoxWireMesh4D" id="BoxWireMesh4D_f0fes"]
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_htj63"]
+line_thickness = 2.0
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="SphereShape4D" id="SphereShape4D_y2k5v"]
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_f0fes"]
+line_thickness = 5.0
+albedo_color = Color(0.16206557, 0.1620656, 0.16206557, 1)
+
+[node name="Boss_fight" type="Node4D"]
+
+[node name="CharacterBody4D" type="CharacterBody4D" parent="."]
+basis = Projection(1, 0, 0, 0, 0, 2.5241098, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+
+[node name="AnimationTree" type="AnimationTree" parent="CharacterBody4D"]
+deterministic = false
+tree_root = SubResource("AnimationNodeStateMachine_kcgai")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody4D"]
+libraries = {
+&"": SubResource("AnimationLibrary_n65jo")
+}
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D"]
+material_override = SubResource("WireMaterial4D_kcgai")
+mesh = SubResource("BoxPolyMesh4D_10w01")
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D"]
+shape = SubResource("BoxShape4D_bhtn8")
+
+[node name="gun" type="Node4D" parent="CharacterBody4D"]
+position = Vector4(5.960464e-08, -2.980232e-08, -1.1920928e-07, 0.3920265)
+basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999)
+visible = false
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/gun"]
+position = Vector4(-0.43495387, 0.018988302, 0.20430711, -0.0763021)
+basis = Projection(-5.6864877e-09, 0, -0.13009164, 0, 0, 0.05061923, 0, 0, 0.5913851, 0, -2.5850264e-08, 0, 0, 0, 0, 0.117708966)
+material_override = SubResource("WireMaterial4D_10w01")
+mesh = SubResource("BoxPolyMesh4D_n65jo")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/gun"]
+position = Vector4(-0.20518385, -0.027698642, 0.20430706, -0.26105717)
+basis = Projection(-1.2677618e-09, 0, -0.13009162, 0, 0, 0.14399312, 0, 0, 0.13184509, 0, -2.5850262e-08, 0, 0, 0, 0, 0.4778849)
+material_override = SubResource("WireMaterial4D_10w01")
+mesh = SubResource("BoxPolyMesh4D_n65jo")
+
+[node name="bullet" type="Node4D" parent="CharacterBody4D/gun"]
+position = Vector4(-0.0643903, -5.501841e-08, -5.1662863e-07, 1.9073486e-06)
+basis = Projection(0.369787, 0, 0, 0, 0, 0.030242547, 0, 0, 0, 0, 0.08344892, 0, 0, 0, 0, 1)
+
+[node name="Area4D" type="Area4D" parent="CharacterBody4D/gun/bullet"]
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/gun/bullet/Area4D"]
+shape = SubResource("BoxShape4D_n65jo")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/gun/bullet"]
+basis = Projection(0.99999803, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_nq0y5")
+mesh = SubResource("BoxWireMesh4D_47mo0")
+
+[node name="laser" type="Node4D" parent="CharacterBody4D"]
+basis = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 50)
+visible = false
+
+[node name="ring _1" type="Node4D" parent="CharacterBody4D/laser"]
+
+[node name="bullet2" type="Node4D" parent="CharacterBody4D/laser/ring _1"]
+position = Vector4(-2, 0, 0, 0)
+basis = Projection(-6.752346e-07, 2.6155186, 0, 0, -1.2633592, -9.350162e-09, 0, 0, 0, 0, 1.2916962, 0, 0, 0, 0, 0.9999991)
+
+[node name="Area4D" type="Area4D" parent="CharacterBody4D/laser/ring _1/bullet2"]
+basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/laser/ring _1/bullet2/Area4D"]
+shape = SubResource("BoxShape4D_n65jo")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _1/bullet2"]
+basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_nq0y5")
+mesh = SubResource("BoxWireMesh4D_47mo0")
+
+[node name="machine" type="Node4D" parent="CharacterBody4D/laser/ring _1/bullet2"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _1/bullet2/machine"]
+position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
+basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _1/bullet2/machine"]
+position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
+basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="bullet3" type="Node4D" parent="CharacterBody4D/laser/ring _1"]
+position = Vector4(2, 0, 0, 0)
+basis = Projection(-6.752346e-07, 2.6155186, 0, 0, -1.2633592, -9.350162e-09, 0, 0, 0, 0, 1.2916962, 0, 0, 0, 0, 0.9999991)
+
+[node name="Area4D" type="Area4D" parent="CharacterBody4D/laser/ring _1/bullet3"]
+basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/laser/ring _1/bullet3/Area4D"]
+shape = SubResource("BoxShape4D_n65jo")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _1/bullet3"]
+basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_nq0y5")
+mesh = SubResource("BoxWireMesh4D_47mo0")
+
+[node name="machine" type="Node4D" parent="CharacterBody4D/laser/ring _1/bullet3"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _1/bullet3/machine"]
+position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
+basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _1/bullet3/machine"]
+position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
+basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="bullet4" type="Node4D" parent="CharacterBody4D/laser/ring _1"]
+position = Vector4(0, 0, 2, 0)
+basis = Projection(-6.752346e-07, 2.6155186, 0, 0, -1.2633592, -9.350162e-09, 0, 0, 0, 0, 1.2916962, 0, 0, 0, 0, 0.9999991)
+
+[node name="Area4D" type="Area4D" parent="CharacterBody4D/laser/ring _1/bullet4"]
+basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/laser/ring _1/bullet4/Area4D"]
+shape = SubResource("BoxShape4D_n65jo")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _1/bullet4"]
+basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_nq0y5")
+mesh = SubResource("BoxWireMesh4D_47mo0")
+
+[node name="machine" type="Node4D" parent="CharacterBody4D/laser/ring _1/bullet4"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _1/bullet4/machine"]
+position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
+basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _1/bullet4/machine"]
+position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
+basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="ring _2" type="Node4D" parent="CharacterBody4D/laser"]
+basis = Projection(0.9238795, 0, -0.38268346, 0, 0, 1, 0, 0, 0.38268346, 0, 0.9238795, 0, 0, 0, 0, 1)
+
+[node name="bullet5" type="Node4D" parent="CharacterBody4D/laser/ring _2"]
+position = Vector4(0, 0, -2, 0)
+basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
+
+[node name="Area4D" type="Area4D" parent="CharacterBody4D/laser/ring _2/bullet5"]
+basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/laser/ring _2/bullet5/Area4D"]
+shape = SubResource("BoxShape4D_n65jo")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _2/bullet5"]
+basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_nq0y5")
+mesh = SubResource("BoxWireMesh4D_47mo0")
+
+[node name="machine" type="Node4D" parent="CharacterBody4D/laser/ring _2/bullet5"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _2/bullet5/machine"]
+position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
+basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _2/bullet5/machine"]
+position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
+basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="bullet6" type="Node4D" parent="CharacterBody4D/laser/ring _2"]
+position = Vector4(0, 0, -7.5, 0)
+basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
+
+[node name="Area4D" type="Area4D" parent="CharacterBody4D/laser/ring _2/bullet6"]
+basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/laser/ring _2/bullet6/Area4D"]
+shape = SubResource("BoxShape4D_n65jo")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _2/bullet6"]
+basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_nq0y5")
+mesh = SubResource("BoxWireMesh4D_47mo0")
+
+[node name="machine" type="Node4D" parent="CharacterBody4D/laser/ring _2/bullet6"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _2/bullet6/machine"]
+position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
+basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _2/bullet6/machine"]
+position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
+basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="bullet7" type="Node4D" parent="CharacterBody4D/laser/ring _2"]
+position = Vector4(0, 0, 7.5, 0)
+basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
+
+[node name="Area4D" type="Area4D" parent="CharacterBody4D/laser/ring _2/bullet7"]
+basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/laser/ring _2/bullet7/Area4D"]
+shape = SubResource("BoxShape4D_n65jo")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _2/bullet7"]
+basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_nq0y5")
+mesh = SubResource("BoxWireMesh4D_47mo0")
+
+[node name="machine" type="Node4D" parent="CharacterBody4D/laser/ring _2/bullet7"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _2/bullet7/machine"]
+position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
+basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _2/bullet7/machine"]
+position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
+basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="bullet8" type="Node4D" parent="CharacterBody4D/laser/ring _2"]
+position = Vector4(-7.5, 0, 0, 0)
+basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
+
+[node name="Area4D" type="Area4D" parent="CharacterBody4D/laser/ring _2/bullet8"]
+basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/laser/ring _2/bullet8/Area4D"]
+shape = SubResource("BoxShape4D_n65jo")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _2/bullet8"]
+basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_nq0y5")
+mesh = SubResource("BoxWireMesh4D_47mo0")
+
+[node name="machine" type="Node4D" parent="CharacterBody4D/laser/ring _2/bullet8"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _2/bullet8/machine"]
+position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
+basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _2/bullet8/machine"]
+position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
+basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="bullet9" type="Node4D" parent="CharacterBody4D/laser/ring _2"]
+position = Vector4(7.5, 0, 0, 0)
+basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
+
+[node name="Area4D" type="Area4D" parent="CharacterBody4D/laser/ring _2/bullet9"]
+basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/laser/ring _2/bullet9/Area4D"]
+shape = SubResource("BoxShape4D_n65jo")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _2/bullet9"]
+basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_nq0y5")
+mesh = SubResource("BoxWireMesh4D_47mo0")
+
+[node name="machine" type="Node4D" parent="CharacterBody4D/laser/ring _2/bullet9"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _2/bullet9/machine"]
+position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
+basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _2/bullet9/machine"]
+position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
+basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="bullet10" type="Node4D" parent="CharacterBody4D/laser/ring _2"]
+position = Vector4(7.5, 0, 7.5, 0)
+basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
+
+[node name="Area4D" type="Area4D" parent="CharacterBody4D/laser/ring _2/bullet10"]
+basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/laser/ring _2/bullet10/Area4D"]
+shape = SubResource("BoxShape4D_n65jo")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _2/bullet10"]
+basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_nq0y5")
+mesh = SubResource("BoxWireMesh4D_47mo0")
+
+[node name="machine" type="Node4D" parent="CharacterBody4D/laser/ring _2/bullet10"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _2/bullet10/machine"]
+position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
+basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _2/bullet10/machine"]
+position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
+basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="bullet11" type="Node4D" parent="CharacterBody4D/laser/ring _2"]
+position = Vector4(7.5, 0, -7.5, 0)
+basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
+
+[node name="Area4D" type="Area4D" parent="CharacterBody4D/laser/ring _2/bullet11"]
+basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/laser/ring _2/bullet11/Area4D"]
+shape = SubResource("BoxShape4D_n65jo")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _2/bullet11"]
+basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_nq0y5")
+mesh = SubResource("BoxWireMesh4D_47mo0")
+
+[node name="machine" type="Node4D" parent="CharacterBody4D/laser/ring _2/bullet11"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _2/bullet11/machine"]
+position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
+basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _2/bullet11/machine"]
+position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
+basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="bullet12" type="Node4D" parent="CharacterBody4D/laser/ring _2"]
+position = Vector4(-7.5, 0, -7.5, 0)
+basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
+
+[node name="Area4D" type="Area4D" parent="CharacterBody4D/laser/ring _2/bullet12"]
+basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/laser/ring _2/bullet12/Area4D"]
+shape = SubResource("BoxShape4D_n65jo")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _2/bullet12"]
+basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_nq0y5")
+mesh = SubResource("BoxWireMesh4D_47mo0")
+
+[node name="machine" type="Node4D" parent="CharacterBody4D/laser/ring _2/bullet12"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _2/bullet12/machine"]
+position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
+basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _2/bullet12/machine"]
+position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
+basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="bullet13" type="Node4D" parent="CharacterBody4D/laser/ring _2"]
+position = Vector4(-7.5, 0, 7.5, 0)
+basis = Projection(-6.752345e-07, 2.6155186, 0, 0, -1.263359, -9.350162e-09, 0, 0, 0, 0, 1.291696, 0, 0, 0, 0, 0.999999)
+
+[node name="Area4D" type="Area4D" parent="CharacterBody4D/laser/ring _2/bullet13"]
+basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/laser/ring _2/bullet13/Area4D"]
+shape = SubResource("BoxShape4D_n65jo")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _2/bullet13"]
+basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_nq0y5")
+mesh = SubResource("BoxWireMesh4D_47mo0")
+
+[node name="machine" type="Node4D" parent="CharacterBody4D/laser/ring _2/bullet13"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _2/bullet13/machine"]
+position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
+basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _2/bullet13/machine"]
+position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
+basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="ring _3" type="Node4D" parent="CharacterBody4D/laser"]
+basis = Projection(0.7071067, 0, -0.7071067, 0, 0, 0.99999994, 0, 0, 0.7071067, 0, 0.7071067, 0, 0, 0, 0, 0.99999994)
+
+[node name="bullet14" type="Node4D" parent="CharacterBody4D/laser/ring _3"]
+position = Vector4(0, 0, 12.5, 0)
+basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
+
+[node name="Area4D" type="Area4D" parent="CharacterBody4D/laser/ring _3/bullet14"]
+basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/laser/ring _3/bullet14/Area4D"]
+shape = SubResource("BoxShape4D_n65jo")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _3/bullet14"]
+basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_nq0y5")
+mesh = SubResource("BoxWireMesh4D_47mo0")
+
+[node name="machine" type="Node4D" parent="CharacterBody4D/laser/ring _3/bullet14"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _3/bullet14/machine"]
+position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
+basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _3/bullet14/machine"]
+position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
+basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="bullet15" type="Node4D" parent="CharacterBody4D/laser/ring _3"]
+position = Vector4(12.5, 0, 0, 0)
+basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
+
+[node name="Area4D" type="Area4D" parent="CharacterBody4D/laser/ring _3/bullet15"]
+basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/laser/ring _3/bullet15/Area4D"]
+shape = SubResource("BoxShape4D_n65jo")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _3/bullet15"]
+basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_nq0y5")
+mesh = SubResource("BoxWireMesh4D_47mo0")
+
+[node name="machine" type="Node4D" parent="CharacterBody4D/laser/ring _3/bullet15"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _3/bullet15/machine"]
+position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
+basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _3/bullet15/machine"]
+position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
+basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="bullet16" type="Node4D" parent="CharacterBody4D/laser/ring _3"]
+position = Vector4(0, 0, -12.5, 0)
+basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
+
+[node name="Area4D" type="Area4D" parent="CharacterBody4D/laser/ring _3/bullet16"]
+basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/laser/ring _3/bullet16/Area4D"]
+shape = SubResource("BoxShape4D_n65jo")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _3/bullet16"]
+basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_nq0y5")
+mesh = SubResource("BoxWireMesh4D_47mo0")
+
+[node name="machine" type="Node4D" parent="CharacterBody4D/laser/ring _3/bullet16"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _3/bullet16/machine"]
+position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
+basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _3/bullet16/machine"]
+position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
+basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="bullet17" type="Node4D" parent="CharacterBody4D/laser/ring _3"]
+position = Vector4(-12.5, 0, 0, 0)
+basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
+
+[node name="Area4D" type="Area4D" parent="CharacterBody4D/laser/ring _3/bullet17"]
+basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/laser/ring _3/bullet17/Area4D"]
+shape = SubResource("BoxShape4D_n65jo")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _3/bullet17"]
+basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_nq0y5")
+mesh = SubResource("BoxWireMesh4D_47mo0")
+
+[node name="machine" type="Node4D" parent="CharacterBody4D/laser/ring _3/bullet17"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _3/bullet17/machine"]
+position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
+basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _3/bullet17/machine"]
+position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
+basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="bullet18" type="Node4D" parent="CharacterBody4D/laser/ring _3"]
+position = Vector4(-12.5, 0, -12.5, 0)
+basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
+
+[node name="Area4D" type="Area4D" parent="CharacterBody4D/laser/ring _3/bullet18"]
+basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/laser/ring _3/bullet18/Area4D"]
+shape = SubResource("BoxShape4D_n65jo")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _3/bullet18"]
+basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_nq0y5")
+mesh = SubResource("BoxWireMesh4D_47mo0")
+
+[node name="machine" type="Node4D" parent="CharacterBody4D/laser/ring _3/bullet18"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _3/bullet18/machine"]
+position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
+basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _3/bullet18/machine"]
+position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
+basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="bullet19" type="Node4D" parent="CharacterBody4D/laser/ring _3"]
+position = Vector4(12.5, 0, -12.5, 0)
+basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
+
+[node name="Area4D" type="Area4D" parent="CharacterBody4D/laser/ring _3/bullet19"]
+basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/laser/ring _3/bullet19/Area4D"]
+shape = SubResource("BoxShape4D_n65jo")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _3/bullet19"]
+basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_nq0y5")
+mesh = SubResource("BoxWireMesh4D_47mo0")
+
+[node name="machine" type="Node4D" parent="CharacterBody4D/laser/ring _3/bullet19"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _3/bullet19/machine"]
+position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
+basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _3/bullet19/machine"]
+position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
+basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="bullet20" type="Node4D" parent="CharacterBody4D/laser/ring _3"]
+position = Vector4(12.5, 0, 12.5, 0)
+basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
+
+[node name="Area4D" type="Area4D" parent="CharacterBody4D/laser/ring _3/bullet20"]
+basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/laser/ring _3/bullet20/Area4D"]
+shape = SubResource("BoxShape4D_n65jo")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _3/bullet20"]
+basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_nq0y5")
+mesh = SubResource("BoxWireMesh4D_47mo0")
+
+[node name="machine" type="Node4D" parent="CharacterBody4D/laser/ring _3/bullet20"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _3/bullet20/machine"]
+position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
+basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _3/bullet20/machine"]
+position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
+basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="bullet21" type="Node4D" parent="CharacterBody4D/laser/ring _3"]
+position = Vector4(-12.5, 0, 12.5, 0)
+basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
+
+[node name="Area4D" type="Area4D" parent="CharacterBody4D/laser/ring _3/bullet21"]
+basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/laser/ring _3/bullet21/Area4D"]
+shape = SubResource("BoxShape4D_n65jo")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _3/bullet21"]
+basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_nq0y5")
+mesh = SubResource("BoxWireMesh4D_47mo0")
+
+[node name="machine" type="Node4D" parent="CharacterBody4D/laser/ring _3/bullet21"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _3/bullet21/machine"]
+position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
+basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/laser/ring _3/bullet21/machine"]
+position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
+basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
+material_override = SubResource("WireMaterial4D_47mo0")
+mesh = SubResource("BoxPolyMesh4D_y2k5v")
+
+[node name="particles" type="Node4D" parent="CharacterBody4D"]
+visible = false
+
+[node name="particle" type="Area4D" parent="CharacterBody4D/particles"]
+position = Vector4(2.200941, 0.34337896, 0, 0)
+basis = Projection(0.049999982, 0, 0, 0, 0, 0.049999986, 0, 0, 0, 0, 0.049999982, 0, 0, 0, 0, 0.049999982)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/particles/particle"]
+basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_bhtn8")
+mesh = ExtResource("1_10w01")
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/particles/particle"]
+basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shape = SubResource("SphereShape4D_n65jo")
+
+[node name="particle2" type="Area4D" parent="CharacterBody4D/particles"]
+position = Vector4(0.52968603, -0.41018134, 1.730207, 0)
+basis = Projection(0.04999994, 0, 0, 0, 0, 0.049999997, 0, 0, 0, 0, 0.04999994, 0, 0, 0, 0, 0.04999994)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/particles/particle2"]
+basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_bhtn8")
+mesh = ExtResource("1_10w01")
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/particles/particle2"]
+basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shape = SubResource("SphereShape4D_n65jo")
+
+[node name="particle3" type="Area4D" parent="CharacterBody4D/particles"]
+position = Vector4(-2.9294856, 0.4236848, -0.6896491, 0)
+basis = Projection(0.04999996, 0, 0, 0, 0, 0.049999975, 0, 0, 0, 0, 0.04999996, 0, 0, 0, 0, 0.04999996)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/particles/particle3"]
+basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_bhtn8")
+mesh = ExtResource("1_10w01")
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/particles/particle3"]
+basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shape = SubResource("SphereShape4D_n65jo")
+
+[node name="particle4" type="Area4D" parent="CharacterBody4D/particles"]
+position = Vector4(0.53871787, -0.36965832, -3.3048282, 0)
+basis = Projection(0.049999956, 0, 0, 0, 0, 0.049999967, 0, 0, 0, 0, 0.049999956, 0, 0, 0, 0, 0.049999956)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/particles/particle4"]
+basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_bhtn8")
+mesh = ExtResource("1_10w01")
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/particles/particle4"]
+basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shape = SubResource("SphereShape4D_n65jo")
+
+[node name="particle5" type="Area4D" parent="CharacterBody4D/particles"]
+position = Vector4(-0.6411823, 0.2787995, 1.838508, 0)
+basis = Projection(0.04999994, 0, 0, 0, 0, 0.049999997, 0, 0, 0, 0, 0.04999994, 0, 0, 0, 0, 0.04999994)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/particles/particle5"]
+basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_bhtn8")
+mesh = ExtResource("1_10w01")
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/particles/particle5"]
+basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shape = SubResource("SphereShape4D_n65jo")
+
+[node name="particle6" type="Area4D" parent="CharacterBody4D/particles"]
+position = Vector4(-0.71952814, 0.34380543, -1.8734531, 0)
+basis = Projection(0.049999934, 0, 0, 0, 0, 0.049999963, 0, 0, 0, 0, 0.049999934, 0, 0, 0, 0, 0.049999934)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/particles/particle6"]
+basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_bhtn8")
+mesh = ExtResource("1_10w01")
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/particles/particle6"]
+basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shape = SubResource("SphereShape4D_n65jo")
+
+[node name="particle7" type="Area4D" parent="CharacterBody4D/particles"]
+position = Vector4(1.7461824, 0.3324496, 1.2557378, 0)
+basis = Projection(0.049999934, 0, 0, 0, 0, 0.049999975, 0, 0, 0, 0, 0.049999934, 0, 0, 0, 0, 0.049999934)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/particles/particle7"]
+basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_bhtn8")
+mesh = ExtResource("1_10w01")
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/particles/particle7"]
+basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shape = SubResource("SphereShape4D_n65jo")
+
+[node name="particle8" type="Area4D" parent="CharacterBody4D/particles"]
+position = Vector4(-1.68545, -0.43010056, -1.3085426, 0)
+basis = Projection(0.049999956, 0, 0, 0, 0, 0.049999975, 0, 0, 0, 0, 0.049999956, 0, 0, 0, 0, 0.049999956)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/particles/particle8"]
+basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_bhtn8")
+mesh = ExtResource("1_10w01")
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/particles/particle8"]
+basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shape = SubResource("SphereShape4D_n65jo")
+
+[node name="particle9" type="Area4D" parent="CharacterBody4D/particles"]
+position = Vector4(1.937512, -0.26033786, 0.9158503, 0)
+basis = Projection(0.04999997, 0, 0, 0, 0, 0.050000004, 0, 0, 0, 0, 0.04999997, 0, 0, 0, 0, 0.04999997)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/particles/particle9"]
+basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_bhtn8")
+mesh = ExtResource("1_10w01")
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/particles/particle9"]
+basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shape = SubResource("SphereShape4D_n65jo")
+
+[node name="particle10" type="Area4D" parent="CharacterBody4D/particles"]
+position = Vector4(0, 0.697124, 0, 0)
+basis = Projection(0.049999967, 0, 0, 0, 0, 0.049999986, 0, 0, 0, 0, 0.049999967, 0, 0, 0, 0, 0.049999967)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/particles/particle10"]
+basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_bhtn8")
+mesh = ExtResource("1_10w01")
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/particles/particle10"]
+basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shape = SubResource("SphereShape4D_n65jo")
+
+[node name="nuke" type="Node4D" parent="CharacterBody4D"]
+visible = false
+
+[node name="pos" type="Node4D" parent="CharacterBody4D/nuke"]
+
+[node name="nuke" type="Area4D" parent="CharacterBody4D/nuke/pos"]
+position = Vector4(0, -13.303698, 0.15144597, 0)
+basis = Projection(0.9999992, 0, 0, 0, 0, 0.9999995, 0, 0, 0, 0, 0.9999992, 0, 0, 0, 0, 0.9999992)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/nuke/pos/nuke"]
+basis = Projection(-2.8072422, 0, 0, 0, 0, 1.8551433, 0, 0, 0, 0, 2.1139898, 0, 0, 0, 0, 0.9999997)
+shape = SubResource("BoxShape4D_47mo0")
+
+[node name="mesh" type="Node4D" parent="CharacterBody4D/nuke/pos/nuke"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/nuke/pos/nuke/mesh"]
+basis = Projection(2.8072422, 0, 0, 0, 0, 1.8551433, 0, 0, 0, 0, 2.1139898, 0, 0, 0, 0, -0.9999997)
+material_override = SubResource("WireMaterial4D_y2k5v")
+mesh = SubResource("BoxWireMesh4D_f0fes")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/nuke/pos/nuke/mesh"]
+position = Vector4(0, 1.0522221, 0.031906325, 0)
+basis = Projection(2.8072412, 0, 0, 0, 0, 0.4875343, 0, 0, 0, 0, 0.3843305, 0, 0, 0, 0, -0.9999992)
+material_override = SubResource("WireMaterial4D_htj63")
+mesh = SubResource("BoxWireMesh4D_f0fes")
+
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="CharacterBody4D/nuke/pos/nuke/mesh"]
+position = Vector4(-0.01786246, 1.0522224, 0.025241015, 0)
+basis = Projection(-0.5702139, 0, 0, 0, 0, 0.48753428, 0, 0, 0, 0, 2.384933, 0, 0, 0, 0, -0.9999987)
+material_override = SubResource("WireMaterial4D_htj63")
+mesh = SubResource("BoxWireMesh4D_f0fes")
+
+[node name="pos2" type="Node4D" parent="CharacterBody4D/nuke"]
+
+[node name="nuke" type="Area4D" parent="CharacterBody4D/nuke/pos2"]
+position = Vector4(0, -13.303698, 0.15144597, 0)
+basis = Projection(0.9999992, 0, 0, 0, 0, 0.9999995, 0, 0, 0, 0, 0.9999992, 0, 0, 0, 0, 0.9999992)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/nuke/pos2/nuke"]
+basis = Projection(-2.8072422, 0, 0, 0, 0, 1.8551433, 0, 0, 0, 0, 2.1139898, 0, 0, 0, 0, 0.9999997)
+shape = SubResource("BoxShape4D_47mo0")
+
+[node name="mesh" type="Node4D" parent="CharacterBody4D/nuke/pos2/nuke"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/nuke/pos2/nuke/mesh"]
+basis = Projection(2.8072422, 0, 0, 0, 0, 1.8551433, 0, 0, 0, 0, 2.1139898, 0, 0, 0, 0, -0.9999997)
+material_override = SubResource("WireMaterial4D_y2k5v")
+mesh = SubResource("BoxWireMesh4D_f0fes")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/nuke/pos2/nuke/mesh"]
+position = Vector4(0, 1.0522221, 0.031906325, 0)
+basis = Projection(2.8072412, 0, 0, 0, 0, 0.4875343, 0, 0, 0, 0, 0.3843305, 0, 0, 0, 0, -0.9999992)
+material_override = SubResource("WireMaterial4D_htj63")
+mesh = SubResource("BoxWireMesh4D_f0fes")
+
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="CharacterBody4D/nuke/pos2/nuke/mesh"]
+position = Vector4(-0.01786246, 1.0522224, 0.025241015, 0)
+basis = Projection(-0.5702139, 0, 0, 0, 0, 0.48753428, 0, 0, 0, 0, 2.384933, 0, 0, 0, 0, -0.9999987)
+material_override = SubResource("WireMaterial4D_htj63")
+mesh = SubResource("BoxWireMesh4D_f0fes")
+
+[node name="pos3" type="Node4D" parent="CharacterBody4D/nuke"]
+
+[node name="nuke" type="Area4D" parent="CharacterBody4D/nuke/pos3"]
+position = Vector4(0, -13.303698, 0.15144597, 0)
+basis = Projection(0.9999992, 0, 0, 0, 0, 0.9999995, 0, 0, 0, 0, 0.9999992, 0, 0, 0, 0, 0.9999992)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/nuke/pos3/nuke"]
+basis = Projection(-2.8072422, 0, 0, 0, 0, 1.8551433, 0, 0, 0, 0, 2.1139898, 0, 0, 0, 0, 0.9999997)
+shape = SubResource("BoxShape4D_47mo0")
+
+[node name="mesh" type="Node4D" parent="CharacterBody4D/nuke/pos3/nuke"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/nuke/pos3/nuke/mesh"]
+basis = Projection(2.8072422, 0, 0, 0, 0, 1.8551433, 0, 0, 0, 0, 2.1139898, 0, 0, 0, 0, -0.9999997)
+material_override = SubResource("WireMaterial4D_y2k5v")
+mesh = SubResource("BoxWireMesh4D_f0fes")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/nuke/pos3/nuke/mesh"]
+position = Vector4(0, 1.0522221, 0.031906325, 0)
+basis = Projection(2.8072412, 0, 0, 0, 0, 0.4875343, 0, 0, 0, 0, 0.3843305, 0, 0, 0, 0, -0.9999992)
+material_override = SubResource("WireMaterial4D_htj63")
+mesh = SubResource("BoxWireMesh4D_f0fes")
+
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="CharacterBody4D/nuke/pos3/nuke/mesh"]
+position = Vector4(-0.01786246, 1.0522224, 0.025241015, 0)
+basis = Projection(-0.5702139, 0, 0, 0, 0, 0.48753428, 0, 0, 0, 0, 2.384933, 0, 0, 0, 0, -0.9999987)
+material_override = SubResource("WireMaterial4D_htj63")
+mesh = SubResource("BoxWireMesh4D_f0fes")
+
+[node name="pos4" type="Node4D" parent="CharacterBody4D/nuke"]
+
+[node name="nuke" type="Area4D" parent="CharacterBody4D/nuke/pos4"]
+position = Vector4(0, -13.303698, 0.15144597, 0)
+basis = Projection(0.9999992, 0, 0, 0, 0, 0.9999995, 0, 0, 0, 0, 0.9999992, 0, 0, 0, 0, 0.9999992)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/nuke/pos4/nuke"]
+basis = Projection(-2.8072422, 0, 0, 0, 0, 1.8551433, 0, 0, 0, 0, 2.1139898, 0, 0, 0, 0, 0.9999997)
+shape = SubResource("BoxShape4D_47mo0")
+
+[node name="mesh" type="Node4D" parent="CharacterBody4D/nuke/pos4/nuke"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/nuke/pos4/nuke/mesh"]
+basis = Projection(2.8072422, 0, 0, 0, 0, 1.8551433, 0, 0, 0, 0, 2.1139898, 0, 0, 0, 0, -0.9999997)
+material_override = SubResource("WireMaterial4D_y2k5v")
+mesh = SubResource("BoxWireMesh4D_f0fes")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/nuke/pos4/nuke/mesh"]
+position = Vector4(0, 1.0522221, 0.031906325, 0)
+basis = Projection(2.8072412, 0, 0, 0, 0, 0.4875343, 0, 0, 0, 0, 0.3843305, 0, 0, 0, 0, -0.9999992)
+material_override = SubResource("WireMaterial4D_htj63")
+mesh = SubResource("BoxWireMesh4D_f0fes")
+
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="CharacterBody4D/nuke/pos4/nuke/mesh"]
+position = Vector4(-0.01786246, 1.0522224, 0.025241015, 0)
+basis = Projection(-0.5702139, 0, 0, 0, 0, 0.48753428, 0, 0, 0, 0, 2.384933, 0, 0, 0, 0, -0.9999987)
+material_override = SubResource("WireMaterial4D_htj63")
+mesh = SubResource("BoxWireMesh4D_f0fes")
+
+[node name="pos5" type="Node4D" parent="CharacterBody4D/nuke"]
+
+[node name="nuke" type="Area4D" parent="CharacterBody4D/nuke/pos5"]
+position = Vector4(0, -13.303698, 0.15144597, 0)
+basis = Projection(0.9999992, 0, 0, 0, 0, 0.9999995, 0, 0, 0, 0, 0.9999992, 0, 0, 0, 0, 0.9999992)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/nuke/pos5/nuke"]
+basis = Projection(-2.8072422, 0, 0, 0, 0, 1.8551433, 0, 0, 0, 0, 2.1139898, 0, 0, 0, 0, 0.9999997)
+shape = SubResource("BoxShape4D_47mo0")
+
+[node name="mesh" type="Node4D" parent="CharacterBody4D/nuke/pos5/nuke"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/nuke/pos5/nuke/mesh"]
+basis = Projection(2.8072422, 0, 0, 0, 0, 1.8551433, 0, 0, 0, 0, 2.1139898, 0, 0, 0, 0, -0.9999997)
+material_override = SubResource("WireMaterial4D_y2k5v")
+mesh = SubResource("BoxWireMesh4D_f0fes")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/nuke/pos5/nuke/mesh"]
+position = Vector4(0, 1.0522221, 0.031906325, 0)
+basis = Projection(2.8072412, 0, 0, 0, 0, 0.4875343, 0, 0, 0, 0, 0.3843305, 0, 0, 0, 0, -0.9999992)
+material_override = SubResource("WireMaterial4D_htj63")
+mesh = SubResource("BoxWireMesh4D_f0fes")
+
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="CharacterBody4D/nuke/pos5/nuke/mesh"]
+position = Vector4(-0.01786246, 1.0522224, 0.025241015, 0)
+basis = Projection(-0.5702139, 0, 0, 0, 0, 0.48753428, 0, 0, 0, 0, 2.384933, 0, 0, 0, 0, -0.9999987)
+material_override = SubResource("WireMaterial4D_htj63")
+mesh = SubResource("BoxWireMesh4D_f0fes")
+
+[node name="black_hole" type="Node4D" parent="CharacterBody4D"]
+basis = Projection(0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994)
+visible = false
+
+[node name="black_hole" type="Area4D" parent="CharacterBody4D/black_hole"]
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/black_hole/black_hole"]
+basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shape = SubResource("SphereShape4D_y2k5v")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/black_hole/black_hole"]
+basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_f0fes")
+mesh = ExtResource("1_10w01")
