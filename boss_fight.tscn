@@ -1,6 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://bb5n678jf514w"]
+[gd_scene load_steps=41 format=3 uid="uid://bb5n678jf514w"]
 
 [ext_resource type="ArrayWireMesh4D" uid="uid://bkgg4baxxckw0" path="res://hypersphere.off" id="1_10w01"]
+[ext_resource type="Script" uid="uid://d1gyh8yaxk8ee" path="res://boss_fight.gd" id="1_n65jo"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://gyghwgkx8hgv" path="res://tetrahedra.off" id="2_bhtn8"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kcgai"]
 states/End/position = Vector2(1813, 450)
@@ -241,6 +243,37 @@ tracks/17/keys = {
 "update": 0,
 "values": [Vector4(1, 1, 1, 1)]
 }
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("spawner/spawnerpos:position")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector4(-0.071, 1.375, -1.57, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_y2k5v"]
+resource_name = "Teleport"
+
+[sub_resource type="Animation" id="Animation_47mo0"]
+resource_name = "black_hole"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("black_hole/black_hole:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector4(0, 0, 0, 0), Vector4(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_bhtn8"]
 resource_name = "laser"
@@ -257,6 +290,87 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [AABB(0, 0, 0, 0, 0, 0), AABB(0, 360, 0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_f0fes"]
+resource_name = "melee"
+
+[sub_resource type="Animation" id="Animation_htj63"]
+resource_name = "minions"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spawner/spawnerpos:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector4(-0.071, 1.375, -1.57, 0), Vector4(-3.5762784e-07, 0, -1.5697308, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nq0y5"]
+resource_name = "nuke"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("nuke/pos/nuke:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector4(0, 3.9625041, 0.07572303, 0), Vector4(0, -13.303698, 0.15144597, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("nuke/pos2/nuke:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector4(0, 3.9625041, 0.07572303, 0), Vector4(0, -13.303698, 0.15144597, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("nuke/pos3/nuke:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector4(0, 3.9625041, 0.07572303, 0), Vector4(0, -13.303698, 0.15144597, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("nuke/pos4/nuke:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector4(0, 3.9625041, 0.07572303, 0), Vector4(0, -13.303698, 0.15144597, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("nuke/pos5/nuke:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector4(0, 3.9625041, 0.07572303, 0), Vector4(0, -13.303698, 0.15144597, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_n65jo"]
@@ -383,88 +497,6 @@ tracks/9/keys = {
 "values": [Vector4(0, 0, 0, 0), Vector4(0, 0.749, 0, 0.749)]
 }
 
-[sub_resource type="Animation" id="Animation_nq0y5"]
-resource_name = "nuke"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("nuke/pos/nuke:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector4(0, 3.9625041, 0.07572303, 0), Vector4(0, -13.303698, 0.15144597, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("nuke/pos2/nuke:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector4(0, 3.9625041, 0.07572303, 0), Vector4(0, -13.303698, 0.15144597, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("nuke/pos3/nuke:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector4(0, 3.9625041, 0.07572303, 0), Vector4(0, -13.303698, 0.15144597, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("nuke/pos4/nuke:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector4(0, 3.9625041, 0.07572303, 0), Vector4(0, -13.303698, 0.15144597, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("nuke/pos5/nuke:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector4(0, 3.9625041, 0.07572303, 0), Vector4(0, -13.303698, 0.15144597, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_47mo0"]
-resource_name = "black_hole"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("black_hole/black_hole:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector4(0, 0, 0, 0), Vector4(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_y2k5v"]
-resource_name = "Teleport"
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n65jo"]
 _data = {
 &"Gun": SubResource("Animation_kcgai"),
@@ -472,6 +504,8 @@ _data = {
 &"Teleport": SubResource("Animation_y2k5v"),
 &"black_hole": SubResource("Animation_47mo0"),
 &"laser": SubResource("Animation_bhtn8"),
+&"melee": SubResource("Animation_f0fes"),
+&"minions": SubResource("Animation_htj63"),
 &"nuke": SubResource("Animation_nq0y5"),
 &"particles": SubResource("Animation_n65jo")
 }
@@ -523,7 +557,31 @@ albedo_color = Color(0, 1, 0, 1)
 line_thickness = 5.0
 albedo_color = Color(0.16206557, 0.1620656, 0.16206557, 1)
 
+[sub_resource type="BoxShape4D" id="BoxShape4D_10w01"]
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_fl1h7"]
+line_thickness = 10.0
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_5lasl"]
+line_thickness = 2.0
+albedo_color = Color(0.5764706, 0.25882354, 0, 1)
+
+[sub_resource type="BoxWireMesh4D" id="BoxWireMesh4D_tt0ij"]
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_cgdq2"]
+line_thickness = 2.0
+albedo_color = Color(0.57485664, 0.25878718, 0, 1)
+
+[sub_resource type="BoxPolyMesh4D" id="BoxPolyMesh4D_1bgo6"]
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_n65jo"]
+line_thickness = 3.0
+albedo_color = Color(0.45840502, 0.45840508, 0.45840502, 1)
+
+[sub_resource type="BoxPolyMesh4D" id="BoxPolyMesh4D_nq0y5"]
+
 [node name="Boss_fight" type="Node4D"]
+script = ExtResource("1_n65jo")
 
 [node name="CharacterBody4D" type="CharacterBody4D" parent="."]
 basis = Projection(1, 0, 0, 0, 0, 2.5241098, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
@@ -546,8 +604,8 @@ mesh = SubResource("BoxPolyMesh4D_10w01")
 shape = SubResource("BoxShape4D_bhtn8")
 
 [node name="gun" type="Node4D" parent="CharacterBody4D"]
-position = Vector4(5.960464e-08, -2.980232e-08, -1.1920928e-07, 0.3920265)
-basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999)
+position = Vector4(0.080773674, -2.9802319e-08, 0.54205436, 0.3920264)
+basis = Projection(-4.371137e-08, 0, -0.99999964, 0, 0, 0.9999999, 0, 0, 0.99999964, 0, -4.371137e-08, 0, 0, 0, 0, 0.99999964)
 visible = false
 
 [node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/gun"]
@@ -1463,3 +1521,89 @@ shape = SubResource("SphereShape4D_y2k5v")
 basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_f0fes")
 mesh = ExtResource("1_10w01")
+
+[node name="melee" type="Node4D" parent="CharacterBody4D"]
+position = Vector4(-1.2677522, 0.16080126, -0.9559497, 0)
+basis = Projection(0.99999964, 0, 0, 0, 0, 0.9999996, 0, 0, 0, 0, 0.99999964, 0, 0, 0, 0, 0.99999964)
+visible = false
+
+[node name="Area4D" type="Area4D" parent="CharacterBody4D/melee"]
+position = Vector4(0, 0, 0.3805002, 0)
+basis = Projection(0.9999998, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999998, 0, 0, 0, 0, 0.9999998)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/melee/Area4D"]
+position = Vector4(0, 0, 2.9802322e-08, 0)
+basis = Projection(0.9999997, 0, 0, 0, 0, -0.09439205, 0, 0, 0, 0, 2.1913776, 0, 0, 0, 0, 0.9999997)
+shape = SubResource("BoxShape4D_10w01")
+
+[node name="sword" type="Node4D" parent="CharacterBody4D/melee"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/melee/sword"]
+position = Vector4(0.76739264, 0.18127848, -0.4162768, 2.2499983)
+basis = Projection(-0.47114792, 0, 0, 0, 0, 0.80636954, 0, 0, 0, 0, 0.25534052, 0, 0, 0, 0, 0.9999995)
+material_override = SubResource("WireMaterial4D_fl1h7")
+mesh = ExtResource("2_bhtn8")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/melee/sword"]
+position = Vector4(0.82858133, -0.14002661, -0.4194912, 0)
+basis = Projection(0.84095776, 0, 0, 0, 0, 0.15903105, 0, 0, 0, 0, 0.691759, 0, 0, 0, 0, 0.9999991)
+material_override = SubResource("WireMaterial4D_5lasl")
+mesh = SubResource("BoxWireMesh4D_tt0ij")
+
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="CharacterBody4D/melee/sword"]
+position = Vector4(0.78125685, -0.35494635, -0.3939503, 0)
+basis = Projection(0.2459133, 0, 0, 0, 0, 0.56908107, 0, 0, 0, 0, 0.21209851, 0, 0, 0, 0, 0.9999996)
+material_override = SubResource("WireMaterial4D_cgdq2")
+mesh = SubResource("BoxPolyMesh4D_1bgo6")
+
+[node name="spawner" type="Node4D" parent="CharacterBody4D"]
+basis = Projection(0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994)
+visible = false
+
+[node name="spawnerpos" type="Node4D" parent="CharacterBody4D/spawner"]
+position = Vector4(-0.071, 1.375, -1.57, 0)
+basis = Projection(1, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/spawner/spawnerpos"]
+position = Vector4(-0.071324, -0.27574992, -0.64953136, 0)
+basis = Projection(4.2336364, 0, 0, 0, 0, 0.4485004, 0, 0, 0, 0, 2.2990634, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_n65jo")
+mesh = SubResource("BoxPolyMesh4D_nq0y5")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="CharacterBody4D/spawner/spawnerpos"]
+position = Vector4(-0.72811645, 0.053600408, -0.5461836, 0)
+basis = Projection(1.0722709, 0, 0, 0, 0, 1.1072013, 0, 0, 0, 0, 1.2587891, 0, 0, 0, 0, 1.0000001)
+material_override = SubResource("WireMaterial4D_n65jo")
+mesh = SubResource("BoxPolyMesh4D_nq0y5")
+
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="CharacterBody4D/spawner/spawnerpos"]
+position = Vector4(-0.566145, 0.38090613, -0.6689582, 0)
+basis = Projection(1.3962133, 0, 0, 0, 0, 0.17047377, 0, 0, 0, 0, 0.66511184, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_n65jo")
+mesh = SubResource("BoxPolyMesh4D_nq0y5")
+
+[node name="MeshInstance4D4" type="MeshInstance4D" parent="CharacterBody4D/spawner/spawnerpos"]
+position = Vector4(-0.47542763, 0.38090613, -0.6689582, 0)
+basis = Projection(1.5776482, 0, 0, 0, 0, 0.17047377, 0, 0, 0, 0, 0.66511184, 0, 0, 0, 0, 1.0000001)
+material_override = SubResource("WireMaterial4D_n65jo")
+mesh = SubResource("BoxPolyMesh4D_nq0y5")
+
+[node name="MeshInstance4D5" type="MeshInstance4D" parent="CharacterBody4D/spawner/spawnerpos"]
+position = Vector4(0.3369599, 0.32007727, -0.6689582, 0)
+basis = Projection(0.38078585, 0, 0, 0, 0, 0.1346474, 0, 0, 0, 0, 0.6651118, 0, 0, 0, 0, 1.0000001)
+material_override = SubResource("WireMaterial4D_n65jo")
+mesh = SubResource("BoxPolyMesh4D_nq0y5")
+
+[node name="MeshInstance4D6" type="MeshInstance4D" parent="CharacterBody4D/spawner/spawnerpos"]
+position = Vector4(0.50610507, 0.2695181, -0.6689582, 0)
+basis = Projection(0.4349075, 0, 0, 0, 0, 0.15250017, 0, 0, 0, 0, 0.6651119, 0, 0, 0, 0, 1.0000001)
+material_override = SubResource("WireMaterial4D_n65jo")
+mesh = SubResource("BoxPolyMesh4D_nq0y5")
+
+[node name="MeshInstance4D7" type="MeshInstance4D" parent="CharacterBody4D/spawner/spawnerpos"]
+position = Vector4(0.63161606, 0.2695181, -0.6689582, 0)
+basis = Projection(0.68592954, 0, 0, 0, 0, 0.15250017, 0, 0, 0, 0, 0.6651119, 0, 0, 0, 0, 1.0000001)
+material_override = SubResource("WireMaterial4D_n65jo")
+mesh = SubResource("BoxPolyMesh4D_nq0y5")
+
+[connection signal="body_entered_area" from="CharacterBody4D/gun/bullet/Area4D" to="." method="_on_area_4d_body_entered_area"]
