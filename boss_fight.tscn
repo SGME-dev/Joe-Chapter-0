@@ -1,8 +1,10 @@
-[gd_scene load_steps=41 format=3 uid="uid://bb5n678jf514w"]
+[gd_scene load_steps=44 format=3 uid="uid://bb5n678jf514w"]
 
 [ext_resource type="ArrayWireMesh4D" uid="uid://bkgg4baxxckw0" path="res://hypersphere.off" id="1_10w01"]
 [ext_resource type="Script" uid="uid://d1gyh8yaxk8ee" path="res://boss_fight.gd" id="1_n65jo"]
 [ext_resource type="ArrayWireMesh4D" uid="uid://gyghwgkx8hgv" path="res://tetrahedra.off" id="2_bhtn8"]
+[ext_resource type="PackedScene" uid="uid://cytl1r1yjrird" path="res://platform.tscn" id="5_y2k5v"]
+[ext_resource type="PackedScene" uid="uid://c0s58r1qa7jvh" path="res://player.tscn" id="6_y2k5v"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kcgai"]
 states/End/position = Vector2(1813, 450)
@@ -522,13 +524,15 @@ line_thickness = 2.0
 
 [sub_resource type="BoxPolyMesh4D" id="BoxPolyMesh4D_n65jo"]
 
-[sub_resource type="BoxShape4D" id="BoxShape4D_n65jo"]
+[sub_resource type="CylinderShape4D" id="CylinderShape4D_47mo0"]
 
 [sub_resource type="WireMaterial4D" id="WireMaterial4D_nq0y5"]
 line_thickness = 5.0
 albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="BoxWireMesh4D" id="BoxWireMesh4D_47mo0"]
+
+[sub_resource type="BoxShape4D" id="BoxShape4D_n65jo"]
 
 [sub_resource type="WireMaterial4D" id="WireMaterial4D_47mo0"]
 line_thickness = 2.5
@@ -581,10 +585,10 @@ albedo_color = Color(0.45840502, 0.45840508, 0.45840502, 1)
 [sub_resource type="BoxPolyMesh4D" id="BoxPolyMesh4D_nq0y5"]
 
 [node name="Boss_fight" type="Node4D"]
-script = ExtResource("1_n65jo")
 
 [node name="CharacterBody4D" type="CharacterBody4D" parent="."]
 basis = Projection(1, 0, 0, 0, 0, 2.5241098, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+script = ExtResource("1_n65jo")
 
 [node name="AnimationTree" type="AnimationTree" parent="CharacterBody4D"]
 deterministic = false
@@ -595,18 +599,18 @@ anim_player = NodePath("../AnimationPlayer")
 libraries = {
 &"": SubResource("AnimationLibrary_n65jo")
 }
+autoplay = "Gun"
 
 [node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D"]
 material_override = SubResource("WireMaterial4D_kcgai")
 mesh = SubResource("BoxPolyMesh4D_10w01")
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D"]
+[node name="boss" type="CollisionShape4D" parent="CharacterBody4D"]
 shape = SubResource("BoxShape4D_bhtn8")
 
 [node name="gun" type="Node4D" parent="CharacterBody4D"]
-position = Vector4(0.080773674, -2.9802319e-08, 0.54205436, 0.3920264)
-basis = Projection(-4.371137e-08, 0, -0.99999964, 0, 0, 0.9999999, 0, 0, 0.99999964, 0, -4.371137e-08, 0, 0, 0, 0, 0.99999964)
-visible = false
+position = Vector4(-0.2721599, -2.9802319e-08, 0.54205424, 0.39202634)
+basis = Projection(-4.3711363e-08, 0, -0.9999995, 0, 0, 0.9999999, 0, 0, 0.9999995, 0, -4.3711363e-08, 0, 0, 0, 0, 0.9999995)
 
 [node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/gun"]
 position = Vector4(-0.43495387, 0.018988302, 0.20430711, -0.0763021)
@@ -627,7 +631,7 @@ basis = Projection(0.369787, 0, 0, 0, 0, 0.030242547, 0, 0, 0, 0, 0.08344892, 0,
 [node name="Area4D" type="Area4D" parent="CharacterBody4D/gun/bullet"]
 
 [node name="CollisionShape4D" type="CollisionShape4D" parent="CharacterBody4D/gun/bullet/Area4D"]
-shape = SubResource("BoxShape4D_n65jo")
+shape = SubResource("CylinderShape4D_47mo0")
 
 [node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/gun/bullet"]
 basis = Projection(0.99999803, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
@@ -1606,4 +1610,24 @@ basis = Projection(0.68592954, 0, 0, 0, 0, 0.15250017, 0, 0, 0, 0, 0.6651119, 0,
 material_override = SubResource("WireMaterial4D_n65jo")
 mesh = SubResource("BoxPolyMesh4D_nq0y5")
 
-[connection signal="body_entered_area" from="CharacterBody4D/gun/bullet/Area4D" to="." method="_on_area_4d_body_entered_area"]
+[node name="StaticBody4D" parent="." instance=ExtResource("5_y2k5v")]
+position = Vector4(0, -1.4296641, 0, 0)
+basis = Projection(57.438965, 0, 0, 0, 0, 1, 0, 0, 0, 0, 32.984676, 0, 0, 0, 0, 13.3569975)
+
+[node name="CharacterBody4D2" parent="." instance=ExtResource("6_y2k5v")]
+position = Vector4(0, 0, 7.535851, 0)
+
+[node name="Area4D2" type="Area4D" parent="."]
+position = Vector4(14.94335, 0, 0, 0)
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D2"]
+shape = SubResource("CylinderShape4D_47mo0")
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="Area4D2"]
+position = Vector4(2.0087242, 0, 0, 0)
+basis = Projection(0.99999803, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
+material_override = SubResource("WireMaterial4D_nq0y5")
+mesh = SubResource("BoxWireMesh4D_47mo0")
+
+[connection signal="body_entered_area" from="CharacterBody4D/gun/bullet/Area4D" to="CharacterBody4D" method="_on_area_4d_body_entered_area"]
+[connection signal="body_entered_area" from="Area4D2" to="CharacterBody4D" method="_on_area_4d_body_entered_area"]
