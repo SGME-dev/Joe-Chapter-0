@@ -2,7 +2,9 @@ extends Node4D
 
 var boss_state := "Start"
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-
+@onready var character_body_4d_2: player = $"../CharacterBody4D2"
+@onready var bullet: Node4D = $gun/bullet
+var has_hit: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -11,13 +13,17 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	var playergroup = get_tree().get_first_node_in_group("player")
 	
+	
+	if Input.is_action_just_pressed("ui_left"):
+		animation_player.play("Gun")
 	match boss_state:
 			"Gun":
 				$gun.visible = true
 				# 1. Calculate 4D direction to player
 				var current_pos: Vector4 = global_position
-				var target_pos: Vector4 = $"../CharacterBody4D2".global_position
+				var target_pos: Vector4 = character_body_4d_2.global_position
 				var dir_to_player: Vector4 = (target_pos - current_pos)
 				var turn_speed := 1.4
 				
@@ -68,11 +74,22 @@ func _process(delta: float) -> void:
 		boss_state = "laser"
 	if animation_player.is_playing() and animation_player.current_animation == "particles":
 		boss_state = "particles"
+	if has_hit:
+		return
+	if $gun.visible:
+		if character_body_4d_2 and bullet.global_position.distance_to(character_body_4d_2.global_position) < 1.5:
+			if "health" in character_body_4d_2:
+				character_body_4d_2.health -= 10
+				print("ouch", character_body_4d_2.health)
+				has_hit = true
+				await get_tree().create_timer(0.1).timeout
+				has_hit = false
 
 
-func _on_area_4d_body_entered_area(body: player) -> void:
-	body.health -= 10
-	print("ouch", body.health)
+func _on_area_4d_body_entered_area(body) -> void:
+	if body and "health" in body:
+		body.health -= 10
+		print("ouch", body.health)
 
 
 func _on_area_4d_2_body_entered_area(body: PhysicsBody4D) -> void:

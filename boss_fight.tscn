@@ -599,7 +599,6 @@ anim_player = NodePath("../AnimationPlayer")
 libraries = {
 &"": SubResource("AnimationLibrary_n65jo")
 }
-autoplay = "Gun"
 
 [node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D"]
 material_override = SubResource("WireMaterial4D_kcgai")
@@ -609,8 +608,9 @@ mesh = SubResource("BoxPolyMesh4D_10w01")
 shape = SubResource("BoxShape4D_bhtn8")
 
 [node name="gun" type="Node4D" parent="CharacterBody4D"]
-position = Vector4(-0.2721599, -2.9802319e-08, 0.54205424, 0.39202634)
-basis = Projection(-4.3711363e-08, 0, -0.9999995, 0, 0, 0.9999999, 0, 0, 0.9999995, 0, -4.3711363e-08, 0, 0, 0, 0, 0.9999995)
+position = Vector4(-0.27215987, -2.9802319e-08, 0.5420542, 0.3920263)
+basis = Projection(-4.371136e-08, 0, -0.99999946, 0, 0, 0.9999999, 0, 0, 0.99999946, 0, -4.371136e-08, 0, 0, 0, 0, 0.99999946)
+visible = false
 
 [node name="MeshInstance4D" type="MeshInstance4D" parent="CharacterBody4D/gun"]
 position = Vector4(-0.43495387, 0.018988302, 0.20430711, -0.0763021)
@@ -626,7 +626,7 @@ mesh = SubResource("BoxPolyMesh4D_n65jo")
 
 [node name="bullet" type="Node4D" parent="CharacterBody4D/gun"]
 position = Vector4(-0.0643903, -5.501841e-08, -5.1662863e-07, 1.9073486e-06)
-basis = Projection(0.369787, 0, 0, 0, 0, 0.030242547, 0, 0, 0, 0, 0.08344892, 0, 0, 0, 0, 1)
+basis = Projection(0.369787, 0, -1.7763568e-15, 0, 0, 0.030242547, 0, 0, 4.440892e-16, 0, 0.083448924, 0, 0, 0, 0, 1)
 
 [node name="Area4D" type="Area4D" parent="CharacterBody4D/gun/bullet"]
 
@@ -1614,7 +1614,7 @@ mesh = SubResource("BoxPolyMesh4D_nq0y5")
 position = Vector4(0, -1.4296641, 0, 0)
 basis = Projection(57.438965, 0, 0, 0, 0, 1, 0, 0, 0, 0, 32.984676, 0, 0, 0, 0, 13.3569975)
 
-[node name="CharacterBody4D2" parent="." instance=ExtResource("6_y2k5v")]
+[node name="CharacterBody4D2" parent="." groups=["player"] instance=ExtResource("6_y2k5v")]
 position = Vector4(0, 0, 7.535851, 0)
 
 [node name="Area4D2" type="Area4D" parent="."]
@@ -1629,5 +1629,4 @@ basis = Projection(0.99999803, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0,
 material_override = SubResource("WireMaterial4D_nq0y5")
 mesh = SubResource("BoxWireMesh4D_47mo0")
 
-[connection signal="body_entered_area" from="CharacterBody4D/gun/bullet/Area4D" to="CharacterBody4D" method="_on_area_4d_body_entered_area"]
 [connection signal="body_entered_area" from="Area4D2" to="CharacterBody4D" method="_on_area_4d_body_entered_area"]

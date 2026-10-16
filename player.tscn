@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0s58r1qa7jvh"]
+[gd_scene load_steps=10 format=3 uid="uid://c0s58r1qa7jvh"]
 
 [ext_resource type="Script" uid="uid://djcsxdvtej5io" path="res://4d_player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://lijuwixhi0k5" path="res://human.tscn" id="2_onrkg"]
 [ext_resource type="PackedScene" uid="uid://dge28jgfyyu4o" path="res://control.tscn" id="3_i3pqv"]
+[ext_resource type="Script" uid="uid://bmvay1y1fkvtu" path="res://area_4d_2.gd" id="4_hqtel"]
 
 [sub_resource type="BoxShape4D" id="BoxShape4D_rlu7a"]
 
@@ -14,6 +15,8 @@ albedo_color = Color(0, 1, 1, 1)
 
 [sub_resource type="BoxWireMesh4D" id="BoxWireMesh4D_onrkg"]
 material = SubResource("WireMaterial4D_onrkg")
+
+[sub_resource type="SphereShape4D" id="SphereShape4D_i3pqv"]
 
 [node name="CharacterBody4D" type="CharacterBody4D"]
 basis = Projection(1, 0, 0, 0, 0, 2.494, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
@@ -77,6 +80,14 @@ visible = false
 
 [node name="Control" parent="." instance=ExtResource("3_i3pqv")]
 visible = false
+
+[node name="Area4D2" type="Area4D" parent="."]
+script = ExtResource("4_hqtel")
+
+[node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D2"]
+position = Vector4(0, -0.019737814, 0, 0)
+basis = Projection(2, 0, 0, 0, 0, 1.324, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1.324)
+shape = SubResource("SphereShape4D_i3pqv")
 
 [connection signal="body_entered_area" from="Area4D" to="." method="_on_area_4d_body_entered_area"]
 [connection signal="body_exited_area" from="Area4D" to="." method="_on_area_4d_body_exited_area"]
