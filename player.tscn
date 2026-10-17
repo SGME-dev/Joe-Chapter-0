@@ -62,6 +62,13 @@ offset_right = 1075.0
 offset_bottom = 23.0
 text = "FPS: "
 
+[node name="Label2" type="Label" parent="."]
+offset_left = 9.0
+offset_top = 2.0
+offset_right = 49.0
+offset_bottom = 25.0
+text = "Health: 100"
+
 [node name="MeshInstance4D" type="MeshInstance4D" parent="."]
 mesh = SubResource("BoxWireMesh4D_onrkg")
 

@@ -5,19 +5,20 @@ var boss_state := "Start"
 @onready var character_body_4d_2: player = $"../CharacterBody4D2"
 @onready var bullet: Node4D = $gun/bullet
 var has_hit: bool = false
+@onready var lasers = get_tree().get_nodes_in_group("enemy_lasers") 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var playergroup = get_tree().get_first_node_in_group("player")
+	
 	
 	
 	if Input.is_action_just_pressed("ui_left"):
-		animation_player.play("Gun")
+		animation_player.play("laser")
 	match boss_state:
 			"Gun":
 				$gun.visible = true
@@ -25,7 +26,7 @@ func _process(delta: float) -> void:
 				var current_pos: Vector4 = global_position
 				var target_pos: Vector4 = character_body_4d_2.global_position
 				var dir_to_player: Vector4 = (target_pos - current_pos)
-				var turn_speed := 1.4
+				var turn_speed := 1
 				
 				if dir_to_player.length_squared() < 0.0001:
 					return
@@ -82,8 +83,31 @@ func _process(delta: float) -> void:
 				character_body_4d_2.health -= 10
 				print("ouch", character_body_4d_2.health)
 				has_hit = true
-				await get_tree().create_timer(0.1).timeout
+				await get_tree().create_timer(1).timeout
 				has_hit = false
+	if $laser.visible:
+		for laser in lasers:
+			
+			
+			var laser_pos = laser.global_position
+			var player_pos = character_body_4d_2.global_position
+			
+			# Calculate absolute distance on each axis individually
+			var diff_x = abs(laser_pos.x - player_pos.x)
+			var diff_y = abs(laser_pos.y - player_pos.y)
+			var diff_z = abs(laser_pos.z - player_pos.z)
+			var diff_w = abs(laser_pos.w - player_pos.w)
+			
+			# Check your custom 4D dimensions constraints
+			if diff_x < 1.5 and diff_z < 1.5 and diff_y < 6.0 and diff_w < 12.0:
+				if "health" in character_body_4d_2:
+					character_body_4d_2.health -= 10
+					print("ouch", character_body_4d_2.health)
+					
+					has_hit = true
+					await get_tree().create_timer(1.0).timeout # Using your 1-second timeout here
+					has_hit = false
+					
 
 
 func _on_area_4d_body_entered_area(body) -> void:

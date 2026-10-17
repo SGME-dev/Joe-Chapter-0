@@ -56,7 +56,7 @@ func _physics_process(delta: float) -> void:
 	
 	
 	$Label.text = str("FPS: " + str(Engine.get_frames_per_second()))
-	
+	$Label2.text = str("health: ", health)
 	
 	# 1. Manual Ground Check (More reliable for 4D)
 	
