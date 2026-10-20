@@ -5,8 +5,17 @@ var boss_state := "Start"
 @onready var character_body_4d_2: player = $"../CharacterBody4D2"
 @onready var bullet: Node4D = $gun/bullet
 var has_hit: bool = false
-@onready var lasers = get_tree().get_nodes_in_group("enemy_lasers") 
-@onready var particles = get_tree().get_nodes_in_group("particle") 
+var nuke_pos_choosen: bool = false
+@onready var lasers := get_tree().get_nodes_in_group("enemy_lasers") 
+@onready var particles := get_tree().get_nodes_in_group("particle") 
+@onready var nukes := get_tree().get_nodes_in_group("nuke") 
+@onready var bound_one: Node4D = $teleport_range/teleport_range2
+@onready var bound_two: Node4D = $teleport_range/teleport_range3
+var nuke_1_pos: Vector4
+var nuke_2_pos: Vector4
+var nuke_3_pos: Vector4
+var nuke_4_pos: Vector4
+var nuke_5_pos: Vector4
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,7 +28,7 @@ func _process(delta: float) -> void:
 	
 	
 	if Input.is_action_just_pressed("test_boss_state"):
-		animation_player.play("Gun")
+		animation_player.play("nuke")
 	match boss_state:
 			"Gun":
 				$gun.visible = true
@@ -85,12 +94,30 @@ func _process(delta: float) -> void:
 					# Only move if it's outside the stopping distance
 					if distance > 2.0:
 						global_position += dir_to_player * speed * delta
+			"nuke":
+				$nuke.visible = true
+				if !nuke_pos_choosen:
+					nuke_pos_choosen = true
+					
+					randomize_nukes()
+					$nuke/pos.global_position = nuke_1_pos
+					$nuke/pos2.global_position = nuke_2_pos
+					$nuke/pos3.global_position = nuke_3_pos
+					$nuke/pos4.global_position = nuke_4_pos
+					$nuke/pos5.global_position = nuke_5_pos
+					
+					
+					await get_tree().create_timer(1.0).timeout
+					nuke_pos_choosen = false
 	if animation_player.is_playing() and animation_player.current_animation == "Gun":
 		boss_state = "Gun"
 	if animation_player.is_playing() and animation_player.current_animation == "laser":
 		boss_state = "laser"
 	if animation_player.is_playing() and animation_player.current_animation == "particles":
 		boss_state = "particles"
+	if animation_player.is_playing() and animation_player.current_animation == "nuke":
+		boss_state = "nuke"
+		
 	if has_hit:
 		return
 	if $gun.visible:
@@ -146,13 +173,54 @@ func _process(delta: float) -> void:
 					has_hit = true
 					await get_tree().create_timer(0.2).timeout # Using your 1-second timeout here
 					has_hit = false
+	if $nuke.visible:
+		for nuke in nukes:
+			
+			
+			var nuke_pos = nuke.global_position
+			var player_pos = character_body_4d_2.global_position
+			
+			# Calculate absolute distance on each axis individually
+			var diff_x = abs(nuke_pos.x - player_pos.x)
+			var diff_y = abs(nuke_pos.y - player_pos.y)
+			var diff_z = abs(nuke_pos.z - player_pos.z)
+			var diff_w = abs(nuke_pos.w - player_pos.w)
+			
+			# Check your custom 4D dimensions constraints
+			if diff_x < 2 and diff_z < 2 and diff_y < 2 and diff_w < 2:
+				if "health" in character_body_4d_2:
+					character_body_4d_2.health -= 20
+					print("nuclear_ouch", character_body_4d_2.health)
+					
+					has_hit = true
+					await get_tree().create_timer(1.0).timeout # Using your 1-second timeout here
+					has_hit = false
 
-func _on_area_4d_body_entered_area(body) -> void:
-	if body and "health" in body:
-		body.health -= 10
-		print("ouch", body.health)
 
+func get_random_vector4() -> Vector4:
+	var pos_a = bound_one.global_position
+	var pos_b = bound_two.global_position
+	var player_pos = character_body_4d_2.global_position
+	
+	# Generate a random position within 6 units of the player on all axes
+	var target_pos = Vector4(
+		randf_range(player_pos.x - 6.0, player_pos.x + 6.0),
+		randf_range(player_pos.y - 6.0, player_pos.y + 6.0),
+		randf_range(player_pos.z - 6.0, player_pos.z + 6.0),
+		randf_range(player_pos.w - 6.0, player_pos.w + 6.0)
+	)
+	
+	# Clamp the position so it never goes outside your Marker arena bounds
+	target_pos.x = clamp(target_pos.x, min(pos_a.x, pos_b.x), max(pos_a.x, pos_b.x))
+	target_pos.y = clamp(target_pos.y, min(pos_a.y, pos_b.y), max(pos_a.y, pos_b.y))
+	target_pos.z = clamp(target_pos.z, min(pos_a.z, pos_b.z), max(pos_a.z, pos_b.z))
+	target_pos.w = clamp(target_pos.w, min(pos_a.w, pos_b.w), max(pos_a.w, pos_b.w))
+	
+	return target_pos
 
-func _on_area_4d_2_body_entered_area(body: PhysicsBody4D) -> void:
-	body.health -= 10
-	print("ouch", body.health)
+func randomize_nukes() -> void:
+	nuke_1_pos = get_random_vector4()
+	nuke_2_pos = get_random_vector4()
+	nuke_3_pos = get_random_vector4()
+	nuke_4_pos = get_random_vector4()
+	nuke_5_pos = get_random_vector4()

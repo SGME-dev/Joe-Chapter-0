@@ -314,6 +314,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_nq0y5"]
 resource_name = "nuke"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1366,7 +1367,8 @@ shape = SubResource("SphereShape4D_n65jo")
 [node name="nuke" type="Node4D" parent="boss"]
 visible = false
 
-[node name="pos" type="Node4D" parent="boss/nuke"]
+[node name="pos" type="Node4D" parent="boss/nuke" groups=["nuke"]]
+basis = Projection(0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994)
 
 [node name="nuke" type="Area4D" parent="boss/nuke/pos"]
 position = Vector4(0, -13.303698, 0.15144597, 0)
@@ -1395,7 +1397,8 @@ basis = Projection(-0.5702139, 0, 0, 0, 0, 0.48753428, 0, 0, 0, 0, 2.384933, 0, 
 material_override = SubResource("WireMaterial4D_htj63")
 mesh = SubResource("BoxWireMesh4D_f0fes")
 
-[node name="pos2" type="Node4D" parent="boss/nuke"]
+[node name="pos2" type="Node4D" parent="boss/nuke" groups=["nuke"]]
+basis = Projection(0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994)
 
 [node name="nuke" type="Area4D" parent="boss/nuke/pos2"]
 position = Vector4(0, -13.303698, 0.15144597, 0)
@@ -1424,7 +1427,8 @@ basis = Projection(-0.5702139, 0, 0, 0, 0, 0.48753428, 0, 0, 0, 0, 2.384933, 0, 
 material_override = SubResource("WireMaterial4D_htj63")
 mesh = SubResource("BoxWireMesh4D_f0fes")
 
-[node name="pos3" type="Node4D" parent="boss/nuke"]
+[node name="pos3" type="Node4D" parent="boss/nuke" groups=["nuke"]]
+basis = Projection(0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994)
 
 [node name="nuke" type="Area4D" parent="boss/nuke/pos3"]
 position = Vector4(0, -13.303698, 0.15144597, 0)
@@ -1453,7 +1457,8 @@ basis = Projection(-0.5702139, 0, 0, 0, 0, 0.48753428, 0, 0, 0, 0, 2.384933, 0, 
 material_override = SubResource("WireMaterial4D_htj63")
 mesh = SubResource("BoxWireMesh4D_f0fes")
 
-[node name="pos4" type="Node4D" parent="boss/nuke"]
+[node name="pos4" type="Node4D" parent="boss/nuke" groups=["nuke"]]
+basis = Projection(0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994)
 
 [node name="nuke" type="Area4D" parent="boss/nuke/pos4"]
 position = Vector4(0, -13.303698, 0.15144597, 0)
@@ -1482,7 +1487,8 @@ basis = Projection(-0.5702139, 0, 0, 0, 0, 0.48753428, 0, 0, 0, 0, 2.384933, 0, 
 material_override = SubResource("WireMaterial4D_htj63")
 mesh = SubResource("BoxWireMesh4D_f0fes")
 
-[node name="pos5" type="Node4D" parent="boss/nuke"]
+[node name="pos5" type="Node4D" parent="boss/nuke" groups=["nuke"]]
+basis = Projection(0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994)
 
 [node name="nuke" type="Area4D" parent="boss/nuke/pos5"]
 position = Vector4(0, -13.303698, 0.15144597, 0)
@@ -1609,6 +1615,16 @@ position = Vector4(0.63161606, 0.2695181, -0.6689582, 0)
 basis = Projection(0.68592954, 0, 0, 0, 0, 0.15250017, 0, 0, 0, 0, 0.6651119, 0, 0, 0, 0, 1.0000001)
 material_override = SubResource("WireMaterial4D_n65jo")
 mesh = SubResource("BoxPolyMesh4D_nq0y5")
+
+[node name="teleport_range" type="Node4D" parent="boss"]
+
+[node name="teleport_range2" type="Node4D" parent="boss/teleport_range"]
+position = Vector4(28.416153, 0, 16.154938, -5.2373857)
+basis = Projection(0.9999987, 0, 0, 0, 0, 0.9999986, 0, 0, 0, 0, 0.9999987, 0, 0, 0, 0, 0.9999987)
+
+[node name="teleport_range3" type="Node4D" parent="boss/teleport_range"]
+position = Vector4(-28.665298, -0.38615397, -16.3916, 6.7337995)
+basis = Projection(0.999999, 0, 0, 0, 0, 0.99999905, 0, 0, 0, 0, 0.999999, 0, 0, 0, 0, 0.999999)
 
 [node name="StaticBody4D" parent="." instance=ExtResource("5_y2k5v")]
 position = Vector4(0, -1.4296641, 0, 0)
