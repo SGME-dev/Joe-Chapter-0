@@ -6,6 +6,7 @@ var boss_state := "Start"
 @onready var bullet: Node4D = $gun/bullet
 var has_hit: bool = false
 var nuke_pos_choosen: bool = false
+var black_hole_pos_choosen: bool = false
 @onready var lasers := get_tree().get_nodes_in_group("enemy_lasers") 
 @onready var particles := get_tree().get_nodes_in_group("particle") 
 @onready var nukes := get_tree().get_nodes_in_group("nuke") 
@@ -16,6 +17,8 @@ var nuke_2_pos: Vector4
 var nuke_3_pos: Vector4
 var nuke_4_pos: Vector4
 var nuke_5_pos: Vector4
+@onready var black_hole: Node4D = $black_hole
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,7 +31,7 @@ func _process(delta: float) -> void:
 	
 	
 	if Input.is_action_just_pressed("test_boss_state"):
-		animation_player.play("nuke")
+		animation_player.play("black_hole")
 	match boss_state:
 			"Gun":
 				$gun.visible = true
@@ -109,6 +112,22 @@ func _process(delta: float) -> void:
 					
 					await get_tree().create_timer(1.0).timeout
 					nuke_pos_choosen = false
+			"black_hole":
+				$black_hole.visible = true
+				if !black_hole_pos_choosen:
+					black_hole_pos_choosen = true
+					teleport_to_random_marker_range()
+				var pull_speed: float = 4.0
+				var current_pos: Vector4 = character_body_4d_2.global_position
+				var target_pos: Vector4 = black_hole.global_position
+				
+				var dir_to_target: Vector4 = (target_pos - current_pos)
+				var distance = dir_to_target.length()
+				
+				# Only pull if it's not already right on top of the target (prevents jitter)
+				if distance > 0.1:
+					dir_to_target = dir_to_target.normalized()
+					character_body_4d_2.global_position += dir_to_target * pull_speed * delta
 	if animation_player.is_playing() and animation_player.current_animation == "Gun":
 		boss_state = "Gun"
 	if animation_player.is_playing() and animation_player.current_animation == "laser":
@@ -117,6 +136,8 @@ func _process(delta: float) -> void:
 		boss_state = "particles"
 	if animation_player.is_playing() and animation_player.current_animation == "nuke":
 		boss_state = "nuke"
+	if animation_player.is_playing() and animation_player.current_animation == "black_hole":
+		boss_state = "black_hole"
 		
 	if has_hit:
 		return
@@ -195,6 +216,14 @@ func _process(delta: float) -> void:
 					has_hit = true
 					await get_tree().create_timer(1.0).timeout # Using your 1-second timeout here
 					has_hit = false
+	if $black_hole.visible:
+		if character_body_4d_2 and black_hole.global_position.distance_to(character_body_4d_2.global_position) < 2:
+			if "health" in character_body_4d_2:
+				character_body_4d_2.health -= 50
+				print("time_bending-ouch", character_body_4d_2.health)
+				has_hit = true
+				await get_tree().create_timer(2.5).timeout
+				has_hit = false
 
 
 func get_random_vector4() -> Vector4:
@@ -224,3 +253,15 @@ func randomize_nukes() -> void:
 	nuke_3_pos = get_random_vector4()
 	nuke_4_pos = get_random_vector4()
 	nuke_5_pos = get_random_vector4()
+
+func teleport_to_random_marker_range() -> void:
+	var pos_a = bound_one.global_position
+	var pos_b = bound_two.global_position
+	
+	# Pick a random 4D position strictly between the two nodes
+	black_hole.global_position = Vector4(
+		randf_range(min(pos_a.x, pos_b.x), max(pos_a.x, pos_b.x)),
+		randf_range(min(pos_a.y, pos_b.y), max(pos_a.y, pos_b.y)),
+		randf_range(min(pos_a.z, pos_b.z), max(pos_a.z, pos_b.z)),
+		randf_range(min(pos_a.w, pos_b.w), max(pos_a.w, pos_b.w))
+	)
