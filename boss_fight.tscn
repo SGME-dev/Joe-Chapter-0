@@ -1533,8 +1533,8 @@ material_override = SubResource("WireMaterial4D_f0fes")
 mesh = ExtResource("1_10w01")
 
 [node name="melee" type="Node4D" parent="boss"]
-position = Vector4(-1.2677522, 0.16080126, -0.9559497, 0)
-basis = Projection(0.99999964, 0, 0, 0, 0, 0.9999996, 0, 0, 0, 0, 0.99999964, 0, 0, 0, 0, 0.99999964)
+position = Vector4(-0.22859071, 0.16080123, 1.4434367, 0)
+basis = Projection(0.9999991, 0, 0, 0, 0, 0.9999993, 0, 0, 0, 0, 0.9999991, 0, 0, 0, 0, 0.9999991)
 visible = false
 
 [node name="Area4D" type="Area4D" parent="boss/melee"]
@@ -1620,11 +1620,14 @@ mesh = SubResource("BoxPolyMesh4D_nq0y5")
 
 [node name="teleport_range2" type="Node4D" parent="boss/teleport_range"]
 position = Vector4(28.416153, 0, 16.154938, -5.2373857)
-basis = Projection(0.9999987, 0, 0, 0, 0, 0.9999986, 0, 0, 0, 0, 0.9999987, 0, 0, 0, 0, 0.9999987)
+basis = Projection(0.99999857, 0, 0, 0, 0, 0.99999857, 0, 0, 0, 0, 0.99999857, 0, 0, 0, 0, 0.99999857)
 
 [node name="teleport_range3" type="Node4D" parent="boss/teleport_range"]
-position = Vector4(-28.665298, -0.38615397, -16.3916, 6.7337995)
-basis = Projection(0.999999, 0, 0, 0, 0, 0.99999905, 0, 0, 0, 0, 0.999999, 0, 0, 0, 0, 0.999999)
+position = Vector4(-28.150824, 0, -15.653147, 6.7339993)
+basis = Projection(0.99999845, 0, 0, 0, 0, 0.99999905, 0, 0, 0, 0, 0.99999845, 0, 0, 0, 0, 0.99999845)
+
+[node name="teleport" type="Node4D" parent="boss"]
+visible = false
 
 [node name="StaticBody4D" parent="." instance=ExtResource("5_y2k5v")]
 position = Vector4(0, -1.4296641, 0, 0)
