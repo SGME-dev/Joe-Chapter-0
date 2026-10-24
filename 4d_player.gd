@@ -11,7 +11,7 @@ var SPEED = 7.25
 var JUMP_VELOCITY = 10
 @export var vision_distance: float = 20.0
 @export var max_health: int = 100
-var health: int = 100
+var health: float = 100
 var sens: float = 0.0025
 
 # Manual velocity declaration

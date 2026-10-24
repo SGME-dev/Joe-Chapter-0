@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bb5n678jf514w"]
+[gd_scene load_steps=46 format=3 uid="uid://bb5n678jf514w"]
 
 [ext_resource type="ArrayWireMesh4D" uid="uid://bkgg4baxxckw0" path="res://hypersphere.off" id="1_10w01"]
 [ext_resource type="Script" uid="uid://d1gyh8yaxk8ee" path="res://boss_fight.gd" id="1_n65jo"]
@@ -501,12 +501,16 @@ tracks/9/keys = {
 "values": [Vector4(0, 0, 0, 0), Vector4(0, 0.749, 0, 0.749)]
 }
 
+[sub_resource type="Animation" id="Animation_fl1h7"]
+resource_name = "blank_slate_to_stop_minion_spawning"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n65jo"]
 _data = {
 &"Gun": SubResource("Animation_kcgai"),
 &"RESET": SubResource("Animation_10w01"),
 &"Teleport": SubResource("Animation_y2k5v"),
 &"black_hole": SubResource("Animation_47mo0"),
+&"blank_slate_to_stop_minion_spawning": SubResource("Animation_fl1h7"),
 &"laser": SubResource("Animation_bhtn8"),
 &"melee": SubResource("Animation_f0fes"),
 &"minions": SubResource("Animation_htj63"),
@@ -589,7 +593,8 @@ albedo_color = Color(0.45840502, 0.45840508, 0.45840502, 1)
 [node name="Boss_fight" type="Node4D"]
 
 [node name="boss" type="CharacterBody4D" parent="."]
-basis = Projection(1, 0, 0, 0, 0, 2.5241098, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+position = Vector4(0, 2.4707441, 0, 0)
+basis = Projection(0.99999994, 0, 0, 0, 0, 2.5241096, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994)
 script = ExtResource("1_n65jo")
 
 [node name="AnimationTree" type="AnimationTree" parent="boss"]
@@ -1633,6 +1638,7 @@ visible = false
 [node name="minion" parent="boss" instance=ExtResource("4_y2k5v")]
 position = Vector4(-4.795855, 0.165678, 0, 0)
 basis = Projection(0.24999994, 0, 0, 0, 0, 0.12499997, 0, 0, 0, 0, 0.24999994, 0, 0, 0, 0, 0.24999994)
+visible = false
 
 [node name="StaticBody4D" parent="." instance=ExtResource("5_y2k5v")]
 position = Vector4(0, -1.4296641, 0, 0)

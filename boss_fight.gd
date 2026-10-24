@@ -1,4 +1,4 @@
-extends Node4D
+extends CharacterBody4D
 
 var boss_state := "Start"
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -19,7 +19,12 @@ var nuke_3_pos: Vector4
 var nuke_4_pos: Vector4
 var nuke_5_pos: Vector4
 @onready var black_hole: Node4D = $black_hole
-
+var velocity: Vector4 = Vector4.ZERO
+static var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity") as float
+const MINION_SCENE = preload("res://minion.tscn")
+var minion_cooldown := false
+var minions := 0
+var stop_minion_spawning := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -29,10 +34,18 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
+	var is_actually_on_floor = is_on_floor()
+	if is_actually_on_floor:
+		if velocity.y < 0:
+			velocity.y = -0.1
+			
+	else:
+		velocity.y -= gravity * delta
+	
 	
 	
 	if Input.is_action_just_pressed("test_boss_state"):
-		animation_player.play("Teleport")
+		animation_player.play("minions")
 	match boss_state:
 			"Gun":
 				$gun.visible = true
@@ -193,6 +206,23 @@ func _process(delta: float) -> void:
 					global_position = teleport_position
 					await get_tree().create_timer(1.0).timeout
 					teleported = false
+			"minions":
+				$spawner.visible = true
+				if minions == 0 and stop_minion_spawning:
+					stop_minion_spawning = false
+					animation_player.play("blank_slate_to_stop_minion_spawning")
+				if stop_minion_spawning:
+					return
+				if !minion_cooldown:
+					minion_cooldown = true
+					spawn_minion()
+					minions += 1
+					await get_tree().create_timer(5.0).timeout
+					minion_cooldown = false
+					if minions == 10:
+						stop_minion_spawning = true
+					return
+				
 	if animation_player.is_playing() and animation_player.current_animation == "Gun":
 		boss_state = "Gun"
 	if animation_player.is_playing() and animation_player.current_animation == "laser":
@@ -207,7 +237,10 @@ func _process(delta: float) -> void:
 		boss_state = "melee"
 	if animation_player.is_playing() and animation_player.current_animation == "Teleport":
 		boss_state = "Teleport"
-		
+	if animation_player.is_playing() and animation_player.current_animation == "minions":
+		boss_state = "minions"
+	if animation_player.is_playing() and animation_player.current_animation == "blank_slate_to_stop_minion_spawning":
+		boss_state = "blank_slate_to_stop_minion_spawning"
 	if has_hit:
 		return
 	if $gun.visible:
@@ -309,6 +342,28 @@ func _process(delta: float) -> void:
 				has_hit = true
 				await get_tree().create_timer(1).timeout
 				has_hit = false
+	var motion = velocity * delta
+	var collision = move_and_collide(motion)
+	
+	if collision == null:
+		position += motion
+	else:
+		var travel = collision.get_travel() if collision.has_method("get_travel") else Vector4.ZERO
+		var normal = collision.get_normal()
+		
+		
+		position += travel
+		
+		
+		
+		var dot = velocity.x * normal.x + velocity.y * normal.y + velocity.z * normal.z + velocity.w * normal.w
+		
+		
+		if dot < 0:
+			velocity = velocity - (normal * dot)
+			
+			
+			position += (normal * 0.001)
 
 
 func get_random_vector4() -> Vector4:
@@ -371,3 +426,8 @@ func teleport_to_random_marker_range() -> void:
 		randf_range(min(pos_a.z, pos_b.z), max(pos_a.z, pos_b.z)),
 		randf_range(min(pos_a.w, pos_b.w), max(pos_a.w, pos_b.w))
 	)
+
+func spawn_minion() -> void:
+	var minion_scene = MINION_SCENE.instantiate()
+	add_child(minion_scene)
+	minion_scene.global_position = $spawner/spawnerpos/MeshInstance4D7.global_position

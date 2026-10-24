@@ -1,10 +1,12 @@
 extends CharacterBody4D
 
-@onready var character_body_4d_2: player = $"../../CharacterBody4D2"
+class_name minion
 
+@onready var character_body_4d_2: player = $"../../CharacterBody4D2"
 var has_hit := false
 var velocity: Vector4 = Vector4.ZERO
 static var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity") as float
+var health := 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,6 +15,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if !visible:
+		return
 	var is_actually_on_floor = is_on_floor()
 	if is_actually_on_floor:
 		if velocity.y < 0:
@@ -103,8 +107,8 @@ func _process(delta: float) -> void:
 		return
 	if character_body_4d_2 and global_position.distance_to(character_body_4d_2.global_position) < 2.5:
 			if "health" in character_body_4d_2:
-				character_body_4d_2.health -= 1
-				print("slashing-ouch", character_body_4d_2.health)
+				character_body_4d_2.health -= 0.1
+				print("tiny-ouch", character_body_4d_2.health)
 				has_hit = true
 				await get_tree().create_timer(0.1).timeout
 				has_hit = false
