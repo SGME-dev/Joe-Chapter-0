@@ -25,10 +25,18 @@ const MINION_SCENE = preload("res://minion.tscn")
 var minion_cooldown := false
 var minions := 0
 var stop_minion_spawning := false
+@onready var animation_tree: AnimationTree = $AnimationTree
+@onready var state_playback = $AnimationTree.get("parameters/playback")
+var next_attack
+# Get the active node directly from your state machine graph
+
+
+const ALL_ATTACK_STATES = ["Teleport", "Gun", "black_hole", "laser", "particles", "melee", "nuke", "minions"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	animation_tree.active = true
+	_start_boss_phase_loop()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,13 +50,24 @@ func _process(delta: float) -> void:
 	else:
 		velocity.y -= gravity * delta
 	
-	
-	
+	boss_state = state_playback.get_current_node()
 	if Input.is_action_just_pressed("test_boss_state"):
 		animation_player.play("minions")
 	match boss_state:
 			"Gun":
 				$gun.visible = true
+				$laser.visible = false
+				$particles.visible = false
+				$nuke.visible = false
+				$black_hole.visible = false
+				$melee.visible = false
+				$spawner.visible = false
+				$teleport.visible = false
+				nuke_pos_choosen = false
+				black_hole_pos_choosen = false
+				stop_minion_spawning = false
+				minion_cooldown = false
+				teleported = false
 				# 1. Calculate 4D direction to player
 				var current_pos: Vector4 = global_position
 				var target_pos: Vector4 = character_body_4d_2.global_position
@@ -92,10 +111,35 @@ func _process(delta: float) -> void:
 				
 				# 5. Apply the projection basis to rotate the enemy smoothly
 				basis = Projection(right_x, up_y, forward_z, ana_w)
+				
 			"laser":
+				$gun.visible = false
 				$laser.visible = true
+				$particles.visible = false
+				$nuke.visible = false
+				$black_hole.visible = false
+				$melee.visible = false
+				$spawner.visible = false
+				$teleport.visible = false
+				nuke_pos_choosen = false
+				black_hole_pos_choosen = false
+				stop_minion_spawning = false
+				minion_cooldown = false
+				teleported = false
 			"particles":
 				$particles.visible = true
+				$gun.visible = false
+				$laser.visible = false
+				$nuke.visible = false
+				$black_hole.visible = false
+				$melee.visible = false
+				$spawner.visible = false
+				$teleport.visible = false
+				nuke_pos_choosen = false
+				black_hole_pos_choosen = false
+				stop_minion_spawning = false
+				minion_cooldown = false
+				teleported = false
 				var speed: float = 3.0
 				var current_pos: Vector4 = global_position
 				var target_pos: Vector4 = character_body_4d_2.global_position
@@ -113,6 +157,17 @@ func _process(delta: float) -> void:
 						global_position += dir_to_player * speed * delta
 			"nuke":
 				$nuke.visible = true
+				$gun.visible = false
+				$laser.visible = false
+				$particles.visible = false
+				$black_hole.visible = false
+				$melee.visible = false
+				$spawner.visible = false
+				$teleport.visible = false
+				black_hole_pos_choosen = false
+				teleported = false
+				stop_minion_spawning = false
+				minion_cooldown = false
 				if !nuke_pos_choosen:
 					nuke_pos_choosen = true
 					
@@ -128,6 +183,17 @@ func _process(delta: float) -> void:
 					nuke_pos_choosen = false
 			"black_hole":
 				$black_hole.visible = true
+				$gun.visible = false
+				$laser.visible = false
+				$particles.visible = false
+				$nuke.visible = false
+				$melee.visible = false
+				$spawner.visible = false
+				$teleport.visible = false
+				nuke_pos_choosen = false
+				teleported = false
+				stop_minion_spawning = false
+				minion_cooldown = false
 				if !black_hole_pos_choosen:
 					black_hole_pos_choosen = true
 					teleport_to_random_marker_range()
@@ -144,6 +210,18 @@ func _process(delta: float) -> void:
 					character_body_4d_2.global_position += dir_to_target * pull_speed * delta
 			"melee":
 				$melee.visible = true
+				$gun.visible = false
+				$laser.visible = false
+				$particles.visible = false
+				$nuke.visible = false
+				$black_hole.visible = false
+				$spawner.visible = false
+				$teleport.visible = false
+				nuke_pos_choosen = false
+				black_hole_pos_choosen = false
+				stop_minion_spawning = false
+				minion_cooldown = false
+				teleported = false
 				var speed: float = 3.0
 				var current_pos: Vector4 = global_position
 				var target_pos: Vector4 = character_body_4d_2.global_position
@@ -200,6 +278,17 @@ func _process(delta: float) -> void:
 				basis = Projection(right_x, up_y, forward_z, ana_w)
 			"Teleport":
 				$teleport.visible = true
+				$gun.visible = false
+				$laser.visible = false
+				$particles.visible = false
+				$nuke.visible = false
+				$black_hole.visible = false
+				$melee.visible = false
+				$spawner.visible = false
+				nuke_pos_choosen = false
+				black_hole_pos_choosen = false
+				stop_minion_spawning = false
+				minion_cooldown = false
 				if !teleported:
 					teleported = true
 					var teleport_position := get_random_vector4_for_teleport()
@@ -208,6 +297,16 @@ func _process(delta: float) -> void:
 					teleported = false
 			"minions":
 				$spawner.visible = true
+				$gun.visible = false
+				$laser.visible = false
+				$particles.visible = false
+				$nuke.visible = false
+				$black_hole.visible = false
+				$melee.visible = false
+				$teleport.visible = false
+				nuke_pos_choosen = false
+				black_hole_pos_choosen = false
+				teleported = false
 				if minions == 0 and stop_minion_spawning:
 					stop_minion_spawning = false
 					animation_player.play("blank_slate_to_stop_minion_spawning")
@@ -223,24 +322,6 @@ func _process(delta: float) -> void:
 						stop_minion_spawning = true
 					return
 				
-	if animation_player.is_playing() and animation_player.current_animation == "Gun":
-		boss_state = "Gun"
-	if animation_player.is_playing() and animation_player.current_animation == "laser":
-		boss_state = "laser"
-	if animation_player.is_playing() and animation_player.current_animation == "particles":
-		boss_state = "particles"
-	if animation_player.is_playing() and animation_player.current_animation == "nuke":
-		boss_state = "nuke"
-	if animation_player.is_playing() and animation_player.current_animation == "black_hole":
-		boss_state = "black_hole"
-	if animation_player.is_playing() and animation_player.current_animation == "melee":
-		boss_state = "melee"
-	if animation_player.is_playing() and animation_player.current_animation == "Teleport":
-		boss_state = "Teleport"
-	if animation_player.is_playing() and animation_player.current_animation == "minions":
-		boss_state = "minions"
-	if animation_player.is_playing() and animation_player.current_animation == "blank_slate_to_stop_minion_spawning":
-		boss_state = "blank_slate_to_stop_minion_spawning"
 	if has_hit:
 		return
 	if $gun.visible:
@@ -431,3 +512,22 @@ func spawn_minion() -> void:
 	var minion_scene = MINION_SCENE.instantiate()
 	add_child(minion_scene)
 	minion_scene.global_position = $spawner/spawnerpos/MeshInstance4D7.global_position
+
+func _start_boss_phase_loop() -> void:
+	while true:
+		
+		
+		
+		# 1. Travel to your central hub node from the graph
+		state_playback.travel("choose_phase")
+		
+		# 2. Pick a random attack state from your array
+		next_attack = ALL_ATTACK_STATES.pick_random()
+		
+		# Optional brief pause or immediate transition to the chosen attack
+		state_playback.travel(next_attack)
+		print("Boss State: ",boss_state)
+		print("Next attack: ", next_attack)
+		# Wait 30 seconds
+		await get_tree().create_timer(10.0).timeout
+		state_playback.travel("next_phase")
