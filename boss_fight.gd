@@ -52,7 +52,7 @@ func _process(delta: float) -> void:
 	
 	boss_state = state_playback.get_current_node()
 	if Input.is_action_just_pressed("test_boss_state"):
-		animation_player.play("minions")
+		animation_player.play("choose_phase")
 	match boss_state:
 			"Gun":
 				$gun.visible = true
@@ -111,7 +111,7 @@ func _process(delta: float) -> void:
 				
 				# 5. Apply the projection basis to rotate the enemy smoothly
 				basis = Projection(right_x, up_y, forward_z, ana_w)
-				
+				$".".scale = Vector4(1, 2.524, 1, 1)
 			"laser":
 				$gun.visible = false
 				$laser.visible = true
@@ -126,6 +126,7 @@ func _process(delta: float) -> void:
 				stop_minion_spawning = false
 				minion_cooldown = false
 				teleported = false
+				$".".scale = Vector4(1, 2.524, 1, 1)
 			"particles":
 				$particles.visible = true
 				$gun.visible = false
@@ -155,6 +156,7 @@ func _process(delta: float) -> void:
 					# Only move if it's outside the stopping distance
 					if distance > 2.0:
 						global_position += dir_to_player * speed * delta
+				$".".scale = Vector4(1, 2.524, 1, 1)
 			"nuke":
 				$nuke.visible = true
 				$gun.visible = false
@@ -181,6 +183,7 @@ func _process(delta: float) -> void:
 					
 					await get_tree().create_timer(1.0).timeout
 					nuke_pos_choosen = false
+				$".".scale = Vector4(1, 2.524, 1, 1)
 			"black_hole":
 				$black_hole.visible = true
 				$gun.visible = false
@@ -208,6 +211,7 @@ func _process(delta: float) -> void:
 				if distance > 0.1:
 					dir_to_target = dir_to_target.normalized()
 					character_body_4d_2.global_position += dir_to_target * pull_speed * delta
+				$".".scale = Vector4(1, 2.524, 1, 1)
 			"melee":
 				$melee.visible = true
 				$gun.visible = false
@@ -276,6 +280,7 @@ func _process(delta: float) -> void:
 				
 				# 5. Apply the projection basis to rotate the enemy smoothly
 				basis = Projection(right_x, up_y, forward_z, ana_w)
+				$".".scale = Vector4(1, 2.524, 1, 1)
 			"Teleport":
 				$teleport.visible = true
 				$gun.visible = false
@@ -295,6 +300,7 @@ func _process(delta: float) -> void:
 					global_position = teleport_position
 					await get_tree().create_timer(1.0).timeout
 					teleported = false
+				$".".scale = Vector4(1, 2.524, 1, 1)
 			"minions":
 				$spawner.visible = true
 				$gun.visible = false
@@ -310,6 +316,7 @@ func _process(delta: float) -> void:
 				if minions == 0 and stop_minion_spawning:
 					stop_minion_spawning = false
 					animation_player.play("blank_slate_to_stop_minion_spawning")
+				$".".scale = Vector4(1, 2.524, 1, 1)
 				if stop_minion_spawning:
 					return
 				if !minion_cooldown:
@@ -515,11 +522,6 @@ func spawn_minion() -> void:
 
 func _start_boss_phase_loop() -> void:
 	while true:
-		
-		
-		
-		# 1. Travel to your central hub node from the graph
-		state_playback.travel("choose_phase")
 		
 		# 2. Pick a random attack state from your array
 		next_attack = ALL_ATTACK_STATES.pick_random()

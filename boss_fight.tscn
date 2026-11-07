@@ -657,34 +657,42 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fs57i"]
 xfade_time = 5.0
 switch_mode = 2
+advance_mode = 0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l56fj"]
 xfade_time = 5.0
 switch_mode = 2
+advance_mode = 0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8psc0"]
 xfade_time = 5.0
 switch_mode = 2
+advance_mode = 0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uuehc"]
 xfade_time = 5.0
 switch_mode = 2
+advance_mode = 0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ikcqv"]
 xfade_time = 5.0
 switch_mode = 2
+advance_mode = 0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1fp8a"]
 xfade_time = 5.0
 switch_mode = 2
+advance_mode = 0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wbwnj"]
 xfade_time = 5.0
 switch_mode = 2
+advance_mode = 0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1qusn"]
 xfade_time = 5.0
 switch_mode = 2
+advance_mode = 0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p7r8s"]
 advance_mode = 2
@@ -716,7 +724,7 @@ states/nuke/position = Vector2(1174, 405)
 states/particles/node = SubResource("AnimationNodeAnimation_odjl2")
 states/particles/position = Vector2(1085, 286)
 transitions = ["Start", "choose_phase", SubResource("AnimationNodeStateMachineTransition_51gxd"), "choose_phase", "particles", SubResource("AnimationNodeStateMachineTransition_wkce8"), "choose_phase", "Gun", SubResource("AnimationNodeStateMachineTransition_ecurt"), "choose_phase", "Teleport", SubResource("AnimationNodeStateMachineTransition_bgy2h"), "choose_phase", "black_hole", SubResource("AnimationNodeStateMachineTransition_p33kh"), "choose_phase", "laser", SubResource("AnimationNodeStateMachineTransition_1chj5"), "choose_phase", "melee", SubResource("AnimationNodeStateMachineTransition_xa04f"), "choose_phase", "minions", SubResource("AnimationNodeStateMachineTransition_wagmh"), "nuke", "next_phase", SubResource("AnimationNodeStateMachineTransition_fs57i"), "minions", "next_phase", SubResource("AnimationNodeStateMachineTransition_l56fj"), "melee", "next_phase", SubResource("AnimationNodeStateMachineTransition_8psc0"), "laser", "next_phase", SubResource("AnimationNodeStateMachineTransition_uuehc"), "black_hole", "next_phase", SubResource("AnimationNodeStateMachineTransition_ikcqv"), "Teleport", "next_phase", SubResource("AnimationNodeStateMachineTransition_1fp8a"), "Gun", "next_phase", SubResource("AnimationNodeStateMachineTransition_wbwnj"), "particles", "next_phase", SubResource("AnimationNodeStateMachineTransition_1qusn"), "next_phase", "choose_phase", SubResource("AnimationNodeStateMachineTransition_p7r8s"), "choose_phase", "nuke", SubResource("AnimationNodeStateMachineTransition_47mo0")]
-graph_offset = Vector2(0, 189.64607)
+graph_offset = Vector2(0, 83.25924)
 
 [node name="Boss_fight" type="Node4D"]
 
