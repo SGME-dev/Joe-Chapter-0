@@ -28,6 +28,7 @@ var stop_minion_spawning := false
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_playback = $AnimationTree.get("parameters/playback")
 var next_attack
+var active_minions: Array = []
 # Get the active node directly from your state machine graph
 
 
@@ -51,6 +52,8 @@ func _process(delta: float) -> void:
 		velocity.y -= gravity * delta
 	
 	boss_state = state_playback.get_current_node()
+	if !boss_state == "minions":
+		clear_all_minions()
 	if Input.is_action_just_pressed("test_boss_state"):
 		animation_player.play("choose_phase")
 	match boss_state:
@@ -127,6 +130,8 @@ func _process(delta: float) -> void:
 				minion_cooldown = false
 				teleported = false
 				$".".scale = Vector4(1, 2.524, 1, 1)
+				$".".global_position = Vector4(0, 1.762, 0, 0)
+				$".".rotation_degrees = AABB(Vector3.ZERO, Vector3.ZERO)
 			"particles":
 				$particles.visible = true
 				$gun.visible = false
@@ -184,6 +189,8 @@ func _process(delta: float) -> void:
 					await get_tree().create_timer(1.0).timeout
 					nuke_pos_choosen = false
 				$".".scale = Vector4(1, 2.524, 1, 1)
+				$".".global_position = Vector4(0, 1.762, 0, 0)
+				$".".rotation_degrees = AABB(Vector3.ZERO, Vector3.ZERO)
 			"black_hole":
 				$black_hole.visible = true
 				$gun.visible = false
@@ -212,6 +219,8 @@ func _process(delta: float) -> void:
 					dir_to_target = dir_to_target.normalized()
 					character_body_4d_2.global_position += dir_to_target * pull_speed * delta
 				$".".scale = Vector4(1, 2.524, 1, 1)
+				$".".global_position = Vector4(0, 1.762, 0, 0)
+				$".".rotation_degrees = AABB(Vector3.ZERO, Vector3.ZERO)
 			"melee":
 				$melee.visible = true
 				$gun.visible = false
@@ -301,6 +310,7 @@ func _process(delta: float) -> void:
 					await get_tree().create_timer(1.0).timeout
 					teleported = false
 				$".".scale = Vector4(1, 2.524, 1, 1)
+				$".".rotation_degrees = AABB(Vector3.ZERO, Vector3.ZERO)
 			"minions":
 				$spawner.visible = true
 				$gun.visible = false
@@ -313,17 +323,19 @@ func _process(delta: float) -> void:
 				nuke_pos_choosen = false
 				black_hole_pos_choosen = false
 				teleported = false
-				if minions == 0 and stop_minion_spawning:
-					stop_minion_spawning = false
-					animation_player.play("blank_slate_to_stop_minion_spawning")
+				#if minions == 0 and stop_minion_spawning:
+					#stop_minion_spawning = false
+					#animation_player.play("blank_slate_to_stop_minion_spawning")
 				$".".scale = Vector4(1, 2.524, 1, 1)
+				$".".global_position = Vector4(0, 1.762, 0, 0)
+				$".".rotation_degrees = AABB(Vector3.ZERO, Vector3.ZERO)
 				if stop_minion_spawning:
 					return
 				if !minion_cooldown:
 					minion_cooldown = true
 					spawn_minion()
 					minions += 1
-					await get_tree().create_timer(5.0).timeout
+					await get_tree().create_timer(1.0).timeout
 					minion_cooldown = false
 					if minions == 10:
 						stop_minion_spawning = true
@@ -519,6 +531,9 @@ func spawn_minion() -> void:
 	var minion_scene = MINION_SCENE.instantiate()
 	add_child(minion_scene)
 	minion_scene.global_position = $spawner/spawnerpos/MeshInstance4D7.global_position
+	
+	# Add this new minion to our tracking list
+	active_minions.append(minion_scene)
 
 func _start_boss_phase_loop() -> void:
 	while true:
@@ -533,3 +548,16 @@ func _start_boss_phase_loop() -> void:
 		# Wait 30 seconds
 		await get_tree().create_timer(10.0).timeout
 		state_playback.travel("next_phase")
+
+func clear_all_minions() -> void:
+	for minion_scene in active_minions:
+		if is_instance_valid(minion_scene):
+			minion_scene.queue_free()
+	
+	# Clear out the array list so it's empty again
+	active_minions.clear()
+	
+	# Reset your minion counter flags if needed
+	minions = 0
+	stop_minion_spawning = false
+	minion_cooldown = false
