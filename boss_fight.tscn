@@ -627,31 +627,24 @@ animation = &"particles"
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wkce8"]
-switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ecurt"]
-switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bgy2h"]
-switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p33kh"]
-switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1chj5"]
-switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xa04f"]
-switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wagmh"]
-switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fs57i"]
@@ -698,10 +691,10 @@ advance_mode = 0
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_47mo0"]
-switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_tt1ny"]
+states/End/position = Vector2(900, 102)
 states/Gun/node = SubResource("AnimationNodeAnimation_cgdq2")
 states/Gun/position = Vector2(887, 277)
 states/Start/position = Vector2(1683, 186)
@@ -724,11 +717,11 @@ states/nuke/position = Vector2(1174, 405)
 states/particles/node = SubResource("AnimationNodeAnimation_odjl2")
 states/particles/position = Vector2(1085, 286)
 transitions = ["Start", "choose_phase", SubResource("AnimationNodeStateMachineTransition_51gxd"), "choose_phase", "particles", SubResource("AnimationNodeStateMachineTransition_wkce8"), "choose_phase", "Gun", SubResource("AnimationNodeStateMachineTransition_ecurt"), "choose_phase", "Teleport", SubResource("AnimationNodeStateMachineTransition_bgy2h"), "choose_phase", "black_hole", SubResource("AnimationNodeStateMachineTransition_p33kh"), "choose_phase", "laser", SubResource("AnimationNodeStateMachineTransition_1chj5"), "choose_phase", "melee", SubResource("AnimationNodeStateMachineTransition_xa04f"), "choose_phase", "minions", SubResource("AnimationNodeStateMachineTransition_wagmh"), "nuke", "next_phase", SubResource("AnimationNodeStateMachineTransition_fs57i"), "minions", "next_phase", SubResource("AnimationNodeStateMachineTransition_l56fj"), "melee", "next_phase", SubResource("AnimationNodeStateMachineTransition_8psc0"), "laser", "next_phase", SubResource("AnimationNodeStateMachineTransition_uuehc"), "black_hole", "next_phase", SubResource("AnimationNodeStateMachineTransition_ikcqv"), "Teleport", "next_phase", SubResource("AnimationNodeStateMachineTransition_1fp8a"), "Gun", "next_phase", SubResource("AnimationNodeStateMachineTransition_wbwnj"), "particles", "next_phase", SubResource("AnimationNodeStateMachineTransition_1qusn"), "next_phase", "choose_phase", SubResource("AnimationNodeStateMachineTransition_p7r8s"), "choose_phase", "nuke", SubResource("AnimationNodeStateMachineTransition_47mo0")]
-graph_offset = Vector2(0, 83.25924)
+graph_offset = Vector2(0, -63.046684)
 
 [node name="Boss_fight" type="Node4D"]
 
-[node name="boss" type="CharacterBody4D" parent="."]
+[node name="boss" type="CharacterBody4D" parent="." groups=["enemy"]]
 position = Vector4(0, 1.762, 0, 0)
 basis = Projection(0.99999994, 0, 0, 0, 0, 2.5241096, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994)
 script = ExtResource("1_n65jo")
@@ -1756,11 +1749,11 @@ mesh = SubResource("BoxPolyMesh4D_nq0y5")
 [node name="teleport_range" type="Node4D" parent="boss"]
 
 [node name="teleport_range2" type="Node4D" parent="boss/teleport_range"]
-position = Vector4(28.416155, -0.49956766, 16.154938, -5.2373853)
+position = Vector4(28.416, 1.762, 16.155, -5.237)
 basis = Projection(0.99999857, 0, 0, 0, 0, 0.9999986, 0, 0, 0, 0, 0.99999857, 0, 0, 0, 0, 0.99999857)
 
 [node name="teleport_range3" type="Node4D" parent="boss/teleport_range"]
-position = Vector4(-28.150826, -0.34761134, -15.653148, 6.7339997)
+position = Vector4(-28.151, 1.762, -15.653, 6.734)
 basis = Projection(0.99999845, 0, 0, 0, 0, 0.9999991, 0, 0, 0, 0, 0.99999845, 0, 0, 0, 0, 0.99999845)
 
 [node name="teleport" type="Node4D" parent="boss"]
@@ -1779,3 +1772,10 @@ basis = Projection(57.438965, 0, 0, 0, 0, 1, 0, 0, 0, 0, 32.984676, 0, 0, 0, 0, 
 
 [node name="CharacterBody4D2" parent="." groups=["player"] instance=ExtResource("6_y2k5v")]
 position = Vector4(-24.355995, 3.236228, 13.164572, 0)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 375.0
+offset_top = 3.0
+offset_right = 415.0
+offset_bottom = 26.0
+text = "Boss health: "

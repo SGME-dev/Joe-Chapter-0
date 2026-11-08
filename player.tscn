@@ -16,7 +16,7 @@ albedo_color = Color(0, 1, 1, 1)
 [sub_resource type="BoxWireMesh4D" id="BoxWireMesh4D_onrkg"]
 material = SubResource("WireMaterial4D_onrkg")
 
-[sub_resource type="SphereShape4D" id="SphereShape4D_i3pqv"]
+[sub_resource type="BoxShape4D" id="BoxShape4D_hqtel"]
 
 [node name="CharacterBody4D" type="CharacterBody4D"]
 basis = Projection(1, 0, 0, 0, 0, 2.494, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
@@ -91,15 +91,19 @@ visible = false
 visible = false
 
 [node name="Area4D2" type="Area4D" parent="."]
+position = Vector4(0, -0.033987463, 0.16401511, 0)
+basis = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.5966453, 0, 0, 0, 0, 1)
 script = ExtResource("4_hqtel")
 
 [node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D2"]
-position = Vector4(0, -0.019737814, 0, 0)
-basis = Projection(2, 0, 0, 0, 0, 1.324, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1.324)
-shape = SubResource("SphereShape4D_i3pqv")
+position = Vector4(0, -0.03398744, 0.60430944, 0)
+basis = Projection(1.9999999, 0, 0, 0, 0, 1.091432, 0, 0, 0, 0, 2.183162, 0, 0, 0, 0, 1.324)
+shape = SubResource("BoxShape4D_hqtel")
 
 [connection signal="body_entered_area" from="Area4D" to="." method="_on_area_4d_body_entered_area"]
 [connection signal="body_exited_area" from="Area4D" to="." method="_on_area_4d_body_exited_area"]
+[connection signal="body_entered_area" from="Area4D2" to="Area4D2" method="_on_body_entered_area"]
+[connection signal="body_exited_area" from="Area4D2" to="Area4D2" method="_on_body_exited_area"]
 
 [editable path="human"]
 [editable path="human/body1"]

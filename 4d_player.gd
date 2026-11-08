@@ -13,7 +13,8 @@ var JUMP_VELOCITY = 10
 @export var max_health: int = 100
 var health: float = 100
 var sens: float = 0.0025
-
+@export var attack_range: float = 3
+var hit := false
 # Manual velocity declaration
 var velocity: Vector4 = Vector4.ZERO
 
@@ -37,9 +38,12 @@ func _ready() -> void:
 	if $Camera_Controller/Camera_Target/Camera4D2.current == true:
 		$human.visible = true
 		$MeshInstance4D.visible = true
+	
 
 
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("hit"):
+		perform_attack_check()
 	if Dialogic.VAR.playing == true:
 		movement = false
 	else:
@@ -250,3 +254,19 @@ func _set_camera_basis_from_angle() -> void :
 
 func _on_area_4d_body_exited_area(body: PhysicsBody4D) -> void:
 	pass # Replace with function body.
+
+
+func perform_attack_check() -> void:
+	for target in get_tree().get_nodes_in_group("enemy"):
+		if is_instance_valid(target):
+			var distance = global_position.distance_to(target.global_position)
+			if distance <= attack_range:
+				if "health" in target and !hit:
+					target.health -= 1
+				if "hits" in target and !hit:
+					target.hits += 1
+					
+	
+	hit = true
+	await get_tree().create_timer(0.1).timeout
+	hit = false

@@ -1,5 +1,7 @@
 extends CharacterBody4D
 
+@export var max_health := 500
+var health := max_health
 var boss_state := "Start"
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var character_body_4d_2: player = $"../CharacterBody4D2"
@@ -29,6 +31,7 @@ var stop_minion_spawning := false
 @onready var state_playback = $AnimationTree.get("parameters/playback")
 var next_attack
 var active_minions: Array = []
+var hits := 0
 # Get the active node directly from your state machine graph
 
 
@@ -37,12 +40,11 @@ const ALL_ATTACK_STATES = ["Teleport", "Gun", "black_hole", "laser", "particles"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	animation_tree.active = true
-	_start_boss_phase_loop()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
+	_start_boss_phase_loop()
 	var is_actually_on_floor = is_on_floor()
 	if is_actually_on_floor:
 		if velocity.y < 0:
@@ -51,6 +53,7 @@ func _process(delta: float) -> void:
 	else:
 		velocity.y -= gravity * delta
 	
+	$"../Label".text = str("Boss health: ", health)
 	boss_state = state_playback.get_current_node()
 	if !boss_state == "minions":
 		clear_all_minions()
@@ -536,8 +539,9 @@ func spawn_minion() -> void:
 	active_minions.append(minion_scene)
 
 func _start_boss_phase_loop() -> void:
-	while true:
-		
+	if hits == 10:
+		hits = 0
+		state_playback.travel("next_phase")
 		# 2. Pick a random attack state from your array
 		next_attack = ALL_ATTACK_STATES.pick_random()
 		
@@ -546,8 +550,7 @@ func _start_boss_phase_loop() -> void:
 		print("Boss State: ",boss_state)
 		print("Next attack: ", next_attack)
 		# Wait 30 seconds
-		await get_tree().create_timer(10.0).timeout
-		state_playback.travel("next_phase")
+		
 
 func clear_all_minions() -> void:
 	for minion_scene in active_minions:
