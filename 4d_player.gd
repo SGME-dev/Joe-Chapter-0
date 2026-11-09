@@ -15,6 +15,7 @@ var health: float = 100
 var sens: float = 0.0025
 @export var attack_range: float = 3
 var hit := false
+var console_sens := 0.04
 # Manual velocity declaration
 var velocity: Vector4 = Vector4.ZERO
 
@@ -42,6 +43,16 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	# Read the right analog stick axes directly (Device 0 is the main player controller)
+	var right_x = Input.get_joy_axis(0, JOY_AXIS_RIGHT_X)
+	
+	# Apply a small deadzone so the camera doesn't drift when you let go of the stick
+	var deadzone = 0.15
+	
+	if abs(right_x) > deadzone:
+		# Scale by delta and sens so it feels smooth and matches your mouse speed
+		_rotate_cam_yaw(right_x * console_sens * delta * 60.0)
+	
 	if Input.is_action_just_pressed("hit"):
 		perform_attack_check()
 	if Dialogic.VAR.playing == true:
@@ -188,7 +199,13 @@ func _input(event: InputEvent) -> void:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
+	if event is InputEventJoypadMotion:
+		# Axis 2 is usually Right Stick Horizontal (X), Axis 3 is Right Stick Vertical (Y)
+		# Check your specific controller mappings in Project Settings -> Input Map
+		if event.axis == JOY_AXIS_RIGHT_X:
+			if abs(event.axis_value) > 0.1: # Deadzone
+				_rotate_cam_yaw(event.axis_value * sens * 0.5)
+		
 	
 	
 	
