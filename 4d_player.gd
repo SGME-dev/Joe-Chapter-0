@@ -2,6 +2,7 @@ extends CharacterBody4D
 
 class_name player
 
+var device_id: int = 0
 @onready var camera: Camera4D = $Camera_Controller/Camera_Target/Camera4D
 @onready var camera_2: Camera4D = $Camera_Controller/Camera_Target/Camera4D2
 var camera_pitch: float = 0.0
@@ -43,6 +44,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("vibrate"):
+		Input.start_joy_vibration(0, 0.5, 0.8, 1.0)
 	# Read the right analog stick axes directly (Device 0 is the main player controller)
 	var right_x = Input.get_joy_axis(0, JOY_AXIS_RIGHT_X)
 	
@@ -105,7 +108,7 @@ func _physics_process(delta: float) -> void:
 		
 		if is_actually_on_floor or abs(velocity.y) < 0.2:
 			velocity.y = JUMP_VELOCITY
-			
+			vibrate_jump()
 			position.y += 0.05 
 			
 
@@ -282,8 +285,33 @@ func perform_attack_check() -> void:
 					target.health -= 1
 				if "hits" in target and !hit:
 					target.hits += 1
-					
+				vibrate_sword_attack()
+	
 	
 	hit = true
 	await get_tree().create_timer(0.1).timeout
 	hit = false
+
+func vibrate_land(impact_strength: float = 0.5) -> void:
+	# Clamp impact_strength between 0.0 (soft hop) and 1.0 (heavy fall)
+	var strength = clamp(impact_strength, 0.0, 1.0)
+	Input.start_joy_vibration(device_id, strength * 0.2, strength * 0.7, 0.09)
+
+# 1. Attacking with a sword (Crisp, quick whoosh and follow-through)
+func vibrate_sword_attack() -> void:
+	Input.start_joy_vibration(device_id, 0.4, 0.1, 0.12)
+
+func vibrate_jump() -> void:
+	Input.start_joy_vibration(device_id, 0.25, 0.1, 0.06)
+
+func _set_rumble(intensity: float) -> void:
+	Input.start_joy_vibration(device_id, intensity * 0.7, intensity, 0.1)
+
+func _set_escalating_rumble(progress: float) -> void:
+	# Starts with heavy gravity pull, adds intense high-frequency tearing near the end
+	var strong = progress
+	var weak = pow(progress, 2)
+	Input.start_joy_vibration(device_id, weak, strong, 0.1)
+
+func _set_high_freq_ramp(intensity: float) -> void:
+	Input.start_joy_vibration(device_id, intensity, intensity * 0.3, 0.1)

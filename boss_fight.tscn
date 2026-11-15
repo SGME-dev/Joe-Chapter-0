@@ -1749,12 +1749,12 @@ mesh = SubResource("BoxPolyMesh4D_nq0y5")
 [node name="teleport_range" type="Node4D" parent="boss"]
 
 [node name="teleport_range2" type="Node4D" parent="boss/teleport_range"]
-position = Vector4(28.416, 1.762, 16.155, -5.237)
-basis = Projection(0.99999857, 0, 0, 0, 0, 0.9999986, 0, 0, 0, 0, 0.99999857, 0, 0, 0, 0, 0.99999857)
+position = Vector4(28.415998, 0.02124387, 16.154999, -5.2369995)
+basis = Projection(0.9999985, 0, 0, 0, 0, 0.9999985, 0, 0, 0, 0, 0.9999985, 0, 0, 0, 0, 0.9999985)
 
 [node name="teleport_range3" type="Node4D" parent="boss/teleport_range"]
-position = Vector4(-28.151, 1.762, -15.653, 6.734)
-basis = Projection(0.99999845, 0, 0, 0, 0, 0.9999991, 0, 0, 0, 0, 0.99999845, 0, 0, 0, 0, 0.99999845)
+position = Vector4(-28.150997, 0.02124387, -15.652999, 6.7339997)
+basis = Projection(0.9999984, 0, 0, 0, 0, 0.9999991, 0, 0, 0, 0, 0.9999984, 0, 0, 0, 0, 0.9999984)
 
 [node name="teleport" type="Node4D" parent="boss"]
 visible = false

@@ -1,5 +1,7 @@
 extends CharacterBody4D
 
+var device_id: int = 0
+var double := false
 @export var max_health := 500
 var health := max_health
 var boss_state := "Start"
@@ -44,6 +46,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if health <= 250:
+		double = true
 	_start_boss_phase_loop()
 	var is_actually_on_floor = is_on_floor()
 	if is_actually_on_floor:
@@ -349,7 +353,11 @@ func _process(delta: float) -> void:
 	if $gun.visible:
 		if character_body_4d_2 and bullet.global_position.distance_to(character_body_4d_2.global_position) < 1.5:
 			if "health" in character_body_4d_2:
-				character_body_4d_2.health -= 10
+				if double:
+					character_body_4d_2.health -= 20
+				else:
+					character_body_4d_2.health -= 10
+				vibrate_gun_hit()
 				print("ouch", character_body_4d_2.health)
 				has_hit = true
 				await get_tree().create_timer(1).timeout
@@ -370,7 +378,11 @@ func _process(delta: float) -> void:
 			# Check your custom 4D dimensions constraints
 			if diff_x < 1.5 and diff_z < 1.5 and diff_y < 6.0 and diff_w < 12.0:
 				if "health" in character_body_4d_2:
-					character_body_4d_2.health -= 10
+					if double:
+						character_body_4d_2.health -= 20
+					else:
+						character_body_4d_2.health -= 10
+					vibrate_laser_hit()
 					print("ouch", character_body_4d_2.health)
 					
 					has_hit = true
@@ -393,7 +405,11 @@ func _process(delta: float) -> void:
 			# Check your custom 4D dimensions constraints
 			if diff_x < 1.5 and diff_z < 1.5 and diff_y < 1.5 and diff_w < 1.5:
 				if "health" in character_body_4d_2:
-					character_body_4d_2.health -= 1
+					if double:
+						character_body_4d_2.health -= 2
+					else:
+						character_body_4d_2.health -= 1
+					vibrate_poison_inhale()
 					print("ouch", character_body_4d_2.health)
 					
 					has_hit = true
@@ -415,7 +431,11 @@ func _process(delta: float) -> void:
 			# Check your custom 4D dimensions constraints
 			if diff_x < 2 and diff_z < 2 and diff_y < 2 and diff_w < 2:
 				if "health" in character_body_4d_2:
-					character_body_4d_2.health -= 20
+					if double:
+						character_body_4d_2.health -= 40
+					else:
+						character_body_4d_2.health -= 20
+					vibrate_nuke_hit()
 					print("nuclear_ouch", character_body_4d_2.health)
 					
 					has_hit = true
@@ -424,7 +444,11 @@ func _process(delta: float) -> void:
 	if $black_hole.visible:
 		if character_body_4d_2 and black_hole.global_position.distance_to(character_body_4d_2.global_position) < 2:
 			if "health" in character_body_4d_2:
-				character_body_4d_2.health -= 85
+				if double:
+					character_body_4d_2.health -= 170
+				else:
+					character_body_4d_2.health -= 85
+				vibrate_black_hole()
 				print("time_bending-ouch", character_body_4d_2.health)
 				has_hit = true
 				await get_tree().create_timer(2.5).timeout
@@ -432,7 +456,11 @@ func _process(delta: float) -> void:
 	if $melee.visible:
 		if character_body_4d_2 and global_position.distance_to(character_body_4d_2.global_position) < 2.5:
 			if "health" in character_body_4d_2:
-				character_body_4d_2.health -= 25
+				if double:
+					character_body_4d_2.health -= 50
+				else:
+					character_body_4d_2.health -= 25
+				vibrate_sword_hit()
 				print("slashing-ouch", character_body_4d_2.health)
 				has_hit = true
 				await get_tree().create_timer(1).timeout
@@ -440,7 +468,11 @@ func _process(delta: float) -> void:
 	if $teleport.visible:
 		if character_body_4d_2 and global_position.distance_to(character_body_4d_2.global_position) < 2:
 			if "health" in character_body_4d_2:
-				character_body_4d_2.health -= 25
+				if double:
+					character_body_4d_2.health -= 50
+				else:
+					character_body_4d_2.health -= 25
+				vibrate_warp()
 				print("surprising-ouch", character_body_4d_2.health)
 				has_hit = true
 				await get_tree().create_timer(1).timeout
@@ -564,3 +596,66 @@ func clear_all_minions() -> void:
 	minions = 0
 	stop_minion_spawning = false
 	minion_cooldown = false
+
+func vibrate_gun_hit() -> void:
+	Input.start_joy_vibration(device_id, 0.8, 0.9, 0.15)
+
+# 3. Getting hit by a laser (High-pitched, searing buzz)
+func vibrate_laser_hit() -> void:
+	Input.start_joy_vibration(device_id, 1.0, 0.1, 0.25)
+
+# 4. Breathing in poisonous particles (Irregular, sputtering coughs)
+func vibrate_poison_inhale() -> void:
+	for i in range(4):
+		Input.start_joy_vibration(device_id, 0.5, 0.2, 0.08)
+		await get_tree().create_timer(0.18).timeout
+
+# 5. Getting hit by a nuke (Massive initial shockwave followed by a fading rumble)
+func vibrate_nuke_hit() -> void:
+	Input.start_joy_vibration(device_id, 1.0, 1.0, 0.6)
+	await get_tree().create_timer(0.6).timeout
+	
+	var tween = create_tween()
+	tween.tween_method(_set_rumble, 1.0, 0.0, 2.0)
+
+# 6. Getting sucked by a black hole (Escalating pull that builds to a violent peak)
+func vibrate_black_hole() -> void:
+	var tween = create_tween()
+	tween.tween_method(_set_escalating_rumble, 0.0, 1.0, 2.5)
+	await tween.finished
+	Input.stop_joy_vibration(device_id)
+
+# 7. Getting attacked by a sword (Heavy metallic impact followed by a sharp sting)
+func vibrate_sword_hit() -> void:
+	Input.start_joy_vibration(device_id, 0.3, 0.9, 0.1)
+	await get_tree().create_timer(0.1).timeout
+	Input.start_joy_vibration(device_id, 0.9, 0.2, 0.15)
+
+# 8. Warping (Rising hum that snaps off at the teleport)
+func vibrate_warp() -> void:
+	var tween = create_tween()
+	tween.tween_method(_set_high_freq_ramp, 0.1, 0.9, 0.8)
+	await tween.finished
+	Input.start_joy_vibration(device_id, 0.5, 0.8, 0.1)
+
+# 9. Getting tickled (Rapid, light, erratic flutters)
+func vibrate_tickle() -> void:
+	for i in range(10):
+		var rand_weak = randf_range(0.15, 0.4)
+		Input.start_joy_vibration(device_id, rand_weak, 0.0, 0.04)
+		await get_tree().create_timer(randf_range(0.05, 0.1)).timeout
+
+
+
+# Helper functions for smooth transitions
+func _set_rumble(intensity: float) -> void:
+	Input.start_joy_vibration(device_id, intensity * 0.7, intensity, 0.1)
+
+func _set_escalating_rumble(progress: float) -> void:
+	# Starts with heavy gravity pull, adds intense high-frequency tearing near the end
+	var strong = progress
+	var weak = pow(progress, 2)
+	Input.start_joy_vibration(device_id, weak, strong, 0.1)
+
+func _set_high_freq_ramp(intensity: float) -> void:
+	Input.start_joy_vibration(device_id, intensity, intensity * 0.3, 0.1)

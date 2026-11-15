@@ -2,11 +2,13 @@ extends CharacterBody4D
 
 class_name minion
 
+var device_id: int = 0
 @onready var character_body_4d_2: player = $"../../CharacterBody4D2"
 var has_hit := false
 var velocity: Vector4 = Vector4.ZERO
 static var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity") as float
 var health := 3
+@onready var boss: CharacterBody4D = $".."
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -107,8 +109,31 @@ func _process(delta: float) -> void:
 		return
 	if character_body_4d_2 and global_position.distance_to(character_body_4d_2.global_position) < 2.5:
 			if "health" in character_body_4d_2:
-				character_body_4d_2.health -= 0.1
+				if boss.double:
+					character_body_4d_2.health -= 0.2
+				else:
+					character_body_4d_2.health -= 0.1
+				vibrate_tickle()
 				print("tiny-ouch", character_body_4d_2.health)
 				has_hit = true
 				await get_tree().create_timer(0.1).timeout
 				has_hit = false
+
+func vibrate_tickle() -> void:
+	for i in range(10):
+		var rand_weak = randf_range(0.15, 0.4)
+		Input.start_joy_vibration(device_id, rand_weak, 0.0, 0.04)
+		await get_tree().create_timer(randf_range(0.05, 0.1)).timeout
+
+# Helper functions for smooth transitions
+func _set_rumble(intensity: float) -> void:
+	Input.start_joy_vibration(device_id, intensity * 0.7, intensity, 0.1)
+
+func _set_escalating_rumble(progress: float) -> void:
+	# Starts with heavy gravity pull, adds intense high-frequency tearing near the end
+	var strong = progress
+	var weak = pow(progress, 2)
+	Input.start_joy_vibration(device_id, weak, strong, 0.1)
+
+func _set_high_freq_ramp(intensity: float) -> void:
+	Input.start_joy_vibration(device_id, intensity, intensity * 0.3, 0.1)
