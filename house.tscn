@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://b1ikmd6mmomw"]
+[gd_scene load_steps=34 format=4 uid="uid://b1ikmd6mmomw"]
 
 [ext_resource type="PackedScene" uid="uid://bmvrivbnad8vh" path="res://platform4.tscn" id="1_hfkix"]
 [ext_resource type="Script" uid="uid://bdrcjwuu8yeho" path="res://house.gd" id="1_k3v7f"]
@@ -42,6 +42,32 @@ material = SubResource("WireMaterial4D_o1325")
 albedo_color = Color(0.43137255, 1, 1, 1)
 
 [sub_resource type="BoxWireMesh4D" id="BoxWireMesh4D_fl8vv"]
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_fl8vv"]
+line_thickness = 10.0
+albedo_color = Color(0.5045542, 0.28042358, 0.039632306, 1)
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_7nsku"]
+albedo_color = Color(0.5045542, 0.28042358, 0.039632306, 1)
+
+[sub_resource type="BoxWireMesh4D" id="BoxWireMesh4D_2mril"]
+material = SubResource("WireMaterial4D_7nsku")
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_umavc"]
+line_thickness = 10.0
+albedo_color = Color(0.5045542, 0.28042358, 0.039632306, 1)
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_shbcp"]
+line_thickness = 10.0
+albedo_color = Color(0.5045542, 0.28042358, 0.039632306, 1)
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_qj8ql"]
+line_thickness = 10.0
+albedo_color = Color(0.5045542, 0.28042358, 0.039632306, 1)
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_11uyb"]
+line_thickness = 10.0
+albedo_color = Color(0.5045542, 0.28042358, 0.039632306, 1)
 
 [sub_resource type="WireMaterial4D" id="WireMaterial4D_2y50f"]
 albedo_color = Color(0, 0, 1, 1)
@@ -388,45 +414,89 @@ mesh = SubResource("BoxWireMesh4D_fl8vv")
 position = Vector4(-74.94051, 43.25543, -3.9693286, -3.1845561e-06)
 basis = Projection(15.96101, 0, 0, 0, 0, 0.99999976, 0, 0, 0, 0, 18.123932, 0, 0, 0, 0, 13.356995)
 
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="stairs/StaticBody4D5"]
+material_override = SubResource("WireMaterial4D_fl8vv")
+mesh = SubResource("BoxWireMesh4D_2mril")
+
 [node name="StaticBody4D6" parent="stairs" instance=ExtResource("1_hfkix")]
 position = Vector4(-74.94051, 38.569332, 2.0823584, -3.1845555e-06)
 basis = Projection(15.96101, 0, 0, 0, 0, 0.99999976, 0, 0, 0, 0, 18.123943, 0, 0, 0, 0, 13.356989)
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="stairs/StaticBody4D6"]
+material_override = SubResource("WireMaterial4D_umavc")
+mesh = SubResource("BoxWireMesh4D_2mril")
 
 [node name="StaticBody4D7" parent="stairs" instance=ExtResource("1_hfkix")]
 position = Vector4(-74.94051, 34.424015, 6.2173576, -3.1845548e-06)
 basis = Projection(15.96101, 0, 0, 0, 0, 0.99999976, 0, 0, 0, 0, 18.123943, 0, 0, 0, 0, 13.356989)
 
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="stairs/StaticBody4D7"]
+material_override = SubResource("WireMaterial4D_shbcp")
+mesh = SubResource("BoxWireMesh4D_2mril")
+
 [node name="StaticBody4D8" parent="stairs" instance=ExtResource("1_hfkix")]
 position = Vector4(-74.94051, 29.780262, 13.260725, -3.1845543e-06)
 basis = Projection(15.96101, 0, 0, 0, 0, 0.99999976, 0, 0, 0, 0, 18.123943, 0, 0, 0, 0, 13.356989)
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="stairs/StaticBody4D8"]
+material_override = SubResource("WireMaterial4D_qj8ql")
+mesh = SubResource("BoxWireMesh4D_2mril")
 
 [node name="StaticBody4D9" parent="stairs" instance=ExtResource("1_hfkix")]
 position = Vector4(-74.94051, 24.600145, 19.430792, -3.1845539e-06)
 basis = Projection(15.96101, 0, 0, 0, 0, 0.99999976, 0, 0, 0, 0, 18.123943, 0, 0, 0, 0, 13.356989)
 
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="stairs/StaticBody4D9"]
+material_override = SubResource("WireMaterial4D_11uyb")
+mesh = SubResource("BoxWireMesh4D_2mril")
+
 [node name="StaticBody4D10" parent="stairs" instance=ExtResource("1_hfkix")]
 position = Vector4(-74.94051, 21.294947, 23.289558, -3.1845539e-06)
 basis = Projection(15.96101, 0, 0, 0, 0, 0.99999976, 0, 0, 0, 0, 18.123943, 0, 0, 0, 0, 13.356989)
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="stairs/StaticBody4D10"]
+material_override = SubResource("WireMaterial4D_11uyb")
+mesh = SubResource("BoxWireMesh4D_2mril")
 
 [node name="StaticBody4D11" parent="stairs" instance=ExtResource("1_hfkix")]
 position = Vector4(-74.94051, 17.512257, 27.900919, -3.1845539e-06)
 basis = Projection(15.96101, 0, 0, 0, 0, 0.99999976, 0, 0, 0, 0, 18.123943, 0, 0, 0, 0, 13.356989)
 
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="stairs/StaticBody4D11"]
+material_override = SubResource("WireMaterial4D_11uyb")
+mesh = SubResource("BoxWireMesh4D_2mril")
+
 [node name="StaticBody4D12" parent="stairs" instance=ExtResource("1_hfkix")]
 position = Vector4(-74.94051, 14.143925, 33.873203, -3.1845539e-06)
 basis = Projection(15.96101, 0, 0, 0, 0, 0.99999976, 0, 0, 0, 0, 18.123943, 0, 0, 0, 0, 13.356989)
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="stairs/StaticBody4D12"]
+material_override = SubResource("WireMaterial4D_11uyb")
+mesh = SubResource("BoxWireMesh4D_2mril")
 
 [node name="StaticBody4D13" parent="stairs" instance=ExtResource("1_hfkix")]
 position = Vector4(-71.42472, 10.975728, 35.500195, -3.1845539e-06)
 basis = Projection(15.96101, 0, 0, 0, 0, 0.99999976, 0, 0, 0, 0, 18.123938, 0, 0, 0, 0, 13.356989)
 
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="stairs/StaticBody4D13"]
+material_override = SubResource("WireMaterial4D_11uyb")
+mesh = SubResource("BoxWireMesh4D_2mril")
+
 [node name="StaticBody4D14" parent="stairs" instance=ExtResource("1_hfkix")]
 position = Vector4(-65.35924, 7.528272, 36.197784, -3.1845539e-06)
 basis = Projection(15.96101, 0, 0, 0, 0, 0.99999976, 0, 0, 0, 0, 18.123941, 0, 0, 0, 0, 13.356989)
 
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="stairs/StaticBody4D14"]
+material_override = SubResource("WireMaterial4D_11uyb")
+mesh = SubResource("BoxWireMesh4D_2mril")
+
 [node name="StaticBody4D15" parent="stairs" instance=ExtResource("1_hfkix")]
 position = Vector4(-58.646767, 4.042082, 36.197792, -3.1845539e-06)
 basis = Projection(15.96101, 0, 0, 0, 0, 0.99999976, 0, 0, 0, 0, 18.123941, 0, 0, 0, 0, 13.356989)
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="stairs/StaticBody4D15"]
+material_override = SubResource("WireMaterial4D_11uyb")
+mesh = SubResource("BoxWireMesh4D_2mril")
 
 [node name="bed" type="Node4D" parent="."]
 position = Vector4(-24.908644, 46.453506, -25.756111, 0)
