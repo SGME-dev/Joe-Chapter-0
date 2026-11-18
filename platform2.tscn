@@ -1,6 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfoh242i1sq1x"]
+[gd_scene load_steps=5 format=3 uid="uid://bfoh242i1sq1x"]
 
 [sub_resource type="BoxShape4D" id="BoxShape4D_jtvq5"]
+
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_r84ha"]
+line_thickness = 10.0
+albedo_color = Color(0.6156863, 0.6156863, 0.6156863, 1)
 
 [sub_resource type="WireMaterial4D" id="WireMaterial4D_7nsku"]
 albedo_color = Color(0.6156863, 0.6156863, 0.6156863, 1)
@@ -15,4 +19,5 @@ basis = Projection(-5.68248e-07, 13, 0, 0, -1, -4.3711395e-08, 0, 0, 0, 0, 13, 0
 shape = SubResource("BoxShape4D_jtvq5")
 
 [node name="MeshInstance4D" type="MeshInstance4D" parent="."]
+material_override = SubResource("WireMaterial4D_r84ha")
 mesh = SubResource("BoxWireMesh4D_2mril")

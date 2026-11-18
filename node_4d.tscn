@@ -61,7 +61,7 @@ albedo_color = Color(1, 1, 0, 1)
 script = ExtResource("1_f4q7b")
 
 [node name="CharacterBody4D" parent="." instance=ExtResource("1_jtvq5")]
-position = Vector4(-89.26517, 4.668685, -264.6059, 0)
+position = Vector4(0, 4.5313416, 0, 0)
 
 [node name="StaticBody4D" parent="." instance=ExtResource("2_7nsku")]
 
