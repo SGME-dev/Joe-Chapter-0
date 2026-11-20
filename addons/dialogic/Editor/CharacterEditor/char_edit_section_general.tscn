@@ -1,4 +1,4 @@
-[gd_scene load_steps=0 format=3 uid="uid://bnkck3hocbkk5"]
+[gd_scene format=3 uid="uid://bnkck3hocbkk5"]
 
 [ext_resource type="Script" uid="uid://c0nilv2pybryh" path="res://addons/dialogic/Editor/CharacterEditor/char_edit_section_general.gd" id="1_3e1i1"]
 [ext_resource type="PackedScene" uid="uid://dbpkta2tjsqim" path="res://addons/dialogic/Editor/Common/hint_tooltip_icon.tscn" id="2_cxfqm"]
@@ -52,7 +52,7 @@ hint_text = "This color can be used on the name label and for occurences of the 
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="DisplayName" unique_id=1061485751]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(37.5, 0)
 layout_mode = 2
 theme_type_variation = &"FlatButton"
 color = Color(1, 1, 1, 1)

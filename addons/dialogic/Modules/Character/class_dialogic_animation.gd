@@ -22,6 +22,7 @@ var base_scale: Vector2
 
 ## Used to repeate the animation for a number of times.
 var repeats: int
+var repeat_forever : bool = false
 
 ## If `true`, the animation will be reversed.
 ## This must be implemented by each animation or it will have no effect.
@@ -43,11 +44,12 @@ func animate() -> void:
 func finished_one_loop() -> void:
 	repeats -= 1
 
-	if repeats > 0:
+	if repeats > 0 or repeat_forever:
 		animate()
 
 	else:
 		finished.emit()
+		queue_free()
 
 
 func pause() -> void:
@@ -94,7 +96,7 @@ func get_node_origin() -> Vector2:
 	if not node:
 		return Vector2()
 	if node.get_parent() is DialogicNode_PortraitContainer:
-		return node.get_parent()._get_origin_position()
+		return node.get_parent().current_settings._get_origin_position()
 	return Vector2()
 
 

@@ -8,36 +8,38 @@ enum Actions {JOIN, LEAVE, UPDATE}
 ### Settings
 
 ## The type of action of this event (JOIN/LEAVE/UPDATE). See [Actions].
-var action :=  Actions.JOIN
+@export var action :=  Actions.JOIN
 ## The character that will join/leave/update.
-var character: DialogicCharacter = null
+@export var character: DialogicCharacter = null
 ## For Join/Update, this will be the portrait of the character that is shown.
 ## Not used on Leave.
 ## If empty, the default portrait will be used.
-var portrait := ""
+@export var portrait := ""
 ## The index of the position this character should move to
-var transform := "center"
+@export var transform := "center"
 
 ## Name of the animation script (extending DialogicAnimation).
 ## On Join/Leave empty (default) will fallback to the animations set in the settings.
 ## On Update empty will mean no animation.
-var animation_name := ""
+@export var animation_name := ""
 ## Length of the animation.
-var animation_length: float = 0.5
+@export var animation_length: float = 0.5
 ## How often the animation is repeated. Only for Update events.
-var animation_repeats: int = 1
+@export var animation_repeats: int = 1
+@export var repeat_forever: bool = false
+
 ## If true, the events waits for the animation to finish before the next event starts.
-var animation_wait := false
+@export var animation_wait := false
 
 ## The fade animation to use. If left empty, the default cross-fade animation AND time will be used.
-var fade_animation := ""
-var fade_length := 0.5
+@export var fade_animation := ""
+@export var fade_length := 0.5
 
 ## For Update only. If bigger then 0, the portrait will tween to the
 ## new position (if changed) in this time (in seconds).
-var transform_time: float = 0.0
-var transform_ease := Tween.EaseType.EASE_IN_OUT
-var transform_trans := Tween.TransitionType.TRANS_SINE
+@export var transform_time: float = 0.0
+@export var transform_ease := Tween.EaseType.EASE_IN_OUT
+@export var transform_trans := Tween.TransitionType.TRANS_SINE
 
 var ease_options := [
 		{'label': 'In', 	 'value': Tween.EASE_IN},
@@ -62,11 +64,11 @@ var trans_options := [
 		]
 
 ## The z_index that the portrait should have.
-var z_index: int = 0
+@export var z_index: int = 0
 ## If true, the portrait will be set to mirrored.
-var mirrored := false
+@export var mirrored := false
 ## If set, will be passed to the portrait scene.
-var extra_data := ""
+@export var extra_data := ""
 
 
 ### Helpers
@@ -81,6 +83,8 @@ var character_identifier: String:
 	get:
 		if character_identifier == '--All--':
 			return '--All--'
+		elif character_identifier.begins_with("{"):
+			return character_identifier
 		if character:
 			var identifier := character.get_identifier()
 			if not identifier.is_empty():
@@ -100,6 +104,9 @@ var regex := RegEx.create_from_string(r'(?<type>join|update|leave)\s*(")?(?<name
 ################################################################################
 
 func _execute() -> void:
+	if character_identifier.begins_with("{"):
+		character = DialogicResourceUtil.get_character_resource(dialogic.Expressions.execute_string(character_identifier))
+
 	if not character and not character_identifier == "--All--":
 		finish()
 		return
@@ -112,6 +119,8 @@ func _execute() -> void:
 		final_animation_length = min(max_time, animation_length)
 		final_position_move_time = min(max_time, transform_time)
 
+	if portrait.begins_with("{"):
+		portrait = str(dialogic.Expressions.execute_string(portrait))
 
 	# JOIN -------------------------------------
 	if action == Actions.JOIN:
@@ -181,9 +190,11 @@ func _execute() -> void:
 				animation_name,
 				final_animation_length,
 				final_animation_repetitions,
+				false,
+				repeat_forever
 			)
 
-			if animation_wait:
+			if animation_wait and not repeat_forever:
 				dialogic.current_state = DialogicGameHandler.States.ANIMATING
 				await animation.finished
 				dialogic.current_state = DialogicGameHandler.States.IDLE
@@ -200,14 +211,14 @@ func _execute() -> void:
 func _init() -> void:
 	event_name = "Character"
 	event_description = "Allows joining or leaving a character or updating its portrait, position, mirroring, z-index or animation."
-	set_default_color('Color2')
+	set_default_color("Color2")
 	event_category = "Main"
 	event_sorting_index = 2
 	help_page_path = "https://docs.dialogic.pro/event-character.html"
 
 
 func _get_icon() -> Resource:
-	return load(self.get_script().get_path().get_base_dir().path_join('icon.svg'))
+	return load(self.get_script().get_path().get_base_dir().path_join("icon.svg"))
 
 #endregion
 
@@ -227,18 +238,23 @@ func to_text() -> String:
 	var default_values := DialogicUtil.get_custom_event_defaults(event_name)
 
 	# CHARACTER IDENTIFIER
-	if action == Actions.LEAVE and character_identifier == '--All--':
+	if action == Actions.LEAVE and character_identifier == "--All--":
 		result_string += "--All--"
-	elif character:
-		var name := character.get_character_name()
+	if character or character_identifier.begins_with("{"):
+		if character:
+			var name := character.get_character_name()
 
-		if name.count(" ") > 0:
-			name = '"' + name + '"'
+			if name.count(" ") > 0:
+				name = '"' + name + '"'
 
-		result_string += name
+			result_string += name
+
+		else:
+			result_string += character_identifier
+
 
 		# PORTRAIT
-		if portrait.strip_edges() != default_values.get('portrait', ''):
+		if portrait.strip_edges() != default_values.get("portrait", ""):
 			if action != Actions.LEAVE and (action != Actions.UPDATE or set_portrait):
 				result_string += " (" + portrait + ")"
 
@@ -266,19 +282,21 @@ func from_text(string:String) -> void:
 	var result := regex.search(string)
 
 	# ACTION
-	match result.get_string('type'):
+	match result.get_string("type"):
 		"join": action = Actions.JOIN
 		"leave": action = Actions.LEAVE
 		"update": action = Actions.UPDATE
 
 	# CHARACTER
-	var given_name := result.get_string('name').strip_edges()
-	var given_portrait := result.get_string('portrait').strip_edges()
-	var given_transform := result.get_string('transform').strip_edges()
+	var given_name := result.get_string("name").strip_edges()
+	var given_portrait := result.get_string("portrait").strip_edges()
+	var given_transform := result.get_string("transform").strip_edges()
 
 	if given_name:
 		if action == Actions.LEAVE and given_name == "--All--":
 			character_identifier = '--All--'
+		if given_name.begins_with("{"):
+			character_identifier = given_name.strip_edges()
 		else:
 			character = DialogicResourceUtil.get_character_resource(given_name)
 
@@ -315,6 +333,7 @@ func get_shortcode_parameters() -> Dictionary:
 		"length"		: {"property": "animation_length", 			"default": 0.5},
 		"wait" 			: {"property": "animation_wait", 			"default": false},
 		"repeat"		: {"property": "animation_repeats", 		"default": 1},
+		"repeat_forever"		: {"property": "repeat_forever", 		"default": false},
 
 		"z_index" 		: {"property": "z_index", 						"default": 0},
 		"mirrored"		: {"property": "mirrored", 						"default": false},
@@ -410,11 +429,13 @@ func build_event_editor() -> void:
 			'tooltip'				: "Plays an animation on this character."},
 			'should_show_animation_options()')
 	add_body_edit('animation_length', ValueType.NUMBER, {'left_text':'Length:', 'suffix':'s', "min":0},
-			'should_show_animation_options() and !animation_name.is_empty()')
-	add_body_edit('animation_wait', ValueType.BOOL, {'left_text':'Await end:'},
-			'should_show_animation_options() and !animation_name.is_empty()')
-	add_body_edit('animation_repeats', ValueType.NUMBER, {'left_text':'Repeat:', 'mode':1, "min":1},
+			'should_show_animation_options() and !animation_name.is_empty() and not "instant" in animation_name.to_lower()')
+	add_body_edit('repeat_forever', ValueType.BOOL, {'left_text':'Repeat Forever:'},
 			'should_show_animation_options() and !animation_name.is_empty() and action == %s)' %Actions.UPDATE)
+	add_body_edit('animation_repeats', ValueType.NUMBER, {'left_text':'Repeat:', 'mode':1, "min":1},
+			'should_show_animation_options() and !animation_name.is_empty() and action == %s and not repeat_forever' %Actions.UPDATE)
+	add_body_edit('animation_wait', ValueType.BOOL, {'left_text':'Await end:'},
+			'should_show_animation_options() and !animation_name.is_empty() and not repeat_forever and not "instant" in animation_name.to_lower()')
 	add_body_line_break()
 	add_body_edit('transform_time', ValueType.NUMBER, {'left_text':'Movement duration:', "min":0, "tooltip": "When changing the characters position, this is how fast it will happen."},
 			"should_show_transform_options()")
@@ -443,7 +464,7 @@ func should_show_fade_options() -> bool:
 
 
 func should_show_portrait_selector() -> bool:
-	return character and len(character.portraits) > 1 and action != Actions.LEAVE
+	return ((character and len(character.portraits) > 1) or character_identifier.begins_with("{")) and action != Actions.LEAVE
 
 
 func has_no_portraits() -> bool:
@@ -458,7 +479,8 @@ func get_portrait_suggestions(search_text:String) -> Dictionary:
 	var empty_text := "Don't Change"
 	if action == Actions.JOIN:
 		empty_text = "Default"
-	return DialogicUtil.get_portrait_suggestions(search_text, character, true, empty_text)
+
+	return DialogicUtil.get_portrait_suggestions(search_text, character, true, empty_text, character_identifier.begins_with("{"))
 
 
 func get_position_suggestions(search_text:String='') -> Dictionary:
@@ -489,7 +511,7 @@ func get_fade_suggestions(search_text:String='') -> Dictionary:
 func _get_code_completion(CodeCompletionHelper:Node, TextNode:TextEdit, line:String, _word:String, symbol:String) -> void:
 	var line_until_caret: String = CodeCompletionHelper.get_line_untill_caret(line)
 	if symbol == ' ' and line_until_caret.count(" ") == 1:
-		CodeCompletionHelper.suggest_characters(TextNode, CodeEdit.KIND_MEMBER, self)
+		CodeCompletionHelper.suggest_characters(TextNode, CodeEdit.KIND_MEMBER, " ")
 		if line.begins_with('leave'):
 			TextNode.add_code_completion_option(CodeEdit.KIND_MEMBER, 'All', '--All-- ', event_color, TextNode.get_theme_icon("GuiEllipsis", "EditorIcons"))
 

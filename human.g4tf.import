@@ -12,4 +12,4 @@ dest_files=["res://.godot/imported/human.g4tf-a04da69a619fe07b0024313826a47398.s
 
 [params]
 
-force_wireframe=false
+preferred_mesh_format=0

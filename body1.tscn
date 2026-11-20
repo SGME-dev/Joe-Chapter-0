@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ddgdvrrk26hnr"]
+[gd_scene format=3 uid="uid://ddgdvrrk26hnr"]
 
 [ext_resource type="ArrayWireMesh4D" uid="uid://chikh33chd4t3" path="res://human_right_armhand.tres" id="1_6uqi0"]
 [ext_resource type="ArrayWireMesh4D" uid="uid://cwwuyfe5gefeu" path="res://human_right_armforearm.tres" id="2_ppyta"]
@@ -2007,135 +2007,133 @@ _data = {
 &"walk_prototype": SubResource("Animation_vpg5d")
 }
 
-[node name="body1" type="Node4D"]
+[node name="body1" type="Node4D" unique_id=1554944451]
 
-[node name="body1" type="Node4D" parent="."]
+[node name="body1" type="Node4D" parent="." unique_id=2071141707]
 basis = Projection(-1, 0, 0, -8.742278e-08, 0, -4.371139e-08, -1, 0, 0, 1, -4.371139e-08, 0, 8.742278e-08, 0, 0, -1)
 
-[node name="right_arm" type="Node4D" parent="body1"]
+[node name="right_arm" type="Node4D" parent="body1" unique_id=1794299771]
 position = Vector4(-28.056, -10, 100, 0)
 basis = Projection(0.99999994, 0, 0, 0, 0, 0.81915194, -0.57357633, 0, 0, 0.57357633, 0.81915194, 0, 0, 0, 0, 0.99999994)
 
-[node name="forearm" type="Node4D" parent="body1/right_arm"]
+[node name="forearm" type="Node4D" parent="body1/right_arm" unique_id=1867638996]
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="body1/right_arm/forearm"]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="body1/right_arm/forearm" unique_id=913708835]
 position = Vector4(30.280691, 4.0465598e-06, -105.285194, -2.4366263e-06)
 mesh = ExtResource("2_ppyta")
 
-[node name="upperarm" type="Node4D" parent="body1/right_arm"]
+[node name="upperarm" type="Node4D" parent="body1/right_arm" unique_id=1454361163]
 position = Vector4(5.1841164, -7.9186566e-07, 18.115791, -4.5320985e-07)
 
-[node name="MeshInstance4D3" type="MeshInstance4D" parent="body1/right_arm/upperarm"]
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="body1/right_arm/upperarm" unique_id=1539874976]
 position = Vector4(25.307053, 4.838267e-06, -123.39742, -2.0018167e-06)
 mesh = ExtResource("3_ykrsh")
 
-[node name="hand" type="Node4D" parent="body1/right_arm"]
+[node name="hand" type="Node4D" parent="body1/right_arm" unique_id=1817754865]
 position = Vector4(-4.212143, 8.1611756e-07, -18.670578, 3.6823735e-07)
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="body1/right_arm/hand"]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="body1/right_arm/hand" unique_id=2091700182]
 position = Vector4(34.576504, 3.7783034e-06, -86.43751, -3.0227743e-06)
 mesh = ExtResource("1_6uqi0")
 
-[node name="left_arm" type="Node4D" parent="body1"]
+[node name="left_arm" type="Node4D" parent="body1" unique_id=1901036565]
 position = Vector4(27.531, 10, 90, 0)
 basis = Projection(0.99999994, 0, 0, 0, 0, 0.81915194, 0.5735764, 0, 0, -0.5735764, 0.81915194, 0, 0, 0, 0, 0.99999994)
 
-[node name="forearm" type="Node4D" parent="body1/left_arm"]
+[node name="forearm" type="Node4D" parent="body1/left_arm" unique_id=1486303367]
 
-[node name="MeshInstance4D5" type="MeshInstance4D" parent="body1/left_arm/forearm"]
+[node name="MeshInstance4D5" type="MeshInstance4D" parent="body1/left_arm/forearm" unique_id=996074883]
 position = Vector4(-30.190071, -1.1912565, -105.81263, 2.39244e-06)
 mesh = ExtResource("5_vbegm")
 
-[node name="upperarm" type="Node4D" parent="body1/left_arm"]
+[node name="upperarm" type="Node4D" parent="body1/left_arm" unique_id=1336129044]
 position = Vector4(-4.6230545, -7.1525574e-07, 18.115791, 4.0416035e-07)
 
-[node name="MeshInstance4D6" type="MeshInstance4D" parent="body1/left_arm/upperarm"]
+[node name="MeshInstance4D6" type="MeshInstance4D" parent="body1/left_arm/upperarm" unique_id=1435575163]
 position = Vector4(-25.548687, -0.94158715, -124.497986, 1.9866773e-06)
 mesh = ExtResource("6_ehkex")
 
-[node name="hand" type="Node4D" parent="body1/left_arm"]
+[node name="hand" type="Node4D" parent="body1/left_arm" unique_id=208151588]
 position = Vector4(4.147373, -5.180399, -18.88948, -3.6257484e-07)
 
-[node name="MeshInstance4D4" type="MeshInstance4D" parent="body1/left_arm/hand"]
+[node name="MeshInstance4D4" type="MeshInstance4D" parent="body1/left_arm/hand" unique_id=1893584591]
 position = Vector4(-34.68069, 3.9740458, -86.42927, 2.7850242e-06)
 mesh = ExtResource("4_g14j6")
 
-[node name="right_leg" type="Node4D" parent="body1"]
+[node name="right_leg" type="Node4D" parent="body1" unique_id=103981083]
 position = Vector4(-12.560411, 6.9257793, 33.52901, 1.098066e-06)
 
-[node name="shin" type="Node4D" parent="body1/right_leg"]
+[node name="shin" type="Node4D" parent="body1/right_leg" unique_id=995121599]
 position = Vector4(0, -20, -12.909128, 0)
 basis = Projection(1, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 1)
 
-[node name="MeshInstance4D8" type="MeshInstance4D" parent="body1/right_leg/shin"]
+[node name="MeshInstance4D8" type="MeshInstance4D" parent="body1/right_leg/shin" unique_id=785911387]
 position = Vector4(13.728415, -6.5043945, -20.865433, -1.3798393e-06)
 mesh = ExtResource("8_00tp4")
 
-[node name="thigh" type="Node4D" parent="body1/right_leg"]
+[node name="thigh" type="Node4D" parent="body1/right_leg" unique_id=2040198619]
 position = Vector4(0.928, -20, 5.844, 0)
 basis = Projection(1, 0, 0, 0, 0, 0.7071067, -0.7071067, 0, 0, 0.7071067, 0.7071067, 0, 0, 0, 0, 1)
 
-[node name="MeshInstance4D9" type="MeshInstance4D" parent="body1/right_leg/thigh"]
+[node name="MeshInstance4D9" type="MeshInstance4D" parent="body1/right_leg/thigh" unique_id=685121739]
 position = Vector4(12.888005, -2.5915985, -39.560074, -1.0348998e-06)
 mesh = ExtResource("9_77dp3")
 
-[node name="foot" type="Node4D" parent="body1/right_leg"]
+[node name="foot" type="Node4D" parent="body1/right_leg" unique_id=907919151]
 position = Vector4(-1.7699356, -20, -31.447372, 1.5473267e-07)
 
-[node name="MeshInstance4D7" type="MeshInstance4D" parent="body1/right_leg/foot"]
+[node name="MeshInstance4D7" type="MeshInstance4D" parent="body1/right_leg/foot" unique_id=845373450]
 position = Vector4(15.289268, -1.4723871, -2.2502763, -1.244825e-06)
 mesh = ExtResource("7_xersf")
 
-[node name="left_leg" type="Node4D" parent="body1"]
+[node name="left_leg" type="Node4D" parent="body1" unique_id=617814559]
 position = Vector4(14.20536, 6.9257793, 33.52901, -1.241872e-06)
 
-[node name="shin" type="Node4D" parent="body1/left_leg"]
+[node name="shin" type="Node4D" parent="body1/left_leg" unique_id=369822857]
 position = Vector4(0, -20, -12.909128, 0)
 
-[node name="MeshInstance4D11" type="MeshInstance4D" parent="body1/left_leg/shin"]
+[node name="MeshInstance4D11" type="MeshInstance4D" parent="body1/left_leg/shin" unique_id=307446478]
 position = Vector4(-14.198461, -7.3622613, -20.441332, 1.2412689e-06)
 mesh = ExtResource("11_uty7l")
 
-[node name="thigh" type="Node4D" parent="body1/left_leg"]
+[node name="thigh" type="Node4D" parent="body1/left_leg" unique_id=882264272]
 position = Vector4(-0.412, -20, 5.844, 0)
 basis = Projection(1, 0, 0, 0, 0, 0.7071067, -0.7071067, 0, 0, 0.7071067, 0.7071067, 0, 0, 0, 0, 1)
 
-[node name="MeshInstance4D12" type="MeshInstance4D" parent="body1/left_leg/thigh"]
+[node name="MeshInstance4D12" type="MeshInstance4D" parent="body1/left_leg/thigh" unique_id=1038117588]
 position = Vector4(-13.888853, -3.588388, -39.301514, 8.328129e-09)
 mesh = ExtResource("12_45l4g")
 
-[node name="foot" type="Node4D" parent="body1/left_leg"]
+[node name="foot" type="Node4D" parent="body1/left_leg" unique_id=1056874867]
 position = Vector4(2.8313427, -20, -31.447372, -2.4752387e-07)
 
-[node name="MeshInstance4D10" type="MeshInstance4D" parent="body1/left_leg/foot"]
+[node name="MeshInstance4D10" type="MeshInstance4D" parent="body1/left_leg/foot" unique_id=541657049]
 position = Vector4(-17.177801, -2.4183588, -1.6806496, 1.5017312e-06)
 mesh = ExtResource("10_a3se8")
 
-[node name="head" type="Node4D" parent="body1"]
+[node name="head" type="Node4D" parent="body1" unique_id=1595982779]
 position = Vector4(-0.001440984, 0, 139, 1.2597481e-10)
 basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999998, 0, 0, 0, 0, 0.9999998, 0, 0, 0, 0, 0.9999999)
 
-[node name="MeshInstance4D15" type="MeshInstance4D" parent="body1/head"]
+[node name="MeshInstance4D15" type="MeshInstance4D" parent="body1/head" unique_id=391314732]
 position = Vector4(-0.22486784, 3.3096766, -174.31778, -2.2688134e-07)
 mesh = ExtResource("15_eski5")
 
-[node name="MeshInstance4D16" type="MeshInstance4D" parent="body1/head"]
+[node name="MeshInstance4D16" type="MeshInstance4D" parent="body1/head" unique_id=1717330583]
 position = Vector4(3.1239157, 3.3096766, -174.31778, -2.268813e-07)
 mesh = ExtResource("16_pdf00")
 
-[node name="torso" type="Node4D" parent="body1"]
+[node name="torso" type="Node4D" parent="body1" unique_id=1587496978]
 position = Vector4(-0.001440984, 0, 139, 1.2597481e-10)
 basis = Projection(0.99999994, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.99999994)
 
-[node name="MeshInstance4D13" type="MeshInstance4D" parent="body1/torso"]
+[node name="MeshInstance4D13" type="MeshInstance4D" parent="body1/torso" unique_id=945536663]
 position = Vector4(0, 6.32935e-06, -166.40814, 0)
 mesh = ExtResource("13_4uo0j")
 
-[node name="MeshInstance4D14" type="MeshInstance4D" parent="body1/torso"]
+[node name="MeshInstance4D14" type="MeshInstance4D" parent="body1/torso" unique_id=1518113620]
 position = Vector4(1.0501304, 6.32935e-06, -166.40814, 1.8623991e-14)
 mesh = ExtResource("14_vxl6d")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_6yea2")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=513298272]
+libraries/ = SubResource("AnimationLibrary_6yea2")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dge28jgfyyu4o"]
+[gd_scene format=3 uid="uid://dge28jgfyyu4o"]
 
 [ext_resource type="Script" uid="uid://bfm2idnblegob" path="res://dialougue.gd" id="1_62e2m"]
 [ext_resource type="Texture2D" uid="uid://bltusrymgh2ji" path="res://New Piskel.png" id="2_62e2m"]
@@ -34,12 +34,12 @@ animations = [{
 "duration": 2.0,
 "texture": SubResource("AtlasTexture_fj5cn")
 }],
-"loop": false,
+"loop": 0,
 "name": &"default",
 "speed": 1.0
 }]
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" unique_id=1349046520]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,7 +48,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_62e2m")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1246819371]
 visible = false
 z_index = 1
 layout_mode = 0
@@ -58,7 +58,7 @@ offset_right = 200.0
 offset_bottom = 532.0
 text = "hi"
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=1439854203]
 visible = false
 layout_mode = 0
 offset_left = -1.0
@@ -66,7 +66,7 @@ offset_top = 499.0
 offset_right = 1151.0
 offset_bottom = 646.0
 
-[node name="Panel2" type="Panel" parent="."]
+[node name="Panel2" type="Panel" parent="." unique_id=1157653389]
 visible = false
 layout_mode = 0
 offset_left = -1.0
@@ -74,7 +74,7 @@ offset_top = 499.0
 offset_right = 140.0
 offset_bottom = 646.0
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1572459168]
 visible = false
 position = Vector2(67, 583)
 scale = Vector2(2, 2)

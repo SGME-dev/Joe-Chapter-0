@@ -12,4 +12,4 @@ dest_files=["res://.godot/imported/mesh_instance_4d.g4tf-ef3fb7b9187e6e268df6670
 
 [params]
 
-force_wireframe=false
+preferred_mesh_format=0

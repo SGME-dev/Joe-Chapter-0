@@ -12,4 +12,4 @@ dest_files=["res://.godot/imported/chair.g4tf-e14456d1df398461735c0960df6cb27c.s
 
 [params]
 
-force_wireframe=false
+preferred_mesh_format=0

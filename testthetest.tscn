@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bs2cc5c51tx7s"]
+[gd_scene format=3 uid="uid://bs2cc5c51tx7s"]
 
 [ext_resource type="Script" uid="uid://dr2d8eg50y4b2" path="res://testthetest.gd" id="1_cil52"]
 
-[node name="testthetest" type="Control"]
+[node name="testthetest" type="Control" unique_id=2073147097]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
