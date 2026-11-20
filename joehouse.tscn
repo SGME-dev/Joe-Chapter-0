@@ -172,6 +172,7 @@ text = "Time left until level ends: Do homework first"
 [connection signal="body_exited_area" from="teststart/Area4D5" to="." method="_on_area_4d_5_body_exited_area"]
 
 [editable path="Park"]
+[editable path="Park/StaticBody4D"]
 [editable path="Park/CubinderMoving"]
 [editable path="Park/CubinderMoving2"]
 [editable path="CharacterBody4D"]
