@@ -18,7 +18,7 @@ enum VarValueType {
 ## Settings
 
 ## Name/Path of the variable that should be changed.
-@export var name := "":
+var name := "":
 	set(_value):
 		name = _value
 		if Engine.is_editor_hint() and not value:
@@ -33,7 +33,7 @@ enum VarValueType {
 		update_editor_warning()
 
 ## The operation to perform.
-@export var operation := Operations.SET:
+var operation := Operations.SET:
 	set(value):
 		operation = value
 		if not (operation == Operations.SET or operation == Operations.ADD) and _value_type == VarValueType.STRING:
@@ -42,8 +42,8 @@ enum VarValueType {
 		update_editor_warning()
 
 ## The value that is used. Can be a variable as well.
-@export var value: Variant = ""
-@export var _value_type := VarValueType.STRING :
+var value: Variant = ""
+var _value_type := 0 :
 	set(_value):
 		_value_type = _value
 		if not _suppress_default_value:
@@ -60,8 +60,8 @@ enum VarValueType {
 		update_editor_warning()
 
 ## If true, a random number between [random_min] and [random_max] is used instead of [value].
-@export var random_min: int = 0
-@export var random_max: int = 100
+var random_min: int = 0
+var random_max: int = 100
 
 ## Used to suppress _value_type from overwriting value with a default value when the type changes
 ## This is only used when initializing the event_variable.
@@ -229,19 +229,6 @@ func from_text(string:String) -> void:
 func is_valid_event(string:String) -> bool:
 	return string.begins_with('set')
 
-
-## Only here to allow setting defaults in the module settings
-func get_shortcode_parameters() -> Dictionary:
-	return {
-		#param_name 	: property_info
-		"name" 			: {"property": "name", 					"default": ""},
-		"operation" 	: {"property": "operation",				"default": Operations.SET},
-		"value" 		: {"property": "value",					"default": ""},
-		"random_min" 	: {"property": "random_min", 			"default": 0},
-		"random_max" 	: {"property": "random_max", 			"default": 100},
-
-	}
-
 #endregion
 
 
@@ -385,15 +372,16 @@ func _get_code_completion(CodeCompletionHelper:Node, TextNode:TextEdit, line:Str
 		TextNode.add_code_completion_option(CodeEdit.KIND_MEMBER, '{', '{', TextNode.syntax_highlighter.variable_color)
 		for i in autoloads:
 			TextNode.add_code_completion_option(CodeEdit.KIND_MEMBER, i, i+'.', event_color.lerp(TextNode.syntax_highlighter.normal_color, 0.3), TextNode.get_theme_icon("Node", "EditorIcons"))
-	elif "{" in line_until_caret and not "}" in line_until_caret:
-		CodeCompletionHelper.suggest_variables(TextNode)
-	elif (line_until_caret.ends_with(".") or symbol == "."):
+
+	if (line_until_caret.ends_with(".") or symbol == "."):
 		var autoload_name := line_until_caret.split(" ")[-1].split(".")[0]
 		if autoload_name in autoloads:
 			var properties := DialogicUtil.get_autoload_property_suggestions("", autoload_name)
 			for i in properties.keys():
 				TextNode.add_code_completion_option(CodeEdit.KIND_MEMBER, i, i+" ", event_color.lerp(TextNode.syntax_highlighter.normal_color, 0.3), TextNode.get_theme_icon("MemberMethod", "EditorIcons"))
 
+	elif symbol == '{':
+		CodeCompletionHelper.suggest_variables(TextNode)
 
 
 func _get_start_code_completion(_CodeCompletionHelper:Node, TextNode:TextEdit) -> void:

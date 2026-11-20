@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bb5n678jf514w"]
+[gd_scene load_steps=75 format=3 uid="uid://bb5n678jf514w"]
 
 [ext_resource type="ArrayWireMesh4D" uid="uid://bkgg4baxxckw0" path="res://hypersphere.off" id="1_10w01"]
 [ext_resource type="Script" uid="uid://d1gyh8yaxk8ee" path="res://boss_fight.gd" id="1_n65jo"]
@@ -719,1059 +719,1061 @@ states/particles/position = Vector2(1085, 286)
 transitions = ["Start", "choose_phase", SubResource("AnimationNodeStateMachineTransition_51gxd"), "choose_phase", "particles", SubResource("AnimationNodeStateMachineTransition_wkce8"), "choose_phase", "Gun", SubResource("AnimationNodeStateMachineTransition_ecurt"), "choose_phase", "Teleport", SubResource("AnimationNodeStateMachineTransition_bgy2h"), "choose_phase", "black_hole", SubResource("AnimationNodeStateMachineTransition_p33kh"), "choose_phase", "laser", SubResource("AnimationNodeStateMachineTransition_1chj5"), "choose_phase", "melee", SubResource("AnimationNodeStateMachineTransition_xa04f"), "choose_phase", "minions", SubResource("AnimationNodeStateMachineTransition_wagmh"), "nuke", "next_phase", SubResource("AnimationNodeStateMachineTransition_fs57i"), "minions", "next_phase", SubResource("AnimationNodeStateMachineTransition_l56fj"), "melee", "next_phase", SubResource("AnimationNodeStateMachineTransition_8psc0"), "laser", "next_phase", SubResource("AnimationNodeStateMachineTransition_uuehc"), "black_hole", "next_phase", SubResource("AnimationNodeStateMachineTransition_ikcqv"), "Teleport", "next_phase", SubResource("AnimationNodeStateMachineTransition_1fp8a"), "Gun", "next_phase", SubResource("AnimationNodeStateMachineTransition_wbwnj"), "particles", "next_phase", SubResource("AnimationNodeStateMachineTransition_1qusn"), "next_phase", "choose_phase", SubResource("AnimationNodeStateMachineTransition_p7r8s"), "choose_phase", "nuke", SubResource("AnimationNodeStateMachineTransition_47mo0")]
 graph_offset = Vector2(0, -63.046684)
 
-[node name="Boss_fight" type="Node4D" unique_id=696619147]
+[node name="Boss_fight" type="Node4D"]
 
-[node name="boss" type="CharacterBody4D" parent="." unique_id=1569046570 groups=["enemy"]]
+[node name="boss" type="CharacterBody4D" parent="." groups=["enemy"]]
 position = Vector4(0, 1.762, 0, 0)
 basis = Projection(0.99999994, 0, 0, 0, 0, 2.5241096, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994)
 script = ExtResource("1_n65jo")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="boss" unique_id=1647853030]
-libraries/ = SubResource("AnimationLibrary_n65jo")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="boss"]
+libraries = {
+&"": SubResource("AnimationLibrary_n65jo")
+}
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss" unique_id=927475539]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss"]
 material_override = SubResource("WireMaterial4D_kcgai")
 mesh = SubResource("BoxPolyMesh4D_10w01")
 
-[node name="boss" type="CollisionShape4D" parent="boss" unique_id=1192576024]
+[node name="boss" type="CollisionShape4D" parent="boss"]
 shape = SubResource("BoxShape4D_bhtn8")
 
-[node name="gun" type="Node4D" parent="boss" unique_id=40823838]
+[node name="gun" type="Node4D" parent="boss"]
 position = Vector4(-0.27215987, -2.9802319e-08, 0.5420542, 0.3920263)
 basis = Projection(-4.371136e-08, 0, -0.99999946, 0, 0, 0.9999999, 0, 0, 0.99999946, 0, -4.371136e-08, 0, 0, 0, 0, 0.99999946)
 visible = false
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/gun" unique_id=1595951790]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/gun"]
 position = Vector4(-0.43495387, 0.018988302, 0.20430711, -0.0763021)
 basis = Projection(-5.6864877e-09, 0, -0.13009164, 0, 0, 0.05061923, 0, 0, 0.5913851, 0, -2.5850264e-08, 0, 0, 0, 0, 0.117708966)
 material_override = SubResource("WireMaterial4D_10w01")
 mesh = SubResource("BoxPolyMesh4D_n65jo")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/gun" unique_id=236371088]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/gun"]
 position = Vector4(-0.20518385, -0.027698642, 0.20430706, -0.26105717)
 basis = Projection(-1.2677618e-09, 0, -0.13009162, 0, 0, 0.14399312, 0, 0, 0.13184509, 0, -2.5850262e-08, 0, 0, 0, 0, 0.4778849)
 material_override = SubResource("WireMaterial4D_10w01")
 mesh = SubResource("BoxPolyMesh4D_n65jo")
 
-[node name="bullet" type="Node4D" parent="boss/gun" unique_id=1606240032]
+[node name="bullet" type="Node4D" parent="boss/gun"]
 position = Vector4(-0.0643903, -5.501841e-08, -5.1662863e-07, 1.9073486e-06)
 basis = Projection(0.369787, 0, -1.7763568e-15, 0, 0, 0.030242547, 0, 0, 4.440892e-16, 0, 0.083448924, 0, 0, 0, 0, 1)
 
-[node name="Area4D" type="Area4D" parent="boss/gun/bullet" unique_id=2111206983]
+[node name="Area4D" type="Area4D" parent="boss/gun/bullet"]
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/gun/bullet/Area4D" unique_id=1057468283]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/gun/bullet/Area4D"]
 shape = SubResource("CylinderShape4D_47mo0")
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/gun/bullet" unique_id=1168641057]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/gun/bullet"]
 basis = Projection(0.99999803, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_nq0y5")
 mesh = SubResource("BoxWireMesh4D_47mo0")
 
-[node name="laser" type="Node4D" parent="boss" unique_id=1400963947]
+[node name="laser" type="Node4D" parent="boss"]
 basis = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 13.357)
 visible = false
 
-[node name="ring _1" type="Node4D" parent="boss/laser" unique_id=916511028]
+[node name="ring _1" type="Node4D" parent="boss/laser"]
 
-[node name="bullet2" type="Node4D" parent="boss/laser/ring _1" unique_id=603988660 groups=["enemy_lasers"]]
+[node name="bullet2" type="Node4D" parent="boss/laser/ring _1" groups=["enemy_lasers"]]
 position = Vector4(-2, 0, 0, 0)
 basis = Projection(-6.752346e-07, 2.6155188, 0, 0, -1.2633592, -9.350162e-09, 0, 0, 0, 0, 1.2916962, 0, 0, 0, 0, 0.99999917)
 
-[node name="Area4D" type="Area4D" parent="boss/laser/ring _1/bullet2" unique_id=408330849]
+[node name="Area4D" type="Area4D" parent="boss/laser/ring _1/bullet2"]
 basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _1/bullet2/Area4D" unique_id=1007783506]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _1/bullet2/Area4D"]
 shape = SubResource("BoxShape4D_n65jo")
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _1/bullet2" unique_id=422209229]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _1/bullet2"]
 basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_nq0y5")
 mesh = SubResource("BoxWireMesh4D_47mo0")
 
-[node name="machine" type="Node4D" parent="boss/laser/ring _1/bullet2" unique_id=168219457]
+[node name="machine" type="Node4D" parent="boss/laser/ring _1/bullet2"]
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _1/bullet2/machine" unique_id=816044170]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _1/bullet2/machine"]
 position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
 basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _1/bullet2/machine" unique_id=1279983006]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _1/bullet2/machine"]
 position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
 basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="bullet3" type="Node4D" parent="boss/laser/ring _1" unique_id=1672793172 groups=["enemy_lasers"]]
+[node name="bullet3" type="Node4D" parent="boss/laser/ring _1" groups=["enemy_lasers"]]
 position = Vector4(2, 0, 0, 0)
 basis = Projection(-6.752346e-07, 2.6155186, 0, 0, -1.2633592, -9.350162e-09, 0, 0, 0, 0, 1.2916962, 0, 0, 0, 0, 0.9999991)
 
-[node name="Area4D" type="Area4D" parent="boss/laser/ring _1/bullet3" unique_id=1689811206]
+[node name="Area4D" type="Area4D" parent="boss/laser/ring _1/bullet3"]
 basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _1/bullet3/Area4D" unique_id=568387072]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _1/bullet3/Area4D"]
 shape = SubResource("BoxShape4D_n65jo")
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _1/bullet3" unique_id=1017983105]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _1/bullet3"]
 basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_nq0y5")
 mesh = SubResource("BoxWireMesh4D_47mo0")
 
-[node name="machine" type="Node4D" parent="boss/laser/ring _1/bullet3" unique_id=317362333]
+[node name="machine" type="Node4D" parent="boss/laser/ring _1/bullet3"]
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _1/bullet3/machine" unique_id=1500177598]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _1/bullet3/machine"]
 position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
 basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _1/bullet3/machine" unique_id=2029899980]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _1/bullet3/machine"]
 position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
 basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="bullet4" type="Node4D" parent="boss/laser/ring _1" unique_id=1637999355 groups=["enemy_lasers"]]
+[node name="bullet4" type="Node4D" parent="boss/laser/ring _1" groups=["enemy_lasers"]]
 position = Vector4(0, 0, 2, 0)
 basis = Projection(-6.752346e-07, 2.6155188, 0, 0, -1.2633593, -9.350162e-09, 0, 0, 0, 0, 1.2916962, 0, 0, 0, 0, 0.99999917)
 
-[node name="Area4D" type="Area4D" parent="boss/laser/ring _1/bullet4" unique_id=2114917937]
+[node name="Area4D" type="Area4D" parent="boss/laser/ring _1/bullet4"]
 basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _1/bullet4/Area4D" unique_id=1203759618]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _1/bullet4/Area4D"]
 shape = SubResource("BoxShape4D_n65jo")
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _1/bullet4" unique_id=104404447]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _1/bullet4"]
 basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_nq0y5")
 mesh = SubResource("BoxWireMesh4D_47mo0")
 
-[node name="machine" type="Node4D" parent="boss/laser/ring _1/bullet4" unique_id=594382379]
+[node name="machine" type="Node4D" parent="boss/laser/ring _1/bullet4"]
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _1/bullet4/machine" unique_id=143587407]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _1/bullet4/machine"]
 position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
 basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _1/bullet4/machine" unique_id=1648097719]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _1/bullet4/machine"]
 position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
 basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="ring _2" type="Node4D" parent="boss/laser" unique_id=53365035]
+[node name="ring _2" type="Node4D" parent="boss/laser"]
 basis = Projection(0.9238795, 0, -0.38268346, 0, 0, 1, 0, 0, 0.38268346, 0, 0.9238795, 0, 0, 0, 0, 1)
 
-[node name="bullet5" type="Node4D" parent="boss/laser/ring _2" unique_id=2008084095 groups=["enemy_lasers"]]
+[node name="bullet5" type="Node4D" parent="boss/laser/ring _2" groups=["enemy_lasers"]]
 position = Vector4(0, 0, -2, 0)
 basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
 
-[node name="Area4D" type="Area4D" parent="boss/laser/ring _2/bullet5" unique_id=1378961314]
+[node name="Area4D" type="Area4D" parent="boss/laser/ring _2/bullet5"]
 basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _2/bullet5/Area4D" unique_id=1214817289]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _2/bullet5/Area4D"]
 shape = SubResource("BoxShape4D_n65jo")
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet5" unique_id=1844417963]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet5"]
 basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_nq0y5")
 mesh = SubResource("BoxWireMesh4D_47mo0")
 
-[node name="machine" type="Node4D" parent="boss/laser/ring _2/bullet5" unique_id=1954860556]
+[node name="machine" type="Node4D" parent="boss/laser/ring _2/bullet5"]
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet5/machine" unique_id=19000852]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet5/machine"]
 position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
 basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _2/bullet5/machine" unique_id=317968490]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _2/bullet5/machine"]
 position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
 basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="bullet6" type="Node4D" parent="boss/laser/ring _2" unique_id=166890006 groups=["enemy_lasers"]]
+[node name="bullet6" type="Node4D" parent="boss/laser/ring _2" groups=["enemy_lasers"]]
 position = Vector4(0, 0, -7.5, 0)
 basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
 
-[node name="Area4D" type="Area4D" parent="boss/laser/ring _2/bullet6" unique_id=283451732]
+[node name="Area4D" type="Area4D" parent="boss/laser/ring _2/bullet6"]
 basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _2/bullet6/Area4D" unique_id=262908388]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _2/bullet6/Area4D"]
 shape = SubResource("BoxShape4D_n65jo")
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet6" unique_id=1934002071]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet6"]
 basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_nq0y5")
 mesh = SubResource("BoxWireMesh4D_47mo0")
 
-[node name="machine" type="Node4D" parent="boss/laser/ring _2/bullet6" unique_id=1739573]
+[node name="machine" type="Node4D" parent="boss/laser/ring _2/bullet6"]
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet6/machine" unique_id=1167661440]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet6/machine"]
 position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
 basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _2/bullet6/machine" unique_id=213306165]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _2/bullet6/machine"]
 position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
 basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="bullet7" type="Node4D" parent="boss/laser/ring _2" unique_id=678731117 groups=["enemy_lasers"]]
+[node name="bullet7" type="Node4D" parent="boss/laser/ring _2" groups=["enemy_lasers"]]
 position = Vector4(0, 0, 7.5, 0)
 basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
 
-[node name="Area4D" type="Area4D" parent="boss/laser/ring _2/bullet7" unique_id=419477673]
+[node name="Area4D" type="Area4D" parent="boss/laser/ring _2/bullet7"]
 basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _2/bullet7/Area4D" unique_id=1408091844]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _2/bullet7/Area4D"]
 shape = SubResource("BoxShape4D_n65jo")
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet7" unique_id=1931860894]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet7"]
 basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_nq0y5")
 mesh = SubResource("BoxWireMesh4D_47mo0")
 
-[node name="machine" type="Node4D" parent="boss/laser/ring _2/bullet7" unique_id=1075502392]
+[node name="machine" type="Node4D" parent="boss/laser/ring _2/bullet7"]
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet7/machine" unique_id=1244605117]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet7/machine"]
 position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
 basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _2/bullet7/machine" unique_id=130163722]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _2/bullet7/machine"]
 position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
 basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="bullet8" type="Node4D" parent="boss/laser/ring _2" unique_id=734860415 groups=["enemy_lasers"]]
+[node name="bullet8" type="Node4D" parent="boss/laser/ring _2" groups=["enemy_lasers"]]
 position = Vector4(-7.5, 0, 0, 0)
 basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
 
-[node name="Area4D" type="Area4D" parent="boss/laser/ring _2/bullet8" unique_id=1721121288]
+[node name="Area4D" type="Area4D" parent="boss/laser/ring _2/bullet8"]
 basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _2/bullet8/Area4D" unique_id=1906856604]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _2/bullet8/Area4D"]
 shape = SubResource("BoxShape4D_n65jo")
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet8" unique_id=1069263243]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet8"]
 basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_nq0y5")
 mesh = SubResource("BoxWireMesh4D_47mo0")
 
-[node name="machine" type="Node4D" parent="boss/laser/ring _2/bullet8" unique_id=421376566]
+[node name="machine" type="Node4D" parent="boss/laser/ring _2/bullet8"]
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet8/machine" unique_id=952508393]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet8/machine"]
 position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
 basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _2/bullet8/machine" unique_id=562713809]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _2/bullet8/machine"]
 position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
 basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="bullet9" type="Node4D" parent="boss/laser/ring _2" unique_id=1977928868 groups=["enemy_lasers"]]
+[node name="bullet9" type="Node4D" parent="boss/laser/ring _2" groups=["enemy_lasers"]]
 position = Vector4(7.5, 0, 0, 0)
 basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
 
-[node name="Area4D" type="Area4D" parent="boss/laser/ring _2/bullet9" unique_id=264130049]
+[node name="Area4D" type="Area4D" parent="boss/laser/ring _2/bullet9"]
 basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _2/bullet9/Area4D" unique_id=660252503]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _2/bullet9/Area4D"]
 shape = SubResource("BoxShape4D_n65jo")
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet9" unique_id=1926162467]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet9"]
 basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_nq0y5")
 mesh = SubResource("BoxWireMesh4D_47mo0")
 
-[node name="machine" type="Node4D" parent="boss/laser/ring _2/bullet9" unique_id=1256600572]
+[node name="machine" type="Node4D" parent="boss/laser/ring _2/bullet9"]
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet9/machine" unique_id=496450975]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet9/machine"]
 position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
 basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _2/bullet9/machine" unique_id=936769234]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _2/bullet9/machine"]
 position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
 basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="bullet10" type="Node4D" parent="boss/laser/ring _2" unique_id=1271338155 groups=["enemy_lasers"]]
+[node name="bullet10" type="Node4D" parent="boss/laser/ring _2" groups=["enemy_lasers"]]
 position = Vector4(7.5, 0, 7.5, 0)
 basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
 
-[node name="Area4D" type="Area4D" parent="boss/laser/ring _2/bullet10" unique_id=1404054603]
+[node name="Area4D" type="Area4D" parent="boss/laser/ring _2/bullet10"]
 basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _2/bullet10/Area4D" unique_id=1137053864]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _2/bullet10/Area4D"]
 shape = SubResource("BoxShape4D_n65jo")
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet10" unique_id=1360992453]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet10"]
 basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_nq0y5")
 mesh = SubResource("BoxWireMesh4D_47mo0")
 
-[node name="machine" type="Node4D" parent="boss/laser/ring _2/bullet10" unique_id=988180271]
+[node name="machine" type="Node4D" parent="boss/laser/ring _2/bullet10"]
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet10/machine" unique_id=298153028]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet10/machine"]
 position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
 basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _2/bullet10/machine" unique_id=2082867007]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _2/bullet10/machine"]
 position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
 basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="bullet11" type="Node4D" parent="boss/laser/ring _2" unique_id=1105571659 groups=["enemy_lasers"]]
+[node name="bullet11" type="Node4D" parent="boss/laser/ring _2" groups=["enemy_lasers"]]
 position = Vector4(7.5, 0, -7.5, 0)
 basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
 
-[node name="Area4D" type="Area4D" parent="boss/laser/ring _2/bullet11" unique_id=287707680]
+[node name="Area4D" type="Area4D" parent="boss/laser/ring _2/bullet11"]
 basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _2/bullet11/Area4D" unique_id=261261642]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _2/bullet11/Area4D"]
 shape = SubResource("BoxShape4D_n65jo")
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet11" unique_id=545802597]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet11"]
 basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_nq0y5")
 mesh = SubResource("BoxWireMesh4D_47mo0")
 
-[node name="machine" type="Node4D" parent="boss/laser/ring _2/bullet11" unique_id=360430268]
+[node name="machine" type="Node4D" parent="boss/laser/ring _2/bullet11"]
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet11/machine" unique_id=595920492]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet11/machine"]
 position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
 basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _2/bullet11/machine" unique_id=200125507]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _2/bullet11/machine"]
 position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
 basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="bullet12" type="Node4D" parent="boss/laser/ring _2" unique_id=1967891550 groups=["enemy_lasers"]]
+[node name="bullet12" type="Node4D" parent="boss/laser/ring _2" groups=["enemy_lasers"]]
 position = Vector4(-7.5, 0, -7.5, 0)
 basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
 
-[node name="Area4D" type="Area4D" parent="boss/laser/ring _2/bullet12" unique_id=2125859611]
+[node name="Area4D" type="Area4D" parent="boss/laser/ring _2/bullet12"]
 basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _2/bullet12/Area4D" unique_id=377958520]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _2/bullet12/Area4D"]
 shape = SubResource("BoxShape4D_n65jo")
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet12" unique_id=741970229]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet12"]
 basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_nq0y5")
 mesh = SubResource("BoxWireMesh4D_47mo0")
 
-[node name="machine" type="Node4D" parent="boss/laser/ring _2/bullet12" unique_id=631925624]
+[node name="machine" type="Node4D" parent="boss/laser/ring _2/bullet12"]
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet12/machine" unique_id=623773502]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet12/machine"]
 position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
 basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _2/bullet12/machine" unique_id=717070141]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _2/bullet12/machine"]
 position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
 basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="bullet13" type="Node4D" parent="boss/laser/ring _2" unique_id=1670617724 groups=["enemy_lasers"]]
+[node name="bullet13" type="Node4D" parent="boss/laser/ring _2" groups=["enemy_lasers"]]
 position = Vector4(-7.5, 0, 7.5, 0)
 basis = Projection(-6.752345e-07, 2.6155186, 0, 0, -1.263359, -9.350162e-09, 0, 0, 0, 0, 1.291696, 0, 0, 0, 0, 0.999999)
 
-[node name="Area4D" type="Area4D" parent="boss/laser/ring _2/bullet13" unique_id=45669780]
+[node name="Area4D" type="Area4D" parent="boss/laser/ring _2/bullet13"]
 basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _2/bullet13/Area4D" unique_id=692315163]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _2/bullet13/Area4D"]
 shape = SubResource("BoxShape4D_n65jo")
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet13" unique_id=614994792]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet13"]
 basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_nq0y5")
 mesh = SubResource("BoxWireMesh4D_47mo0")
 
-[node name="machine" type="Node4D" parent="boss/laser/ring _2/bullet13" unique_id=546203753]
+[node name="machine" type="Node4D" parent="boss/laser/ring _2/bullet13"]
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet13/machine" unique_id=1020437667]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _2/bullet13/machine"]
 position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
 basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _2/bullet13/machine" unique_id=732950326]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _2/bullet13/machine"]
 position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
 basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="ring _3" type="Node4D" parent="boss/laser" unique_id=139290153]
+[node name="ring _3" type="Node4D" parent="boss/laser"]
 basis = Projection(0.7071067, 0, -0.7071067, 0, 0, 0.99999994, 0, 0, 0.7071067, 0, 0.7071067, 0, 0, 0, 0, 0.99999994)
 
-[node name="bullet14" type="Node4D" parent="boss/laser/ring _3" unique_id=1579418377 groups=["enemy_lasers"]]
+[node name="bullet14" type="Node4D" parent="boss/laser/ring _3" groups=["enemy_lasers"]]
 position = Vector4(0, 0, 12.5, 0)
 basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
 
-[node name="Area4D" type="Area4D" parent="boss/laser/ring _3/bullet14" unique_id=109258431]
+[node name="Area4D" type="Area4D" parent="boss/laser/ring _3/bullet14"]
 basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _3/bullet14/Area4D" unique_id=1908227026]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _3/bullet14/Area4D"]
 shape = SubResource("BoxShape4D_n65jo")
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet14" unique_id=733072629]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet14"]
 basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_nq0y5")
 mesh = SubResource("BoxWireMesh4D_47mo0")
 
-[node name="machine" type="Node4D" parent="boss/laser/ring _3/bullet14" unique_id=2129194288]
+[node name="machine" type="Node4D" parent="boss/laser/ring _3/bullet14"]
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet14/machine" unique_id=289834256]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet14/machine"]
 position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
 basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _3/bullet14/machine" unique_id=751175414]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _3/bullet14/machine"]
 position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
 basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="bullet15" type="Node4D" parent="boss/laser/ring _3" unique_id=367997231 groups=["enemy_lasers"]]
+[node name="bullet15" type="Node4D" parent="boss/laser/ring _3" groups=["enemy_lasers"]]
 position = Vector4(12.5, 0, 0, 0)
 basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
 
-[node name="Area4D" type="Area4D" parent="boss/laser/ring _3/bullet15" unique_id=356322071]
+[node name="Area4D" type="Area4D" parent="boss/laser/ring _3/bullet15"]
 basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _3/bullet15/Area4D" unique_id=872507181]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _3/bullet15/Area4D"]
 shape = SubResource("BoxShape4D_n65jo")
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet15" unique_id=610979709]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet15"]
 basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_nq0y5")
 mesh = SubResource("BoxWireMesh4D_47mo0")
 
-[node name="machine" type="Node4D" parent="boss/laser/ring _3/bullet15" unique_id=79351940]
+[node name="machine" type="Node4D" parent="boss/laser/ring _3/bullet15"]
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet15/machine" unique_id=493139665]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet15/machine"]
 position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
 basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _3/bullet15/machine" unique_id=1552618379]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _3/bullet15/machine"]
 position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
 basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="bullet16" type="Node4D" parent="boss/laser/ring _3" unique_id=951826946 groups=["enemy_lasers"]]
+[node name="bullet16" type="Node4D" parent="boss/laser/ring _3" groups=["enemy_lasers"]]
 position = Vector4(0, 0, -12.5, 0)
 basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
 
-[node name="Area4D" type="Area4D" parent="boss/laser/ring _3/bullet16" unique_id=1209527310]
+[node name="Area4D" type="Area4D" parent="boss/laser/ring _3/bullet16"]
 basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _3/bullet16/Area4D" unique_id=579517599]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _3/bullet16/Area4D"]
 shape = SubResource("BoxShape4D_n65jo")
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet16" unique_id=16443652]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet16"]
 basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_nq0y5")
 mesh = SubResource("BoxWireMesh4D_47mo0")
 
-[node name="machine" type="Node4D" parent="boss/laser/ring _3/bullet16" unique_id=1345599331]
+[node name="machine" type="Node4D" parent="boss/laser/ring _3/bullet16"]
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet16/machine" unique_id=1503225798]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet16/machine"]
 position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
 basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _3/bullet16/machine" unique_id=47574207]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _3/bullet16/machine"]
 position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
 basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="bullet17" type="Node4D" parent="boss/laser/ring _3" unique_id=323411199 groups=["enemy_lasers"]]
+[node name="bullet17" type="Node4D" parent="boss/laser/ring _3" groups=["enemy_lasers"]]
 position = Vector4(-12.5, 0, 0, 0)
 basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
 
-[node name="Area4D" type="Area4D" parent="boss/laser/ring _3/bullet17" unique_id=794706513]
+[node name="Area4D" type="Area4D" parent="boss/laser/ring _3/bullet17"]
 basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _3/bullet17/Area4D" unique_id=2058458491]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _3/bullet17/Area4D"]
 shape = SubResource("BoxShape4D_n65jo")
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet17" unique_id=1243792976]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet17"]
 basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_nq0y5")
 mesh = SubResource("BoxWireMesh4D_47mo0")
 
-[node name="machine" type="Node4D" parent="boss/laser/ring _3/bullet17" unique_id=1860646348]
+[node name="machine" type="Node4D" parent="boss/laser/ring _3/bullet17"]
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet17/machine" unique_id=561952486]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet17/machine"]
 position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
 basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _3/bullet17/machine" unique_id=999586311]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _3/bullet17/machine"]
 position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
 basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="bullet18" type="Node4D" parent="boss/laser/ring _3" unique_id=1543807906 groups=["enemy_lasers"]]
+[node name="bullet18" type="Node4D" parent="boss/laser/ring _3" groups=["enemy_lasers"]]
 position = Vector4(-12.5, 0, -12.5, 0)
 basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
 
-[node name="Area4D" type="Area4D" parent="boss/laser/ring _3/bullet18" unique_id=2078737332]
+[node name="Area4D" type="Area4D" parent="boss/laser/ring _3/bullet18"]
 basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _3/bullet18/Area4D" unique_id=1569272571]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _3/bullet18/Area4D"]
 shape = SubResource("BoxShape4D_n65jo")
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet18" unique_id=1374315024]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet18"]
 basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_nq0y5")
 mesh = SubResource("BoxWireMesh4D_47mo0")
 
-[node name="machine" type="Node4D" parent="boss/laser/ring _3/bullet18" unique_id=908838155]
+[node name="machine" type="Node4D" parent="boss/laser/ring _3/bullet18"]
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet18/machine" unique_id=1929232620]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet18/machine"]
 position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
 basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _3/bullet18/machine" unique_id=925742899]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _3/bullet18/machine"]
 position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
 basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="bullet19" type="Node4D" parent="boss/laser/ring _3" unique_id=1578411255 groups=["enemy_lasers"]]
+[node name="bullet19" type="Node4D" parent="boss/laser/ring _3" groups=["enemy_lasers"]]
 position = Vector4(12.5, 0, -12.5, 0)
 basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
 
-[node name="Area4D" type="Area4D" parent="boss/laser/ring _3/bullet19" unique_id=2072393913]
+[node name="Area4D" type="Area4D" parent="boss/laser/ring _3/bullet19"]
 basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _3/bullet19/Area4D" unique_id=2061537536]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _3/bullet19/Area4D"]
 shape = SubResource("BoxShape4D_n65jo")
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet19" unique_id=398166427]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet19"]
 basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_nq0y5")
 mesh = SubResource("BoxWireMesh4D_47mo0")
 
-[node name="machine" type="Node4D" parent="boss/laser/ring _3/bullet19" unique_id=82663950]
+[node name="machine" type="Node4D" parent="boss/laser/ring _3/bullet19"]
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet19/machine" unique_id=731300397]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet19/machine"]
 position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
 basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _3/bullet19/machine" unique_id=1730845773]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _3/bullet19/machine"]
 position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
 basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="bullet20" type="Node4D" parent="boss/laser/ring _3" unique_id=1866506490 groups=["enemy_lasers"]]
+[node name="bullet20" type="Node4D" parent="boss/laser/ring _3" groups=["enemy_lasers"]]
 position = Vector4(12.5, 0, 12.5, 0)
 basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
 
-[node name="Area4D" type="Area4D" parent="boss/laser/ring _3/bullet20" unique_id=31335266]
+[node name="Area4D" type="Area4D" parent="boss/laser/ring _3/bullet20"]
 basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _3/bullet20/Area4D" unique_id=41212819]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _3/bullet20/Area4D"]
 shape = SubResource("BoxShape4D_n65jo")
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet20" unique_id=101846189]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet20"]
 basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_nq0y5")
 mesh = SubResource("BoxWireMesh4D_47mo0")
 
-[node name="machine" type="Node4D" parent="boss/laser/ring _3/bullet20" unique_id=576449831]
+[node name="machine" type="Node4D" parent="boss/laser/ring _3/bullet20"]
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet20/machine" unique_id=83833738]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet20/machine"]
 position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
 basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _3/bullet20/machine" unique_id=1854492508]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _3/bullet20/machine"]
 position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
 basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="bullet21" type="Node4D" parent="boss/laser/ring _3" unique_id=56131428 groups=["enemy_lasers"]]
+[node name="bullet21" type="Node4D" parent="boss/laser/ring _3" groups=["enemy_lasers"]]
 position = Vector4(-12.5, 0, 12.5, 0)
 basis = Projection(-6.7523456e-07, 2.6155186, 0, 0, -1.2633591, -9.350162e-09, 0, 0, 0, 0, 1.2916961, 0, 0, 0, 0, 0.99999905)
 
-[node name="Area4D" type="Area4D" parent="boss/laser/ring _3/bullet21" unique_id=1433400871]
+[node name="Area4D" type="Area4D" parent="boss/laser/ring _3/bullet21"]
 basis = Projection(0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 1)
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _3/bullet21/Area4D" unique_id=829931166]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/laser/ring _3/bullet21/Area4D"]
 shape = SubResource("BoxShape4D_n65jo")
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet21" unique_id=1248784244]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet21"]
 basis = Projection(0.99999815, 0, 0, 0, 0, 0.9999983, 0, 0, 0, 0, 0.99999815, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_nq0y5")
 mesh = SubResource("BoxWireMesh4D_47mo0")
 
-[node name="machine" type="Node4D" parent="boss/laser/ring _3/bullet21" unique_id=990155139]
+[node name="machine" type="Node4D" parent="boss/laser/ring _3/bullet21"]
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet21/machine" unique_id=1257551876]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/laser/ring _3/bullet21/machine"]
 position = Vector4(0.52849525, -2.3841858e-07, 0, 0)
 basis = Projection(0.22801657, 1.1264558e-06, 0, 0, 7.5343864e-09, 2.3356075, 0, 0, 0, 0, 1.9312688, 0, 0, 0, 0, 1.0000008)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _3/bullet21/machine" unique_id=1482150340]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/laser/ring _3/bullet21/machine"]
 position = Vector4(0.7028262, -0.024215698, -0.10079602, 0)
 basis = Projection(0.2280166, 8.4194824e-07, 0, 0, 5.631442e-09, 1.8032959, 0, 0, 0, 0, 1.4908221, 0, 0, 0, 0, 1.0000014)
 material_override = SubResource("WireMaterial4D_47mo0")
 mesh = SubResource("BoxPolyMesh4D_y2k5v")
 
-[node name="particles" type="Node4D" parent="boss" unique_id=805926312]
+[node name="particles" type="Node4D" parent="boss"]
 visible = false
 
-[node name="particle" type="Area4D" parent="boss/particles" unique_id=472254572 groups=["particle"]]
+[node name="particle" type="Area4D" parent="boss/particles" groups=["particle"]]
 position = Vector4(2.200941, 0.34337896, 0, 0)
 basis = Projection(0.049999982, 0, 0, 0, 0, 0.049999986, 0, 0, 0, 0, 0.049999982, 0, 0, 0, 0, 0.049999982)
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/particles/particle" unique_id=172176732]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/particles/particle"]
 basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_bhtn8")
 mesh = ExtResource("1_10w01")
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/particles/particle" unique_id=1795087248]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/particles/particle"]
 basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 shape = SubResource("SphereShape4D_n65jo")
 
-[node name="particle2" type="Area4D" parent="boss/particles" unique_id=1256756522 groups=["particle"]]
+[node name="particle2" type="Area4D" parent="boss/particles" groups=["particle"]]
 position = Vector4(0.52968603, -0.41018134, 1.730207, 0)
 basis = Projection(0.04999994, 0, 0, 0, 0, 0.049999997, 0, 0, 0, 0, 0.04999994, 0, 0, 0, 0, 0.04999994)
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/particles/particle2" unique_id=355355495]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/particles/particle2"]
 basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_bhtn8")
 mesh = ExtResource("1_10w01")
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/particles/particle2" unique_id=647851667]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/particles/particle2"]
 basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 shape = SubResource("SphereShape4D_n65jo")
 
-[node name="particle3" type="Area4D" parent="boss/particles" unique_id=1609747564 groups=["particle"]]
+[node name="particle3" type="Area4D" parent="boss/particles" groups=["particle"]]
 position = Vector4(-2.9294856, 0.4236848, -0.6896491, 0)
 basis = Projection(0.04999996, 0, 0, 0, 0, 0.049999975, 0, 0, 0, 0, 0.04999996, 0, 0, 0, 0, 0.04999996)
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/particles/particle3" unique_id=220324973]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/particles/particle3"]
 basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_bhtn8")
 mesh = ExtResource("1_10w01")
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/particles/particle3" unique_id=480377446]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/particles/particle3"]
 basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 shape = SubResource("SphereShape4D_n65jo")
 
-[node name="particle4" type="Area4D" parent="boss/particles" unique_id=529019974 groups=["particle"]]
+[node name="particle4" type="Area4D" parent="boss/particles" groups=["particle"]]
 position = Vector4(0.53871787, -0.36965832, -3.3048282, 0)
 basis = Projection(0.049999956, 0, 0, 0, 0, 0.049999967, 0, 0, 0, 0, 0.049999956, 0, 0, 0, 0, 0.049999956)
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/particles/particle4" unique_id=1910909933]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/particles/particle4"]
 basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_bhtn8")
 mesh = ExtResource("1_10w01")
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/particles/particle4" unique_id=960424076]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/particles/particle4"]
 basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 shape = SubResource("SphereShape4D_n65jo")
 
-[node name="particle5" type="Area4D" parent="boss/particles" unique_id=288328367 groups=["particle"]]
+[node name="particle5" type="Area4D" parent="boss/particles" groups=["particle"]]
 position = Vector4(-0.6411823, 0.2787995, 1.838508, 0)
 basis = Projection(0.04999994, 0, 0, 0, 0, 0.049999997, 0, 0, 0, 0, 0.04999994, 0, 0, 0, 0, 0.04999994)
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/particles/particle5" unique_id=1428821600]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/particles/particle5"]
 basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_bhtn8")
 mesh = ExtResource("1_10w01")
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/particles/particle5" unique_id=932725940]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/particles/particle5"]
 basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 shape = SubResource("SphereShape4D_n65jo")
 
-[node name="particle6" type="Area4D" parent="boss/particles" unique_id=388136334 groups=["particle"]]
+[node name="particle6" type="Area4D" parent="boss/particles" groups=["particle"]]
 position = Vector4(-0.71952814, 0.34380543, -1.8734531, 0)
 basis = Projection(0.049999934, 0, 0, 0, 0, 0.049999963, 0, 0, 0, 0, 0.049999934, 0, 0, 0, 0, 0.049999934)
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/particles/particle6" unique_id=739270021]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/particles/particle6"]
 basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_bhtn8")
 mesh = ExtResource("1_10w01")
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/particles/particle6" unique_id=1951890893]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/particles/particle6"]
 basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 shape = SubResource("SphereShape4D_n65jo")
 
-[node name="particle7" type="Area4D" parent="boss/particles" unique_id=1656681070 groups=["particle"]]
+[node name="particle7" type="Area4D" parent="boss/particles" groups=["particle"]]
 position = Vector4(1.7461824, 0.3324496, 1.2557378, 0)
 basis = Projection(0.049999934, 0, 0, 0, 0, 0.049999975, 0, 0, 0, 0, 0.049999934, 0, 0, 0, 0, 0.049999934)
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/particles/particle7" unique_id=239423473]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/particles/particle7"]
 basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_bhtn8")
 mesh = ExtResource("1_10w01")
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/particles/particle7" unique_id=326739787]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/particles/particle7"]
 basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 shape = SubResource("SphereShape4D_n65jo")
 
-[node name="particle8" type="Area4D" parent="boss/particles" unique_id=857145768 groups=["particle"]]
+[node name="particle8" type="Area4D" parent="boss/particles" groups=["particle"]]
 position = Vector4(-1.68545, -0.43010056, -1.3085426, 0)
 basis = Projection(0.049999956, 0, 0, 0, 0, 0.049999975, 0, 0, 0, 0, 0.049999956, 0, 0, 0, 0, 0.049999956)
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/particles/particle8" unique_id=42307065]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/particles/particle8"]
 basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_bhtn8")
 mesh = ExtResource("1_10w01")
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/particles/particle8" unique_id=2080601412]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/particles/particle8"]
 basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 shape = SubResource("SphereShape4D_n65jo")
 
-[node name="particle9" type="Area4D" parent="boss/particles" unique_id=1799294144 groups=["particle"]]
+[node name="particle9" type="Area4D" parent="boss/particles" groups=["particle"]]
 position = Vector4(1.937512, -0.26033786, 0.9158503, 0)
 basis = Projection(0.04999997, 0, 0, 0, 0, 0.050000004, 0, 0, 0, 0, 0.04999997, 0, 0, 0, 0, 0.04999997)
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/particles/particle9" unique_id=780074410]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/particles/particle9"]
 basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_bhtn8")
 mesh = ExtResource("1_10w01")
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/particles/particle9" unique_id=640018569]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/particles/particle9"]
 basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 shape = SubResource("SphereShape4D_n65jo")
 
-[node name="particle10" type="Area4D" parent="boss/particles" unique_id=1659178399 groups=["particle"]]
+[node name="particle10" type="Area4D" parent="boss/particles" groups=["particle"]]
 position = Vector4(0, 0.697124, 0, 0)
 basis = Projection(0.049999967, 0, 0, 0, 0, 0.049999986, 0, 0, 0, 0, 0.049999967, 0, 0, 0, 0, 0.049999967)
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/particles/particle10" unique_id=714929953]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/particles/particle10"]
 basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_bhtn8")
 mesh = ExtResource("1_10w01")
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/particles/particle10" unique_id=937572497]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/particles/particle10"]
 basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 shape = SubResource("SphereShape4D_n65jo")
 
-[node name="nuke" type="Node4D" parent="boss" unique_id=1329535541]
+[node name="nuke" type="Node4D" parent="boss"]
 visible = false
 
-[node name="pos" type="Node4D" parent="boss/nuke" unique_id=212846894 groups=["nuke"]]
+[node name="pos" type="Node4D" parent="boss/nuke" groups=["nuke"]]
 basis = Projection(0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994)
 
-[node name="nuke" type="Area4D" parent="boss/nuke/pos" unique_id=1461487885]
+[node name="nuke" type="Area4D" parent="boss/nuke/pos"]
 position = Vector4(0, -13.303698, 0.15144597, 0)
 basis = Projection(0.9999992, 0, 0, 0, 0, 0.9999995, 0, 0, 0, 0, 0.9999992, 0, 0, 0, 0, 0.9999992)
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/nuke/pos/nuke" unique_id=1382990796]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/nuke/pos/nuke"]
 basis = Projection(-2.8072422, 0, 0, 0, 0, 1.8551433, 0, 0, 0, 0, 2.1139898, 0, 0, 0, 0, 0.9999997)
 shape = SubResource("BoxShape4D_47mo0")
 
-[node name="mesh" type="Node4D" parent="boss/nuke/pos/nuke" unique_id=406144646]
+[node name="mesh" type="Node4D" parent="boss/nuke/pos/nuke"]
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/nuke/pos/nuke/mesh" unique_id=292117360]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/nuke/pos/nuke/mesh"]
 basis = Projection(2.8072422, 0, 0, 0, 0, 1.8551433, 0, 0, 0, 0, 2.1139898, 0, 0, 0, 0, -0.9999997)
 material_override = SubResource("WireMaterial4D_y2k5v")
 mesh = SubResource("BoxWireMesh4D_f0fes")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/nuke/pos/nuke/mesh" unique_id=2050714074]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/nuke/pos/nuke/mesh"]
 position = Vector4(0, 1.0522221, 0.031906325, 0)
 basis = Projection(2.8072412, 0, 0, 0, 0, 0.4875343, 0, 0, 0, 0, 0.3843305, 0, 0, 0, 0, -0.9999992)
 material_override = SubResource("WireMaterial4D_htj63")
 mesh = SubResource("BoxWireMesh4D_f0fes")
 
-[node name="MeshInstance4D3" type="MeshInstance4D" parent="boss/nuke/pos/nuke/mesh" unique_id=1060928779]
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="boss/nuke/pos/nuke/mesh"]
 position = Vector4(-0.01786246, 1.0522224, 0.025241015, 0)
 basis = Projection(-0.5702139, 0, 0, 0, 0, 0.48753428, 0, 0, 0, 0, 2.384933, 0, 0, 0, 0, -0.9999987)
 material_override = SubResource("WireMaterial4D_htj63")
 mesh = SubResource("BoxWireMesh4D_f0fes")
 
-[node name="pos2" type="Node4D" parent="boss/nuke" unique_id=936351921 groups=["nuke"]]
+[node name="pos2" type="Node4D" parent="boss/nuke" groups=["nuke"]]
 basis = Projection(0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994)
 
-[node name="nuke" type="Area4D" parent="boss/nuke/pos2" unique_id=1903576927]
+[node name="nuke" type="Area4D" parent="boss/nuke/pos2"]
 position = Vector4(0, -13.303698, 0.15144597, 0)
 basis = Projection(0.9999992, 0, 0, 0, 0, 0.9999995, 0, 0, 0, 0, 0.9999992, 0, 0, 0, 0, 0.9999992)
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/nuke/pos2/nuke" unique_id=1000808895]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/nuke/pos2/nuke"]
 basis = Projection(-2.8072422, 0, 0, 0, 0, 1.8551433, 0, 0, 0, 0, 2.1139898, 0, 0, 0, 0, 0.9999997)
 shape = SubResource("BoxShape4D_47mo0")
 
-[node name="mesh" type="Node4D" parent="boss/nuke/pos2/nuke" unique_id=1301900291]
+[node name="mesh" type="Node4D" parent="boss/nuke/pos2/nuke"]
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/nuke/pos2/nuke/mesh" unique_id=612327577]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/nuke/pos2/nuke/mesh"]
 basis = Projection(2.8072422, 0, 0, 0, 0, 1.8551433, 0, 0, 0, 0, 2.1139898, 0, 0, 0, 0, -0.9999997)
 material_override = SubResource("WireMaterial4D_y2k5v")
 mesh = SubResource("BoxWireMesh4D_f0fes")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/nuke/pos2/nuke/mesh" unique_id=778688149]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/nuke/pos2/nuke/mesh"]
 position = Vector4(0, 1.0522221, 0.031906325, 0)
 basis = Projection(2.8072412, 0, 0, 0, 0, 0.4875343, 0, 0, 0, 0, 0.3843305, 0, 0, 0, 0, -0.9999992)
 material_override = SubResource("WireMaterial4D_htj63")
 mesh = SubResource("BoxWireMesh4D_f0fes")
 
-[node name="MeshInstance4D3" type="MeshInstance4D" parent="boss/nuke/pos2/nuke/mesh" unique_id=980583358]
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="boss/nuke/pos2/nuke/mesh"]
 position = Vector4(-0.01786246, 1.0522224, 0.025241015, 0)
 basis = Projection(-0.5702139, 0, 0, 0, 0, 0.48753428, 0, 0, 0, 0, 2.384933, 0, 0, 0, 0, -0.9999987)
 material_override = SubResource("WireMaterial4D_htj63")
 mesh = SubResource("BoxWireMesh4D_f0fes")
 
-[node name="pos3" type="Node4D" parent="boss/nuke" unique_id=538715785 groups=["nuke"]]
+[node name="pos3" type="Node4D" parent="boss/nuke" groups=["nuke"]]
 basis = Projection(0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994)
 
-[node name="nuke" type="Area4D" parent="boss/nuke/pos3" unique_id=1310266734]
+[node name="nuke" type="Area4D" parent="boss/nuke/pos3"]
 position = Vector4(0, -13.303698, 0.15144597, 0)
 basis = Projection(0.9999992, 0, 0, 0, 0, 0.9999995, 0, 0, 0, 0, 0.9999992, 0, 0, 0, 0, 0.9999992)
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/nuke/pos3/nuke" unique_id=919678828]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/nuke/pos3/nuke"]
 basis = Projection(-2.8072422, 0, 0, 0, 0, 1.8551433, 0, 0, 0, 0, 2.1139898, 0, 0, 0, 0, 0.9999997)
 shape = SubResource("BoxShape4D_47mo0")
 
-[node name="mesh" type="Node4D" parent="boss/nuke/pos3/nuke" unique_id=126225432]
+[node name="mesh" type="Node4D" parent="boss/nuke/pos3/nuke"]
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/nuke/pos3/nuke/mesh" unique_id=1125229810]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/nuke/pos3/nuke/mesh"]
 basis = Projection(2.8072422, 0, 0, 0, 0, 1.8551433, 0, 0, 0, 0, 2.1139898, 0, 0, 0, 0, -0.9999997)
 material_override = SubResource("WireMaterial4D_y2k5v")
 mesh = SubResource("BoxWireMesh4D_f0fes")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/nuke/pos3/nuke/mesh" unique_id=34458876]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/nuke/pos3/nuke/mesh"]
 position = Vector4(0, 1.0522221, 0.031906325, 0)
 basis = Projection(2.8072412, 0, 0, 0, 0, 0.4875343, 0, 0, 0, 0, 0.3843305, 0, 0, 0, 0, -0.9999992)
 material_override = SubResource("WireMaterial4D_htj63")
 mesh = SubResource("BoxWireMesh4D_f0fes")
 
-[node name="MeshInstance4D3" type="MeshInstance4D" parent="boss/nuke/pos3/nuke/mesh" unique_id=1901770314]
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="boss/nuke/pos3/nuke/mesh"]
 position = Vector4(-0.01786246, 1.0522224, 0.025241015, 0)
 basis = Projection(-0.5702139, 0, 0, 0, 0, 0.48753428, 0, 0, 0, 0, 2.384933, 0, 0, 0, 0, -0.9999987)
 material_override = SubResource("WireMaterial4D_htj63")
 mesh = SubResource("BoxWireMesh4D_f0fes")
 
-[node name="pos4" type="Node4D" parent="boss/nuke" unique_id=1782251495 groups=["nuke"]]
+[node name="pos4" type="Node4D" parent="boss/nuke" groups=["nuke"]]
 basis = Projection(0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994)
 
-[node name="nuke" type="Area4D" parent="boss/nuke/pos4" unique_id=857136298]
+[node name="nuke" type="Area4D" parent="boss/nuke/pos4"]
 position = Vector4(0, -13.303698, 0.15144597, 0)
 basis = Projection(0.9999992, 0, 0, 0, 0, 0.9999995, 0, 0, 0, 0, 0.9999992, 0, 0, 0, 0, 0.9999992)
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/nuke/pos4/nuke" unique_id=7465065]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/nuke/pos4/nuke"]
 basis = Projection(-2.8072422, 0, 0, 0, 0, 1.8551433, 0, 0, 0, 0, 2.1139898, 0, 0, 0, 0, 0.9999997)
 shape = SubResource("BoxShape4D_47mo0")
 
-[node name="mesh" type="Node4D" parent="boss/nuke/pos4/nuke" unique_id=774122253]
+[node name="mesh" type="Node4D" parent="boss/nuke/pos4/nuke"]
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/nuke/pos4/nuke/mesh" unique_id=1935319066]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/nuke/pos4/nuke/mesh"]
 basis = Projection(2.8072422, 0, 0, 0, 0, 1.8551433, 0, 0, 0, 0, 2.1139898, 0, 0, 0, 0, -0.9999997)
 material_override = SubResource("WireMaterial4D_y2k5v")
 mesh = SubResource("BoxWireMesh4D_f0fes")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/nuke/pos4/nuke/mesh" unique_id=1962583459]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/nuke/pos4/nuke/mesh"]
 position = Vector4(0, 1.0522221, 0.031906325, 0)
 basis = Projection(2.8072412, 0, 0, 0, 0, 0.4875343, 0, 0, 0, 0, 0.3843305, 0, 0, 0, 0, -0.9999992)
 material_override = SubResource("WireMaterial4D_htj63")
 mesh = SubResource("BoxWireMesh4D_f0fes")
 
-[node name="MeshInstance4D3" type="MeshInstance4D" parent="boss/nuke/pos4/nuke/mesh" unique_id=530107223]
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="boss/nuke/pos4/nuke/mesh"]
 position = Vector4(-0.01786246, 1.0522224, 0.025241015, 0)
 basis = Projection(-0.5702139, 0, 0, 0, 0, 0.48753428, 0, 0, 0, 0, 2.384933, 0, 0, 0, 0, -0.9999987)
 material_override = SubResource("WireMaterial4D_htj63")
 mesh = SubResource("BoxWireMesh4D_f0fes")
 
-[node name="pos5" type="Node4D" parent="boss/nuke" unique_id=222590199 groups=["nuke"]]
+[node name="pos5" type="Node4D" parent="boss/nuke" groups=["nuke"]]
 basis = Projection(0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994)
 
-[node name="nuke" type="Area4D" parent="boss/nuke/pos5" unique_id=1928810893]
+[node name="nuke" type="Area4D" parent="boss/nuke/pos5"]
 position = Vector4(0, -13.303698, 0.15144597, 0)
 basis = Projection(0.9999992, 0, 0, 0, 0, 0.9999995, 0, 0, 0, 0, 0.9999992, 0, 0, 0, 0, 0.9999992)
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/nuke/pos5/nuke" unique_id=1830511370]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/nuke/pos5/nuke"]
 basis = Projection(-2.8072422, 0, 0, 0, 0, 1.8551433, 0, 0, 0, 0, 2.1139898, 0, 0, 0, 0, 0.9999997)
 shape = SubResource("BoxShape4D_47mo0")
 
-[node name="mesh" type="Node4D" parent="boss/nuke/pos5/nuke" unique_id=95316861]
+[node name="mesh" type="Node4D" parent="boss/nuke/pos5/nuke"]
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/nuke/pos5/nuke/mesh" unique_id=1401565816]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/nuke/pos5/nuke/mesh"]
 basis = Projection(2.8072422, 0, 0, 0, 0, 1.8551433, 0, 0, 0, 0, 2.1139898, 0, 0, 0, 0, -0.9999997)
 material_override = SubResource("WireMaterial4D_y2k5v")
 mesh = SubResource("BoxWireMesh4D_f0fes")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/nuke/pos5/nuke/mesh" unique_id=773530032]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/nuke/pos5/nuke/mesh"]
 position = Vector4(0, 1.0522221, 0.031906325, 0)
 basis = Projection(2.8072412, 0, 0, 0, 0, 0.4875343, 0, 0, 0, 0, 0.3843305, 0, 0, 0, 0, -0.9999992)
 material_override = SubResource("WireMaterial4D_htj63")
 mesh = SubResource("BoxWireMesh4D_f0fes")
 
-[node name="MeshInstance4D3" type="MeshInstance4D" parent="boss/nuke/pos5/nuke/mesh" unique_id=1294349287]
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="boss/nuke/pos5/nuke/mesh"]
 position = Vector4(-0.01786246, 1.0522224, 0.025241015, 0)
 basis = Projection(-0.5702139, 0, 0, 0, 0, 0.48753428, 0, 0, 0, 0, 2.384933, 0, 0, 0, 0, -0.9999987)
 material_override = SubResource("WireMaterial4D_htj63")
 mesh = SubResource("BoxWireMesh4D_f0fes")
 
-[node name="black_hole" type="Node4D" parent="boss" unique_id=785870372]
+[node name="black_hole" type="Node4D" parent="boss"]
 basis = Projection(0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994)
 visible = false
 
-[node name="black_hole" type="Area4D" parent="boss/black_hole" unique_id=2056863682]
+[node name="black_hole" type="Area4D" parent="boss/black_hole"]
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/black_hole/black_hole" unique_id=668741645]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/black_hole/black_hole"]
 basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 shape = SubResource("SphereShape4D_y2k5v")
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/black_hole/black_hole" unique_id=1115168271]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/black_hole/black_hole"]
 basis = Projection(1, 0, 0, 0, 0, 0.397, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_f0fes")
 mesh = ExtResource("1_10w01")
 
-[node name="melee" type="Node4D" parent="boss" unique_id=829802318]
+[node name="melee" type="Node4D" parent="boss"]
 position = Vector4(-0.22859071, 0.16080123, 1.4434367, 0)
 basis = Projection(0.9999991, 0, 0, 0, 0, 0.9999993, 0, 0, 0, 0, 0.9999991, 0, 0, 0, 0, 0.9999991)
 visible = false
 
-[node name="Area4D" type="Area4D" parent="boss/melee" unique_id=1972065466]
+[node name="Area4D" type="Area4D" parent="boss/melee"]
 position = Vector4(0, 0, 0.3805002, 0)
 basis = Projection(0.9999998, 0, 0, 0, 0, 0.9999999, 0, 0, 0, 0, 0.9999998, 0, 0, 0, 0, 0.9999998)
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/melee/Area4D" unique_id=1146579674]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="boss/melee/Area4D"]
 position = Vector4(0, 0, 2.9802322e-08, 0)
 basis = Projection(0.9999997, 0, 0, 0, 0, -0.09439205, 0, 0, 0, 0, 2.1913776, 0, 0, 0, 0, 0.9999997)
 shape = SubResource("BoxShape4D_10w01")
 
-[node name="sword" type="Node4D" parent="boss/melee" unique_id=1358915193]
+[node name="sword" type="Node4D" parent="boss/melee"]
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/melee/sword" unique_id=12973847]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/melee/sword"]
 position = Vector4(0.76739264, 0.18127848, -0.4162768, 2.2499983)
 basis = Projection(-0.47114792, 0, 0, 0, 0, 0.80636954, 0, 0, 0, 0, 0.25534052, 0, 0, 0, 0, 0.9999995)
 material_override = SubResource("WireMaterial4D_fl1h7")
 mesh = ExtResource("2_bhtn8")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/melee/sword" unique_id=1715583411]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/melee/sword"]
 position = Vector4(0.82858133, -0.14002661, -0.4194912, 0)
 basis = Projection(0.84095776, 0, 0, 0, 0, 0.15903105, 0, 0, 0, 0, 0.691759, 0, 0, 0, 0, 0.9999991)
 material_override = SubResource("WireMaterial4D_5lasl")
 mesh = SubResource("BoxWireMesh4D_tt0ij")
 
-[node name="MeshInstance4D3" type="MeshInstance4D" parent="boss/melee/sword" unique_id=109342258]
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="boss/melee/sword"]
 position = Vector4(0.78125685, -0.35494635, -0.3939503, 0)
 basis = Projection(0.2459133, 0, 0, 0, 0, 0.56908107, 0, 0, 0, 0, 0.21209851, 0, 0, 0, 0, 0.9999996)
 material_override = SubResource("WireMaterial4D_cgdq2")
 mesh = SubResource("BoxPolyMesh4D_1bgo6")
 
-[node name="spawner" type="Node4D" parent="boss" unique_id=1081663901]
+[node name="spawner" type="Node4D" parent="boss"]
 basis = Projection(0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 0.99999994)
 visible = false
 
-[node name="spawnerpos" type="Node4D" parent="boss/spawner" unique_id=908553894]
+[node name="spawnerpos" type="Node4D" parent="boss/spawner"]
 position = Vector4(-0.071, 1.375, -1.57, 0)
 basis = Projection(1, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/spawner/spawnerpos" unique_id=1035693575]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="boss/spawner/spawnerpos"]
 position = Vector4(-0.071324, -0.27574992, -0.64953136, 0)
 basis = Projection(4.2336364, 0, 0, 0, 0, 0.4485004, 0, 0, 0, 0, 2.2990634, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_n65jo")
 mesh = SubResource("BoxPolyMesh4D_nq0y5")
 
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/spawner/spawnerpos" unique_id=1903945370]
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="boss/spawner/spawnerpos"]
 position = Vector4(-0.72811645, 0.053600408, -0.5461836, 0)
 basis = Projection(1.0722709, 0, 0, 0, 0, 1.1072013, 0, 0, 0, 0, 1.2587891, 0, 0, 0, 0, 1.0000001)
 material_override = SubResource("WireMaterial4D_n65jo")
 mesh = SubResource("BoxPolyMesh4D_nq0y5")
 
-[node name="MeshInstance4D3" type="MeshInstance4D" parent="boss/spawner/spawnerpos" unique_id=359444289]
+[node name="MeshInstance4D3" type="MeshInstance4D" parent="boss/spawner/spawnerpos"]
 position = Vector4(-0.566145, 0.38090613, -0.6689582, 0)
 basis = Projection(1.3962133, 0, 0, 0, 0, 0.17047377, 0, 0, 0, 0, 0.66511184, 0, 0, 0, 0, 1)
 material_override = SubResource("WireMaterial4D_n65jo")
 mesh = SubResource("BoxPolyMesh4D_nq0y5")
 
-[node name="MeshInstance4D4" type="MeshInstance4D" parent="boss/spawner/spawnerpos" unique_id=582795338]
+[node name="MeshInstance4D4" type="MeshInstance4D" parent="boss/spawner/spawnerpos"]
 position = Vector4(-0.47542763, 0.38090613, -0.6689582, 0)
 basis = Projection(1.5776482, 0, 0, 0, 0, 0.17047377, 0, 0, 0, 0, 0.66511184, 0, 0, 0, 0, 1.0000001)
 material_override = SubResource("WireMaterial4D_n65jo")
 mesh = SubResource("BoxPolyMesh4D_nq0y5")
 
-[node name="MeshInstance4D5" type="MeshInstance4D" parent="boss/spawner/spawnerpos" unique_id=439238307]
+[node name="MeshInstance4D5" type="MeshInstance4D" parent="boss/spawner/spawnerpos"]
 position = Vector4(0.3369599, 0.32007727, -0.6689582, 0)
 basis = Projection(0.38078585, 0, 0, 0, 0, 0.1346474, 0, 0, 0, 0, 0.6651118, 0, 0, 0, 0, 1.0000001)
 material_override = SubResource("WireMaterial4D_n65jo")
 mesh = SubResource("BoxPolyMesh4D_nq0y5")
 
-[node name="MeshInstance4D6" type="MeshInstance4D" parent="boss/spawner/spawnerpos" unique_id=572873490]
+[node name="MeshInstance4D6" type="MeshInstance4D" parent="boss/spawner/spawnerpos"]
 position = Vector4(0.50610507, 0.2695181, -0.6689582, 0)
 basis = Projection(0.4349075, 0, 0, 0, 0, 0.15250017, 0, 0, 0, 0, 0.6651119, 0, 0, 0, 0, 1.0000001)
 material_override = SubResource("WireMaterial4D_n65jo")
 mesh = SubResource("BoxPolyMesh4D_nq0y5")
 
-[node name="MeshInstance4D7" type="MeshInstance4D" parent="boss/spawner/spawnerpos" unique_id=1918754294]
+[node name="MeshInstance4D7" type="MeshInstance4D" parent="boss/spawner/spawnerpos"]
 position = Vector4(0.63161606, 0.2695181, -0.6689582, 0)
 basis = Projection(0.68592954, 0, 0, 0, 0, 0.15250017, 0, 0, 0, 0, 0.6651119, 0, 0, 0, 0, 1.0000001)
 material_override = SubResource("WireMaterial4D_n65jo")
 mesh = SubResource("BoxPolyMesh4D_nq0y5")
 
-[node name="teleport_range" type="Node4D" parent="boss" unique_id=297276091]
+[node name="teleport_range" type="Node4D" parent="boss"]
 
-[node name="teleport_range2" type="Node4D" parent="boss/teleport_range" unique_id=1231999067]
+[node name="teleport_range2" type="Node4D" parent="boss/teleport_range"]
 position = Vector4(28.415998, 0.02124387, 16.154999, -5.2369995)
 basis = Projection(0.9999985, 0, 0, 0, 0, 0.9999985, 0, 0, 0, 0, 0.9999985, 0, 0, 0, 0, 0.9999985)
 
-[node name="teleport_range3" type="Node4D" parent="boss/teleport_range" unique_id=1128951774]
+[node name="teleport_range3" type="Node4D" parent="boss/teleport_range"]
 position = Vector4(-28.150997, 0.02124387, -15.652999, 6.7339997)
 basis = Projection(0.9999984, 0, 0, 0, 0, 0.9999991, 0, 0, 0, 0, 0.9999984, 0, 0, 0, 0, 0.9999984)
 
-[node name="teleport" type="Node4D" parent="boss" unique_id=1201902095]
+[node name="teleport" type="Node4D" parent="boss"]
 visible = false
 
-[node name="AnimationTree" type="AnimationTree" parent="boss" unique_id=414350337]
+[node name="AnimationTree" type="AnimationTree" parent="boss"]
 tree_root = SubResource("AnimationNodeStateMachine_tt1ny")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 
-[node name="attack_state_countdown" type="Timer" parent="boss" unique_id=1480358102]
+[node name="attack_state_countdown" type="Timer" parent="boss"]
 wait_time = 5.0
 
-[node name="StaticBody4D" parent="." unique_id=1219608378 instance=ExtResource("5_y2k5v")]
+[node name="StaticBody4D" parent="." instance=ExtResource("5_y2k5v")]
 basis = Projection(57.438965, 0, 0, 0, 0, 1, 0, 0, 0, 0, 32.984676, 0, 0, 0, 0, 13.3569975)
 
-[node name="CharacterBody4D2" parent="." unique_id=536497651 groups=["player"] instance=ExtResource("6_y2k5v")]
+[node name="CharacterBody4D2" parent="." groups=["player"] instance=ExtResource("6_y2k5v")]
 position = Vector4(-24.355995, 3.236228, 13.164572, 0)
 
-[node name="Label" type="Label" parent="." unique_id=110926349]
+[node name="Label" type="Label" parent="."]
 offset_left = 375.0
 offset_top = 3.0
 offset_right = 415.0

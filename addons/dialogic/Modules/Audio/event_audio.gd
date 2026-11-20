@@ -8,13 +8,13 @@ extends DialogicEvent
 ### Settings
 
 ## The file to play. If empty, the previous audio will be faded out.
-@export var file_path := "":
+var file_path := "":
 	set(value):
 		if file_path != value:
 			file_path = value
 			ui_update_needed.emit()
 ## The channel name to use. If none given plays as a One-Shot SFX.
-@export var channel_name := "":
+var channel_name := "":
 	set(value):
 		if channel_name != channel_name_regex.sub(value, '', true):
 			channel_name = channel_name_regex.sub(value, '', true)
@@ -27,15 +27,15 @@ extends DialogicEvent
 				ui_update_needed.emit()
 
 ## The length of the fade. If 0 it's an instant change.
-@export var fade_length: float = 0.0
+var fade_length: float = 0.0
 ## The volume in decibel.
-@export var volume: float = 0.0
+var volume: float = 0.0
 ## The audio bus the audio will be played on.
-@export var audio_bus := ""
+var audio_bus := ""
 ## If true, the audio will loop, otherwise only play once.
-@export var loop := true
+var loop := true
 ## Sync starting time with different channel (if playing audio on that channel)
-@export var sync_channel := ""
+var sync_channel := ""
 
 ## Helpers. Set automatically
 var set_fade_length := false
@@ -269,8 +269,7 @@ func build_event_editor() -> void:
 			'left_text'		: 'Play',
 			'file_filter' 	: "*.mp3, *.ogg, *.wav; Supported Audio Files",
 			'placeholder' 	: "Nothing",
-			'editor_icon' 	: ["AudioStreamMP3", "EditorIcons"],
-			"type": "Audio, Asset"})
+			'editor_icon' 	: ["AudioStreamMP3", "EditorIcons"]})
 	add_header_edit('file_path', ValueType.AUDIO_PREVIEW)
 
 	add_header_edit('channel_name', ValueType.DYNAMIC_OPTIONS, {
@@ -350,9 +349,10 @@ func get_audio_channel_suggestions(filter:String) -> Dictionary:
 		"value":"",
 		"tooltip": "Used for one shot sounds effects. Plays each sound in its own AudioStreamPlayer.",
 		"editor_icon": ["GuiRadioUnchecked", "EditorIcons"]
-		}.merged(DialogicUtil.get_audio_channel_suggestions(filter))
+		}
+	# TODO use .merged after dropping 4.2 support
+	suggestions.merge(DialogicUtil.get_audio_channel_suggestions(filter))
 	return suggestions
-
 
 func get_sync_audio_channel_suggestions(filter:="") -> Dictionary:
 	return DialogicUtil.get_audio_channel_suggestions(filter)

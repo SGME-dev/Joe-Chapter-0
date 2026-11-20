@@ -146,7 +146,9 @@ func _ready() -> void:
 		return
 
 	DialogicUtil.get_dialogic_plugin().resource_saved.connect(_on_some_resource_saved)
-	DialogicUtil.get_dialogic_plugin().scene_saved.connect(_on_some_resource_saved)
+	# NOTE: This check is required because up to 4.2 this signal is not exposed.
+	if DialogicUtil.get_dialogic_plugin().has_signal("scene_saved"):
+		DialogicUtil.get_dialogic_plugin().scene_saved.connect(_on_some_resource_saved)
 
 	$NoCharacterScreen.add_theme_stylebox_override("panel", get_theme_stylebox("Background", "EditorStyles"))
 	$NoCharacterScreen.show()
@@ -546,8 +548,6 @@ func report_name_change(item: TreeItem) -> void:
 			if s_item.get_metadata(0).has('group') or !s_item.has_meta('new'):
 				report_name_change(s_item)
 	else:
-		if item.has_meta("new"):
-			return
 		if item.get_meta('previous_name') == %PortraitTree.get_full_item_name(item):
 			return
 		editors_manager.reference_manager.add_portrait_ref_change(

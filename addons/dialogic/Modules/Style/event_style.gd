@@ -8,7 +8,7 @@ extends DialogicEvent
 ### Settings
 
 ## The name of the style to change to. Can be set on the DialogicNode_Style.
-@export var style_name := ""
+var style_name := ""
 
 
 #region EXECUTE

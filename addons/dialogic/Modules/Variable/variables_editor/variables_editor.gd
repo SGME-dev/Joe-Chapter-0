@@ -20,11 +20,7 @@ func _register() -> void:
 
 func _open(_argument:Variant = null) -> void:
 	%ReferenceInfo.hide()
-	var var_info: Dictionary = ProjectSettings.get_setting('dialogic/variables', {})
-	var_info.merge({"@CHARACTER":{}, "$TIMELINE":{}})
-	var_info["@CHARACTER"].merge({})
-	var_info["$TIMELINE"].merge({"visited":0})
-	%Tree.load_info(var_info)
+	%Tree.load_info(ProjectSettings.get_setting('dialogic/variables', {}))
 
 
 func _save() -> void:
@@ -44,13 +40,6 @@ func _ready() -> void:
 
 	%ReferenceInfo.get_node('Label').add_theme_color_override('font_color', get_theme_color("warning_color", "Editor"))
 	%Search.right_icon = get_theme_icon("Search", "EditorIcons")
-	%Documentation.icon = get_theme_icon("ExternalLink", "EditorIcons")
-	%OpenButton.icon = get_theme_icon("Back", "EditorIcons")
-	%OpenButton.pressed.connect(_show_help_section)
-	%CloseButton.icon = get_theme_icon("Forward", "EditorIcons")
-	%CloseButton.pressed.connect(_hide_help_section)
-	if DialogicUtil.get_editor_setting("variable_editor_help_closed", false):
-		_hide_help_section()
 
 #region RENAMING
 
@@ -74,19 +63,3 @@ func _on_reference_manager_pressed() -> void:
 
 func _on_search_text_changed(new_text: String) -> void:
 	%Tree.filter(new_text)
-
-
-func _on_documentation_pressed() -> void:
-	OS.shell_open("https://docs.dialogic.pro/variables.html")
-
-
-func _show_help_section() -> void:
-	%HelpSection.show()
-	%OpenButton.hide()
-	DialogicUtil.set_editor_setting("variable_editor_help_closed", false)
-
-
-func _hide_help_section() -> void:
-	%HelpSection.hide()
-	%OpenButton.show()
-	DialogicUtil.set_editor_setting("variable_editor_help_closed", true)

@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://be8e16bt3p7s7"]
+[gd_scene load_steps=4 format=3 uid="uid://be8e16bt3p7s7"]
 
 [sub_resource type="BoxShape4D" id="BoxShape4D_jtvq5"]
 
@@ -8,11 +8,11 @@ albedo_color = Color(0, 0.7438655, 0.21588597, 1)
 [sub_resource type="BoxWireMesh4D" id="BoxWireMesh4D_mi635"]
 material = SubResource("WireMaterial4D_5ajho")
 
-[node name="StaticBody4D" type="StaticBody4D" unique_id=1273071056]
+[node name="StaticBody4D" type="StaticBody4D"]
 basis = Projection(13.652, 0, 0, 0, 0, 1, 0, 0, 0, 0, 13.000001, 0, 0, 0, 0, 13.357)
 
-[node name="CollisionShape4D" type="CollisionShape4D" parent="." unique_id=34270980]
+[node name="CollisionShape4D" type="CollisionShape4D" parent="."]
 shape = SubResource("BoxShape4D_jtvq5")
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="." unique_id=1692700550]
+[node name="MeshInstance4D" type="MeshInstance4D" parent="."]
 mesh = SubResource("BoxWireMesh4D_mi635")

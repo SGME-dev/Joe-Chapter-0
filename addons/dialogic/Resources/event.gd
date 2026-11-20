@@ -138,7 +138,7 @@ func finish() -> void:
 
 ## Called before executing the next event or before clear(any flags) / load_full_state().
 ##
-## Should be overridden if the event stores temporary state somewhere (e.g. on a subsystem)
+## Should be overridden if the event stores temporary state into dialogic.current_state_info
 ## or some other cleanup is needed before another event can run.
 func _clear_state() -> void:
 	pass
@@ -430,12 +430,8 @@ func is_valid_event(string: String) -> bool:
 ## has to return true if this string seems to be a full event of this kind
 ## (only tested if is_valid_event() returned true)
 ## if a shortcode it used it will default to true if the string ends with ']'
-## a translation id is stored after the ']', so it is removed before that test
 func is_string_full_event(string: String) -> bool:
-	if get_shortcode() != 'default_shortcode':
-		if '#id:' in string and can_be_translated():
-			return string.get_slice('#id:', 0).strip_edges().ends_with(']')
-		return string.strip_edges().ends_with(']')
+	if get_shortcode() != 'default_shortcode': return string.strip_edges().ends_with(']')
 	return true
 
 

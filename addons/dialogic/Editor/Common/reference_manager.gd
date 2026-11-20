@@ -6,11 +6,8 @@ func _ready() -> void:
 	if get_parent() is SubViewport:
 		return
 
-	add_theme_stylebox_override("panel", get_theme_stylebox("Background", "EditorStyles").duplicate())
-	get_theme_stylebox("panel").set_content_margin_all(10)
+	add_theme_stylebox_override("panel", get_theme_stylebox("Background", "EditorStyles"))
 	$Tabs/Close.icon = get_theme_icon("Close", "EditorIcons")
-
-	%HelpButton.icon = get_theme_icon("ExternalLink", "EditorIcons")
 
 	for tab in $Tabs/Tabs.get_children():
 		tab.add_theme_color_override("font_selected_color", get_theme_color("accent_color", "Editor"))
@@ -18,7 +15,7 @@ func _ready() -> void:
 		tab.toggled.connect(tab_changed.bind(tab.get_index()+1))
 
 
-func tab_changed(_enabled:bool, index:int) -> void:
+func tab_changed(enabled:bool, index:int) -> void:
 	for child in $Tabs.get_children():
 		if child.get_index() == 0 or child.get_index() == index or child is Button:
 			child.show()
@@ -39,7 +36,3 @@ func open() -> void:
 
 func _on_close_pressed() -> void:
 	get_parent()._on_close_requested()
-
-
-func _on_help_button_pressed() -> void:
-	OS.shell_open("https://docs.dialogic.pro/reference-manager.html")

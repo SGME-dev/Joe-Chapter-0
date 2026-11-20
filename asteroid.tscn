@@ -1,11 +1,11 @@
-[gd_scene format=3 uid="uid://66cxvjpl5cj5"]
+[gd_scene load_steps=4 format=3 uid="uid://66cxvjpl5cj5"]
 
 [ext_resource type="PackedScene" uid="uid://cytl1r1yjrird" path="res://platform.tscn" id="1_p0ukn"]
 [ext_resource type="ArrayWireMesh4D" uid="uid://c5fllv5upcqyf" path="res://120-cell_fixed.off" id="2_gm5ib"]
 
 [sub_resource type="WireMaterial4D" id="WireMaterial4D_p0ukn"]
 
-[node name="StaticBody4D" unique_id=2127160106 instance=ExtResource("1_p0ukn")]
+[node name="StaticBody4D" instance=ExtResource("1_p0ukn")]
 
 [node name="MeshInstance4D" parent="." index="1"]
 basis = Projection(0.5, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 0.5)

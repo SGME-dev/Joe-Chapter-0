@@ -16,14 +16,6 @@ extends DialogicSubsystem
 ## `is_autosave` | [type bool]   | `true`, if the save was an autosave. [br]
 signal saved(info: Dictionary)
 
-## Emitted when a load happened with the following info:
-## [br]
-## Key           |   Value Type  | Value [br]
-## -----------   | ------------- | ----- [br]
-## `slot_name`   | [type String] | The name of the slot that the game state was loaded from. [br]
-signal loaded(info: Dictionary)
-
-
 
 ## The directory that will be saved to.
 const SAVE_SLOTS_DIR := "user://dialogic/saves/"
@@ -81,23 +73,21 @@ var autosave_time := 60:
 		autosave_timer.wait_time = timer_time
 
 
-var _debug_save_as_tres := false
-
 #region STATE
 ####################################################################################################
 
 ## Built-in, called by DialogicGameHandler.
-func _clear_state(_clear_flag := DialogicGameHandler.ClearFlags.FULL_CLEAR) -> void:
+func clear_game_state(_clear_flag := DialogicGameHandler.ClearFlags.FULL_CLEAR) -> void:
 	_make_sure_slot_dir_exists()
 
 
 ## Built-in, called by DialogicGameHandler.
-func _pause() -> void:
+func pause() -> void:
 	autosave_timer.paused = true
 
 
 ## Built-in, called by DialogicGameHandler.
-func _resume() -> void:
+func resume() -> void:
 	autosave_timer.paused = false
 
 #endregion
@@ -120,11 +110,6 @@ func save(slot_name := "", is_autosave := false, thumbnail_mode := ThumbnailMode
 		slot_name = get_default_slot()
 
 	set_latest_slot(slot_name)
-
-	if _debug_save_as_tres:
-		var save_path := SAVE_SLOTS_DIR.path_join(slot_name).path_join('state.tres')
-		ResourceSaver.save(dialogic.get_full_state(), save_path)
-		return OK
 
 	var save_error := save_file(slot_name, 'state.txt', dialogic.get_full_state())
 
@@ -152,7 +137,7 @@ func save(slot_name := "", is_autosave := false, thumbnail_mode := ThumbnailMode
 func load(slot_name := "") -> Error:
 	if slot_name.is_empty(): slot_name = get_default_slot()
 
-	if not has_slot(slot_name):
+	if !has_slot(slot_name):
 		printerr("[Dialogic Error] Tried loading from invalid save slot '"+slot_name+"'.")
 		return ERR_FILE_NOT_FOUND
 
@@ -160,20 +145,10 @@ func load(slot_name := "") -> Error:
 	if set_latest_error:
 		push_error("[Dialogic Error]: Failed to store latest slot to global info. Error %d '%s'" % [set_latest_error, error_string(set_latest_error)])
 
-	if _debug_save_as_tres:
-		var save_path := SAVE_SLOTS_DIR.path_join(slot_name).path_join('state.tres')
-		var tres_state: DialogicSaveState = ResourceLoader.load(save_path)
-		dialogic.load_full_state(tres_state)
-		return OK
-
-
-	var state: DialogicSaveState = load_file(slot_name, 'state.txt', {})
+	var state: Dictionary = load_file(slot_name, 'state.txt', {})
 	dialogic.load_full_state(state)
 
-	loaded.emit({"slot_name": slot_name})
-	print('[Dialogic] Loaded from slot "'+slot_name+'".')
-
-	if not state:
+	if state.is_empty():
 		return FAILED
 	else:
 		return OK
@@ -198,18 +173,16 @@ func save_file(slot_name: String, file_name: String, data: Variant) -> Error:
 	if !has_slot(slot_name):
 		add_empty_slot(slot_name)
 
-
-	var save_path := SAVE_SLOTS_DIR.path_join(slot_name).path_join(file_name)
 	var encryption_password := get_encryption_password()
 	var file: FileAccess
 
 	if encryption_password.is_empty():
-		file = FileAccess.open(save_path, FileAccess.WRITE)
+		file = FileAccess.open(SAVE_SLOTS_DIR.path_join(slot_name).path_join(file_name), FileAccess.WRITE)
 	else:
-		file = FileAccess.open_encrypted_with_pass(save_path, FileAccess.WRITE, encryption_password)
+		file = FileAccess.open_encrypted_with_pass(SAVE_SLOTS_DIR.path_join(slot_name).path_join(file_name), FileAccess.WRITE, encryption_password)
 
 	if file:
-		file.store_var(data, true)
+		file.store_var(data)
 		return OK
 	else:
 		var error := FileAccess.get_open_error()
@@ -235,7 +208,7 @@ func load_file(slot_name: String, file_name: String, default: Variant) -> Varian
 			file = FileAccess.open_encrypted_with_pass(path, FileAccess.READ, encryption_password)
 
 		if file:
-			return file.get_var(true)
+			return file.get_var()
 		else:
 			push_error(FileAccess.get_open_error())
 	return default
