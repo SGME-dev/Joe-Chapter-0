@@ -28,6 +28,7 @@ basis = Projection(-8.804544e-08, 0, 0, 2.0142448, 0, 0.9999998, 0, 0, 0, 0, 2.0
 shape = SubResource("CubinderShape4D_uj5xr")
 
 [node name="Area4D" type="Area4D" parent="."]
+basis = Projection(1.5, 0, 0, 0, 0, 1.5, 0, 0, 0, 0, 1.5, 0, 0, 0, 0, 1)
 
 [node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D"]
 basis = Projection(3, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3)
