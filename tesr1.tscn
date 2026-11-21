@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdlq7665en4vm"]
+
+[sub_resource type="PlaceholderTexture3D" id="PlaceholderTexture3D_8c2dl"]
+
+[sub_resource type="TetraMaterial4D" id="TetraMaterial4D_mo10w"]
+albedo_source = 3
+albedo_texture_3d = SubResource("PlaceholderTexture3D_8c2dl")
+
+[sub_resource type="BoxPolyMesh4D" id="BoxPolyMesh4D_kn25j"]
+material = SubResource("TetraMaterial4D_mo10w")
+poly_texture_map = 1
+
+[node name="Node4D" type="Node4D"]
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="."]
+mesh = SubResource("BoxPolyMesh4D_kn25j")
