@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://8ad1pwbjuqpt"]
+[gd_scene load_steps=0 format=3 uid="uid://8ad1pwbjuqpt"]
 
 [ext_resource type="Script" uid="uid://6qkd50m2lqnx" path="res://addons/dialogic/Modules/Text/character_settings/character_moods_settings.gd" id="1_3px07"]
 [ext_resource type="PackedScene" uid="uid://7mvxuaulctcq" path="res://addons/dialogic/Editor/Events/Fields/field_file.tscn" id="2_e1vyd"]
@@ -139,7 +139,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 file_filter = "*.ogg, *.mp3, *.wav"
 file_mode = 3
-type = "MoodSounds, SFX, Audio, Asset"
 
 [node name="Label2" type="Label" parent="VBox/Settings/Grid" unique_id=784538409]
 layout_mode = 2

@@ -44,12 +44,12 @@ var voice_player := AudioStreamPlayer.new()
 ####################################################################################################
 
 ## Stops the current voice from playing.
-func _pause() -> void:
+func pause() -> void:
 	voice_player.stream_paused = true
 
 
 ## Resumes a paused voice.
-func _resume() -> void:
+func resume() -> void:
 	voice_player.stream_paused = false
 
 #endregion

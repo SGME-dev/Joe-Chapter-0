@@ -3,7 +3,6 @@ extends DialogicSubsystem
 ## Subsystem that holds methods for jumping to specific labels, or return to the previous jump.
 
 
-#region SIGNALS
 @warning_ignore("unused_signal") # this is emitted from the jump event
 ## Emitted when a jump event switches from one timeline to another. Gives a dictionary witht the keys:
 ## [br]
@@ -39,23 +38,18 @@ signal returned_from_jump(info:Dictionary)
 ## `display_name_orig` | [type String]           | The untranslated display name. [br]
 ## `timeline`          | [type String]           | The identifier of the timeline we are in. [br]
 signal passed_label(info:Dictionary)
-#endregion
-
-@export_group("State")
-@export var jump_stack := []
-@export var last_label := {}
-
 
 #region STATE
 ####################################################################################################
 
-func _clear_state(_clear_flag:=DialogicGameHandler.ClearFlags.FULL_CLEAR) -> void:
-	jump_stack = []
-	last_label = {}
+func clear_game_state(_clear_flag:=DialogicGameHandler.ClearFlags.FULL_CLEAR) -> void:
+	dialogic.current_state_info['jump_stack'] = []
+	dialogic.current_state_info.erase("last_label")
 
 
-func _load_state(_load_flag:=LoadFlags.FULL_LOAD) -> void:
-	pass
+func load_game_state(_load_flag:=LoadFlags.FULL_LOAD) -> void:
+	if not 'jump_stack' in dialogic.current_state_info:
+		dialogic.current_state_info['jump_stack'] = []
 
 #endregion
 
@@ -68,7 +62,6 @@ func jump_to_label(label:String) -> void:
 		dialogic.current_event_idx = 0
 		jumped_to_label.emit({'timeline':dialogic.current_timeline, 'label':""})
 		return
-
 	## Allows label to be a variable, making the jump event dynamic
 	label = str(dialogic.VAR.parse_variables(label))
 
@@ -77,8 +70,7 @@ func jump_to_label(label:String) -> void:
 		idx += 1
 		var event: Variant = dialogic.current_timeline.get_event(idx)
 		if not event:
-			printerr("[Dialogic] Label '%s' not found for jump in timeline '%s'." % [label, dialogic.current_timeline.get_identifier()])
-			idx = dialogic.current_event_idx + 1
+			idx = dialogic.current_event_idx
 			break
 		if event is DialogicLabelEvent and event.name == label:
 			break
@@ -87,18 +79,18 @@ func jump_to_label(label:String) -> void:
 
 
 func push_to_jump_stack() -> void:
-	jump_stack.push_back({'timeline':dialogic.current_timeline, 'index':dialogic.current_event_idx, 'label':dialogic.current_timeline_events[dialogic.current_event_idx].label_name})
+	dialogic.current_state_info['jump_stack'].push_back({'timeline':dialogic.current_timeline, 'index':dialogic.current_event_idx, 'label':dialogic.current_timeline_events[dialogic.current_event_idx].label_name})
 
 
 func resume_from_last_jump() -> void:
 	var sub_timeline: DialogicTimeline = dialogic.current_timeline
-	var stack_info: Dictionary = jump_stack.pop_back()
+	var stack_info: Dictionary = dialogic.current_state_info['jump_stack'].pop_back()
 	dialogic.start_timeline(stack_info.timeline, stack_info.index+1)
 	returned_from_jump.emit({'sub_timeline':sub_timeline, 'label':stack_info.label})
 
 
 func is_jump_stack_empty() -> bool:
-	return len(jump_stack) < 1
+	return len(dialogic.current_state_info['jump_stack']) < 1
 
 #endregion
 
@@ -111,15 +103,21 @@ func _ready() -> void:
 
 
 func _on_passed_label(info:Dictionary) -> void:
-	last_label = info
+	dialogic.current_state_info["last_label"] = info
 
 
 ## Returns the identifier name of the last passed label
 func get_last_label_identifier() -> String:
-	return last_label.get("identifier", "")
+	if not dialogic.current_state_info.has("last_label"):
+		return ""
+
+	return dialogic.current_state_info["last_label"].identifier
 
 
 ## Returns the display name of the last passed label (translated if translation are enabled)
 func get_last_label_name() -> String:
-	return last_label.get("display_name", "")
+	if not dialogic.current_state_info.has("last_label"):
+		return ""
+
+	return dialogic.current_state_info["last_label"].display_name
 #endregion

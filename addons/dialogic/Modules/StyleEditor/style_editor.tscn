@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cx6h3tck10s1g"]
+[gd_scene load_steps=0 format=3 uid="uid://cx6h3tck10s1g"]
 
 [ext_resource type="Script" uid="uid://n7kjhd6h41ec" path="res://addons/dialogic/Modules/StyleEditor/style_editor.gd" id="1_gy14f"]
 [ext_resource type="PackedScene" uid="uid://dbpkta2tjsqim" path="res://addons/dialogic/Editor/Common/hint_tooltip_icon.tscn" id="2_g4mnt"]
@@ -18,7 +18,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="Image" id="Image_3rxjh"]
+[sub_resource type="Image" id="Image_i40ox"]
 data = {
 "data": PackedByteArray(0, 0, 0, 255, 0, 0, 0, 255, 0, 0, 0, 255, 0, 0, 0, 255),
 "format": "RGBA8",
@@ -28,7 +28,7 @@ data = {
 }
 
 [sub_resource type="ImageTexture" id="ImageTexture_yr3tj"]
-image = SubResource("Image_3rxjh")
+image = SubResource("Image_i40ox")
 
 [node name="StyleEditor" type="HSplitContainer" unique_id=1865892929]
 anchors_preset = 15

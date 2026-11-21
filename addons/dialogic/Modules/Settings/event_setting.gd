@@ -16,7 +16,7 @@ enum SettingValueType {
 }
 
 ## The name of the setting to save to.
-@export var name := ""
+var name := ""
 var _value_type := 0 :
 	get:
 		return _value_type
@@ -30,9 +30,9 @@ var _value_type := 0 :
 					value = 0
 			ui_update_needed.emit()
 
-@export var value: Variant = ""
+var value: Variant = ""
 
-@export var mode := Modes.SET
+var mode := Modes.SET
 
 ## Used to suppress _value_type from overwriting value with a default value when the type changes
 ## This is only used when initializing the event_variable.
@@ -71,9 +71,8 @@ func _execute() -> void:
 func _init() -> void:
 	event_name = "Setting"
 	event_description = "Advanced: Changes a setting from the Settings subsystem."
-	event_sorting_index = 15
 	set_default_color('Color9')
-	event_category = "Other"
+	event_category = "Helpers"
 	event_sorting_index = 2
 
 

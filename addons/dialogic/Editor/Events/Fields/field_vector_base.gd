@@ -28,6 +28,7 @@ func _load_display_info(info: Dictionary) -> void:
 
 func _set_value(value: Variant) -> void:
 	_update_sub_component_text(value)
+	_on_value_changed(value)
 
 
 func _on_value_changed(value: Variant) -> void:

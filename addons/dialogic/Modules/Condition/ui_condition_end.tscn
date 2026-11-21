@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dpt6fwem03sqw"]
+[gd_scene load_steps=0 format=3 uid="uid://dpt6fwem03sqw"]
 
 [ext_resource type="Script" uid="uid://hiahx6lrlm17" path="res://addons/dialogic/Modules/Condition/ui_condition_end.gd" id="1_sh52m"]
 

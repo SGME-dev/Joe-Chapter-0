@@ -8,15 +8,15 @@ extends DialogicEvent
 ### Settings
 
 ## The promt to be shown.
-@export var text := "Please enter some text:"
+var text := "Please enter some text:"
 ## The name/path of the variable to set.
-@export var variable := ""
+var variable := ""
 ## The placeholder text to show in the line edit.
-@export var placeholder := ""
+var placeholder := ""
 ## The value that should be in the line edit by default.
-@export var default := ""
+var default := ""
 ## If true, the player can continue if nothing is entered.
-@export var allow_empty := false
+var allow_empty := false
 
 
 #region EXECUTION

@@ -43,7 +43,7 @@ var _choice_blocker := Timer.new()
 #region STATE
 ####################################################################################################
 
-func _clear_state(_clear_flag:=DialogicGameHandler.ClearFlags.FULL_CLEAR) -> void:
+func clear_game_state(_clear_flag:=DialogicGameHandler.ClearFlags.FULL_CLEAR) -> void:
 	hide_all_choices()
 
 
@@ -56,12 +56,11 @@ func _ready() -> void:
 	reveal_by_input = ProjectSettings.get_setting('dialogic/choices/reveal_by_input', reveal_by_input)
 	block_delay = ProjectSettings.get_setting('dialogic/choices/delay', block_delay)
 	autofocus_first_choice = ProjectSettings.get_setting('dialogic/choices/autofocus_first', autofocus_first_choice)
-	use_input_action = ProjectSettings.get_setting('dialogic/choices/use_input_action', use_input_action)
 	hotkey_behaviour = ProjectSettings.get_setting('dialogic/choices/hotkey_behaviour', hotkey_behaviour)
 	default_false_behaviour = ProjectSettings.get_setting('dialogic/choices/def_false_behaviour', default_false_behaviour)
 
 
-func _post_install() -> void:
+func post_install() -> void:
 	dialogic.Inputs.dialogic_action.connect(_on_dialogic_action)
 
 #endregion
@@ -203,12 +202,8 @@ func show_current_question(instant:=true) -> void:
 		if invalid_choice_behaviour == InvalidChoiceBehaviour.AUTO_SKIP:
 			skip_question()
 
-	# TODO Investigate how to hide choices when jumping somewhere while they are visible.
-	# Same problem probably applies to text input event
-
 	if missing_button:
 		printerr("[Dialogic] The layout you are using doesn't have enough Choice Buttons for the choices you are trying to display.")
-
 
 
 ## Skips to the end of the current question.
@@ -257,7 +252,7 @@ func _on_choice_selected(choice_info := {}) -> void:
 		return
 
 	if dialogic.has_subsystem('History'):
-		var all_choices: Array = last_question_info['choices']
+		var all_choices: Array = last_question_info['choices'].map(func(x): return x["text"])
 		if dialogic.has_subsystem('VAR'):
 			dialogic.History.store_simple_history_entry(dialogic.VAR.parse_variables(choice_info.text), "Choice", {'all_choices': all_choices})
 		else:

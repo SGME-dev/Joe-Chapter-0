@@ -71,7 +71,6 @@ func use_float_mode() -> void:
 
 func use_int_mode() -> void:
 	update_suffix("")
-	step = 1.0
 	enforce_step = true
 	step = 1.0
 
