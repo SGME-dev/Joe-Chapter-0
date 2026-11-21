@@ -1,4 +1,4 @@
-[gd_scene load_steps=0 format=3 uid="uid://de13fdeebrkcb"]
+[gd_scene format=3 uid="uid://de13fdeebrkcb"]
 
 [ext_resource type="Script" uid="uid://cyjmcay08lmr8" path="res://addons/dialogic/Editor/Events/BranchEnd.gd" id="1"]
 

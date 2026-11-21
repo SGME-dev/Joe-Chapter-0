@@ -1,4 +1,4 @@
-[gd_scene load_steps=0 format=3 uid="uid://cwe3r2tbh2og1"]
+[gd_scene format=3 uid="uid://cwe3r2tbh2og1"]
 
 [ext_resource type="Script" uid="uid://myogqmakusx3" path="res://addons/dialogic/Editor/Common/sidebar.gd" id="1_jnq65"]
 [ext_resource type="Script" uid="uid://4injjcial4s4" path="res://addons/dialogic/Editor/Common/sidebar_resource_tree.gd" id="4_4dik3"]
@@ -98,7 +98,6 @@ placeholder_text = "Filter Resources"
 caret_blink = true
 caret_blink_interval = 0.5
 
-
 [node name="RightTools" type="HBoxContainer" parent="VBoxPrimary/Margin/MainVSplit/VBox/Tools/HBox" unique_id=803895286]
 unique_name_in_owner = true
 layout_mode = 2
@@ -107,6 +106,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Resource List Options"
+theme_type_variation = &"FlatMenuButton"
 flat = false
 
 [node name="ResourceTree" type="Tree" parent="VBoxPrimary/Margin/MainVSplit/VBox" unique_id=47398120]

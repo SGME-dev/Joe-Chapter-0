@@ -1,4 +1,4 @@
-[gd_scene load_steps=0 format=3 uid="uid://br18lgpga2y2v"]
+[gd_scene format=3 uid="uid://br18lgpga2y2v"]
 
 [ext_resource type="Script" uid="uid://24gbl2wbl1d5" path="res://addons/dialogic/Modules/HighlightPortrait/simple_highlight_portrait.gd" id="1_ceqva"]
 
