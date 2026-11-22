@@ -61,7 +61,7 @@ secrets in code.**
 
 **Codeparade: The reason why I wanted to make 4D games**
 
-**Tessimal: The idea for ground view.**
+**Tessimal's 4D Lobby: The idea for ground view.**
 
 **Storyline:**
 
