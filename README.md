@@ -81,4 +81,4 @@ Deltarune**
 
 **Ezra Goswami(ME) – Programmer, Owner of SGME**
 
-**Joshua Goswami(My brother) – Controller Tester**
+**Joshua Goswami(My little brother) – Controller Tester**
