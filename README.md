@@ -1,4 +1,4 @@
-**<u>JOE CHAPTER 0 - THE PROLOUGUE</u>**
+# JOE CHAPTER 0 - THE PROLOGUE
 
 ⚠️<u>Warning: This is still in heavy development, and lots of things
 still might be unpolished. (I work on this after school, school slows
