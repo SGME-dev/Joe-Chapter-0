@@ -2,7 +2,7 @@
 
 ⚠️<u>Warning: This is still in heavy development, and lots of things
 still might be unpolished. (I work on this after school, school slows
-down development, I make this in my free time. I am only 12)</u>
+down development, I make this in my free time. I am only 12. 11 when I started making it.)</u>
 
 **<u>You will need this specific fork of Godot:</u>
 <https://github.com/godot-dimensions/godot-4d>**
@@ -81,4 +81,4 @@ Deltarune**
 
 **Ezra Goswami(ME) – Programmer, Owner of SGME**
 
-**Joshua Goswami(My little brother) – Controller Tester**
+**Joshua Goswami(My 6 Year old little brother) – Controller Tester**
