@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" role="img" aria-labelledby="title">
+  <title id="title">Eight common PBR texture map types with what each one controls and its color space</title>
+  <defs>
+    <pattern id="bricks" width="60" height="30" patternUnits="userSpaceOnUse">
+      <rect width="60" height="30" fill="#6B3A2A"/>
+      <rect x="2" y="2" width="56" height="12" fill="#9C5438"/>
+      <rect x="-28" y="16" width="56" height="12" fill="#8E4B32"/>
+      <rect x="32" y="16" width="56" height="12" fill="#A35A3C"/>
+    </pattern>
+    <pattern id="normalBricks" width="60" height="30" patternUnits="userSpaceOnUse">
+      <rect width="60" height="30" fill="#8080FF"/>
+      <rect x="2" y="2" width="56" height="3" fill="#80B0F0"/>
+      <rect x="2" y="11" width="56" height="3" fill="#8050F0"/>
+      <rect x="-28" y="16" width="56" height="3" fill="#80B0F0"/>
+      <rect x="32" y="16" width="56" height="3" fill="#80B0F0"/>
+      <rect x="-28" y="25" width="56" height="3" fill="#8050F0"/>
+      <rect x="32" y="25" width="56" height="3" fill="#8050F0"/>
+    </pattern>
+    <pattern id="roughBricks" width="60" height="30" patternUnits="userSpaceOnUse">
+      <rect width="60" height="30" fill="#E0E0E0"/>
+      <rect x="2" y="2" width="56" height="12" fill="#8C8C8C"/>
+      <rect x="-28" y="16" width="56" height="12" fill="#9A9A9A"/>
+      <rect x="32" y="16" width="56" height="12" fill="#7E7E7E"/>
+    </pattern>
+    <pattern id="aoBricks" width="60" height="30" patternUnits="userSpaceOnUse">
+      <rect width="60" height="30" fill="#5A5A5A"/>
+      <rect x="3" y="3" width="54" height="10" fill="#F2F2F2"/>
+      <rect x="-27" y="17" width="54" height="10" fill="#F2F2F2"/>
+      <rect x="33" y="17" width="54" height="10" fill="#F2F2F2"/>
+    </pattern>
+    <linearGradient id="heightGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#1A1A1A"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="#0D0D0D"/>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+    <text x="600" y="58" text-anchor="middle" font-size="34" font-weight="700" fill="#E8E8E8">Common PBR texture map types</text>
+
+    <!-- Row 1 swatches -->
+    <rect x="40" y="90" width="260" height="140" fill="url(#bricks)"/>
+    <rect x="320" y="90" width="260" height="140" fill="url(#normalBricks)"/>
+    <rect x="600" y="90" width="260" height="140" fill="url(#roughBricks)"/>
+    <g>
+      <rect x="880" y="90" width="260" height="140" fill="#101010"/>
+      <rect x="930" y="115" width="70" height="90" fill="#F0F0F0"/>
+      <rect x="1030" y="115" width="70" height="90" fill="#F0F0F0"/>
+    </g>
+    <!-- Row 2 swatches -->
+    <rect x="40" y="385" width="260" height="140" fill="url(#heightGrad)"/>
+    <rect x="320" y="385" width="260" height="140" fill="url(#aoBricks)"/>
+    <g>
+      <rect x="600" y="385" width="260" height="140" fill="#000"/>
+      <path d="M660 510 C 660 420, 800 420, 800 510 Z" fill="#FFF"/>
+      <rect x="720" y="400" width="20" height="40" fill="#FFF"/>
+    </g>
+    <g>
+      <rect x="880" y="385" width="260" height="140" fill="#080808"/>
+      <path d="M905 455 H 1115" stroke="#F59E0B" stroke-width="8"/>
+      <path d="M905 485 H 1060" stroke="#FCD34D" stroke-width="6"/>
+      <circle cx="1090" cy="485" r="10" fill="#F59E0B"/>
+    </g>
+    <g stroke="#2A2A2A" stroke-width="2" fill="none">
+      <rect x="40" y="90" width="260" height="140"/>
+      <rect x="320" y="90" width="260" height="140"/>
+      <rect x="600" y="90" width="260" height="140"/>
+      <rect x="880" y="90" width="260" height="140"/>
+      <rect x="40" y="385" width="260" height="140"/>
+      <rect x="320" y="385" width="260" height="140"/>
+      <rect x="600" y="385" width="260" height="140"/>
+      <rect x="880" y="385" width="260" height="140"/>
+    </g>
+
+    <!-- Row 1 labels -->
+    <g font-size="25" font-weight="700" fill="#E8E8E8">
+      <text x="40" y="268">Base Color / Albedo</text>
+      <text x="320" y="268">Normal</text>
+      <text x="600" y="268">Roughness</text>
+      <text x="880" y="268">Metallic</text>
+      <text x="40" y="563">Height / Displacement</text>
+      <text x="320" y="563">Ambient Occlusion</text>
+      <text x="600" y="563">Opacity / Alpha</text>
+      <text x="880" y="563">Emissive</text>
+    </g>
+    <g font-size="19" fill="#B0B0B0">
+      <text x="40" y="298">Surface color, no lighting</text>
+      <text x="320" y="298">Fake small bumps and dents</text>
+      <text x="600" y="298">Glossy (black) to matte (white)</text>
+      <text x="880" y="298">Metal (white) or not (black)</text>
+      <text x="40" y="593">Real depth or parallax offset</text>
+      <text x="320" y="593">Soft contact shadows in creases</text>
+      <text x="600" y="593">Cut-outs and transparency</text>
+      <text x="880" y="593">Light the surface gives off</text>
+    </g>
+    <g font-size="17" font-weight="600">
+      <text x="40" y="326" fill="#F59E0B">sRGB &#183; color</text>
+      <text x="320" y="326" fill="#38BDF8">Linear &#183; non-color</text>
+      <text x="600" y="326" fill="#38BDF8">Linear &#183; non-color</text>
+      <text x="880" y="326" fill="#38BDF8">Linear &#183; non-color</text>
+      <text x="40" y="621" fill="#38BDF8">Linear &#183; non-color</text>
+      <text x="320" y="621" fill="#38BDF8">Linear &#183; non-color</text>
+      <text x="600" y="621" fill="#38BDF8">Linear &#183; non-color</text>
+      <text x="880" y="621" fill="#F59E0B">sRGB &#183; color</text>
+    </g>
+  </g>
+</svg>

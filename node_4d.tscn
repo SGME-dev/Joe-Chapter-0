@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ct278airkigxp"]
+[gd_scene load_steps=29 format=3 uid="uid://ct278airkigxp"]
 
 [ext_resource type="Script" uid="uid://dp7n2s1xk1c2p" path="res://node_4d.gd" id="1_f4q7b"]
 [ext_resource type="PackedScene" uid="uid://c0s58r1qa7jvh" path="res://player.tscn" id="1_jtvq5"]
@@ -56,6 +56,16 @@ line_thickness = 5.0
 albedo_color = Color(1, 1, 0, 1)
 
 [sub_resource type="BoxShape4D" id="BoxShape4D_6gk2r"]
+
+[sub_resource type="PlaceholderTexture3D" id="PlaceholderTexture3D_6gk2r"]
+size = Vector3i(128, 128, 128)
+
+[sub_resource type="TetraMaterial4D" id="TetraMaterial4D_ctvjw"]
+albedo_source = 3
+albedo_texture_3d = SubResource("PlaceholderTexture3D_6gk2r")
+
+[sub_resource type="BoxPolyMesh4D" id="BoxPolyMesh4D_x1snb"]
+material = SubResource("TetraMaterial4D_ctvjw")
 
 [node name="Node4D" type="Node4D"]
 script = ExtResource("1_f4q7b")
@@ -362,6 +372,10 @@ mesh = ExtResource("8_6gk2r")
 
 [node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D5"]
 shape = SubResource("BoxShape4D_6gk2r")
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="."]
+position = Vector4(-2.8509736, 3.6013656, 0, 0)
+mesh = SubResource("BoxPolyMesh4D_x1snb")
 
 [connection signal="body_entered_area" from="Area4D" to="." method="_on_area_4d_body_entered_area"]
 [connection signal="body_entered_area" from="Area4D2" to="." method="_on_area_4d_2_body_entered_area"]
