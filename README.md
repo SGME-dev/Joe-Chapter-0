@@ -1,3 +1,5 @@
+**<u>JOE CHAPTER 0 - THE PROLOUGUE</u>**
+
 ⚠️<u>Warning: This is still in heavy development, and lots of things
 still might be unpolished. (I work on this after school, school slows
 down development, I make this in my free time. I am only 12)</u>
