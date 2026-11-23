@@ -71,7 +71,7 @@ material = SubResource("TetraMaterial4D_ctvjw")
 script = ExtResource("1_f4q7b")
 
 [node name="CharacterBody4D" parent="." instance=ExtResource("1_jtvq5")]
-position = Vector4(0, 4.5313416, 0, 0)
+position = Vector4(-0.029144049, 4.5313416, -1.0818939, 0)
 
 [node name="StaticBody4D" parent="." instance=ExtResource("2_7nsku")]
 
@@ -377,13 +377,13 @@ shape = SubResource("BoxShape4D_6gk2r")
 position = Vector4(-2.8509736, 3.6013656, 0, 0)
 mesh = SubResource("BoxPolyMesh4D_x1snb")
 
-[connection signal="body_entered_area" from="Area4D" to="." method="_on_area_4d_body_entered_area"]
-[connection signal="body_entered_area" from="Area4D2" to="." method="_on_area_4d_2_body_entered_area"]
-[connection signal="body_entered_area" from="Area4D3" to="." method="_on_area_4d_3_body_entered_area"]
-[connection signal="body_exited_area" from="Area4D3" to="." method="_on_area_4d_3_body_exited_area"]
-[connection signal="body_entered_area" from="Area4D4" to="." method="_on_area_4d_4_body_entered_area"]
-[connection signal="body_exited_area" from="Area4D4" to="." method="_on_area_4d_4_body_exited_area"]
-[connection signal="body_entered_area" from="Area4D5" to="." method="_on_area_4d_5_body_entered_area"]
+[connection signal="body_entered_self" from="Area4D" to="." method="_on_area_4d_body_entered_area"]
+[connection signal="body_entered_self" from="Area4D2" to="." method="_on_area_4d_2_body_entered_area"]
+[connection signal="body_entered_self" from="Area4D3" to="." method="_on_area_4d_3_body_entered_area"]
+[connection signal="body_exited_self" from="Area4D3" to="." method="_on_area_4d_3_body_exited_area"]
+[connection signal="body_entered_self" from="Area4D4" to="." method="_on_area_4d_4_body_entered_area"]
+[connection signal="body_exited_self" from="Area4D4" to="." method="_on_area_4d_4_body_exited_area"]
+[connection signal="body_entered_self" from="Area4D5" to="." method="_on_area_4d_5_body_entered_area"]
 
 [editable path="CharacterBody4D"]
 [editable path="CharacterBody4D/human"]

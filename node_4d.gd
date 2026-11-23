@@ -2,6 +2,7 @@ extends Node4D
 
 @onready var final_wall: StaticBody4D = $StaticBody4D47
 
+
 var playing := true
 var passf := false
 var pass2 := false
@@ -109,4 +110,5 @@ func _on_area_4d_4_body_exited_area(body: Physics4D) -> void:
 
 
 func _on_area_4d_5_body_entered_area(body: player) -> void:
-	get_tree().change_scene_to_file("res://joehouse.tscn")
+	if body:
+		get_tree().call_deferred("change_scene_to_file", "res://joehouse.tscn")

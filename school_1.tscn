@@ -560,8 +560,8 @@ basis = Projection(1.0306638, 0, 0, 0, 0, 0.8586795, 0, 0, 0, 0, 2.5334356, 0, 0
 material_override = SubResource("WireMaterial4D_y7lvg")
 mesh = SubResource("BoxPolyMesh4D_y7lvg")
 
-[connection signal="body_entered_area" from="Area4D" to="." method="_on_area_4d_body_entered_area"]
-[connection signal="body_exited_area" from="Area4D" to="." method="_on_area_4d_body_exited_area"]
-[connection signal="body_entered_area" from="Area4D2" to="." method="_on_area_4d_2_body_entered_area"]
-[connection signal="body_exited_area" from="Area4D2" to="." method="_on_area_4d_2_body_exited_area"]
-[connection signal="body_entered_area" from="Area4D3" to="." method="_on_area_4d_3_body_entered_area"]
+[connection signal="body_entered_self" from="Area4D" to="." method="_on_area_4d_body_entered_area"]
+[connection signal="body_exited_self" from="Area4D" to="." method="_on_area_4d_body_exited_area"]
+[connection signal="body_entered_self" from="Area4D2" to="." method="_on_area_4d_2_body_entered_area"]
+[connection signal="body_exited_self" from="Area4D2" to="." method="_on_area_4d_2_body_exited_area"]
+[connection signal="body_entered_self" from="Area4D3" to="." method="_on_area_4d_3_body_entered_area"]

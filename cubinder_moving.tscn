@@ -34,5 +34,5 @@ basis = Projection(1.5, 0, 0, 0, 0, 1.5, 0, 0, 0, 0, 1.5, 0, 0, 0, 0, 1)
 basis = Projection(3, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3)
 shape = SubResource("BoxShape4D_ane4k")
 
-[connection signal="body_entered_area" from="Area4D" to="." method="_on_area_4d_body_entered_area"]
-[connection signal="body_exited_area" from="Area4D" to="." method="_on_area_4d_body_exited_area"]
+[connection signal="body_entered_self" from="Area4D" to="." method="_on_area_4d_body_entered_area"]
+[connection signal="body_exited_self" from="Area4D" to="." method="_on_area_4d_body_exited_area"]

@@ -2,6 +2,9 @@ extends Node4D
 
 var active_area = null
 
+func  _ready() -> void:
+	Dialogic.signal_event.connect(endscene)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var time = 0.01
@@ -43,4 +46,11 @@ func _on_area_4d_2_body_exited_area(body: player) -> void:
 
 
 func _on_area_4d_3_body_entered_area(body: player) -> void:
+	Dialogic.start("start")
+
+func switch_scene():
 	get_tree().change_scene_to_file("res://exitschool.tscn")
+
+func endscene(arg: String) -> void:
+	if arg == str("endstart"):
+		get_tree().change_scene_to_file("res://node_4d.tscn")

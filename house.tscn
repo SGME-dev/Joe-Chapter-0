@@ -153,6 +153,14 @@ basis = Projection(163, 0, 0, 0, 0, 1, 0, 0, 0, 0, 100, 0, 0, 0, 0, 13.357)
 material_override = SubResource("WireMaterial4D_6kvi6")
 mesh = SubResource("BoxWireMesh4D_2mril")
 
+[node name="StaticBody4D4" parent="." instance=ExtResource("1_hfkix")]
+position = Vector4(0, 44.823376, -27.880236, 0)
+basis = Projection(163, 0, 0, 0, 0, 1, 0, 0, 0, 0, 44.239586, 0, 0, 0, 0, 13.357)
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="StaticBody4D4"]
+material_override = SubResource("WireMaterial4D_6kvi6")
+mesh = SubResource("BoxWireMesh4D_2mril")
+
 [node name="StaticBody4D17" parent="." instance=ExtResource("1_hfkix")]
 position = Vector4(-2.9146668e-05, 128.83466, 25.704527, 4.7768362e-06)
 basis = Projection(162.99998, 0, 0, 0, 0, 0.60648745, 0.5045593, 0, 0, -60.648754, 50.455936, 0, 0, 0, 0, 13.357001)
@@ -209,6 +217,10 @@ basis = Projection(74.69586, 0, 0, 0, 0, -4.3536666e-08, 0.9999998, 0, 0, -99.60
 material_override = SubResource("WireMaterial4D_6kvi6")
 mesh = SubResource("BoxWireMesh4D_2mril")
 
+[node name="StaticBody4D16" parent="." instance=ExtResource("1_hfkix")]
+position = Vector4(-43.941647, 49.606945, -49.53504, 4.7768344e-06)
+basis = Projection(74.69586, 0, 0, 0, 0, -4.3536666e-08, 0.9999998, 0, 0, -99.60033, -4.3711375e-06, 0, 0, 0, 0, 13.356995)
+
 [node name="StaticBody4D15" parent="." instance=ExtResource("1_hfkix")]
 position = Vector4(-43.941505, 49.60696, 49.522423, 7.96139e-06)
 basis = Projection(74.69586, 0, 0, 0, 0, -4.3536673e-08, 0.99999994, 0, 0, -99.600334, -4.3711384e-06, 0, 0, 0, 0, 13.356998)
@@ -217,23 +229,19 @@ basis = Projection(74.69586, 0, 0, 0, 0, -4.3536673e-08, 0.99999994, 0, 0, -99.6
 material_override = SubResource("WireMaterial4D_6kvi6")
 mesh = SubResource("BoxWireMesh4D_2mril")
 
-[node name="StaticBody4D16" parent="." instance=ExtResource("1_hfkix")]
-position = Vector4(-43.941647, 49.606945, -49.53504, 4.7768344e-06)
-basis = Projection(74.69586, 0, 0, 0, 0, -4.3536666e-08, 0.9999998, 0, 0, -99.60033, -4.3711375e-06, 0, 0, 0, 0, 13.356995)
-
-[node name="StaticBody4D4" parent="." instance=ExtResource("1_hfkix")]
-position = Vector4(-0.00034976006, 45.82114, -27.626434, -3.1845566e-06)
-basis = Projection(162.99998, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 44.5366, 0, 0, 0, 0, 13.3569975)
-
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="StaticBody4D4"]
-material_override = SubResource("WireMaterial4D_6kvi6")
-mesh = SubResource("BoxWireMesh4D_2mril")
-
 [node name="StaticBody4D5" parent="." instance=ExtResource("1_hfkix")]
 position = Vector4(22.03662, 82.28933, -27.626436, -3.1845568e-06)
 basis = Projection(-7.1249556e-06, 26.789387, 0, 0, -0.99999994, -7.184057e-09, 0, 0, 0, 0, 44.536594, 0, 0, 0, 0, 13.356998)
 
 [node name="MeshInstance4D2" type="MeshInstance4D" parent="StaticBody4D5"]
+material_override = SubResource("WireMaterial4D_6kvi6")
+mesh = SubResource("BoxWireMesh4D_2mril")
+
+[node name="StaticBody4D4" parent="StaticBody4D5" instance=ExtResource("1_hfkix")]
+position = Vector4(-0.00034976006, 45.82114, -27.626434, -3.1845566e-06)
+basis = Projection(162.99998, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 44.5366, 0, 0, 0, 0, 13.3569975)
+
+[node name="MeshInstance4D2" type="MeshInstance4D" parent="StaticBody4D5/StaticBody4D4"]
 material_override = SubResource("WireMaterial4D_6kvi6")
 mesh = SubResource("BoxWireMesh4D_2mril")
 
@@ -968,14 +976,14 @@ basis = Projection(0.049999993, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.99999994, 0, 0, 0, 
 script = ExtResource("11_k3v7f")
 text_to_display = "TOILET"
 
-[connection signal="body_entered_area" from="kitchentools/Area4D" to="." method="_on_area_4d_body_entered_area"]
-[connection signal="body_exited_area" from="kitchentools/Area4D" to="." method="_on_area_4d_body_exited_area"]
-[connection signal="body_entered_area" from="kitchentools/Area4D2" to="." method="_on_area_4d_2_body_entered_area"]
-[connection signal="body_exited_area" from="kitchentools/Area4D2" to="." method="_on_area_4d_2_body_exited_area"]
-[connection signal="body_entered_area" from="kitchentools/Area4D3" to="." method="_on_area_4d_3_body_entered_area"]
-[connection signal="body_exited_area" from="kitchentools/Area4D3" to="." method="_on_area_4d_3_body_exited_area"]
-[connection signal="body_entered_area" from="toilet/Area4D4" to="." method="_on_area_4d_4_body_entered_area"]
-[connection signal="body_exited_area" from="toilet/Area4D4" to="." method="_on_area_4d_4_body_exited_area"]
+[connection signal="body_entered_self" from="kitchentools/Area4D" to="." method="_on_area_4d_body_entered_area"]
+[connection signal="body_exited_self" from="kitchentools/Area4D" to="." method="_on_area_4d_body_exited_area"]
+[connection signal="body_entered_self" from="kitchentools/Area4D2" to="." method="_on_area_4d_2_body_entered_area"]
+[connection signal="body_exited_self" from="kitchentools/Area4D2" to="." method="_on_area_4d_2_body_exited_area"]
+[connection signal="body_entered_self" from="kitchentools/Area4D3" to="." method="_on_area_4d_3_body_entered_area"]
+[connection signal="body_exited_self" from="kitchentools/Area4D3" to="." method="_on_area_4d_3_body_exited_area"]
+[connection signal="body_entered_self" from="toilet/Area4D4" to="." method="_on_area_4d_4_body_entered_area"]
+[connection signal="body_exited_self" from="toilet/Area4D4" to="." method="_on_area_4d_4_body_exited_area"]
 
 [editable path="tv/StaticBody4D"]
 [editable path="kitchentools/StaticBody4D2"]

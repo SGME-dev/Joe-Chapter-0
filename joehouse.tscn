@@ -164,12 +164,12 @@ offset_right = 342.0
 offset_bottom = 49.0
 text = "Time left until level ends: Do homework first"
 
-[connection signal="body_entered_area" from="Area4D" to="." method="_on_area_4d_body_entered_area"]
-[connection signal="body_exited_area" from="Area4D" to="." method="_on_area_4d_body_exited_area"]
+[connection signal="body_entered_self" from="Area4D" to="." method="_on_area_4d_body_entered_area"]
+[connection signal="body_exited_self" from="Area4D" to="." method="_on_area_4d_body_exited_area"]
 [connection signal="animation_finished" from="body1/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="body2/AnimationPlayer" to="." method="_on_animation_player2_animation_finished"]
-[connection signal="body_entered_area" from="teststart/Area4D5" to="." method="_on_area_4d_5_body_entered_area"]
-[connection signal="body_exited_area" from="teststart/Area4D5" to="." method="_on_area_4d_5_body_exited_area"]
+[connection signal="body_entered_self" from="teststart/Area4D5" to="." method="_on_area_4d_5_body_entered_area"]
+[connection signal="body_exited_self" from="teststart/Area4D5" to="." method="_on_area_4d_5_body_exited_area"]
 
 [editable path="Park"]
 [editable path="Park/StaticBody4D"]
