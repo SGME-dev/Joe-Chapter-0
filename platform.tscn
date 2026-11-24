@@ -1,16 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://cytl1r1yjrird"]
 
+[ext_resource type="CompressedTexture3D" uid="uid://buu0pwhxlkm4y" path="res://Cobblestone_(texture)_TU1.png" id="1_mi635"]
+
 [sub_resource type="BoxShape4D" id="BoxShape4D_jtvq5"]
 
-[sub_resource type="WireMaterial4D" id="WireMaterial4D_mi635"]
-line_thickness = 5.0
-albedo_color = Color(0.6156863, 0.6156863, 0.6156863, 1)
+[sub_resource type="PolyMaterial4D" id="PolyMaterial4D_5ajho"]
+albedo_source = 3
+albedo_texture_3d = ExtResource("1_mi635")
 
-[sub_resource type="WireMaterial4D" id="WireMaterial4D_5ajho"]
-albedo_color = Color(0.6156863, 0.6156863, 0.6156863, 1)
-
-[sub_resource type="BoxWireMesh4D" id="BoxWireMesh4D_mi635"]
-material = SubResource("WireMaterial4D_5ajho")
+[sub_resource type="BoxPolyMesh4D" id="BoxPolyMesh4D_5ajho"]
 
 [node name="StaticBody4D" type="StaticBody4D"]
 basis = Projection(13.652, 0, 0, 0, 0, 1, 0, 0, 0, 0, 13.000001, 0, 0, 0, 0, 13.357)
@@ -19,5 +17,5 @@ basis = Projection(13.652, 0, 0, 0, 0, 1, 0, 0, 0, 0, 13.000001, 0, 0, 0, 0, 13.
 shape = SubResource("BoxShape4D_jtvq5")
 
 [node name="MeshInstance4D" type="MeshInstance4D" parent="."]
-material_override = SubResource("WireMaterial4D_mi635")
-mesh = SubResource("BoxWireMesh4D_mi635")
+material_override = SubResource("PolyMaterial4D_5ajho")
+mesh = SubResource("BoxPolyMesh4D_5ajho")

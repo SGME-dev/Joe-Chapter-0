@@ -1,0 +1,17 @@
+[remap]
+
+importer="godot_4d.off_geometry_format.array_poly_mesh_4d"
+type="ArrayPolyMesh4D"
+uid="uid://fmkd8htikxck"
+path="res://.godot/imported/cubinder_poly.off-aa70d6cb5b08e4ccb5fdaf2334220e1b.res"
+
+[deps]
+
+source_file="res://cubinder_poly.off"
+dest_files=["res://.godot/imported/cubinder_poly.off-aa70d6cb5b08e4ccb5fdaf2334220e1b.res"]
+
+[params]
+
+compute_normals_mode=0
+double_sided=false
+single_convex_volume=false

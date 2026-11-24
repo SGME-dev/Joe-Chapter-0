@@ -31,7 +31,7 @@ shape = SubResource("BoxShape4D_rlu7a")
 
 [node name="Camera4D" type="Camera4D" parent="Camera_Controller/Camera_Target"]
 basis = Projection(2.494, 0, 0, 0, 0, 1, 0, 0, 0, 0, 2.494, 0, 0, 0, 0, 1)
-current = true
+rendering_engine_name = "Projected"
 clip_far = 50.0
 depth_fade_mode = 1
 w_fade_mode = 3
@@ -43,6 +43,8 @@ w_fade_slope = 0.5
 [node name="Camera4D2" type="Camera4D" parent="Camera_Controller/Camera_Target"]
 position = Vector4(-7.113321e-07, 0.45860562, 2.3311782, 0)
 basis = Projection(2.494, 0, 0, 0, 0, 1, 0, 0, 0, 0, 2.494, 0, 0, 0, 0, 1)
+current = true
+rendering_engine_name = "Projected"
 clip_far = 50.0
 depth_fade_mode = 1
 w_fade_mode = 3

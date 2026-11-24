@@ -1,0 +1,17 @@
+[remap]
+
+importer="godot_4d.off_geometry_format.array_poly_mesh_4d"
+type="ArrayPolyMesh4D"
+uid="uid://dyyxk1xq3cy0w"
+path="res://.godot/imported/duocylinder (1)_poly.off-6bd2eb142bb00e62984100c1caebe253.res"
+
+[deps]
+
+source_file="res://duocylinder (1)_poly.off"
+dest_files=["res://.godot/imported/duocylinder (1)_poly.off-6bd2eb142bb00e62984100c1caebe253.res"]
+
+[params]
+
+compute_normals_mode=0
+double_sided=false
+single_convex_volume=false

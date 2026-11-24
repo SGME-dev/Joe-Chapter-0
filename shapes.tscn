@@ -9,7 +9,7 @@
 [ext_resource type="ArrayWireMesh4D" uid="uid://ctmc1ioi3bfcx" path="res://torisphere.off" id="7_rms33"]
 [ext_resource type="ArrayWireMesh4D" uid="uid://kf1hjdorthhl" path="res://16-cell.off" id="8_i0a4w"]
 [ext_resource type="ArrayWireMesh4D" uid="uid://2ueyjyiord4m" path="res://24-cell.off" id="9_g1he6"]
-[ext_resource type="ArrayWireMesh4D" uid="uid://c5fllv5upcqyf" path="res://120-cell_fixed.off" id="10_dj5ww"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://c5fllv5upcqyf" path="res://120-cell.off" id="10_dj5ww"]
 [ext_resource type="ArrayWireMesh4D" uid="uid://bvkgouucw85b1" path="res://600-cell_fixed.off" id="11_2bfyj"]
 [ext_resource type="ArrayWireMesh4D" uid="uid://gyghwgkx8hgv" path="res://tetrahedra.off" id="12_57bn2"]
 

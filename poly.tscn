@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdqtwyabp8igd"]
+
+[ext_resource type="Script" uid="uid://ce41av03bkaf2" path="res://poly.gd" id="1_ldyfb"]
+
+[node name="Node4D" type="Node4D"]
+script = ExtResource("1_ldyfb")

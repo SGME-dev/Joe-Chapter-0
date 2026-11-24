@@ -1,0 +1,17 @@
+[remap]
+
+importer="godot_4d.off_geometry_format.array_poly_mesh_4d"
+type="ArrayPolyMesh4D"
+uid="uid://c0t8yd4w81msi"
+path="res://.godot/imported/tesseract_poly.off-d75d6c87050fd87b0db1831304a84c2a.res"
+
+[deps]
+
+source_file="res://tesseract_poly.off"
+dest_files=["res://.godot/imported/tesseract_poly.off-d75d6c87050fd87b0db1831304a84c2a.res"]
+
+[params]
+
+compute_normals_mode=0
+double_sided=false
+single_convex_volume=false

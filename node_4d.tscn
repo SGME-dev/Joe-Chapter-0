@@ -1,9 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://ct278airkigxp"]
+[gd_scene load_steps=31 format=3 uid="uid://ct278airkigxp"]
 
 [ext_resource type="Script" uid="uid://dp7n2s1xk1c2p" path="res://node_4d.gd" id="1_f4q7b"]
 [ext_resource type="PackedScene" uid="uid://c0s58r1qa7jvh" path="res://player.tscn" id="1_jtvq5"]
 [ext_resource type="PackedScene" uid="uid://cytl1r1yjrird" path="res://platform.tscn" id="2_7nsku"]
 [ext_resource type="PackedScene" uid="uid://bfoh242i1sq1x" path="res://platform2.tscn" id="3_2mril"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://bkgg4baxxckw0" path="res://hypersphere.off" id="3_x1snb"]
+[ext_resource type="ArrayWireMesh4D" uid="uid://2ueyjyiord4m" path="res://24-cell.off" id="4_t8ifv"]
 [ext_resource type="PackedScene" uid="uid://bfsv8l3iprvmx" path="res://sphereinder.tscn" id="5_x5a5f"]
 [ext_resource type="PackedScene" uid="uid://dk38q8yta7jfk" path="res://cubinder_moving.tscn" id="6_x5fef"]
 [ext_resource type="PackedScene" uid="uid://66cxvjpl5cj5" path="res://asteroid.tscn" id="7_ngegj"]
@@ -57,21 +59,56 @@ albedo_color = Color(1, 1, 0, 1)
 
 [sub_resource type="BoxShape4D" id="BoxShape4D_6gk2r"]
 
-[sub_resource type="PlaceholderTexture3D" id="PlaceholderTexture3D_6gk2r"]
-size = Vector3i(128, 128, 128)
+[sub_resource type="GradientSkyMaterial4D" id="GradientSkyMaterial4D_6gk2r"]
 
-[sub_resource type="TetraMaterial4D" id="TetraMaterial4D_ctvjw"]
-albedo_source = 3
-albedo_texture_3d = SubResource("PlaceholderTexture3D_6gk2r")
+[sub_resource type="Sky" id="Sky_ctvjw"]
+sky_material = SubResource("GradientSkyMaterial4D_6gk2r")
 
-[sub_resource type="BoxPolyMesh4D" id="BoxPolyMesh4D_x1snb"]
-material = SubResource("TetraMaterial4D_ctvjw")
+[sub_resource type="Environment" id="Environment_x1snb"]
+background_mode = 2
+sky = SubResource("Sky_ctvjw")
 
 [node name="Node4D" type="Node4D"]
 script = ExtResource("1_f4q7b")
 
 [node name="CharacterBody4D" parent="." instance=ExtResource("1_jtvq5")]
 position = Vector4(-0.029144049, 4.5313416, -1.0818939, 0)
+
+[node name="Camera4D" parent="CharacterBody4D/Camera_Controller/Camera_Target" index="0"]
+current = true
+
+[node name="Camera4D2" parent="CharacterBody4D/Camera_Controller/Camera_Target" index="1"]
+current = false
+
+[node name="MeshInstance4D3" parent="CharacterBody4D/human/body1/body1/head/facial_features" index="2"]
+mesh = ExtResource("3_x1snb")
+
+[node name="MeshInstance4D4" parent="CharacterBody4D/human/body1/body1/head/facial_features" index="3"]
+mesh = ExtResource("3_x1snb")
+
+[node name="MeshInstance4D5" parent="CharacterBody4D/human/body1/body1/head/facial_features" index="4"]
+mesh = ExtResource("3_x1snb")
+
+[node name="MeshInstance4D6" parent="CharacterBody4D/human/body1/body1/head/facial_features" index="5"]
+mesh = ExtResource("3_x1snb")
+
+[node name="MeshInstance4D7" parent="CharacterBody4D/human/body1/body1/head/facial_features" index="6"]
+mesh = ExtResource("3_x1snb")
+
+[node name="MeshInstance4D3" parent="CharacterBody4D/human/body2/body1/head/facial_features" index="2"]
+mesh = ExtResource("4_t8ifv")
+
+[node name="MeshInstance4D4" parent="CharacterBody4D/human/body2/body1/head/facial_features" index="3"]
+mesh = ExtResource("4_t8ifv")
+
+[node name="MeshInstance4D5" parent="CharacterBody4D/human/body2/body1/head/facial_features" index="4"]
+mesh = ExtResource("4_t8ifv")
+
+[node name="MeshInstance4D6" parent="CharacterBody4D/human/body2/body1/head/facial_features" index="5"]
+mesh = ExtResource("4_t8ifv")
+
+[node name="MeshInstance4D7" parent="CharacterBody4D/human/body2/body1/head/facial_features" index="6"]
+mesh = ExtResource("4_t8ifv")
 
 [node name="StaticBody4D" parent="." instance=ExtResource("2_7nsku")]
 
@@ -373,9 +410,8 @@ mesh = ExtResource("8_6gk2r")
 [node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D5"]
 shape = SubResource("BoxShape4D_6gk2r")
 
-[node name="MeshInstance4D" type="MeshInstance4D" parent="."]
-position = Vector4(-2.8509736, 3.6013656, 0, 0)
-mesh = SubResource("BoxPolyMesh4D_x1snb")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_x1snb")
 
 [connection signal="body_entered_self" from="Area4D" to="." method="_on_area_4d_body_entered_area"]
 [connection signal="body_entered_self" from="Area4D2" to="." method="_on_area_4d_2_body_entered_area"]
@@ -398,3 +434,4 @@ mesh = SubResource("BoxPolyMesh4D_x1snb")
 [editable path="StaticBody4D38"]
 [editable path="StaticBody4D39"]
 [editable path="StaticBody4D40"]
+[editable path="StaticBody4D18"]
