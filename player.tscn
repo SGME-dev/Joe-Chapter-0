@@ -33,6 +33,8 @@ shape = SubResource("BoxShape4D_rlu7a")
 basis = Projection(2.494, 0, 0, 0, 0, 1, 0, 0, 0, 0, 2.494, 0, 0, 0, 0, 1)
 current = true
 rendering_engine_name = "Combined"
+projection_type = 2
+clip_far = 50.0
 w_fade_color_negative = Color(1, 0, 0, 1)
 w_fade_color_positive = Color(0, 1, 0, 1)
 
@@ -40,6 +42,8 @@ w_fade_color_positive = Color(0, 1, 0, 1)
 position = Vector4(-7.113321e-07, 0.45860562, 3.048349, 0)
 basis = Projection(2.494, 0, 0, 0, 0, 1, 0, 0, 0, 0, 2.494, 0, 0, 0, 0, 1)
 rendering_engine_name = "Combined"
+projection_type = 2
+clip_far = 50.0
 w_fade_color_negative = Color(1, 0, 0, 1)
 w_fade_color_positive = Color(0, 1, 0, 1)
 

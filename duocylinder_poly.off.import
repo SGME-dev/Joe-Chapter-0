@@ -14,4 +14,4 @@ dest_files=["res://.godot/imported/duocylinder_poly.off-a18699e172956af0fce6995d
 
 compute_normals_mode=0
 double_sided=true
-single_convex_volume=true
+single_convex_volume=false

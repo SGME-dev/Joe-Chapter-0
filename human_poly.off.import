@@ -14,4 +14,4 @@ dest_files=["res://.godot/imported/human_poly.off-bee89958ac6bee73aab7dbd886106b
 
 compute_normals_mode=0
 double_sided=true
-single_convex_volume=true
+single_convex_volume=false

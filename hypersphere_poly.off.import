@@ -14,4 +14,4 @@ dest_files=["res://.godot/imported/hypersphere_poly.off-80a6bb3bff155dae7a5c9769
 
 compute_normals_mode=0
 double_sided=true
-single_convex_volume=true
+single_convex_volume=false

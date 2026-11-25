@@ -14,4 +14,4 @@ dest_files=["res://.godot/imported/600-cell_poly.off-dadb7a773b46a12764b51c9d949
 
 compute_normals_mode=0
 double_sided=true
-single_convex_volume=true
+single_convex_volume=false

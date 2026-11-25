@@ -14,4 +14,4 @@ dest_files=["res://.godot/imported/tetrahedra_poly.off-cb8ceec26416734bfa1f5e1fc
 
 compute_normals_mode=0
 double_sided=true
-single_convex_volume=true
+single_convex_volume=false
