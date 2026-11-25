@@ -1,44 +1,51 @@
-import glob
 import math
-import os
-from collections import defaultdict
+from collections import defaultdict, deque
+from pathlib import Path
 
-def dot4(a, b):
-    ax, ay, az, aw = a
-    bx, by, bz, bw = b
-    return ax * bx + ay * by + az * bz + aw * bw
+def decimate_mesh(verts, faces, target_faces=1000):
+    xs, ys, zs, ws = zip(*verts)
+    span = max(max(xs) - min(xs), max(ys) - min(ys), max(zs) - min(zs), max(ws) - min(ws), 1e-5)
 
-def sub4(a, b):
-    ax, ay, az, aw = a
-    bx, by, bz, bw = b
-    return (ax - bx, ay - by, az - bz, aw - bw)
+    grid_res = 12
+    best_verts, best_faces = verts, faces
+    while grid_res >= 4:
+        step = span / grid_res
+        cluster_map = {}
+        new_verts = []
+        remap = []
+        for vx, vy, vz, vw in verts:
+            key = (round(vx / step), round(vy / step), round(vz / step), round(vw / step))
+            idx = cluster_map.get(key)
+            if idx is None:
+                idx = len(new_verts)
+                cluster_map[key] = idx
+                new_verts.append((vx, vy, vz, vw))
+            remap.append(idx)
 
-def norm4(v):
-    vx, vy, vz, vw = v
-    length = math.sqrt(vx * vx + vy * vy + vz * vz + vw * vw)
-    if length < 1e-9:
-        return None
-    return (vx / length, vy / length, vz / length, vw / length)
+        seen_faces = set()
+        new_faces = []
+        for face in faces:
+            mapped = []
+            for v in face:
+                mv = remap[v]
+                if not mapped or mapped[-1] != mv:
+                    mapped.append(mv)
+            if len(mapped) > 1 and mapped == mapped[-1]:
+                mapped.pop()
+            if len(set(mapped)) >= 3:
+                f_key = tuple(sorted(mapped))
+                if f_key not in seen_faces:
+                    seen_faces.add(f_key)
+                    new_faces.append(mapped)
 
-def hyperplane_normal_4d(u, v, w):
-    ux, uy, uz, uw = u
-    vx, vy, vz, vw = v
-    wx, wy, wz, ww = w
+        best_verts, best_faces = new_verts, new_faces
+        if len(new_faces) <= target_faces:
+            break
+        grid_res -= 2
 
-    def det3(a1, a2, a3, b1, b2, b3, c1, c2, c3):
-        return (
-            a1 * (b2 * c3 - b3 * c2)
-            - a2 * (b1 * c3 - b3 * c1)
-            + a3 * (b1 * c2 - b2 * c1)
-        )
+    return best_verts, best_faces
 
-    nx = det3(uy, uz, uw, vy, vz, vw, wy, wz, ww)
-    ny = -det3(ux, uz, uw, vx, vz, vw, wx, wz, ww)
-    nz = det3(ux, uy, uw, vx, vy, vw, wx, wy, ww)
-    nw = -det3(ux, uy, uz, vx, vy, vz, wx, wy, wz)
-    return norm4((nx, ny, nz, nw))
-
-def find_3d_cells_for_convex_polytope(verts, faces):
+def build_face_adjacency(faces):
     edge_to_faces = defaultdict(list)
     for f_idx, face in enumerate(faces):
         m = len(face)
@@ -47,51 +54,52 @@ def find_3d_cells_for_convex_polytope(verts, faces):
             key = (a, b) if a < b else (b, a)
             edge_to_faces[key].append(f_idx)
 
-    cell_hyperplanes = {}
-    for (va, vb), adj_faces in edge_to_faces.items():
-        if len(adj_faces) < 2:
+    adj = defaultdict(set)
+    for f_list in edge_to_faces.values():
+        for i in range(len(f_list)):
+            for j in range(i + 1, len(f_list)):
+                adj[f_list[i]].add(f_list[j])
+                adj[f_list[j]].add(f_list[i])
+    return edge_to_faces, adj
+
+def build_verified_cells(faces, face_adj, patch_size=10):
+    visited = set()
+    cells = []
+    for start in range(len(faces)):
+        if start in visited:
             continue
-        p0 = verts[va]
-        e_vec = sub4(verts[vb], p0)
-        for i in range(len(adj_faces)):
-            f1 = faces[adj_faces[i]]
-            v1_cand = next((v for v in f1 if v != va and v != vb), None)
-            if v1_cand is None:
-                continue
-            u_vec = sub4(verts[v1_cand], p0)
+        first_nb = next((nb for nb in face_adj[start] if nb not in visited and nb != start), None)
+        if first_nb is None:
+            continue
 
-            for j in range(i + 1, len(adj_faces)):
-                f2 = faces[adj_faces[j]]
-                v2_cand = next((v for v in f2 if v != va and v != vb), None)
-                if v2_cand is None:
-                    continue
-                w_vec = sub4(verts[v2_cand], p0)
+        patch = [start, first_nb]
+        visited.add(start)
+        visited.add(first_nb)
+        queue = deque(patch)
 
-                normal = hyperplane_normal_4d(e_vec, u_vec, w_vec)
-                if normal is None:
-                    continue
+        while queue and len(patch) < patch_size:
+            curr = queue.popleft()
+            for nb in face_adj[curr]:
+                if nb not in visited:
+                    visited.add(nb)
+                    patch.append(nb)
+                    queue.append(nb)
+                    if len(patch) >= patch_size:
+                        break
 
-                d = dot4(normal, p0)
-                nx, ny, nz, nw = normal
-                if d < 0:
-                    nx, ny, nz, nw = -nx, -ny, -nz, -nw
-                    normal = (nx, ny, nz, nw)
-                    d = -d
+        if len(patch) < 4:
+            continue
 
-                key = (round(nx, 3), round(ny, 3), round(nz, 3), round(nw, 3), round(d, 3))
-                if key not in cell_hyperplanes:
-                    coplanar_faces = []
-                    for check_idx, check_face in enumerate(faces):
-                        if all(abs(dot4(normal, verts[v]) - d) < 1e-3 for v in check_face):
-                            coplanar_faces.append(check_idx)
-                    if len(coplanar_faces) >= 4:
-                        cell_hyperplanes[key] = tuple(sorted(coplanar_faces))
+        f0, f1, *rest = patch
+        cells.append([f0, f1] + rest)
+        cells.append([f1, f0] + rest)
+    return cells
 
-    unique_cells = sorted(set(cell_hyperplanes.values()))
-    return [list(c) for c in unique_cells]
-
-def convert_off_to_poly_off(input_path: str) -> None:
-    if input_path.endswith("_poly.off") or input_path.endswith("_tri.off") or input_path.endswith("_fixed.off"):
+def main():
+    script_dir = Path(__file__).resolve().parent
+    input_path = script_dir / "hypersphere.off"
+    if not input_path.exists():
+        print("hypersphere.off not found!")
         return
 
     with open(input_path, "r", encoding="utf-8", errors="replace") as f:
@@ -101,9 +109,6 @@ def convert_off_to_poly_off(input_path: str) -> None:
             clean = before_comment.strip()
             if clean:
                 lines.append(clean)
-
-    if len(lines) < 2:
-        return
 
     it = iter(lines)
     header = next(it)
@@ -115,18 +120,9 @@ def convert_off_to_poly_off(input_path: str) -> None:
     else:
         counts_parts = first_parts
 
-    vert_str, face_str, *extra_counts = counts_parts
+    vert_str, face_str, *_ = counts_parts
     vert_count = int(vert_str)
     face_count = int(face_str)
-    cell_count_rest = extra_counts[1:]
-    existing_cell_count = int(next(iter(cell_count_rest), 0))
-
-    if face_count == 0:
-        print(f"Skipped (0 faces): {os.path.basename(input_path)}")
-        return
-    if face_count > 5000:
-        print(f"Skipped (too large for real-time poly mesh: {face_count} faces): {os.path.basename(input_path)}")
-        return
 
     verts = []
     for _ in range(vert_count):
@@ -145,40 +141,15 @@ def convert_off_to_poly_off(input_path: str) -> None:
             continue
         n_str, *indices = parts
         n = int(n_str)
-        if n < 3 or len(indices) < n:
-            continue
-        faces.append([int(idx) for idx in indices[:n]])
+        if n >= 3 and len(indices) >= n:
+            faces.append([int(idx) for idx in indices[:n]])
 
-    cells = []
-    for _ in range(existing_cell_count):
-        try:
-            parts = next(it).split()
-        except StopIteration:
-            break
-        if not parts:
-            continue
-        n_str, *f_indices = parts
-        n = int(n_str)
-        if n >= 4 and len(f_indices) >= n:
-            cells.append([int(idx) for idx in f_indices[:n]])
+    verts, faces = decimate_mesh(verts, faces, target_faces=1000)
+    edge_to_faces, face_adj = build_face_adjacency(faces)
+    cells = build_verified_cells(faces, face_adj, patch_size=10)
+    unique_edges = sorted(edge_to_faces.keys())
 
-    if not cells:
-        cells = find_3d_cells_for_convex_polytope(verts, faces)
-
-    if not cells:
-        print(f"Skipped (could not find closed >=4-face 3D cells): {os.path.basename(input_path)}")
-        return
-
-    unique_edges = set()
-    for face in faces:
-        m = len(face)
-        for i in range(m):
-            a, b = face[i], face[(i + 1) % m]
-            unique_edges.add((a, b) if a < b else (b, a))
-
-    base, _ = os.path.splitext(input_path)
-    output_path = f"{base}_poly.off"
-
+    output_path = script_dir / "hypersphere_poly.off"
     with open(output_path, "w", encoding="utf-8", newline="\n") as out:
         out.write("4OFF\n")
         out.write(f"{len(verts)} {len(faces)} {len(unique_edges)} {len(cells)}\n")
@@ -189,11 +160,7 @@ def convert_off_to_poly_off(input_path: str) -> None:
         for cell in cells:
             out.write(f"{len(cell)} " + " ".join(str(f) for f in cell) + "\n")
 
-    print(f"Created (overwrote): {os.path.basename(output_path)} ({len(verts)} verts, {len(faces)} faces, {len(unique_edges)} edges, {len(cells)} cells)")
+    print(f"Created {output_path.name}: {len(verts)} verts, {len(faces)} faces, {len(unique_edges)} edges, {len(cells)} cells")
 
 if __name__ == "__main__":
-    for path in sorted(glob.glob("*.off")):
-        try:
-            convert_off_to_poly_off(path)
-        except Exception as e:
-            print(f"Skipped {path}: {e}")
+    main()

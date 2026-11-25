@@ -1,0 +1,17 @@
+[remap]
+
+importer="godot_4d.off_geometry_format.array_poly_mesh_4d"
+type="ArrayPolyMesh4D"
+uid="uid://bracj4274q4g6"
+path="res://.godot/imported/sphereinder_poly.off-7b458cfc221960bad887a3a8b5516d9d.res"
+
+[deps]
+
+source_file="res://sphereinder_poly.off"
+dest_files=["res://.godot/imported/sphereinder_poly.off-7b458cfc221960bad887a3a8b5516d9d.res"]
+
+[params]
+
+compute_normals_mode=1
+double_sided=true
+single_convex_volume=false

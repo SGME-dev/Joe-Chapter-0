@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cytl1r1yjrird"]
 
-[ext_resource type="CompressedTexture3D" uid="uid://buu0pwhxlkm4y" path="res://Cobblestone_(texture)_TU1.png" id="1_mi635"]
+[ext_resource type="CompressedTexture3D" uid="uid://dv8barhn3jsma" path="res://Wood_Floor_016_basecolor.png" id="1_mi635"]
 
 [sub_resource type="BoxShape4D" id="BoxShape4D_jtvq5"]
 

@@ -96,6 +96,10 @@ window/vsync/vsync_mode=0
 
 enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 ui_accept={
