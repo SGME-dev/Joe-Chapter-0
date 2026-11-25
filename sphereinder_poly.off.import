@@ -14,4 +14,4 @@ dest_files=["res://.godot/imported/sphereinder_poly.off-7b458cfc221960bad887a3a8
 
 compute_normals_mode=0
 double_sided=true
-single_convex_volume=false
+single_convex_volume=true

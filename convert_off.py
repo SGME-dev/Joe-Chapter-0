@@ -11,8 +11,6 @@ import time
 from collections import defaultdict, deque
 
 SKIP_SUFFIXES = ("_poly.off", "_tri.off", "_fixed.off")
-MIN_CELL_FACES = 4
-MAX_CELL_CHUNK_FACES = 16
 
 
 def dot4(a: tuple[float, float, float, float], b: tuple[float, float, float, float]) -> float:
@@ -92,9 +90,12 @@ def order_cell_faces_by_shared_edges(
     face_indices: list[int],
     faces: list[list[int]],
 ) -> list[int] | None:
-    """Order >=4 faces via shared edges so cell[0] and cell[1] share an edge."""
+    """Order faces via shared edges so cell[0] and cell[1] share an edge."""
+    if len(face_indices) < 4:
+        return None
+
     unique_f = list(dict.fromkeys(face_indices))
-    if len(unique_f) < MIN_CELL_FACES:
+    if len(unique_f) < 4:
         return None
 
     f_set = set(unique_f)
@@ -135,9 +136,6 @@ def order_cell_faces_by_shared_edges(
     for f_idx in unique_f:
         if f_idx not in visited:
             ordered.append(f_idx)
-
-    if len(ordered) < MIN_CELL_FACES:
-        return None
 
     return ordered
 
@@ -203,45 +201,8 @@ def build_faces_from_shortest_edges(
     return faces
 
 
-def partition_component_into_cells(
-    comp: list[int],
-    faces: list[list[int]],
-    chunk_size: int = MAX_CELL_CHUNK_FACES,
-) -> list[list[int]]:
-    """Split a connected face component into edge-ordered cells of >=4 faces."""
-    if len(comp) < MIN_CELL_FACES:
-        return []
-
-    if len(comp) <= chunk_size:
-        ordered = order_cell_faces_by_shared_edges(comp, faces)
-        return [ordered] if ordered is not None else []
-
-    walked = order_cell_faces_by_shared_edges(comp, faces) or comp
-    cells: list[list[int]] = []
-    idx = 0
-    total = len(walked)
-
-    while idx < total:
-        rem = total - idx
-        if rem < MIN_CELL_FACES:
-            if cells:
-                merged = order_cell_faces_by_shared_edges(cells[-1] + walked[idx:], faces)
-                if merged is not None:
-                    cells[-1] = merged
-            break
-
-        take = chunk_size if rem > chunk_size + (MIN_CELL_FACES - 1) else rem
-        chunk = walked[idx : idx + take]
-        ordered = order_cell_faces_by_shared_edges(chunk, faces)
-        if ordered is not None:
-            cells.append(ordered)
-        idx += take
-
-    return cells
-
-
 def connected_face_component_cells(faces: list[list[int]]) -> list[list[int]]:
-    if len(faces) < MIN_CELL_FACES:
+    if not faces:
         return []
 
     edge_owners: dict[tuple[int, int], list[int]] = defaultdict(list)
@@ -259,7 +220,6 @@ def connected_face_component_cells(faces: list[list[int]]) -> list[list[int]]:
 
     visited = [False] * len(faces)
     cells: list[list[int]] = []
-    leftover_faces: list[int] = []
 
     for start in range(len(faces)):
         if visited[start]:
@@ -274,14 +234,9 @@ def connected_face_component_cells(faces: list[list[int]]) -> list[list[int]]:
                 if not visited[nxt]:
                     visited[nxt] = True
                     queue.append(nxt)
-
-        if len(comp) >= MIN_CELL_FACES:
-            cells.extend(partition_component_into_cells(comp, faces))
-        else:
-            leftover_faces.extend(comp)
-
-    if len(leftover_faces) >= MIN_CELL_FACES:
-        cells.extend(partition_component_into_cells(leftover_faces, faces))
+        ordered = order_cell_faces_by_shared_edges(comp, faces)
+        if ordered is not None:
+            cells.append(ordered)
 
     return cells
 
@@ -290,12 +245,12 @@ def find_3d_cells_for_convex_polytope(
     verts: list[tuple[float, float, float, float]],
     faces: list[list[int]],
     max_hyperplane_faces: int = 1500,
-    max_plane_checks: int = 25000,
+    max_plane_checks: int = 50000,
 ) -> list[list[int]]:
-    """Fast 4D hyperplane cell detection via edge-incident faces."""
+    """Detect coplanar face groups on 3D hyperplanes and order faces by shared edges."""
     num_faces = len(faces)
     num_verts = len(verts)
-    if num_faces < MIN_CELL_FACES or num_verts < MIN_CELL_FACES:
+    if num_faces < 4 or num_verts < 4:
         return []
 
     if num_faces > max_hyperplane_faces:
@@ -358,7 +313,7 @@ def find_3d_cells_for_convex_polytope(
                     if all(on_plane[v] for v in check_face)
                 ]
 
-                if len(coplanar_faces) >= MIN_CELL_FACES:
+                if len(coplanar_faces) >= 4:
                     c_key = frozenset(coplanar_faces)
                     if c_key not in seen_cell_sets:
                         ordered = order_cell_faces_by_shared_edges(coplanar_faces, faces)
@@ -409,7 +364,7 @@ def convert_off_to_poly_off(
     default_w: float = 0.0,
     max_reconstruct_verts: int = 256,
     max_hyperplane_faces: int = 1500,
-    max_plane_checks: int = 25000,
+    max_plane_checks: int = 50000,
     fast_only: bool = False,
     clean_degenerate: bool = True,
     scale: float = 1.0,
@@ -497,7 +452,7 @@ def convert_off_to_poly_off(
             continue
         n = int(parts[0])
         f_indices = parts[1:]
-        if n >= MIN_CELL_FACES and len(f_indices) >= n:
+        if n >= 4 and len(f_indices) >= n:
             parsed_cells = [int(idx) for idx in f_indices[:n]]
             if all(0 <= idx < num_f for idx in parsed_cells):
                 ordered = order_cell_faces_by_shared_edges(parsed_cells, faces)
@@ -517,9 +472,6 @@ def convert_off_to_poly_off(
 
     if not cells and faces:
         cells = connected_face_component_cells(faces)
-
-    # Guarantee every output cell has >= MIN_CELL_FACES faces and valid shared-edge order
-    cells = [c for c in cells if len(c) >= MIN_CELL_FACES]
 
     unique_edges: set[tuple[int, int]] = set()
     for face in faces:
@@ -567,7 +519,7 @@ def main() -> None:
     parser.add_argument(
         "--max-plane-checks",
         type=int,
-        default=25000,
+        default=50000,
         help="Maximum candidate hyperplane checks per mesh",
     )
     parser.add_argument(

@@ -14,4 +14,4 @@ dest_files=["res://.godot/imported/tesseract_poly.off-d75d6c87050fd87b0db1831304
 
 compute_normals_mode=0
 double_sided=true
-single_convex_volume=false
+single_convex_volume=true

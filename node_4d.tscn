@@ -76,7 +76,7 @@ sky = SubResource("Sky_ctvjw")
 script = ExtResource("1_f4q7b")
 
 [node name="CharacterBody4D" parent="." instance=ExtResource("1_jtvq5")]
-position = Vector4(0, 4.531, 0, 0)
+position = Vector4(-86.79987, 4.5313416, -261.20706, 0)
 
 [node name="StaticBody4D" parent="." instance=ExtResource("2_7nsku")]
 

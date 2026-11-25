@@ -14,4 +14,4 @@ dest_files=["res://.godot/imported/star_poly.off-b4e002f97fd323fd98db8cd36fdc4aa
 
 compute_normals_mode=0
 double_sided=true
-single_convex_volume=false
+single_convex_volume=true
