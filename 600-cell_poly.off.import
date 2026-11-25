@@ -2,7 +2,7 @@
 
 importer="godot_4d.off_geometry_format.array_poly_mesh_4d"
 type="ArrayPolyMesh4D"
-uid="uid://fxc80wslkpfg"
+uid="uid://bm8k65wvyi2h"
 path="res://.godot/imported/600-cell_poly.off-dadb7a773b46a12764b51c9d949fa5a6.res"
 
 [deps]
@@ -13,5 +13,5 @@ dest_files=["res://.godot/imported/600-cell_poly.off-dadb7a773b46a12764b51c9d949
 [params]
 
 compute_normals_mode=0
-double_sided=false
-single_convex_volume=false
+double_sided=true
+single_convex_volume=true

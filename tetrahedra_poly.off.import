@@ -2,7 +2,7 @@
 
 importer="godot_4d.off_geometry_format.array_poly_mesh_4d"
 type="ArrayPolyMesh4D"
-uid="uid://eq7q6kuia32w"
+uid="uid://p6twc7j773j0"
 path="res://.godot/imported/tetrahedra_poly.off-cb8ceec26416734bfa1f5e1fc2e0842c.res"
 
 [deps]
@@ -13,5 +13,5 @@ dest_files=["res://.godot/imported/tetrahedra_poly.off-cb8ceec26416734bfa1f5e1fc
 [params]
 
 compute_normals_mode=0
-double_sided=false
-single_convex_volume=false
+double_sided=true
+single_convex_volume=true

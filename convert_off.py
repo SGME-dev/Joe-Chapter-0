@@ -1,114 +1,389 @@
+#!/usr/bin/env python3
+"""Convert 3D/4D .off files in-place into *_poly.off meshes for PolyMesh4D."""
+
+from __future__ import annotations
+
+import argparse
+import glob
 import math
+import os
+import time
 from collections import defaultdict, deque
-from pathlib import Path
 
-def decimate_mesh(verts, faces, target_faces=1000):
-    xs, ys, zs, ws = zip(*verts)
-    span = max(max(xs) - min(xs), max(ys) - min(ys), max(zs) - min(zs), max(ws) - min(ws), 1e-5)
+SKIP_SUFFIXES = ("_poly.off", "_tri.off", "_fixed.off")
 
-    grid_res = 12
-    best_verts, best_faces = verts, faces
-    while grid_res >= 4:
-        step = span / grid_res
-        cluster_map = {}
-        new_verts = []
-        remap = []
-        for vx, vy, vz, vw in verts:
-            key = (round(vx / step), round(vy / step), round(vz / step), round(vw / step))
-            idx = cluster_map.get(key)
-            if idx is None:
-                idx = len(new_verts)
-                cluster_map[key] = idx
-                new_verts.append((vx, vy, vz, vw))
-            remap.append(idx)
 
-        seen_faces = set()
-        new_faces = []
-        for face in faces:
-            mapped = []
-            for v in face:
-                mv = remap[v]
-                if not mapped or mapped[-1] != mv:
-                    mapped.append(mv)
-            if len(mapped) > 1 and mapped == mapped[-1]:
-                mapped.pop()
-            if len(set(mapped)) >= 3:
-                f_key = tuple(sorted(mapped))
-                if f_key not in seen_faces:
-                    seen_faces.add(f_key)
-                    new_faces.append(mapped)
+def dot4(a: tuple[float, float, float, float], b: tuple[float, float, float, float]) -> float:
+    return a[0] * b[0] + a[1] * b[1] + a[2] * b[2] + a[3] * b[3]
 
-        best_verts, best_faces = new_verts, new_faces
-        if len(new_faces) <= target_faces:
-            break
-        grid_res -= 2
 
-    return best_verts, best_faces
+def sub4(
+    a: tuple[float, float, float, float], b: tuple[float, float, float, float]
+) -> tuple[float, float, float, float]:
+    return (a[0] - b[0], a[1] - b[1], a[2] - b[2], a[3] - b[3])
 
-def build_face_adjacency(faces):
-    edge_to_faces = defaultdict(list)
+
+def dist_sq4(a: tuple[float, float, float, float], b: tuple[float, float, float, float]) -> float:
+    d = sub4(a, b)
+    return dot4(d, d)
+
+
+def norm4(v: tuple[float, float, float, float]) -> tuple[float, float, float, float] | None:
+    length = math.hypot(v[0], v[1], v[2], v[3])
+    if length < 1e-12:
+        return None
+    inv = 1.0 / length
+    return (v[0] * inv, v[1] * inv, v[2] * inv, v[3] * inv)
+
+
+def hyperplane_normal_4d(
+    u: tuple[float, float, float, float],
+    v: tuple[float, float, float, float],
+    w: tuple[float, float, float, float],
+) -> tuple[float, float, float, float] | None:
+    ux, uy, uz, uw = u
+    vx, vy, vz, vw = v
+    wx, wy, wz, ww = w
+
+    def det3(
+        a1: float, a2: float, a3: float,
+        b1: float, b2: float, b3: float,
+        c1: float, c2: float, c3: float,
+    ) -> float:
+        return (
+            a1 * (b2 * c3 - b3 * c2)
+            - a2 * (b1 * c3 - b3 * c1)
+            + a3 * (b1 * c2 - b2 * c1)
+        )
+
+    nx = det3(uy, uz, uw, vy, vz, vw, wy, wz, ww)
+    ny = -det3(ux, uz, uw, vx, vz, vw, wx, wz, ww)
+    nz = det3(ux, uy, uw, vx, vy, vw, wx, wy, ww)
+    nw = -det3(ux, uy, uz, vx, vy, vz, wx, wy, wz)
+    return norm4((nx, ny, nz, nw))
+
+
+def canonical_plane(
+    normal: tuple[float, float, float, float],
+    point: tuple[float, float, float, float],
+) -> tuple[tuple[float, float, float, float], float]:
+    nx, ny, nz, nw = normal
+    d = dot4(normal, point)
+    for c in (nx, ny, nz, nw, d):
+        if abs(c) > 1e-9:
+            if c < 0.0:
+                return ((-nx, -ny, -nz, -nw), -d)
+            return ((nx, ny, nz, nw), d)
+    return ((nx, ny, nz, nw), d)
+
+
+def face_edges(face: list[int]) -> list[tuple[int, int]]:
+    m = len(face)
+    out: list[tuple[int, int]] = []
+    for i in range(m):
+        a, b = face[i], face[(i + 1) % m]
+        out.append((a, b) if a < b else (b, a))
+    return out
+
+
+def order_cell_faces_by_shared_edges(
+    face_indices: list[int],
+    faces: list[list[int]],
+) -> list[int] | None:
+    """Order faces via shared edges so cell[0] and cell[1] share an edge."""
+    if len(face_indices) < 4:
+        return None
+
+    unique_f = list(dict.fromkeys(face_indices))
+    if len(unique_f) < 4:
+        return None
+
+    f_set = set(unique_f)
+    edge_to_faces: dict[tuple[int, int], list[int]] = defaultdict(list)
+    for f_idx in unique_f:
+        for edge in face_edges(faces[f_idx]):
+            edge_to_faces[edge].append(f_idx)
+
+    adj: dict[int, list[int]] = {f_idx: [] for f_idx in unique_f}
+    start_a: int | None = None
+    start_b: int | None = None
+
+    for owners in edge_to_faces.values():
+        if len(owners) > 1:
+            base = owners[0]
+            if start_a is None:
+                start_a = base
+                start_b = owners[1]
+            for other in owners[1:]:
+                adj[base].append(other)
+                adj[other].append(base)
+
+    if start_a is None or start_b is None:
+        return None
+
+    ordered: list[int] = [start_a, start_b]
+    visited: set[int] = {start_a, start_b}
+    queue: deque[int] = deque([start_a, start_b])
+
+    while queue:
+        cur = queue.popleft()
+        for nxt in adj[cur]:
+            if nxt in f_set and nxt not in visited:
+                visited.add(nxt)
+                ordered.append(nxt)
+                queue.append(nxt)
+
+    for f_idx in unique_f:
+        if f_idx not in visited:
+            ordered.append(f_idx)
+
+    return ordered
+
+
+def is_valid_face(
+    face: list[int],
+    verts: list[tuple[float, float, float, float]],
+    clean_degenerate: bool = True,
+) -> bool:
+    num_v = len(verts)
+    if len(face) < 3 or any(idx < 0 or idx >= num_v for idx in face):
+        return False
+    if not clean_degenerate:
+        return True
+    if len(set(face)) < 3:
+        return False
+    p0 = verts[face[0]]
+    p1 = verts[face[1]]
+    p2 = verts[face[2]]
+    if dist_sq4(p0, p1) < 1e-14 or dist_sq4(p0, p2) < 1e-14 or dist_sq4(p1, p2) < 1e-14:
+        return False
+    return True
+
+
+def build_faces_from_shortest_edges(
+    verts: list[tuple[float, float, float, float]],
+) -> list[list[int]]:
+    n = len(verts)
+    if n < 3:
+        return []
+
+    min_d2 = float("inf")
+    pairs: list[tuple[int, int, float]] = []
+
+    for i in range(n):
+        vi = verts[i]
+        for j in range(i + 1, n):
+            d2 = dist_sq4(vi, verts[j])
+            if d2 > 1e-12:
+                pairs.append((i, j, d2))
+                if d2 < min_d2:
+                    min_d2 = d2
+
+    if not math.isfinite(min_d2):
+        return []
+
+    tol = max(1e-7, min_d2 * 1e-3)
+    adj: list[set[int]] = [set() for _ in range(n)]
+    for i, j, d2 in pairs:
+        if abs(d2 - min_d2) <= tol:
+            adj[i].add(j)
+            adj[j].add(i)
+
+    faces: list[list[int]] = []
+    for i in range(n):
+        adj_i = adj[i]
+        for j in adj_i:
+            if j <= i:
+                continue
+            for k in adj_i.intersection(adj[j]):
+                if k > j:
+                    faces.append([i, j, k])
+    return faces
+
+
+def connected_face_component_cells(faces: list[list[int]]) -> list[list[int]]:
+    if not faces:
+        return []
+
+    edge_owners: dict[tuple[int, int], list[int]] = defaultdict(list)
     for f_idx, face in enumerate(faces):
-        m = len(face)
-        for i in range(m):
-            a, b = face[i], face[(i + 1) % m]
-            key = (a, b) if a < b else (b, a)
-            edge_to_faces[key].append(f_idx)
+        for edge in face_edges(face):
+            edge_owners[edge].append(f_idx)
 
-    adj = defaultdict(set)
-    for f_list in edge_to_faces.values():
-        for i in range(len(f_list)):
-            for j in range(i + 1, len(f_list)):
-                adj[f_list[i]].add(f_list[j])
-                adj[f_list[j]].add(f_list[i])
-    return edge_to_faces, adj
+    adj: list[list[int]] = [[] for _ in range(len(faces))]
+    for owners in edge_owners.values():
+        if len(owners) > 1:
+            base = owners[0]
+            for other in owners[1:]:
+                adj[base].append(other)
+                adj[other].append(base)
 
-def build_verified_cells(faces, face_adj, patch_size=10):
-    visited = set()
-    cells = []
+    visited = [False] * len(faces)
+    cells: list[list[int]] = []
+
     for start in range(len(faces)):
-        if start in visited:
+        if visited[start]:
             continue
-        first_nb = next((nb for nb in face_adj[start] if nb not in visited and nb != start), None)
-        if first_nb is None:
-            continue
+        comp: list[int] = []
+        queue = deque([start])
+        visited[start] = True
+        while queue:
+            cur = queue.popleft()
+            comp.append(cur)
+            for nxt in adj[cur]:
+                if not visited[nxt]:
+                    visited[nxt] = True
+                    queue.append(nxt)
+        ordered = order_cell_faces_by_shared_edges(comp, faces)
+        if ordered is not None:
+            cells.append(ordered)
 
-        patch = [start, first_nb]
-        visited.add(start)
-        visited.add(first_nb)
-        queue = deque(patch)
-
-        while queue and len(patch) < patch_size:
-            curr = queue.popleft()
-            for nb in face_adj[curr]:
-                if nb not in visited:
-                    visited.add(nb)
-                    patch.append(nb)
-                    queue.append(nb)
-                    if len(patch) >= patch_size:
-                        break
-
-        if len(patch) < 4:
-            continue
-
-        f0, f1, *rest = patch
-        cells.append([f0, f1] + rest)
-        cells.append([f1, f0] + rest)
     return cells
 
-def main():
-    script_dir = Path(__file__).resolve().parent
-    input_path = script_dir / "hypersphere.off"
-    if not input_path.exists():
-        print("hypersphere.off not found!")
+
+def find_3d_cells_for_convex_polytope(
+    verts: list[tuple[float, float, float, float]],
+    faces: list[list[int]],
+    max_hyperplane_faces: int = 1500,
+    max_plane_checks: int = 50000,
+) -> list[list[int]]:
+    """Detect coplanar face groups on 3D hyperplanes and order faces by shared edges."""
+    num_faces = len(faces)
+    num_verts = len(verts)
+    if num_faces < 4 or num_verts < 4:
+        return []
+
+    if num_faces > max_hyperplane_faces:
+        return connected_face_component_cells(faces)
+
+    edge_to_faces: dict[tuple[int, int], list[int]] = defaultdict(list)
+    for f_idx, face in enumerate(faces):
+        for edge in face_edges(face):
+            edge_to_faces[edge].append(f_idx)
+
+    seen_planes: set[tuple[float, float, float, float, float]] = set()
+    seen_cell_sets: set[frozenset[int]] = set()
+    ordered_cells: list[list[int]] = []
+    plane_tol = 2e-3
+    checks = 0
+    stop = False
+
+    for (va, vb), adj_faces in edge_to_faces.items():
+        if len(adj_faces) < 2:
+            continue
+
+        p0 = verts[va]
+        e_vec = sub4(verts[vb], p0)
+
+        off_vecs: list[tuple[float, float, float, float]] = []
+        for f_idx in adj_faces:
+            cand = next((v for v in faces[f_idx] if v != va and v != vb), None)
+            if cand is not None:
+                off_vecs.append(sub4(verts[cand], p0))
+
+        m_vecs = len(off_vecs)
+        for i in range(m_vecs):
+            u_vec = off_vecs[i]
+            for j in range(i + 1, m_vecs):
+                checks += 1
+                if checks > max_plane_checks:
+                    stop = True
+                    break
+
+                normal = hyperplane_normal_4d(e_vec, u_vec, off_vecs[j])
+                if normal is None:
+                    continue
+
+                c_normal, d = canonical_plane(normal, p0)
+                plane_key = (
+                    round(c_normal[0], 5),
+                    round(c_normal[1], 5),
+                    round(c_normal[2], 5),
+                    round(c_normal[3], 5),
+                    round(d, 5),
+                )
+                if plane_key in seen_planes:
+                    continue
+                seen_planes.add(plane_key)
+
+                on_plane = [abs(dot4(c_normal, v) - d) <= plane_tol for v in verts]
+                coplanar_faces = [
+                    check_idx
+                    for check_idx, check_face in enumerate(faces)
+                    if all(on_plane[v] for v in check_face)
+                ]
+
+                if len(coplanar_faces) >= 4:
+                    c_key = frozenset(coplanar_faces)
+                    if c_key not in seen_cell_sets:
+                        ordered = order_cell_faces_by_shared_edges(coplanar_faces, faces)
+                        if ordered is not None:
+                            seen_cell_sets.add(c_key)
+                            ordered_cells.append(ordered)
+
+            if stop:
+                break
+        if stop:
+            break
+
+    if not ordered_cells:
+        return connected_face_component_cells(faces)
+
+    return ordered_cells
+
+
+def transform_vertices(
+    verts: list[tuple[float, float, float, float]],
+    scale: float = 1.0,
+    center: bool = False,
+) -> list[tuple[float, float, float, float]]:
+    if not verts or (scale == 1.0 and not center):
+        return verts
+
+    if center:
+        cx = sum(v[0] for v in verts) / len(verts)
+        cy = sum(v[1] for v in verts) / len(verts)
+        cz = sum(v[2] for v in verts) / len(verts)
+        cw = sum(v[3] for v in verts) / len(verts)
+    else:
+        cx = cy = cz = cw = 0.0
+
+    return [
+        (
+            (x - cx) * scale,
+            (y - cy) * scale,
+            (z - cz) * scale,
+            (w - cw) * scale,
+        )
+        for x, y, z, w in verts
+    ]
+
+
+def convert_off_to_poly_off(
+    input_path: str,
+    default_w: float = 0.0,
+    max_reconstruct_verts: int = 256,
+    max_hyperplane_faces: int = 1500,
+    max_plane_checks: int = 50000,
+    fast_only: bool = False,
+    clean_degenerate: bool = True,
+    scale: float = 1.0,
+    center: bool = False,
+) -> None:
+    if input_path.endswith(SKIP_SUFFIXES):
         return
 
+    t0 = time.perf_counter()
     with open(input_path, "r", encoding="utf-8", errors="replace") as f:
-        lines = []
+        lines: list[str] = []
         for raw_line in f:
             before_comment, _, _ = raw_line.replace("\r", "").partition("#")
             clean = before_comment.strip()
             if clean:
                 lines.append(clean)
+
+    if len(lines) < 2:
+        return
 
     it = iter(lines)
     header = next(it)
@@ -120,36 +395,91 @@ def main():
     else:
         counts_parts = first_parts
 
-    vert_str, face_str, *_ = counts_parts
-    vert_count = int(vert_str)
-    face_count = int(face_str)
+    if len(counts_parts) < 2:
+        return
 
-    verts = []
+    vert_count = int(counts_parts[0])
+    face_count = int(counts_parts[1])
+    extra_counts = counts_parts[2:]
+    existing_cell_count = int(extra_counts[1]) if len(extra_counts) >= 2 else 0
+
+    verts: list[tuple[float, float, float, float]] = []
     for _ in range(vert_count):
-        x_s, y_s, z_s, *w_rest = next(it).split()
-        verts.append((
-            float(x_s),
-            float(y_s),
-            float(z_s),
-            float(next(iter(w_rest), 0.0)),
-        ))
+        try:
+            parts = next(it).split()
+        except StopIteration:
+            break
+        if len(parts) < 3:
+            continue
+        x = float(parts[0])
+        y = float(parts[1])
+        z = float(parts[2])
+        w = float(parts[3]) if len(parts) >= 4 else default_w
+        verts.append((x, y, z, w))
 
-    faces = []
+    verts = transform_vertices(verts, scale=scale, center=center)
+
+    faces: list[list[int]] = []
     for _ in range(face_count):
-        parts = next(it).split()
+        try:
+            parts = next(it).split()
+        except StopIteration:
+            break
         if not parts:
             continue
-        n_str, *indices = parts
-        n = int(n_str)
-        if n >= 3 and len(indices) >= n:
-            faces.append([int(idx) for idx in indices[:n]])
+        n = int(parts[0])
+        indices = parts[1:]
+        if n < 3 or len(indices) < n:
+            continue
+        parsed = [int(idx) for idx in indices[:n]]
+        if is_valid_face(parsed, verts, clean_degenerate=clean_degenerate):
+            faces.append(parsed)
 
-    verts, faces = decimate_mesh(verts, faces, target_faces=1000)
-    edge_to_faces, face_adj = build_face_adjacency(faces)
-    cells = build_verified_cells(faces, face_adj, patch_size=10)
-    unique_edges = sorted(edge_to_faces.keys())
+    if not faces and 3 <= len(verts) <= max_reconstruct_verts:
+        faces = [
+            f for f in build_faces_from_shortest_edges(verts)
+            if is_valid_face(f, verts, clean_degenerate=clean_degenerate)
+        ]
 
-    output_path = script_dir / "hypersphere_poly.off"
+    num_f = len(faces)
+    cells: list[list[int]] = []
+    for _ in range(existing_cell_count):
+        try:
+            parts = next(it).split()
+        except StopIteration:
+            break
+        if not parts:
+            continue
+        n = int(parts[0])
+        f_indices = parts[1:]
+        if n >= 4 and len(f_indices) >= n:
+            parsed_cells = [int(idx) for idx in f_indices[:n]]
+            if all(0 <= idx < num_f for idx in parsed_cells):
+                ordered = order_cell_faces_by_shared_edges(parsed_cells, faces)
+                if ordered is not None:
+                    cells.append(ordered)
+
+    if not cells and faces:
+        if fast_only:
+            cells = connected_face_component_cells(faces)
+        else:
+            cells = find_3d_cells_for_convex_polytope(
+                verts,
+                faces,
+                max_hyperplane_faces=max_hyperplane_faces,
+                max_plane_checks=max_plane_checks,
+            )
+
+    if not cells and faces:
+        cells = connected_face_component_cells(faces)
+
+    unique_edges: set[tuple[int, int]] = set()
+    for face in faces:
+        unique_edges.update(face_edges(face))
+
+    base, _ = os.path.splitext(input_path)
+    output_path = f"{base}_poly.off"
+
     with open(output_path, "w", encoding="utf-8", newline="\n") as out:
         out.write("4OFF\n")
         out.write(f"{len(verts)} {len(faces)} {len(unique_edges)} {len(cells)}\n")
@@ -160,7 +490,70 @@ def main():
         for cell in cells:
             out.write(f"{len(cell)} " + " ".join(str(f) for f in cell) + "\n")
 
-    print(f"Created {output_path.name}: {len(verts)} verts, {len(faces)} faces, {len(unique_edges)} edges, {len(cells)} cells")
+    elapsed = time.perf_counter() - t0
+    print(
+        f"Created (overwrote): {os.path.basename(output_path)} "
+        f"({len(verts)} verts, {len(faces)} faces, {len(unique_edges)} edges, {len(cells)} cells) [{elapsed:.2f}s]"
+    )
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(
+        description="Convert *.off files in-place into *_poly.off meshes for PolyMesh4D."
+    )
+    parser.add_argument("--w", type=float, default=0.0, help="Default W coordinate for 3D vertices")
+    parser.add_argument("--scale", type=float, default=1.0, help="Scale multiplier applied to vertices")
+    parser.add_argument("--center", action="store_true", help="Center vertices around (0, 0, 0, 0)")
+    parser.add_argument(
+        "--max-reconstruct-verts",
+        type=int,
+        default=256,
+        help="Max vertex count for shortest-edge face reconstruction",
+    )
+    parser.add_argument(
+        "--max-hyperplane-faces",
+        type=int,
+        default=1500,
+        help="Face threshold above which fast component cell grouping is used",
+    )
+    parser.add_argument(
+        "--max-plane-checks",
+        type=int,
+        default=50000,
+        help="Maximum candidate hyperplane checks per mesh",
+    )
+    parser.add_argument(
+        "--fast",
+        action="store_true",
+        help="Skip hyperplane search and build edge-ordered component cells immediately",
+    )
+    parser.add_argument(
+        "--keep-degenerate",
+        action="store_true",
+        help="Keep faces with duplicate/zero-length vertices instead of filtering them",
+    )
+    parser.add_argument("-r", "--recursive", action="store_true", help="Include subdirectories")
+    args = parser.parse_args()
+
+    pattern = "**/*.off" if args.recursive else "*.off"
+    for path in sorted(glob.glob(pattern, recursive=args.recursive)):
+        if not os.path.isfile(path):
+            continue
+        try:
+            convert_off_to_poly_off(
+                path,
+                default_w=args.w,
+                max_reconstruct_verts=args.max_reconstruct_verts,
+                max_hyperplane_faces=args.max_hyperplane_faces,
+                max_plane_checks=args.max_plane_checks,
+                fast_only=args.fast,
+                clean_degenerate=not args.keep_degenerate,
+                scale=args.scale,
+                center=args.center,
+            )
+        except Exception as exc:  # noqa: BLE001
+            print(f"Skipped {path}: {exc}")
+
 
 if __name__ == "__main__":
     main()

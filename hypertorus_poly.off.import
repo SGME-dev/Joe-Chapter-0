@@ -2,7 +2,7 @@
 
 importer="godot_4d.off_geometry_format.array_poly_mesh_4d"
 type="ArrayPolyMesh4D"
-uid="uid://bcl38dlf0x78j"
+uid="uid://d3palswbjcj2p"
 path="res://.godot/imported/hypertorus_poly.off-3de9e37ce2c6f693ed07772308c612aa.res"
 
 [deps]
@@ -13,5 +13,5 @@ dest_files=["res://.godot/imported/hypertorus_poly.off-3de9e37ce2c6f693ed0777230
 [params]
 
 compute_normals_mode=0
-double_sided=false
-single_convex_volume=false
+double_sided=true
+single_convex_volume=true
