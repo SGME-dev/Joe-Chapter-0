@@ -76,7 +76,7 @@ sky = SubResource("Sky_ctvjw")
 script = ExtResource("1_f4q7b")
 
 [node name="CharacterBody4D" parent="." instance=ExtResource("1_jtvq5")]
-position = Vector4(0, 4.531, 0, 0)
+position = Vector4(0, 4.531, -231.32867, 0)
 
 [node name="Camera4D" parent="CharacterBody4D/Camera_Controller/Camera_Target" index="0"]
 projection_type = 2
