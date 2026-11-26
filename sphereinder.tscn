@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bfsv8l3iprvmx"]
 
-[ext_resource type="ArrayPolyMesh4D" uid="uid://bracj4274q4g6" path="res://sphereinder_poly.off" id="1_si5i5"]
+[ext_resource type="ArrayPolyMesh4D" uid="uid://dwovfldsg7low" path="res://sphereinder_poly.off" id="1_si5i5"]
 
 [sub_resource type="PolyMaterial4D" id="PolyMaterial4D_mrrur"]
 albedo_color = Color(0, 0.3019608, 1, 1)
@@ -10,18 +10,6 @@ albedo_color = Color(0, 0.3019608, 1, 1)
 [node name="StaticBody4D" type="StaticBody4D"]
 
 [node name="MeshInstance4D" type="MeshInstance4D" parent="."]
-basis = Projection(-4.371139e-08, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, -4.371139e-08)
-material_override = SubResource("PolyMaterial4D_mrrur")
-mesh = ExtResource("1_si5i5")
-
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="."]
-position = Vector4(-0.08870845, 0, 0, 0)
-basis = Projection(-4.371139e-08, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, -4.371139e-08)
-material_override = SubResource("PolyMaterial4D_mrrur")
-mesh = ExtResource("1_si5i5")
-
-[node name="MeshInstance4D3" type="MeshInstance4D" parent="."]
-position = Vector4(-0.24260604, 0, 0, 0)
 basis = Projection(-4.371139e-08, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, -4.371139e-08)
 material_override = SubResource("PolyMaterial4D_mrrur")
 mesh = ExtResource("1_si5i5")
