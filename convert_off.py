@@ -20,7 +20,7 @@ TARGET_BASE_STEMS = (
 )
 SKIP_SUFFIXES = ("_poly.off", "_tri.off", "_fixed.off")
 MIN_CELL_FACES = 4
-DEFAULT_MAX_CELL_FACES = 64
+DEFAULT_CHUNK_SIZE = 128
 
 
 def is_target_off_file(path: str) -> bool:
@@ -44,105 +44,148 @@ def dist_sq4(
 
 def face_edges(face: list[int]) -> list[tuple[int, int]]:
     m = len(face)
-    out: list[tuple[int, int]] = []
+    edges: list[tuple[int, int]] = []
     for i in range(m):
-        a, b = face[i], face[(i + 1) % m]
-        out.append((a, b) if a < b else (b, a))
-    return out
+        u, v = face[i], face[(i + 1) % m]
+        edges.append((u, v) if u < v else (v, u))
+    return edges
 
 
 def faces_share_edge(f1: list[int], f2: list[int]) -> bool:
-    e1 = set(face_edges(f1))
-    for edge in face_edges(f2):
-        if edge in e1:
-            return True
-    return False
+    s1 = set(face_edges(f1))
+    return any(e in s1 for e in face_edges(f2))
 
 
-def build_edge_connected_cells(
+def build_cells_from_components(
     faces: list[list[int]],
-    max_cell_faces: int = DEFAULT_MAX_CELL_FACES,
+    chunk_size: int = DEFAULT_CHUNK_SIZE,
 ) -> list[list[int]]:
-    """Build cells of >=4 unique faces where each cell starts with two edge-sharing faces."""
-    num_faces = len(faces)
-    if num_faces < MIN_CELL_FACES:
+    """Build >=4-face cells from edge-connected face components while preserving all faces."""
+    n_faces = len(faces)
+    if n_faces < MIN_CELL_FACES:
         return []
 
-    edge_to_faces: dict[tuple[int, int], list[int]] = defaultdict(list)
-    for f_idx, face in enumerate(faces):
-        for edge in face_edges(face):
-            edge_to_faces[edge].append(f_idx)
+    edge_owners: dict[tuple[int, int], list[int]] = defaultdict(list)
+    face_edge_sets: list[set[tuple[int, int]]] = []
+    for idx, face in enumerate(faces):
+        eset = set(face_edges(face))
+        face_edge_sets.append(eset)
+        for edge in eset:
+            edge_owners[edge].append(idx)
 
-    adj: dict[int, list[int]] = {i: [] for i in range(num_faces)}
-    shared_edges: list[tuple[int, int]] = []
-    for owners in edge_to_faces.values():
+    adj: list[list[int]] = [[] for _ in range(n_faces)]
+    for owners in edge_owners.values():
         if len(owners) >= 2:
-            base = owners[0]
+            anchor = owners[0]
             for other in owners[1:]:
-                if other not in adj[base]:
-                    adj[base].append(other)
-                if base not in adj[other]:
-                    adj[other].append(base)
-                if faces_share_edge(faces[base], faces[other]):
-                    shared_edges.append((base, other))
+                if anchor == other:
+                    continue
+                if other not in adj[anchor]:
+                    adj[anchor].append(other)
+                if anchor not in adj[other]:
+                    adj[other].append(anchor)
 
-    used: set[int] = set()
-    cells: list[list[int]] = []
+    visited = [False] * n_faces
+    large_components: list[list[int]] = []
+    small_components: list[list[int]] = []
 
-    # Grow cells starting from explicit edge-sharing face pairs
-    for a, b in shared_edges:
-        if a in used or b in used:
+    for start in range(n_faces):
+        if visited[start]:
             continue
-        if not faces_share_edge(faces[a], faces[b]):
-            continue
-
-        cell: list[int] = [a, b]
-        used.add(a)
-        used.add(b)
-        q: deque[int] = deque([a, b])
-
-        while q and len(cell) < max_cell_faces:
-            cur = q.popleft()
+        comp: list[int] = []
+        queue: deque[int] = deque([start])
+        visited[start] = True
+        while queue:
+            cur = queue.popleft()
+            comp.append(cur)
             for nxt in adj[cur]:
-                if nxt not in used and faces_share_edge(faces[cur], faces[nxt]):
-                    used.add(nxt)
-                    cell.append(nxt)
-                    q.append(nxt)
-                    if len(cell) >= max_cell_faces:
-                        break
+                if not visited[nxt]:
+                    visited[nxt] = True
+                    queue.append(nxt)
 
-        if len(cell) >= MIN_CELL_FACES:
-            cells.append(cell)
+        if len(comp) >= MIN_CELL_FACES:
+            large_components.append(comp)
         else:
-            # Release if under MIN_CELL_FACES so leftover faces can merge cleanly
-            for idx in cell:
-                used.discard(idx)
+            small_components.append(comp)
 
-    # Fold remaining unused faces into an existing cell they share an edge with
-    leftovers = [i for i in range(num_faces) if i not in used]
-    for f_idx in leftovers:
-        merged = False
-        for cell in cells:
-            if any(faces_share_edge(faces[f_idx], faces[c_idx]) for c_idx in cell[:8]):
-                cell.append(f_idx)
-                used.add(f_idx)
-                merged = True
+    # Split large edge-connected components into ordered edge-walk chunks of >= MIN_CELL_FACES
+    cells: list[list[int]] = []
+    for comp in large_components:
+        comp_set = set(comp)
+        ordered: list[int] = []
+        seen_in_comp: set[int] = set()
+
+        for seed in comp:
+            if seed in seen_in_comp:
+                continue
+            seen_in_comp.add(seed)
+            ordered.append(seed)
+            q: deque[int] = deque([seed])
+            while q:
+                cur = q.popleft()
+                for nxt in adj[cur]:
+                    if nxt in comp_set and nxt not in seen_in_comp:
+                        seen_in_comp.add(nxt)
+                        ordered.append(nxt)
+                        q.append(nxt)
+
+        for i in range(0, len(ordered), chunk_size):
+            part = ordered[i : i + chunk_size]
+            if len(part) >= MIN_CELL_FACES:
+                cells.append(part)
+            elif cells:
+                cells[-1].extend(part)
+            else:
+                cells.append(part)
+
+    # Attach small components (< MIN_CELL_FACES) to a cell with a shared edge
+    for small in small_components:
+        attached_idx: int | None = None
+        for f_idx in small:
+            for c_idx, cell in enumerate(cells):
+                if any(face_edge_sets[f_idx] & face_edge_sets[c_f] for c_f in cell[:32]):
+                    attached_idx = c_idx
+                    break
+            if attached_idx is not None:
                 break
-        if not merged and cells:
-            cells[-1].append(f_idx)
-            used.add(f_idx)
 
-    # Fallback if no shared-edge cells were formed at all
-    if not cells and num_faces >= MIN_CELL_FACES:
-        cells.append(list(range(num_faces)))
+        if attached_idx is not None:
+            cells[attached_idx].extend(small)
+        elif cells:
+            cells[-1].extend(small)
+        else:
+            cells.append(list(small))
 
-    return [c for c in cells if len(c) >= MIN_CELL_FACES]
+    # Final safety pass: ensure every cell has >= MIN_CELL_FACES and every face is covered
+    final_cells: list[list[int]] = []
+    covered: set[int] = set()
+    for cell in cells:
+        deduped = [f_idx for f_idx in dict.fromkeys(cell) if 0 <= f_idx < n_faces]
+        if len(deduped) >= MIN_CELL_FACES:
+            final_cells.append(deduped)
+            covered.update(deduped)
+        elif final_cells:
+            for f_idx in deduped:
+                if f_idx not in final_cells[-1]:
+                    final_cells[-1].append(f_idx)
+                    covered.add(f_idx)
+
+    uncovered = [i for i in range(n_faces) if i not in covered]
+    if uncovered:
+        if final_cells:
+            for f_idx in uncovered:
+                if f_idx not in final_cells[-1]:
+                    final_cells[-1].append(f_idx)
+        elif n_faces >= MIN_CELL_FACES:
+            final_cells.append(list(range(n_faces)))
+
+    return final_cells
 
 
 def convert_target_off(
     input_path: str,
     default_w: float = 0.0,
-    max_cell_faces: int = DEFAULT_MAX_CELL_FACES,
+    chunk_size: int = DEFAULT_CHUNK_SIZE,
     clean_degenerate: bool = True,
 ) -> None:
     if not is_target_off_file(input_path):
@@ -210,12 +253,7 @@ def convert_target_off(
                     continue
             faces.append(parsed)
 
-    raw_cells = build_edge_connected_cells(faces, max_cell_faces=max_cell_faces)
-    valid_cells: list[list[int]] = []
-    for cell in raw_cells:
-        deduped = [idx for idx in dict.fromkeys(cell) if 0 <= idx < len(faces)]
-        if len(deduped) >= MIN_CELL_FACES:
-            valid_cells.append(deduped)
+    cells = build_cells_from_components(faces, chunk_size=chunk_size)
 
     unique_edges: set[tuple[int, int]] = set()
     for face in faces:
@@ -226,20 +264,22 @@ def convert_target_off(
 
     with open(output_path, "w", encoding="utf-8", newline="\n") as out:
         out.write("4OFF\n")
-        out.write(f"{len(verts)} {len(faces)} {len(unique_edges)} {len(valid_cells)}\n")
+        out.write(f"{len(verts)} {len(faces)} {len(unique_edges)} {len(cells)}\n")
         for x, y, z, w in verts:
             out.write(f"{x} {y} {z} {w}\n")
         for face in faces:
             out.write(f"{len(face)} " + " ".join(str(v) for v in face) + "\n")
-        for c in valid_cells:
-            out.write(f"{len(c)} " + " ".join(str(f) for f in c) + "\n")
+        for cell in cells:
+            out.write(f"{len(cell)} " + " ".join(str(f) for f in cell) + "\n")
 
-    min_c = min((len(c) for c in valid_cells), default=0)
+    all_in_cells = {f_idx for c in cells for f_idx in c}
+    missing_count = len(faces) - len(all_in_cells)
+    min_c = min((len(c) for c in cells), default=0)
     elapsed = time.perf_counter() - t0
     print(
         f"Updated target only: {output_path} "
-        f"({len(verts)} verts, {len(faces)} faces, {len(unique_edges)} edges, "
-        f"{len(valid_cells)} cells, min_cell={min_c}) [{elapsed:.2f}s]"
+        f"({len(verts)} verts, {len(faces)} faces, missing={missing_count}, "
+        f"{len(unique_edges)} edges, {len(cells)} cells, min_cell={min_c}) [{elapsed:.2f}s]"
     )
 
 
@@ -252,10 +292,10 @@ def main() -> None:
     )
     parser.add_argument("--w", type=float, default=0.0, help="Default W coordinate for 3D vertices")
     parser.add_argument(
-        "--max-cell-faces",
+        "--chunk-size",
         type=int,
-        default=DEFAULT_MAX_CELL_FACES,
-        help="Target maximum faces per edge-grown cell",
+        default=DEFAULT_CHUNK_SIZE,
+        help="Maximum faces per edge-ordered chunk within a component",
     )
     parser.add_argument(
         "--keep-degenerate",
@@ -277,7 +317,7 @@ def main() -> None:
             convert_target_off(
                 path,
                 default_w=args.w,
-                max_cell_faces=args.max_cell_faces,
+                chunk_size=args.chunk_size,
                 clean_degenerate=not args.keep_degenerate,
             )
         except Exception as exc:  # noqa: BLE001
