@@ -43,7 +43,8 @@ basis = Projection(-1, 0, 8.742278e-08, 0, 0, 1, 0, 0, -8.742278e-08, 0, -1, 0, 
 visible = false
 
 [node name="Area4D" type="Area4D" parent="."]
-position = Vector4(0, 0, 77.87834, 0)
+position = Vector4(0, 0, 77.878, 7.5)
+basis = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 5)
 
 [node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D"]
 position = Vector4(-4.4497437, 17.489582, 10.93502, -3.339249)
