@@ -1,0 +1,5 @@
+[gd_resource type="ArrayWireMesh4D" format=4]
+
+[resource]
+edge_indices = PackedInt32Array(0, 1, 2, 3, 4, 5)
+vertices = PackedVector4Array(-0.233352, 0.466344, 0, 0, -0.233352, -0.474726, 0, 0, -0.233352, -0.00692153, 0, 0, 0.201688, -0.471085, 0, 0, -0.14598, -0.101575, 0, 0, 0.241734, 0.453602, 0, 0)
