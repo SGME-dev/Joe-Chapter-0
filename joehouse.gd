@@ -2,6 +2,7 @@ extends Node4D
 
 var playing := true
 var active_area = null
+var finished := false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Dialogic.signal_event.connect(deletepapers)
@@ -47,6 +48,8 @@ func _on_animation_player2_animation_finished(anim_name: StringName) -> void:
 
 func _on_area_4d_5_body_entered_area(body: player) -> void:
 	active_area = "test"
+	if finished == true:
+		active_area = null
 
 func _on_area_4d_5_body_exited_area(body: player) -> void:
 	if active_area == "test":
@@ -60,7 +63,7 @@ func _input(event: InputEvent) -> void:
 
 func deletepapers(arg: String) -> void:
 	if arg == str("delete test"):
-		get_tree().queue_delete($teststart/Area4D5/MeshInstance4D2)
+		finished = true
 		label.show()
 		$Timer.start()
 

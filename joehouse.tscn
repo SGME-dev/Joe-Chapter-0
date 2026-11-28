@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://bg8bs7gw8mk1k"]
+[gd_scene load_steps=15 format=3 uid="uid://bg8bs7gw8mk1k"]
 
 [ext_resource type="Script" uid="uid://dqchq18npwe88" path="res://joehouse.gd" id="1_e3vol"]
 [ext_resource type="PackedScene" uid="uid://b1ikmd6mmomw" path="res://house.tscn" id="1_ng0oa"]
 [ext_resource type="PackedScene" uid="uid://bxopl223vf8d0" path="res://park.tscn" id="2_e3vol"]
 [ext_resource type="PackedScene" uid="uid://c0s58r1qa7jvh" path="res://player.tscn" id="4_lbvct"]
 [ext_resource type="PackedScene" uid="uid://x2tm56n0bk0k" path="res://parents.tscn" id="5_5kbm0"]
+[ext_resource type="Script" uid="uid://dbsuuvvaet6w0" path="res://text_1.gd" id="6_bbiut"]
 
 [sub_resource type="BoxShape4D" id="BoxShape4D_ng0oa"]
 
@@ -20,15 +21,12 @@ albedo_color = Color(1, 0, 0, 1)
 [sub_resource type="BoxShape4D" id="BoxShape4D_5kbm0"]
 
 [sub_resource type="GradientSkyMaterial4D" id="GradientSkyMaterial4D_5kbm0"]
+shader_parameter/light0_color = Color(1, 0.45490196, 0, 1)
+shader_parameter/light1_color = Color(1, 0.45490196, 0, 1)
+shader_parameter/light2_color = Color(1, 0.45490196, 0, 1)
+shader_parameter/light3_color = Color(1, 0.45490196, 0, 1)
 
-[sub_resource type="GradientSkyMaterial4D" id="GradientSkyMaterial4D_bbiut"]
-
-[sub_resource type="Sky" id="Sky_xsa12"]
-sky_material = SubResource("GradientSkyMaterial4D_bbiut")
-
-[sub_resource type="Environment" id="Environment_q8fa8"]
-background_mode = 2
-sky = SubResource("Sky_xsa12")
+[sub_resource type="VolumetricCloudMaterial4D" id="VolumetricCloudMaterial4D_bbiut"]
 
 [node name="joehouse" type="Node4D"]
 script = ExtResource("1_e3vol")
@@ -165,6 +163,12 @@ position = Vector4(0.071754456, -0.20398211, -0.6701112, 0)
 basis = Projection(4.0444646, 0, -1.390243, 0, 0, 4.414332, 0, 0, 1.0751451, 0, 5.147447, 0, 0, 0, 0, 0.99999994)
 shape = SubResource("BoxShape4D_5kbm0")
 
+[node name="Text 1" type="Node4D" parent="teststart"]
+position = Vector4(0, 1.4644053, 0, 0)
+basis = Projection(-2.1855695e-09, 0, -0.05, 0, 0, 0.5, 0, 0, 0.5, 0, -2.1855694e-08, 0, 0, 0, 0, 0.5)
+script = ExtResource("6_bbiut")
+text_to_display = "HOMEWORK"
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 300.0
 one_shot = true
@@ -179,9 +183,27 @@ text = "Time left until level ends: Do homework first"
 [node name="WorldEnvironment4D" type="WorldEnvironment4D" parent="."]
 current = true
 sky_material = SubResource("GradientSkyMaterial4D_5kbm0")
+cloud_material = SubResource("VolumetricCloudMaterial4D_bbiut")
+tonemap_mode = 4
+tonemap_exposure = 1.12
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_q8fa8")
+[node name="DirectionalLight4D" type="DirectionalLight4D" parent="."]
+basis = Projection(0.035111755, 0, -0.18406227, -0.9822872, 0.34042102, 0.7301, 0.5844579, -0.09734817, -0.83932406, 0.5195191, -0.16010962, 0, -0.42239302, -0.4439077, 0.77388304, -0.16010962)
+light_color = Color(1, 0.85882354, 0.7019608, 1)
+light_energy = 2.6
+angular_radius_radians = 0.019198621771937627
+
+[node name="OmniLight4D" type="OmniLight4D" parent="."]
+position = Vector4(-57.90103, 78.62504, -16.79532, 0)
+light_color = Color(1, 0.54509807, 0, 1)
+
+[node name="OmniLight4D2" type="OmniLight4D" parent="."]
+position = Vector4(-8.983284, 78.62504, -16.79532, 0)
+light_color = Color(1, 0.54509807, 0, 1)
+
+[node name="OmniLight4D3" type="OmniLight4D" parent="."]
+position = Vector4(40.460327, 78.62504, -16.79532, 0)
+light_color = Color(1, 0.54509807, 0, 1)
 
 [connection signal="body_entered_self" from="Area4D" to="." method="_on_area_4d_body_entered_area"]
 [connection signal="body_exited_self" from="Area4D" to="." method="_on_area_4d_body_exited_area"]
