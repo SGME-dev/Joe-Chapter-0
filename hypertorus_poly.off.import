@@ -14,4 +14,4 @@ dest_files=["res://.godot/imported/hypertorus_poly.off-3de9e37ce2c6f693ed0777230
 
 compute_normals_mode=0
 double_sided=true
-single_convex_volume=true
+single_convex_volume=false

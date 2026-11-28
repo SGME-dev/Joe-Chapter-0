@@ -2,53 +2,166 @@
 	"accessors": [
 		{
 			"bufferView": 0,
-			"primitiveType": "float8",
+			"componentType": "float8",
 			"vectorSize": 4
 		},
 		{
 			"bufferView": 1,
-			"primitiveType": "uint8",
-			"vectorSize": 2
+			"componentType": "uint8"
 		},
 		{
 			"bufferView": 2,
-			"primitiveType": "float32",
-			"vectorSize": 4
+			"componentType": "uint8"
 		},
 		{
 			"bufferView": 3,
-			"primitiveType": "uint16",
+			"componentType": "uint8"
+		},
+		{
+			"bufferView": 4,
+			"componentType": "uint8"
+		},
+		{
+			"bufferView": 5,
+			"componentType": "uint8"
+		},
+		{
+			"bufferView": 6,
+			"componentType": "uint8",
+			"vectorSize": 4
+		},
+		{
+			"bufferView": 7,
+			"componentType": "uint8"
+		},
+		{
+			"bufferView": 8,
+			"componentType": "uint8"
+		},
+		{
+			"bufferView": 9,
+			"componentType": "int8",
+			"vectorSize": 4
+		},
+		{
+			"bufferView": 10,
+			"componentType": "float8",
+			"vectorSize": 3
+		},
+		{
+			"bufferView": 11,
+			"componentType": "uint8",
+			"vectorSize": 2
+		},
+		{
+			"bufferView": 12,
+			"componentType": "float32",
+			"vectorSize": 4
+		},
+		{
+			"bufferView": 13,
+			"componentType": "uint16"
+		},
+		{
+			"bufferView": 14,
+			"componentType": "uint16"
+		},
+		{
+			"bufferView": 15,
+			"componentType": "uint8"
+		},
+		{
+			"bufferView": 16,
+			"componentType": "uint16",
+			"vectorSize": 4
+		},
+		{
+			"bufferView": 17,
+			"componentType": "uint16",
 			"vectorSize": 2
 		}
 	],
 	"asset": {
 		"dimension": 4,
-		"generator": "Godot Engine 4.5.2 with Godot 4D module"
+		"generator": "Godot Engine 4.5.3 with Godot 4D module",
+		"specification": "https://github.com/godot-dimensions/g4mf"
 	},
 	"bufferViews": [
 		{
-			"buffer": 0,
-			"byteLength": 64
-		},
-		{
-			"buffer": 0,
 			"byteLength": 64,
-			"byteOffset": 64
+			"byteOffset": 140160
 		},
 		{
-			"buffer": 0,
-			"byteLength": 16384,
-			"byteOffset": 128
+			"byteLength": 120,
+			"byteOffset": 140224
 		},
 		{
-			"buffer": 0,
-			"byteLength": 12288,
-			"byteOffset": 16512
+			"byteLength": 56,
+			"byteOffset": 140344
+		},
+		{
+			"byteLength": 9,
+			"byteOffset": 140400
+		},
+		{
+			"byteLength": 72,
+			"byteOffset": 140409
+		},
+		{
+			"byteLength": 72,
+			"byteOffset": 140481
+		},
+		{
+			"byteLength": 192,
+			"byteOffset": 140553
+		},
+		{
+			"byteLength": 192,
+			"byteOffset": 140745
+		},
+		{
+			"byteLength": 192,
+			"byteOffset": 140937
+		},
+		{
+			"byteLength": 32,
+			"byteOffset": 141129
+		},
+		{
+			"byteLength": 120,
+			"byteOffset": 141161
+		},
+		{
+			"byteLength": 64,
+			"byteOffset": 141281
+		},
+		{
+			"byteLength": 16384
+		},
+		{
+			"byteLength": 14464,
+			"byteOffset": 16384
+		},
+		{
+			"byteLength": 8960,
+			"byteOffset": 30848
+		},
+		{
+			"byteLength": 129,
+			"byteOffset": 141345
+		},
+		{
+			"byteLength": 92160,
+			"byteOffset": 39808
+		},
+		{
+			"byteLength": 8192,
+			"byteOffset": 131968
 		}
 	],
 	"buffers": [
 		{
-			"byteLength": 28800,
+			"byteLength": 141474,
 			"uri": "chair_buffer0.bin"
 		}
 	],
@@ -59,13 +172,13 @@
 	],
 	"meshes": [
 		{
-			"surfaces": [{ "edges": 1, "material": 0 }],
+			"surfaces": [{ "edges": 11, "geometry": [1, 2, 3], "normals": { "geometry": [{ "accessor": 4, "geometryDimension": 3 }], "simplexes": 7, "values": 9 }, "simplexes": 6, "textureMap": { "geometry": [{ "accessor": 5, "geometryDimension": 3 }], "simplexes": 8, "values": 10 } }],
 			"vertices": 0
 		},
 		{
-			"name": "duocylinder (1).off",
-			"surfaces": [{ "edges": 3 }],
-			"vertices": 2
+			"name": "duocylinder_poly_off",
+			"surfaces": [{ "edges": 17, "geometry": [13, 14, 15], "simplexes": 16 }],
+			"vertices": 12
 		}
 	],
 	"nodes": [
@@ -74,37 +187,33 @@
 			"name": "chair"
 		},
 		{
-			"mesh": 0,
-			"name": "MeshInstance4D",
-			"scale": [3.394569, 0.317529678344727, 3.510652, 1.0]
+			"basis": [3.394569, 0.0, 0.0, 0.0, 0.0, 0.317529678344727, 0.0, 0.0, 0.0, 0.0, 3.510652, 0.0, 0.0, 0.0, 0.0, 1.0],
+			"meshInstance": { "materials": [0], "mesh": 0 },
+			"name": "MeshInstance4D"
 		},
 		{
-			"mesh": 1,
+			"basis": [0.601027309894562, 0.0, 0.0, 0.0, -0.0, 0.0, 0.565274715423584, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0, -0.0, 1.0],
+			"meshInstance": { "mesh": 1 },
 			"name": "MeshInstance4D2",
-			"position": [0.968288838863373, -1.00784254074097, -1.245325922966, 0.0],
-			"rotor": [0.70710676908493, 0.0, 0.0, 0.70710676908493, 0.0, 0.0, 0.0, 0.0],
-			"scale": [0.601027309894562, 0.565274715423584, 1.0, 1.0]
+			"position": [0.968288838863373, -1.00784254074097, -1.245325922966, 0.0]
 		},
 		{
-			"mesh": 1,
+			"basis": [0.601027309894562, 0.0, 0.0, 0.0, -0.0, 0.0, 0.565274596214294, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0, -0.0, 1.0],
+			"meshInstance": { "mesh": 1 },
 			"name": "MeshInstance4D3",
-			"position": [1.05987322330475, -1.00784254074097, 1.161429, 0.0],
-			"rotor": [0.70710676908493, 0.0, 0.0, 0.70710676908493, 0.0, 0.0, 0.0, 0.0],
-			"scale": [0.601027309894562, 0.565274596214294, 1.0, 1.0]
+			"position": [1.05987322330475, -1.00784254074097, 1.161429, 0.0]
 		},
 		{
-			"mesh": 1,
+			"basis": [0.601027309894562, 0.0, 0.0, 0.0, -0.0, 0.0, 0.565274596214294, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0, -0.0, 1.0],
+			"meshInstance": { "mesh": 1 },
 			"name": "MeshInstance4D4",
-			"position": [-1.06558465957642, -1.00784254074097, 1.22165656089783, 0.0],
-			"rotor": [0.70710676908493, 0.0, 0.0, 0.70710676908493, 0.0, 0.0, 0.0, 0.0],
-			"scale": [0.601027309894562, 0.565274596214294, 1.0, 1.0]
+			"position": [-1.06558465957642, -1.00784254074097, 1.22165656089783, 0.0]
 		},
 		{
-			"mesh": 1,
+			"basis": [0.601027309894562, 0.0, 0.0, 0.0, -0.0, 0.0, 0.565274596214294, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0, -0.0, 1.0],
+			"meshInstance": { "mesh": 1 },
 			"name": "MeshInstance4D5",
-			"position": [-1.1633368730545, -1.00784254074097, -1.21717429161072, 0.0],
-			"rotor": [0.70710676908493, 0.0, 0.0, 0.70710676908493, 0.0, 0.0, 0.0, 0.0],
-			"scale": [0.601027309894562, 0.565274596214294, 1.0, 1.0]
+			"position": [-1.1633368730545, -1.00784254074097, -1.21717429161072, 0.0]
 		}
 	]
 }

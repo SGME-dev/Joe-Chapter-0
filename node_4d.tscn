@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://ct278airkigxp"]
+[gd_scene load_steps=31 format=3 uid="uid://ct278airkigxp"]
 
 [ext_resource type="Script" uid="uid://dp7n2s1xk1c2p" path="res://node_4d.gd" id="1_f4q7b"]
 [ext_resource type="PackedScene" uid="uid://c0s58r1qa7jvh" path="res://player.tscn" id="1_jtvq5"]
@@ -61,22 +61,18 @@ albedo_color = Color(1, 1, 0, 1)
 
 [sub_resource type="BoxShape4D" id="BoxShape4D_6gk2r"]
 
-[sub_resource type="GradientSkyMaterial4D" id="GradientSkyMaterial4D_6gk2r"]
+[sub_resource type="PlainSkyMaterial4D" id="PlainSkyMaterial4D_ngegj"]
 
-[sub_resource type="Sky" id="Sky_ctvjw"]
-sky_material = SubResource("GradientSkyMaterial4D_6gk2r")
+[sub_resource type="WireMaterial4D" id="WireMaterial4D_ngegj"]
+albedo_color = Color(1, 1, 0, 1)
 
-[sub_resource type="Environment" id="Environment_x1snb"]
-background_mode = 2
-sky = SubResource("Sky_ctvjw")
-
-[sub_resource type="GradientSkyMaterial4D" id="GradientSkyMaterial4D_ngegj"]
+[sub_resource type="OrthoplexWireMesh4D" id="OrthoplexWireMesh4D_6gk2r"]
 
 [node name="Node4D" type="Node4D"]
 script = ExtResource("1_f4q7b")
 
 [node name="CharacterBody4D" parent="." instance=ExtResource("1_jtvq5")]
-position = Vector4(0, 4.531, -231.32867, 0)
+position = Vector4(0, 4.531, 0, 0)
 
 [node name="Camera4D" parent="CharacterBody4D/Camera_Controller/Camera_Target" index="0"]
 projection_type = 2
@@ -389,12 +385,558 @@ mesh = SubResource("OrthoplexPolyMesh4D_ngegj")
 [node name="CollisionShape4D" type="CollisionShape4D" parent="Area4D5"]
 shape = SubResource("BoxShape4D_6gk2r")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_x1snb")
+[node name="OmniLight4D16" type="OmniLight4D" parent="Area4D5"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="DirectionalLight4D" type="DirectionalLight4D" parent="."]
+position = Vector4(0, 60.7516, 0, 0)
+basis = Projection(1, 0, 0, 0, 0, 0.9659258, -0.25881904, 0, 0, 0.25881904, 0.9659258, 0, 0, 0, 0, 1)
 
 [node name="WorldEnvironment4D" type="WorldEnvironment4D" parent="."]
 current = true
-sky_material = SubResource("GradientSkyMaterial4D_ngegj")
+sky_material = SubResource("PlainSkyMaterial4D_ngegj")
+
+[node name="lights" type="Node4D" parent="."]
+
+[node name="OmniLight4D" type="OmniLight4D" parent="lights"]
+position = Vector4(0, 3.4660184, -44.93594, 0)
+light_energy = 5.0
+
+[node name="OmniLight4D2" type="OmniLight4D" parent="lights"]
+position = Vector4(0, 3.4660184, -232.59314, 0)
+light_energy = 5.0
+
+[node name="OmniLight4D3" type="OmniLight4D" parent="lights"]
+position = Vector4(-36.35177, 3.4660184, -244.22014, 0)
+light_energy = 5.0
+
+[node name="OmniLight4D4" type="OmniLight4D" parent="lights"]
+position = Vector4(-71.13974, 3.4660184, -244.22014, 0)
+light_energy = 5.0
+
+[node name="OmniLight4D5" type="OmniLight4D" parent="lights"]
+position = Vector4(-96.01512, 3.4660184, -276.28143, 0)
+light_energy = 5.0
+
+[node name="OmniLight4D6" type="OmniLight4D" parent="lights"]
+position = Vector4(-52.22623, 3.4660184, -276.28143, 0)
+light_energy = 5.0
+
+[node name="OmniLight4D7" type="OmniLight4D" parent="lights"]
+position = Vector4(-20.881954, 3.4660184, -276.28143, 0)
+light_energy = 5.0
+
+[node name="OmniLight4D8" type="OmniLight4D" parent="lights"]
+position = Vector4(17.145927, 3.4660184, -276.28143, 0)
+light_energy = 5.0
+
+[node name="OmniLight4D9" type="OmniLight4D" parent="lights"]
+position = Vector4(17.145927, 3.4660184, -276.28143, 0)
+light_energy = 5.0
+
+[node name="OmniLight4D10" type="OmniLight4D" parent="lights"]
+position = Vector4(17.145927, 3.4660184, -236.00491, 0)
+light_energy = 5.0
+
+[node name="OmniLight4D11" type="OmniLight4D" parent="lights"]
+position = Vector4(17.145927, 3.4660184, -194.51276, 0)
+light_energy = 5.0
+
+[node name="OmniLight4D12" type="OmniLight4D" parent="lights"]
+position = Vector4(17.145927, 3.4660184, -157.40936, 0)
+light_energy = 5.0
+
+[node name="OmniLight4D13" type="OmniLight4D" parent="lights"]
+position = Vector4(-34.027283, 3.4660184, -247.74817, 0)
+light_energy = 5.0
+
+[node name="OmniLight4D14" type="OmniLight4D" parent="lights"]
+position = Vector4(-33.70739, 3.4660184, -261.4333, 0)
+light_energy = 5.0
+
+[node name="OmniLight4D15" type="OmniLight4D" parent="lights"]
+position = Vector4(-66.51735, 3.4660184, -261.4333, 0)
+light_energy = 5.0
+
+[node name="OmniLight4D16" type="OmniLight4D" parent="lights"]
+position = Vector4(-98.38452, 7.8249683, -261.4333, 0)
+light_energy = 5.0
+
+[node name="stars" type="Node4D" parent="."]
+
+[node name="star" type="Node4D" parent="stars"]
+position = Vector4(-16.159029, 8.858924, 0, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star2" type="Node4D" parent="stars"]
+position = Vector4(10.382046, 0.26673126, 0, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star2"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star2"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star3" type="Node4D" parent="stars"]
+position = Vector4(10.382046, 7.317999, -11.998892, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star3"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star3"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star4" type="Node4D" parent="stars"]
+position = Vector4(4.147046, 10.973167, -11.998892, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star4"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star4"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star5" type="Node4D" parent="stars"]
+position = Vector4(-9.972138, 1.4584675, -19.944347, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star5"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star5"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star6" type="Node4D" parent="stars"]
+position = Vector4(-0.7253332, 14.536736, -30.26981, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star6"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star6"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star7" type="Node4D" parent="stars"]
+position = Vector4(11.795434, 1.974431, -48.36705, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star7"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star7"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star8" type="Node4D" parent="stars"]
+position = Vector4(5.8300548, 14.032725, -59.841675, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star8"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star8"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star9" type="Node4D" parent="stars"]
+position = Vector4(-11.930392, 8.1896515, -66.05014, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star9"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star9"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star10" type="Node4D" parent="stars"]
+position = Vector4(10.905914, 5.588438, -92.12194, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star10"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star10"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star11" type="Node4D" parent="stars"]
+position = Vector4(3.4808674, 13.27745, -104.60237, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star11"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star11"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star12" type="Node4D" parent="stars"]
+position = Vector4(3.4808674, 13.27745, -119.958206, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star12"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star12"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star13" type="Node4D" parent="stars"]
+position = Vector4(10.850803, 8.208332, -119.958206, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star13"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star13"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star14" type="Node4D" parent="stars"]
+position = Vector4(-8.219667, 14.983336, -119.958206, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star14"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star14"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star15" type="Node4D" parent="stars"]
+position = Vector4(-8.219667, -1.8988504, -146.78978, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star15"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star15"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star16" type="Node4D" parent="stars"]
+position = Vector4(11.661812, 15.1772585, -146.78978, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star16"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star16"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star17" type="Node4D" parent="stars"]
+position = Vector4(11.661812, 15.1772585, -171.71495, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star17"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star17"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star18" type="Node4D" parent="stars"]
+position = Vector4(-8.365438, -8.010049, -171.71495, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star18"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star18"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star19" type="Node4D" parent="stars"]
+position = Vector4(-8.365438, -8.010049, -205.6547, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star19"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star19"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star20" type="Node4D" parent="stars"]
+position = Vector4(2.144105, 10.679839, -205.6547, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star20"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star20"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star21" type="Node4D" parent="stars"]
+position = Vector4(5.7395387, -8.595658, -194.25113, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star21"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star21"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star22" type="Node4D" parent="stars"]
+position = Vector4(5.7395387, -8.595658, -223.57079, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star22"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star22"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star23" type="Node4D" parent="stars"]
+position = Vector4(-30.077684, -8.595658, -223.57079, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star23"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star23"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star24" type="Node4D" parent="stars"]
+position = Vector4(-8.086603, 11.526039, -236.22154, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star24"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star24"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star25" type="Node4D" parent="stars"]
+position = Vector4(-8.086603, 11.526039, -256.43573, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star25"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star25"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star26" type="Node4D" parent="stars"]
+position = Vector4(-33.50939, -14.509993, -242.93192, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star26"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star26"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star27" type="Node4D" parent="stars"]
+position = Vector4(-33.50939, -14.509993, -267.89063, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star27"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star27"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star28" type="Node4D" parent="stars"]
+position = Vector4(-33.50939, -14.509993, -267.89063, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star28"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star28"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star29" type="Node4D" parent="stars"]
+position = Vector4(-33.50939, 8.509241, -255.22636, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star29"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star29"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star30" type="Node4D" parent="stars"]
+position = Vector4(-58.455788, 8.509241, -255.22636, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star30"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star30"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star31" type="Node4D" parent="stars"]
+position = Vector4(-58.455788, 20.389622, -271.9787, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star31"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star31"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star32" type="Node4D" parent="stars"]
+position = Vector4(-58.455788, -9.8428135, -271.9787, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star32"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star32"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star33" type="Node4D" parent="stars"]
+position = Vector4(-58.455788, -9.8428135, -234.17166, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star33"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star33"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star34" type="Node4D" parent="stars"]
+position = Vector4(-84.20531, -9.8428135, -234.17166, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star34"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star34"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star35" type="Node4D" parent="stars"]
+position = Vector4(-84.20531, -9.8428135, -266.37006, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star35"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star35"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star36" type="Node4D" parent="stars"]
+position = Vector4(-90.372894, 7.8397713, -266.37006, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star36"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star36"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star37" type="Node4D" parent="stars"]
+position = Vector4(-90.372894, 7.8397713, -244.15314, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star37"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star37"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star38" type="Node4D" parent="stars"]
+position = Vector4(-103.72542, 15.898518, -253.13809, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star38"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star38"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star39" type="Node4D" parent="stars"]
+position = Vector4(-124.051765, -22.384773, -253.13809, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star39"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star39"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star40" type="Node4D" parent="stars"]
+position = Vector4(-124.051765, -22.384773, -282.63794, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star40"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star40"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star41" type="Node4D" parent="stars"]
+position = Vector4(-124.051765, -0.7869415, -282.63794, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star41"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star41"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star42" type="Node4D" parent="stars"]
+position = Vector4(-144.09982, -0.7869415, -268.44568, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star42"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star42"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="star43" type="Node4D" parent="stars"]
+position = Vector4(-126.36441, -0.7869415, -257.26947, 0)
+
+[node name="MeshInstance4D" type="MeshInstance4D" parent="stars/star43"]
+material_override = SubResource("WireMaterial4D_ngegj")
+mesh = SubResource("OrthoplexWireMesh4D_6gk2r")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="stars/star43"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
 
 [connection signal="body_entered_self" from="Area4D" to="." method="_on_area_4d_body_entered_area"]
 [connection signal="body_entered_self" from="Area4D2" to="." method="_on_area_4d_2_body_entered_area"]

@@ -1,13 +1,13 @@
-[gd_scene load_steps=49 format=3 uid="uid://1mlpnhpmmom8"]
+[gd_scene load_steps=50 format=3 uid="uid://1mlpnhpmmom8"]
 
 [ext_resource type="Script" uid="uid://cbnjaiopequuq" path="res://school_1.gd" id="1_mnsvo"]
 [ext_resource type="PackedScene" uid="uid://bi2ot0trdsght" path="res://platform3.tscn" id="1_q7r7a"]
 [ext_resource type="PackedScene" uid="uid://c0s58r1qa7jvh" path="res://player.tscn" id="2_4xitv"]
 [ext_resource type="PackedScene" uid="uid://bb2t23ptf4uu2" path="res://chair.g4tf" id="3_d1qsf"]
-[ext_resource type="ArrayWireMesh4D" uid="uid://bkgg4baxxckw0" path="res://hypersphere.off" id="4_cglct"]
-[ext_resource type="ArrayWireMesh4D" uid="uid://ci167w5mij76p" path="res://tesseract.off" id="5_mnsvo"]
-[ext_resource type="ArrayWireMesh4D" uid="uid://b2fiu3tg36k8n" path="res://duocylinder (1).off" id="6_cglct"]
-[ext_resource type="ArrayWireMesh4D" uid="uid://ctmc1ioi3bfcx" path="res://torisphere.off" id="7_qm0um"]
+[ext_resource type="ArrayPolyMesh4D" uid="uid://c66tlucjun8xk" path="res://hypersphere_poly.off" id="5_bdplm"]
+[ext_resource type="ArrayPolyMesh4D" uid="uid://bvfubudwwrfjn" path="res://tesseract_poly.off" id="6_bdplm"]
+[ext_resource type="ArrayPolyMesh4D" uid="uid://bs1mwqr46iswd" path="res://duocylinder_poly.off" id="7_bdplm"]
+[ext_resource type="ArrayPolyMesh4D" uid="uid://d1edbuxq5vddr" path="res://torisphere_poly.off" id="8_bdplm"]
 [ext_resource type="Script" uid="uid://dbsuuvvaet6w0" path="res://text_1.gd" id="9_hslpx"]
 [ext_resource type="PackedScene" uid="uid://bmvrivbnad8vh" path="res://platform4.tscn" id="10_qm0um"]
 [ext_resource type="ArrayWireMesh4D" uid="uid://cwwuyfe5gefeu" path="res://human_right_armforearm.tres" id="11_bdplm"]
@@ -26,6 +26,7 @@
 [ext_resource type="ArrayWireMesh4D" uid="uid://b7wk2jgidxuny" path="res://human_right_head.tres" id="24_plkib"]
 [ext_resource type="ArrayWireMesh4D" uid="uid://ckyk3y3phviyo" path="res://human_left_torso.tres" id="25_6qtru"]
 [ext_resource type="ArrayWireMesh4D" uid="uid://b4hx0y56k7qbf" path="res://human_right_torso.tres" id="26_cdb1u"]
+[ext_resource type="CompressedTexture3D" uid="uid://dv8barhn3jsma" path="res://Wood_Floor_016_basecolor.png" id="27_p64rj"]
 
 [sub_resource type="BoxShape4D" id="BoxShape4D_jtvq5"]
 
@@ -81,12 +82,13 @@ albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="BoxShape4D" id="BoxShape4D_p64rj"]
 
-[sub_resource type="WireMaterial4D" id="WireMaterial4D_ak3cu"]
-albedo_color = Color(1, 0.40784314, 0, 1)
+[sub_resource type="PolyMaterial4D" id="PolyMaterial4D_bpq5k"]
+albedo_source = 3
+albedo_texture_3d = ExtResource("27_p64rj")
 
 [sub_resource type="BoxPolyMesh4D" id="BoxPolyMesh4D_y7lvg"]
 
-[sub_resource type="WireMaterial4D" id="WireMaterial4D_y7lvg"]
+[sub_resource type="PolyMaterial4D" id="PolyMaterial4D_p64rj"]
 
 [node name="School1" type="Node4D"]
 script = ExtResource("1_mnsvo")
@@ -188,19 +190,19 @@ position = Vector4(-7.1525574e-07, 1.7756573, 3.0806308, 0)
 
 [node name="MeshInstance4D" type="MeshInstance4D" parent="."]
 position = Vector4(-3.5762787e-07, 2.762444, 2.8704507, 0)
-mesh = ExtResource("4_cglct")
+mesh = ExtResource("5_bdplm")
 
 [node name="MeshInstance4D2" type="MeshInstance4D" parent="."]
 position = Vector4(-5.9604645e-07, 2.762444, 8.06862, 0)
-mesh = ExtResource("5_mnsvo")
+mesh = ExtResource("6_bdplm")
 
 [node name="MeshInstance4D3" type="MeshInstance4D" parent="."]
 position = Vector4(-7.1525574e-07, 2.762444, -3.6053896, 0)
-mesh = ExtResource("6_cglct")
+mesh = ExtResource("7_bdplm")
 
 [node name="MeshInstance4D4" type="MeshInstance4D" parent="."]
 position = Vector4(-8.34465e-07, 2.762444, -8.202578, 0)
-mesh = ExtResource("7_qm0um")
+mesh = ExtResource("8_bdplm")
 
 [node name="Text 1" type="Node4D" parent="."]
 position = Vector4(0, 6.5790257, 12.872795, 0)
@@ -543,22 +545,43 @@ basis = Projection(10, 0, 0, 0, 0, 15, 0, 0, 0, 0, 4, 0, 0, 0, 0, 1)
 shape = SubResource("BoxShape4D_p64rj")
 
 [node name="MeshInstance4D" type="MeshInstance4D" parent="Area4D3"]
-position = Vector4(1.0367937, 4.9496346, 0.99574566, 0)
-basis = Projection(7.9264164, 0, 0, 0, 0, 12.746871, 0, 0, 0, 0, 2.0085125, 0, 0, 0, 0, 0.99999994)
-material_override = SubResource("WireMaterial4D_ak3cu")
-mesh = SubResource("BoxPolyMesh4D_y7lvg")
-
-[node name="MeshInstance4D2" type="MeshInstance4D" parent="Area4D3"]
-position = Vector4(1.0367937, 4.9496346, 0.99574566, 0)
-basis = Projection(7.9264164, 0, 0, 0, 0, 12.746871, 0, 0, 0, 0, 2.0085125, 0, 0, 0, 0, 0.99999994)
-material_override = SubResource("WireMaterial4D_ak3cu")
+position = Vector4(1.0367937, 4.9496346, -0.1580534, 0)
+basis = Projection(7.9264164, 0, 0, 0, 0, 12.746873, 0, 0, 0, 0, 2.0085125, 0, 0, 0, 0, 0.99999994)
+material_override = SubResource("PolyMaterial4D_bpq5k")
 mesh = SubResource("BoxPolyMesh4D_y7lvg")
 
 [node name="MeshInstance4D3" type="MeshInstance4D" parent="Area4D3"]
-position = Vector4(3.451539, 5.2071533, 0.5662861, 0)
-basis = Projection(1.0306638, 0, 0, 0, 0, 0.8586795, 0, 0, 0, 0, 2.5334356, 0, 0, 0, 0, 1)
-material_override = SubResource("WireMaterial4D_y7lvg")
+position = Vector4(3.451539, 5.2071533, -0.58751297, 0)
+basis = Projection(1.0306638, 0, 0, 0, 0, 0.8586796, 0, 0, 0, 0, 2.5334356, 0, 0, 0, 0, 1)
+material_override = SubResource("PolyMaterial4D_p64rj")
 mesh = SubResource("BoxPolyMesh4D_y7lvg")
+
+[node name="OmniLight4D" type="OmniLight4D" parent="."]
+position = Vector4(0, 6.299413, 0, 0)
+
+[node name="OmniLight4D2" type="OmniLight4D" parent="."]
+position = Vector4(0, 6.299413, 6.9586835, 0)
+
+[node name="OmniLight4D3" type="OmniLight4D" parent="."]
+position = Vector4(0, 6.299413, -9.279154, 0)
+
+[node name="OmniLight4D4" type="OmniLight4D" parent="."]
+position = Vector4(-7.5975437, 6.299413, 0, 0)
+
+[node name="OmniLight4D5" type="OmniLight4D" parent="."]
+position = Vector4(-7.5975437, 6.299413, 6.9586835, 0)
+
+[node name="OmniLight4D6" type="OmniLight4D" parent="."]
+position = Vector4(-7.5975437, 6.299413, -9.279154, 0)
+
+[node name="OmniLight4D7" type="OmniLight4D" parent="."]
+position = Vector4(8.525551, 6.299413, 0, 0)
+
+[node name="OmniLight4D8" type="OmniLight4D" parent="."]
+position = Vector4(8.525551, 6.299413, 6.9586835, 0)
+
+[node name="OmniLight4D9" type="OmniLight4D" parent="."]
+position = Vector4(8.525551, 6.299413, -9.279154, 0)
 
 [connection signal="body_entered_self" from="Area4D" to="." method="_on_area_4d_body_entered_area"]
 [connection signal="body_exited_self" from="Area4D" to="." method="_on_area_4d_body_exited_area"]
