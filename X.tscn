@@ -1,4 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://j451vcxeati3"]
+[gd_scene load_steps=5 format=3 uid="uid://j451vcxeati3"]
+
+[sub_resource type="PolyMaterial4D" id="PolyMaterial4D_h5kbe"]
+albedo_color = Color(0.49803922, 1, 0, 1)
+
+[sub_resource type="PolyMaterial4D" id="PolyMaterial4D_js40r"]
+albedo_color = Color(0.49803922, 1, 0, 1)
+
+[sub_resource type="BoxPolyMesh4D" id="BoxPolyMesh4D_js40r"]
+material = SubResource("PolyMaterial4D_js40r")
 
 [sub_resource type="BoxWireMesh4D" id="BoxWireMesh4D_js40r"]
 
@@ -8,9 +17,11 @@ basis = Projection(0.1, 0, 0, 0, 0, 0.1, 0, 0, 0, 0, 0.1, 0, 0, 0, 0, 0.1)
 [node name="MeshInstance4D3" type="MeshInstance4D" parent="."]
 position = Vector4(0, -0.13469094, -0.55260366, 0)
 basis = Projection(0.99999994, 0, 0, 0, 0, 2.3671007, -2.3671002, 0, 0, 0.70710677, 0.70710665, 0, 0, 0, 0, 0.99999994)
-mesh = SubResource("BoxWireMesh4D_js40r")
+material_override = SubResource("PolyMaterial4D_h5kbe")
+mesh = SubResource("BoxPolyMesh4D_js40r")
 
 [node name="MeshInstance4D4" type="MeshInstance4D" parent="."]
 position = Vector4(0, -0.13469094, -0.6726672, 0)
 basis = Projection(0.99999994, 0, 0, 0, 0, 2.3671005, 2.3670995, 0, 0, -0.7071067, 0.7071065, 0, 0, 0, 0, 0.99999994)
+material_override = SubResource("PolyMaterial4D_h5kbe")
 mesh = SubResource("BoxWireMesh4D_js40r")
