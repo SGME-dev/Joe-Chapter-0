@@ -3,12 +3,10 @@
 
 Writes <name>_poly.off next to each input. The originals are never modified.
 
-    python convert_off.py                      # the default shapes, current folder
-    python convert_off.py path/to/folder       # the default shapes, another folder
-    python convert_off.py a.off b.off          # specific files
-    python convert_off.py --hull a.off         # ignore faces/cells, use vertices only
-    python convert_off.py --max-cells 800      # fewer cells (default 2000, 0 = no limit)
-    python convert_off.py --standard           # see "Tori" below
+    python off_to_poly4d.py                      # the default shapes, current folder
+    python off_to_poly4d.py path/to/folder       # the default shapes, another folder
+    python off_to_poly4d.py a.off b.off          # specific files
+    python off_to_poly4d.py --hull a.off         # ignore faces/cells, use vertices only
 
 Target layout (see model/off/off_document_4d.cpp in godot-4d):
     4OFF
@@ -23,24 +21,15 @@ How the input is read:
     "faces" that are tetrahedra  -> split into triangles and cells
     anything else                -> rebuilt as the convex hull of the vertices
                                     (needs numpy and scipy; colours are lost)
-The hull rebuild only works for convex shapes.
-
-Tori (file names containing torus, tori or tiger) are never hulled, which would
-fill the hole. If their cells can't be used, the points are matched against a
-torisphere, spheritorus, ditorus or tiger, and new cells are built on the shape
-that matches, with its radii. If none match, nothing is written unless you add
---standard, which writes a standard torus of the same size instead.
-
-Too many cells: meshes over --max-cells are rebuilt more coarsely (hyperspheres
-and tori on a regular grid, other convex shapes from a subset of their points).
-Rebuilt meshes don't keep the file's colours.
+The hull rebuild only works for convex shapes. Shapes with holes (hypertorus,
+torisphere) need cells or tetrahedra in the file, otherwise they are reported
+as FAIL rather than being filled in.
 
 Normals are pointed out of the solid, worked out from how the cells connect, so
 this works with or without holes. --keep-orientation keeps the file's own.
 """
 
 import argparse
-import itertools
 import math
 import sys
 from collections import Counter
@@ -57,22 +46,6 @@ DEFAULT_NAMES = (
 )
 OPTIONAL_NAMES = {"sphereinder.off", "spherinder.off"}  # only one is expected
 HOLED_NAME_PARTS = ("torus", "tori", "tiger")  # never replace these with a hull
-DEFAULT_MAX_CELLS = 2000
-TORUS_KINDS = ("torisphere", "spheritorus", "ditorus", "tiger")
-# name: (cells along each grid direction, fewest allowed, direction wraps around?)
-GRIDS = {
-    "hypersphere": ((10, 10, 20), (3, 3, 4), (False, False, True)),
-    "torisphere": ((10, 16, 12), (3, 4, 4), (False, True, True)),
-    "spheritorus": ((24, 7, 12), (4, 3, 4), (True, False, True)),
-    "ditorus": ((16, 12, 10), (4, 4, 4), (True, True, True)),
-    "tiger": ((14, 14, 10), (4, 4, 4), (True, True, True)),
-}
-STANDARD_RADII = {  # (core radii..., tube radius), used by --standard
-    "torisphere": (1.0, 0.4),
-    "spheritorus": (1.0, 0.35),
-    "ditorus": (2.0, 0.8, 0.3),
-    "tiger": (1.0, 1.0, 0.4),
-}
 
 EPS = 1e-6  # relative to the size of the shape
 
@@ -453,307 +426,6 @@ def from_convex_hull(vertices, rounding=0.0, forced=False):
 
 
 # --------------------------------------------------------------------------
-# Recognising shapes, rebuilding them and reducing cell counts
-# --------------------------------------------------------------------------
-def import_numeric():
-    try:
-        import numpy as np
-        from scipy.optimize import least_squares
-        from scipy.spatial import ConvexHull
-    except ImportError:
-        raise OffError("this file needs numpy and scipy: pip install numpy scipy") from None
-    return np, least_squares, ConvexHull
-
-
-def surface_point(kind, u, v, w, radii):
-    """Point on a shape for grid coordinates u, v, w in 0..1."""
-    wraps = GRIDS[kind][2]
-    a, b, c = (t * (2 if wrap else 1) * math.pi for t, wrap in zip((u, v, w), wraps))
-    sin, cos = math.sin, math.cos
-    r = radii[-1]
-    if kind == "hypersphere":
-        return (r * sin(a) * sin(b) * cos(c), r * sin(a) * sin(b) * sin(c),
-                r * sin(a) * cos(b), r * cos(a))
-    if kind == "torisphere":  # a 2-sphere, thickened by a circle
-        s = radii[0] + r * cos(c)
-        return (s * sin(a) * cos(b), s * sin(a) * sin(b), s * cos(a), r * sin(c))
-    if kind == "spheritorus":  # a circle, thickened by a 2-sphere
-        s = radii[0] + r * sin(b) * cos(c)
-        return (s * cos(a), s * sin(a), r * sin(b) * sin(c), r * cos(b))
-    if kind == "ditorus":  # a torus, thickened by a circle
-        t = radii[1] + r * cos(c)
-        s = radii[0] + t * cos(b)
-        return (s * cos(a), s * sin(a), t * sin(b), r * sin(c))
-    s, t = radii[0] + r * cos(c), radii[1] + r * sin(c)  # tiger
-    return (s * cos(a), s * sin(a), t * cos(b), t * sin(b))
-
-
-def tube_offsets(np, kind, q, core):
-    """Offsets from a torus's core circle/sphere; their length is the tube radius."""
-    a, b, c, d = q.T
-    if kind == "torisphere":
-        return np.stack([np.sqrt(a * a + b * b + c * c) - core[0], d], axis=1)
-    if kind == "spheritorus":
-        return np.stack([np.hypot(a, b) - core[0], c, d], axis=1)
-    if kind == "ditorus":
-        t = np.hypot(np.hypot(a, b) - core[0], c)
-        return np.stack([t - core[1], d], axis=1)
-    return np.stack([np.hypot(a, b) - core[0], np.hypot(c, d) - core[1]], axis=1)
-
-
-def axis_orders(kind):
-    """The distinct ways the file's x y z w can map onto the shape's own axes."""
-    key = {
-        "torisphere": lambda p: p[3],
-        "spheritorus": lambda p: frozenset(p[:2]),
-        "ditorus": lambda p: (frozenset(p[:2]), p[2]),
-        "tiger": lambda p: frozenset((frozenset(p[:2]), frozenset(p[2:]))),
-    }[kind]
-    return list({key(p): p for p in itertools.permutations(range(4))}.values())
-
-
-def fit_torus(points, rounding):
-    """Find the torus the points lie on (or fill). Returns (kind, radii, axes, centre)."""
-    np, least_squares, _ = import_numeric()
-    pts = np.array(points, dtype=float)
-    centre = (pts.max(axis=0) + pts.min(axis=0)) / 2
-    size = np.linalg.norm(pts - centre, axis=1).max()
-    if np.abs(centre).max() < 0.03 * size:
-        centre = np.zeros(4)
-
-    def middle(x):
-        return (x.max() + x.min()) / 2
-
-    best, best_score = None, None
-    for kind in TORUS_KINDS:
-        for order in axis_orders(kind):
-            q = (pts - centre)[:, order]
-            first = np.hypot(q[:, 0], q[:, 1])
-            if kind == "torisphere":
-                core = [middle(np.linalg.norm(q[:, :3], axis=1))]
-            elif kind == "spheritorus":
-                core = [middle(first)]
-            elif kind == "ditorus":
-                core = [middle(first)]
-                core.append(middle(np.hypot(first - core[0], q[:, 2])))
-            else:
-                core = [middle(first), middle(np.hypot(q[:, 2], q[:, 3]))]
-            offsets = tube_offsets(np, kind, q, core)
-            r = np.linalg.norm(offsets, axis=1).max()
-            spread = (offsets.max(axis=0) - offsets.min(axis=0)) / 2
-            if r < 0.01 * size or spread.min() < 0.8 * r or spread.max() > 1.2 * r:
-                continue  # the tube isn't round, or has no thickness
-
-            outer = q[np.linalg.norm(offsets, axis=1) >= 0.9 * r]
-
-            def error(p):  # p = centre shift, core radii, tube radius
-                return np.linalg.norm(
-                    tube_offsets(np, kind, outer - p[:4], p[4:-1]), axis=1
-                ) - p[-1]
-
-            # The centre guessed from the bounding box can be slightly off for
-            # coarse files, so fit it too: once tightly, once starting loosely.
-            start = [0.0] * 4 + [*core, r]
-            for scales in ((0.002,), (0.05, 0.002)):
-                fit = np.array(start, dtype=float)
-                for scale in scales:
-                    fit = least_squares(error, fit, loss="cauchy", f_scale=scale * start[-1]).x
-                shift, core, radius = fit[:4], fit[4:-1], fit[-1]
-                offsets = tube_offsets(np, kind, q - shift, core)
-                miss = np.linalg.norm(offsets, axis=1) - radius
-                tolerance = max(0.004 * radius, 3 * rounding)
-                on = np.abs(miss) <= tolerance
-                # Nothing may stick out, and enough points must lie right on the
-                # surface, going all the way round the tube.
-                if radius <= 0 or miss.max() > max(0.01 * radius, 3 * rounding):
-                    continue
-                if on.sum() < max(30, 0.02 * len(pts)):
-                    continue
-                around = offsets[on]
-                if (around.max(axis=0) < 0.7 * radius).any() or (
-                    around.min(axis=0) > -0.7 * radius
-                ).any():
-                    continue
-                if kind in ("torisphere", "spheritorus"):
-                    holed = core[0] > 1.02 * radius
-                elif kind == "ditorus":
-                    holed = core[1] > 1.02 * radius and core[0] > core[1] + 1.02 * radius
-                else:
-                    holed = min(core) > 1.02 * radius
-                if not holed:
-                    continue
-                # The points must reach out along all four axes, both ways. This
-                # rejects flat surfaces that only trace part of the shape.
-                if kind == "torisphere":
-                    reach = [core[0] + radius] * 3 + [radius]
-                elif kind == "spheritorus":
-                    reach = [core[0] + radius] * 2 + [radius] * 2
-                elif kind == "ditorus":
-                    outer_reach = core[0] + core[1] + radius
-                    reach = [outer_reach] * 2 + [core[1] + radius, radius]
-                else:
-                    reach = [core[0] + radius] * 2 + [core[1] + radius] * 2
-                used = q[on] - shift
-                limit = 0.6 * np.array(reach)
-                if (used.max(axis=0) < limit).any() or (used.min(axis=0) > -limit).any():
-                    continue
-                score = (int(on.sum()), -float(np.sqrt(np.mean(miss[on] ** 2))))
-                if best_score is None or score > best_score:
-                    best_score = score
-                    middle_point = centre.copy()
-                    middle_point[list(order)] += shift
-                    best = (kind, [float(x) for x in (*core, radius)], order,
-                            middle_point.tolist())
-    return best
-
-
-def fit_hypersphere(points):
-    """Like fit_torus, for points spread all over one 3-sphere."""
-    np, _, ConvexHull = import_numeric()
-    pts = np.array(points, dtype=float)
-    system = np.hstack([2 * pts, np.ones((len(pts), 1))])
-    solution = np.linalg.lstsq(system, (pts**2).sum(axis=1), rcond=None)[0]
-    centre = solution[:4]
-    radius = math.sqrt(max(0.0, solution[4] + centre @ centre))
-    if radius <= 0 or np.abs(np.linalg.norm(pts - centre, axis=1) - radius).max() > 0.01 * radius:
-        return None
-    # Duocylinders and spherinders also have all corners on a sphere, so make
-    # sure the flat cells between the points stay close to it.
-    try:
-        equations = ConvexHull((pts - centre) / radius).equations
-    except Exception:
-        return None
-    if (-equations[:, 4]).min() < 0.85:
-        return None
-    if np.abs(centre).max() < 0.01 * radius:
-        centre = np.zeros(4)
-    return "hypersphere", [radius], (0, 1, 2, 3), centre.tolist()
-
-
-def grid_counts(kind, max_cells):
-    base, fewest, _ = GRIDS[kind]
-    scale = (max_cells / math.prod(base)) ** (1 / 3) if max_cells else 1.0
-    counts = [max(low, round(n * scale)) for n, low in zip(base, fewest)]
-    while max_cells and math.prod(counts) > max_cells:
-        spare = [i for i in range(3) if counts[i] > fewest[i]]
-        if not spare:
-            break
-        counts[max(spare, key=lambda i: counts[i] / base[i])] -= 1
-    return counts
-
-
-def build_shape(shape, max_cells):
-    """Closed mesh with hexahedral cells (collapsed ones at poles) on a recognised shape."""
-    kind, radii, order, centre = shape
-    counts = grid_counts(kind, max_cells)
-    ids, vertices = {}, []
-    for spot in itertools.product(*(range(n + 1) for n in counts)):
-        local = surface_point(kind, *(i / n for i, n in zip(spot, counts)), radii)
-        point = list(centre)
-        for axis, value in zip(order, local):
-            point[axis] += value
-        ids[spot] = len(vertices)
-        vertices.append(point)
-
-    faces, cells, seen = [], [], {}
-    for base in itertools.product(*(range(n) for n in counts)):
-        cell = []
-        for axis in range(3):
-            i, j = (a for a in range(3) if a != axis)
-            for side in (0, 1):
-                loop = []
-                for di, dj in ((0, 0), (1, 0), (1, 1), (0, 1)):
-                    spot = list(base)
-                    spot[axis] += side
-                    spot[i] += di
-                    spot[j] += dj
-                    loop.append(ids[tuple(spot)])
-                if tuple(loop) not in seen:
-                    seen[tuple(loop)] = len(faces)
-                    faces.append(loop)
-                cell.append(seen[tuple(loop)])
-        cells.append(cell)
-    # clean() welds the seams and poles and removes the collapsed faces.
-    return clean(vertices, faces, cells, [None] * len(faces), [None] * len(cells))
-
-
-def describe(shape):
-    kind, radii, _, _ = shape
-    return f"{kind} (radii {', '.join(f'{r:.4g}' for r in radii)})"
-
-
-def rebuild_torus(source, vertices, counts, body, rounding, max_cells, standard, reason):
-    """Mesh for a torus file whose own cells can't be used. Returns (mesh, note)."""
-    shape = fit_torus(vertices, rounding)
-    if shape:
-        note = f"built new cells on the shape the points match: a {describe(shape)}"
-        return build_shape(shape, max_cells), note + f"\n      because {reason}"
-
-    name = source.stem.lower()
-    kind = next((k for k in TORUS_KINDS if k in name), "ditorus")
-    if not standard:
-        sizes = dict(Counter(row[0] for row in body))
-        raise OffError(
-            f"{reason}, and the points don't match a torus this script knows, so nothing "
-            f"was written.\n      File details: {len(vertices)} vertices, size line {counts}, "
-            f"later lines by first number {sizes}.\n      Add --standard to write a standard "
-            f"{kind} of the same size instead, or share the file so it can be supported."
-        )
-    centre = [(max(c) + min(c)) / 2 for c in zip(*vertices)]
-    reach = max(math.dist(v, centre) for v in vertices)
-    radii = STANDARD_RADII[kind]
-    unit = build_shape((kind, list(radii), (0, 1, 2, 3), [0.0] * 4), max_cells)[0]
-    scale = reach / max(math.hypot(*v) for v in unit)
-    shape = (kind, [r * scale for r in radii], (0, 1, 2, 3), centre)
-    note = (f"STANDARD SHAPE, not your geometry: a {describe(shape)} sized like the file"
-            f"\n      because {reason} and the points don't match a known torus")
-    return build_shape(shape, max_cells), note
-
-
-def thin_convex(vertices, max_cells, rounding):
-    """Hull of an evenly spread subset of the points, as large as max_cells allows."""
-    np, _, _ = import_numeric()
-    pts = np.array(vertices, dtype=float)
-    order = [0]  # farthest point sampling
-    distance = ((pts - pts[0]) ** 2).sum(axis=1)
-    while len(order) < len(pts):
-        order.append(int(distance.argmax()))
-        distance = np.minimum(distance, ((pts - pts[order[-1]]) ** 2).sum(axis=1))
-
-    low, high, best = 5, len(pts), None
-    while low <= high:
-        count = (low + high) // 2
-        subset = [vertices[i] for i in order[:count]]
-        try:
-            *structure, _ = from_convex_hull(subset, rounding, forced=True)
-            mesh = clean(subset, *structure)
-        except (OffError, Unusable):
-            low = count + 1  # too few points to make a solid
-            continue
-        if len(mesh[2]) <= max_cells:
-            best, low = mesh, count + 1
-        else:
-            high = count - 1
-    return best
-
-
-def reduce_cells(mesh, max_cells, holed, rounding):
-    """Return (smaller mesh, note), or None if it can't be done safely."""
-    vertices = mesh[0]
-    shape = fit_torus(vertices, rounding) if holed else fit_hypersphere(vertices)
-    if shape:
-        return build_shape(shape, max_cells), f"rebuilt on a grid as a {describe(shape)}"
-    if holed:
-        return None
-    try:
-        from_convex_hull(vertices, rounding)  # raises if the shape isn't convex
-    except OffError:
-        return None
-    smaller = thin_convex(vertices, max_cells, rounding)
-    return (smaller, "convex hull of an evenly spread subset of the points") if smaller else None
-
-
-# --------------------------------------------------------------------------
 # Orientation and writing
 # --------------------------------------------------------------------------
 def godot_normal(vertices, face_a, face_b):
@@ -901,27 +573,21 @@ def write_off(path, vertices, faces, cells, face_colours, cell_colours):
     return n_edges
 
 
-def convert(source, force_hull=False, keep_orientation=False,
-            max_cells=DEFAULT_MAX_CELLS, standard=False):
+def convert(source, force_hull=False, keep_orientation=False):
     vertices, counts, body, rounding = read_off(source)
-    holed = any(part in source.stem.lower() for part in HOLED_NAME_PARTS)
     reason = "--hull was given" if force_hull else None
     if not force_hull:
         try:
             *structure, note = from_file_structure(vertices, counts, body)
             result = clean(vertices, *structure)
-            if holed:
-                outward_normals(*result[:3])  # make sure it can be oriented
-        except (Unusable, OffError) as error:
-            if isinstance(error, OffError) and not holed:
-                raise
+        except Unusable as error:
             reason = str(error)
-    if reason and holed:
-        result, note = rebuild_torus(
-            source, vertices, counts, body, rounding, max_cells, standard, reason
-        )
-        keep_orientation = False
-    elif reason:
+    if reason:
+        if any(part in source.stem.lower() for part in HOLED_NAME_PARTS):
+            raise OffError(
+                f"{reason}. This shape has a hole that a convex hull would fill in, "
+                "so the file needs 3D cells or tetrahedra"
+            )
         *structure, note = from_convex_hull(vertices, rounding, force_hull)
         note += f"\n      because {reason}"
         try:
@@ -932,17 +598,6 @@ def convert(source, force_hull=False, keep_orientation=False,
             ) from None
         keep_orientation = False  # the hull has no original orientation
 
-    too_many = None
-    if max_cells and len(result[2]) > max_cells:
-        before = len(result[2])
-        reduced = reduce_cells(result, max_cells, holed, rounding)
-        if reduced:
-            result, how = reduced
-            note += f"\n      reduced from {before} cells: {how}"
-            keep_orientation = False
-        if len(result[2]) > max_cells:
-            too_many = f"      WARNING: could not get down to {max_cells} cells"
-
     vertices, faces, cells, face_colours, cell_colours = result
     pieces = orient(vertices, faces, cells, keep_orientation)
     target = source.with_name(source.stem + "_poly.off")
@@ -950,8 +605,6 @@ def convert(source, force_hull=False, keep_orientation=False,
     print(f"OK    {source.name} -> {target.name}: {len(vertices)} vertices, "
           f"{len(faces)} faces, {n_edges} edges, {len(cells)} cells")
     print(f"      {note}")
-    if too_many:
-        print(too_many)
     if len(vertices) - n_edges + len(faces) - len(cells) != 0:
         print("      WARNING: V - E + F - C is not 0, so the surface may be pinched "
               "or broken. Check this shape in Godot")
@@ -969,14 +622,7 @@ def main():
                         help="ignore faces/cells and take the convex hull of the vertices")
     parser.add_argument("--keep-orientation", action="store_true",
                         help="keep the file's cell orientation instead of working out outward normals")
-    parser.add_argument("--max-cells", type=int, default=DEFAULT_MAX_CELLS, metavar="N",
-                        help=f"reduce meshes with more cells than this (default {DEFAULT_MAX_CELLS}, "
-                             "0 = no limit)")
-    parser.add_argument("--standard", action="store_true",
-                        help="if a torus file can't be matched, write a standard torus of its size")
     args = parser.parse_args()
-    if args.max_cells < 0:
-        parser.error("--max-cells can't be negative")
 
     sources, failed = [], 0
     for path in args.paths or [Path(".")]:
@@ -998,7 +644,7 @@ def main():
             print(f"SKIP  {source.name}: already a _poly file")
             continue
         try:
-            convert(source, args.hull, args.keep_orientation, args.max_cells, args.standard)
+            convert(source, args.hull, args.keep_orientation)
         except (OffError, Unusable, OSError) as error:
             print(f"FAIL  {source}: {error}")
             failed += 1
